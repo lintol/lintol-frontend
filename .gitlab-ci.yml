@@ -24,6 +24,7 @@ test:
   before_script:
     - Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
     - export DISPLAY=:99.0
+    - npm install 
   image: martinnaughton/nightwatch-e2e-headless:latest
   script: npm run test
   dependencies:
