@@ -1,10 +1,10 @@
 <template>
   <nav>
     <ul>
-      <li><router-link :to="{name: 'profiles' }">Data Profiles</router-link></li>
-      <li><router-link :to="{name: 'reports' }">Reports</router-link></li>
-      <li><router-link :to="{name: 'users' }">Users</router-link></li>
-      <li><router-link :to="{name: 'settings' }">Settings</router-link></li>
+      <li id="profiles"><router-link :to="{name: 'profiles' }">Data Profiles</router-link></li>
+      <li id="reports"><router-link :to="{name: 'reports' }">Reports</router-link></li>
+      <li id="users"><router-link :to="{name: 'users' }">Users</router-link></li>
+      <li id="settings"><router-link :to="{name: 'settings' }">Settings</router-link></li>
     </ul>
   </nav>
 </template>

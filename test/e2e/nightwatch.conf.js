@@ -1,7 +1,7 @@
 require('babel-register')
 var config = require('../../config')
 
-// http://nightwatchjs.org/gettingstarted#settings-file
+// http://nightwatchjs.org/guide#settings-file
 module.exports = {
   src_folders: ['test/e2e/specs'],
   output_folder: 'test/e2e/reports',
@@ -9,7 +9,7 @@ module.exports = {
 
   selenium: {
     start_process: true,
-    server_path: require('selenium-server').path,
+    server_path: 'node_modules/selenium-server/lib/runner/selenium-server-standalone-2.53.1.jar',
     host: '127.0.0.1',
     port: 4444,
     cli_args: {
@@ -23,7 +23,8 @@ module.exports = {
       selenium_host: 'localhost',
       silent: true,
       globals: {
-        devServerURL: 'http://localhost:' + (process.env.PORT || config.dev.port)
+        devServerURL: 'http://localhost:' + (process.env.PORT || config.dev.port),
+	simToken: 'dummy-uuid'
       }
     },
 
@@ -31,7 +32,8 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome',
         javascriptEnabled: true,
-        acceptSslCerts: true
+        acceptSslCerts: true,
+	args: ['--no-sandbox']
       }
     },
 
@@ -41,6 +43,16 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true
       }
-    }
+    },
+
+    phantomjs : {
+	desiredCapabilities : {
+  	browserName : "phantomjs",
+  	javascriptEnabled : true,
+  	acceptSslCerts : true,
+  	'phantomjs.binary.path' : "node_modules/phantomjs/bin/phantomjs",
+  	'phantomjs.cli.args' : [ ]
+	}
+     }
   }
 }
