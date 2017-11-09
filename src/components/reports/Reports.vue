@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="reports-panel">
     <p>{{ msg }}</p> 
   </div>
 </template>

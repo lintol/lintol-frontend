@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="users-panel">
     <p>{{ msg }}</p> 
   </div>
 </template>

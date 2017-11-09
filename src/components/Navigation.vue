@@ -1,10 +1,10 @@
 <template>
   <nav>
     <ul>
-      <li id="profiles"><router-link :to="{name: 'profiles' }">Data Profiles</router-link></li>
-      <li id="reports"><router-link :to="{name: 'reports' }">Reports</router-link></li>
-      <li id="users"><router-link :to="{name: 'users' }">Users</router-link></li>
-      <li id="settings"><router-link :to="{name: 'settings' }">Settings</router-link></li>
+      <li><router-link id="profiles" class="active" :to="{name: 'profiles' }">Data Profiles</router-link></li>
+      <li><router-link id="reports"  :to="{name: 'reports' }">Reports</router-link></li>
+      <li><router-link id="users"  :to="{name: 'users' }">Users</router-link></li>
+      <li><router-link id="settings" :to="{name: 'settings' }">Settings</router-link></li>
     </ul>
   </nav>
 </template>
@@ -21,4 +21,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.active {
+  color: red;
+}
 </style>
