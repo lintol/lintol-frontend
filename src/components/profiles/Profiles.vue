@@ -1,12 +1,13 @@
 <template>
   <div id="profiles-panel">
+     
     <h1>{{ title }}</h1>
     <p class="instructions">
       Instructions
     <p>
     <button class="addProfileButton">Add new Data Profile + </button>
     <!-- tables --> 
-    <div id="headings"  class="flexContainer">
+    <div id="headings"  class="flexContainer tableSeparator">
       <label class="flexHeading">Name</label> 
       <label class="flexHeading">Creator</label> 
       <label class="flexHeading">Created</label> 
@@ -21,12 +22,14 @@
     <div id="columns"  class="flexContainer">
       <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row> 
     </div>
+    <add-profile></add-profile>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import ProfileRow from './ProfileRow.vue';
+import AddProfile from './AddProfile.vue';
 export default {
   name: 'Profiles',
   data () {
@@ -47,13 +50,14 @@ export default {
   },
   components: {
     axios: axios,
-    ProfileRow: ProfileRow
+    ProfileRow: ProfileRow,
+    AddProfile: AddProfile
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
 .flexContainer {
@@ -72,7 +76,27 @@ export default {
 }
 
 .addProfileButton {
-  color: orange;
-  background-color: orange;
-}
+  background-color: $buttonColour; 
+  border: none;
+  border-radius: 5px;
+  color: $buttonText;
+  padding: 15px 32px;
+  box-shadow: 0px 0px 5px black;
+  display: inline-block;
+  float: right;
+  &:active {
+    box-shadow: 0px 0px 0px black;
+  }
+  &:focus {
+    outline:0;
+    border: none;
+  }
+} 
+
+.tableSeparator {
+  border-bottom: 2px solid black;
+  padding-bottom: 15px;
+} 
+
+
 </style>
