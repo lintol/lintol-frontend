@@ -7,14 +7,14 @@
       <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" />
       <textarea id="profileScript" class="scriptText formItem" rows="4" cols="50" placeholder="Custom Script" />
       <div>
-        <button class="addProfileButton">Add Profile</button>
+        <button class="addProfileButton" @click=addProfile>Add Profile</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 export default {
   name: 'Name',
   props: {
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     addProfile: function () {
-      var url = this.$apiPrefix + '/profiles/';
+      /* var url = this.$apiPrefix + '/profiles/';
       var profile = {};
       profile.name = this.name;
       profile.description = this.description;
@@ -38,7 +38,8 @@ export default {
         this.$router.push({name: 'profiles'});
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
-      });
+      }); */
+      this.$emit('addedProfile');
     }
   },
   components: {

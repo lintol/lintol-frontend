@@ -1,28 +1,29 @@
 <template>
   <div id="profiles-panel">
-     
-    <h1>{{ title }}</h1>
-    <p class="instructions">
-      Instructions
-    <p>
-    <button class="addProfileButton">Add new Data Profile + </button>
-    <!-- tables --> 
-    <div id="headings"  class="flexContainer tableSeparator">
-      <label class="flexHeading">Name</label> 
-      <label class="flexHeading">Creator</label> 
-      <label class="flexHeading">Created</label> 
-      <label class="flexHeading">Last Updated</label> 
-      <label class="flexHeading">Version History</label> 
-      <label class="flexHeading">Comments</label> 
-      <label class="flexHeading">Unique Tag</label> 
+    <div v-show="showProfileRows"> 
+      <h1>{{ title }}</h1>
+      <p class="instructions">
+        Instructions
+      </p>
+      <button class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
+      <!-- tables --> 
+      <div id="headings"  class="flexContainer tableSeparator">
+        <label class="flexHeading">Name</label> 
+        <label class="flexHeading">Creator</label> 
+        <label class="flexHeading">Created</label> 
+        <label class="flexHeading">Last Updated</label> 
+        <label class="flexHeading">Version History</label> 
+        <label class="flexHeading">Comments</label> 
+        <label class="flexHeading">Unique Tag</label> 
+      </div>
+      <div v-if="profiles.length == 0">
+        <p class="instructions"> No Profiles available for this account</p>
+      </div>
+      <div id="columns"  class="flexContainer">
+        <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row> 
+      </div>
     </div>
-    <div v-if="profiles.length == 0">
-      <p class="instructions"> No Profiles available for this account</p>
-    </div>
-    <div id="columns"  class="flexContainer">
-      <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row> 
-    </div>
-    <add-profile></add-profile>
+    <add-profile v-if="showAddProfile" v-on:addedProfile=profileAdded></add-profile>
   </div>
 </template>
 
@@ -36,7 +37,9 @@ export default {
     return {
       title: 'Data Profiles',
       profiles: [],
-      accountId: 0
+      accountId: 0,
+      showProfileRows: true,
+      showAddProfile: false
     };
   },
   methods: {
@@ -46,6 +49,15 @@ export default {
       }, response => {
         console.log('Couldnt get data profiles for account.');
       });
+    },
+    profileAdded: function () {
+      this.showAddProfile = false;
+      this.getProfiles();
+      this.showProfileRows = true;
+    },
+    addProfile: function () {
+      this.showProfileRows = false;
+      this.showAddProfile = true;
     }
   },
   components: {
@@ -91,12 +103,18 @@ export default {
     outline:0;
     border: none;
   }
-} 
+}
 
 .tableSeparator {
   border-bottom: 2px solid black;
   padding-bottom: 15px;
 } 
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
+}
 
 </style>
