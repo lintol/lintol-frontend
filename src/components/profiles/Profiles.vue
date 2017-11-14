@@ -5,7 +5,7 @@
       <p class="instructions">
         Instructions
       </p>
-      <button class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
+      <button id="addNewProfileButton" class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
       <!-- tables --> 
       <div id="headings"  class="headerContainer tableSeparator">
         <label class="flexHeading">Name</label> 
@@ -16,7 +16,7 @@
         <label class="flexHeading">Comments</label> 
         <label class="flexHeading">Unique Tag</label> 
       </div>
-      <div v-if="profiles.length == 0">
+      <div id="noProfilesAvailable" v-if="profiles.length == 0">
         <p class="instructions"> No Profiles available for this account</p>
       </div>
       <div id="columns"  class="flexContainer">
