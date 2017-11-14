@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <div>
+     <img class="logo center" src="../assets/logo.png" />
+     </div>
   <nav>
     <ul>
       <li><router-link id="profiles" class="active" :to="{name: 'profiles' }">Data Profiles</router-link></li>
@@ -7,6 +11,7 @@
       <li><router-link id="settings" :to="{name: 'settings' }">Settings</router-link></li>
     </ul>
   </nav>
+  </div>
 </template>
 
 <script>
@@ -25,5 +30,13 @@ export default {
 
 .active {
   color: red;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 </style>
