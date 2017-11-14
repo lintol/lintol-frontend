@@ -1,5 +1,5 @@
 <template>
-  <div id="profiles-row" style="display: block">
+  <div id="profiles-row">
     <div class="profileRow">
     <label class="profileColumn" >{{ profile.name }}</label>
     <label class="profileColumn" >{{ profile.creator }}</label>

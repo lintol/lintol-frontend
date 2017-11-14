@@ -23,6 +23,15 @@ module.exports = {
       .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
       .end()
   },
+  'check profile row exists test': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app', 2000)
+      .click('#profiles')
+      .waitForElementVisible('#profiles-row', visiblePauseTime)
+      .end()
+  },
   'add new profile page exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
