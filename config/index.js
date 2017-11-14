@@ -37,7 +37,7 @@ module.exports = {
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/api': '/api/v1'
+          '^/api': '/'  // when it searchs for api then redirect to forward slash
         }
       }    
     },

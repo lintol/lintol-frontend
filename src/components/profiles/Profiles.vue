@@ -44,8 +44,7 @@ export default {
   },
   methods: {
     getProfiles: function () {
-      console.log(this.$apiPrefix);
-      axios.get('http://localhost:8080/api/profiles/').then(response => {
+      axios.get(this.$apiPrefix + '/profiles/').then(response => {
         this.profiles = response.data;
         console.log(response.data);
       }, response => {
