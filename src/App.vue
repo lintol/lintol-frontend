@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="sideOrangeBar">
     <router-view/>
   </div>
 </template>
@@ -10,5 +10,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import 'assets/scss/application.scss';
+.sideOrangeBar {
+  border-left: solid 50px $sideBar;
+}
+
+body {
+  margin: 0px;
+}
+
 </style>
