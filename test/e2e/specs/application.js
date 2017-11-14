@@ -8,7 +8,6 @@ module.exports = {
     // default: http://localhost:8080
     // see nightwatch.conf.js
     const devServer = browser.globals.devServerURL
-
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
@@ -38,7 +37,7 @@ module.exports = {
       .waitForElementVisible('#profiles', visiblePauseTime)
       .click('#profiles')
       .waitForElementVisible('#profiles-panel', visiblePauseTime)
-      .assert.cssClassPresent('#profiles', 'active')
+      .assert.cssClassPresent('#profilesLink', 'active')
       .assert.urlEquals('http://localhost:8080/#/profiles')
       .end()
   },
@@ -49,7 +48,7 @@ module.exports = {
       .waitForElementVisible('#reports', visiblePauseTime)
       .click('#reports')
       .waitForElementVisible('#reports-panel', visiblePauseTime)
-      // .assert.cssClassPresent('#reports', 'active')
+      .assert.cssClassPresent('#reportsLink', 'active')
       .assert.urlEquals('http://localhost:8080/#/reports')
       .end()
   },
@@ -60,7 +59,7 @@ module.exports = {
       .waitForElementVisible('#users', visiblePauseTime)
       .click('#users')
       .waitForElementVisible('#users-panel', visiblePauseTime)
-      // .assert.cssClassPresent('#users', 'active')
+      .assert.cssClassPresent('#usersLink', 'active')
       .assert.urlEquals('http://localhost:8080/#/users')
       .end()
   },
@@ -71,8 +70,19 @@ module.exports = {
       .waitForElementVisible('#settings', visiblePauseTime)
       .click('#settings')
       .waitForElementVisible('#settings-panel', visiblePauseTime)
-      // .assert.cssClassPresent('#settings', 'active')
+      .assert.cssClassPresent('#settingsLink', 'active')
       .assert.urlEquals('http://localhost:8080/#/settings')
+      .end()
+  },
+  'logo links back to home page': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#settings', visiblePauseTime)
+      .click('#settings')
+      .waitForElementVisible('#settings-panel', visiblePauseTime)
+      .click('#home')
+      .assert.urlEquals('http://localhost:8080/#/')
       .end()
   }
 }
