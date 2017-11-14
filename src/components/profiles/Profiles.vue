@@ -1,11 +1,11 @@
 <template>
   <div id="profiles-panel">
     <div v-show="showProfileRows"> 
+      <button id="addNewProfileButton" class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
       <h1>{{ title }}</h1>
       <p class="instructions">
         Instructions
       </p>
-      <button id="addNewProfileButton" class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
       <!-- tables --> 
       <div id="headings"  class="headerContainer tableSeparator">
         <label class="flexHeading">Name</label> 
