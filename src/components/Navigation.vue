@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div>
-     <img class="logo center" src="../assets/logo.png" />
-     </div>
+     <router-link id="home" :to="{name: 'Application' }">
+       <img class="logo center" src="../assets/logo.png" title="Home">
+     </router-link>
   <nav>
     <ul>
-      <li><router-link id="profiles" class="active" :to="{name: 'profiles' }">Data Profiles</router-link></li>
-      <li><router-link id="reports"  :to="{name: 'reports' }">Reports</router-link></li>
-      <li><router-link id="users"  :to="{name: 'users' }">Users</router-link></li>
-      <li><router-link id="settings" :to="{name: 'settings' }">Settings</router-link></li>
+      <li :class="{ active: currentView == 'profiles'}" ><router-link id="profiles" :to="{name: 'profiles' }">Data Profiles</router-link></li>
+      <li :class="{ active: currentView == 'reports'}"><router-link id="reports"  :to="{name: 'reports' }">Reports</router-link></li>
+      <li :class="{ active: currentView == 'users'}"><router-link id="users"  :to="{name: 'users' }">Users</router-link></li>
+      <li :class="{ active: currentView == 'settings'}"><router-link id="settings" :to="{name: 'settings' }">Settings</router-link></li>
     </ul>
   </nav>
   </div>
@@ -19,7 +19,14 @@ export default {
   name: 'Navigation',
   data () {
     return {
+      currentView: 'profiles'
     };
+  },
+  watch: {
+    $route: function () {
+      console.log('New route:' + this.$route.name);
+      this.currentView = this.$route.name;
+    }
   }
 };
 </script>
@@ -30,6 +37,7 @@ export default {
 
 .active {
   color: red;
+  background-color: #EDEDED;
 }
 
 .logo {
@@ -39,4 +47,11 @@ export default {
   margin-right: auto;
   display: block;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
 </style>
