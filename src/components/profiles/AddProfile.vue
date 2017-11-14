@@ -46,7 +46,7 @@ export default {
   },
   computed: {
   },
-  mounted: {
+  mounted: function () {
   }
 };
 </script>

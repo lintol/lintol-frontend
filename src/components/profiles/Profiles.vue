@@ -7,7 +7,7 @@
       </p>
       <button class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
       <!-- tables --> 
-      <div id="headings"  class="flexContainer tableSeparator">
+      <div id="headings"  class="headerContainer tableSeparator">
         <label class="flexHeading">Name</label> 
         <label class="flexHeading">Creator</label> 
         <label class="flexHeading">Created</label> 
@@ -20,7 +20,7 @@
         <p class="instructions"> No Profiles available for this account</p>
       </div>
       <div id="columns"  class="flexContainer">
-        <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row> 
+        <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row>
       </div>
     </div>
     <add-profile v-if="showAddProfile" v-on:addedProfile=profileAdded></add-profile>
@@ -44,8 +44,10 @@ export default {
   },
   methods: {
     getProfiles: function () {
-      axios.get(this.$apiPrefix + '/dataprofiles/' + this.account).then(response => {
-        this.profiles = response.data.data;
+      console.log(this.$apiPrefix);
+      axios.get('http://localhost:8080/api/profiles/').then(response => {
+        this.profiles = response.data;
+        console.log(response.data);
       }, response => {
         console.log('Couldnt get data profiles for account.');
       });
@@ -64,6 +66,9 @@ export default {
     axios: axios,
     ProfileRow: ProfileRow,
     AddProfile: AddProfile
+  },
+  mounted: function () {
+    this.getProfiles();
   }
 };
 </script>
@@ -72,9 +77,15 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
-.flexContainer {
+.headerContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
 }
 

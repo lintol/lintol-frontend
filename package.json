@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "css-loader": "^0.28.7",
+    "json-server": "^0.12.1",
     "node-sass": "^4.6.1",
     "sass-loader": "^6.0.6",
     "scss-loader": "0.0.1",

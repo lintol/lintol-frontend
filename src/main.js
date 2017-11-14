@@ -6,10 +6,19 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+Object.defineProperty(Vue.prototype, '$apiPrefix', {
+  get () {
+    return this.$root.apiPrefix;
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  data: {
+    apiPrefix: process.env.API_PREFIX
+  }
 });

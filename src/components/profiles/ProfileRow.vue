@@ -1,12 +1,14 @@
 <template>
-  <div id="profiles-row" class="profileRow">
+  <div id="profiles-row" style="display: block">
+    <div class="profileRow">
     <label class="profileColumn" >{{ profile.name }}</label>
     <label class="profileColumn" >{{ profile.creator }}</label>
     <label class="profileColumn" >{{ profile.created }}</label>
     <label class="profileColumn" >{{ profile.lastUpdated }}</label>
     <label class="profileColumn" >{{ profile.versionHistory }}</label>
     <label class="profileColumn" >{{ profile.comments }}</label>
-    <label class="profileColumn" >{{ profile.unqiueTag }}</label>
+    <label class="profileColumn" >{{ profile.uniqueTag }}</label>
+  </div>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
   },
   computed: {
   },
-  mounted: {
+  mounted: function () {
   }
 };
 </script>
