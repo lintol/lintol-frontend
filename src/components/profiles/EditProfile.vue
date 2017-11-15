@@ -7,7 +7,7 @@
       <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" />
       <textarea id="profileScript" class="scriptText formItem" rows="4" cols="50" placeholder="Custom Script" />
       <div>
-        <button id="addProfile" class="addProfileButton" @click=addProfile>Add Profile</button>
+        <button id="addProfile" class="addProfileButton" @click=addProfile>Save Changes</button>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
   },
   data () {
     return {
-      title: 'Add Profiles',
+      title: 'Edit Profile',
       name: '',
       description: '',
       script: ''

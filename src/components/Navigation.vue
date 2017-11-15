@@ -5,7 +5,7 @@
      </router-link>
   <nav>
     <ul>
-      <li id="profilesLink" :class="{ active: currentView == 'profiles'}" ><router-link id="profiles" :to="{name: 'profiles' }">Data Profiles</router-link></li>
+      <li id="profilesLink" :class="{ active: currentView == 'profiles'}" ><router-link id="profiles" :to="{name: 'profileTable' }">Data Profiles</router-link></li>
       <li id="reportsLink" :class="{ active: currentView == 'reports'}"><router-link id="reports"  :to="{name: 'reports' }">Reports</router-link></li>
       <li id="usersLink" :class="{ active: currentView == 'users'}"><router-link id="users"  :to="{name: 'users' }">Users</router-link></li>
       <li id="settingsLink" :class="{ active: currentView == 'settings'}"><router-link id="settings" :to="{name: 'settings' }">Settings</router-link></li>

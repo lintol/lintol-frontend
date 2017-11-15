@@ -8,6 +8,11 @@
     <label class="profileColumn" >{{ profile.versionHistory }}</label>
     <label class="profileColumn" >{{ profile.comments }}</label>
     <label class="profileColumn" >{{ profile.uniqueTag }}</label>
+    <select class="profileActions" id="" @click=profileAction>
+      <option value=""></option> 
+      <option value="edit">Edit</option> 
+      <option value="archive">Archive</option> 
+    </select>
   </div>
   </div>
 </template>
@@ -28,6 +33,15 @@ export default {
     };
   },
   methods: {
+    profileAction: function (e) {
+      console.log('profile action:');
+      if (e.target.value === 'edit') {
+        this.$router.push({name: 'editProfile'});
+      }
+      if (e.target.value === 'archive') {
+        console.log('archiving');
+      }
+    }
   },
   components: {
   },
@@ -47,6 +61,10 @@ export default {
   display: inline-block;
 }
 
+.profileAction {
+  min-width: 120px;
+  display: inline-block;
+}
 .profileRow {
   display: flex;
   flex-direction: row;
