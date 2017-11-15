@@ -58,7 +58,25 @@ module.exports = {
       .setValue('textarea[id=profileDescription]', 'bob description')
       .setValue('textarea[id=profileScript]', 'bob script')
       .click('#addProfile')
-      .waitForElementVisible('#profiles-panel', visiblePauseTime)
+      .waitForElementVisible('#profileTable', visiblePauseTime)
       .end()
   },
+  'edit profile test': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app', 2000)
+      .click('#profiles')
+      .click('#profileAction option[value=edit]')
+      .waitForElementVisible('#editProfilePanel', visiblePauseTime)
+      .waitForElementVisible('#profileName', visiblePauseTime)
+      .waitForElementVisible('#profileDescription', visiblePauseTime)
+      .waitForElementVisible('#profileScript', visiblePauseTime)
+      .setValue('input[id=profileName]', 'bob profile')
+      .setValue('textarea[id=profileDescription]', 'bob description')
+      .setValue('textarea[id=profileScript]', 'bob script')
+      .click('#saveProfileChanges')
+      .waitForElementVisible('#profileTable', visiblePauseTime)
+      .end()
+  }
 }

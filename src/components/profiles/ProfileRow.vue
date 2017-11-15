@@ -8,7 +8,7 @@
     <label class="profileColumn" >{{ profile.versionHistory }}</label>
     <label class="profileColumn" >{{ profile.comments }}</label>
     <label class="profileColumn" >{{ profile.uniqueTag }}</label>
-    <select class="profileActions" id="" @click=profileAction>
+    <select class="profileActions" id="profileAction" @click=profileAction>
       <option value=""></option> 
       <option value="edit">Edit</option> 
       <option value="archive">Archive</option> 

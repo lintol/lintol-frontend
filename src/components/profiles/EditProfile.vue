@@ -1,5 +1,5 @@
 <template>
-  <div id="add-profile-panel">
+  <div id="editProfilePanel">
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
@@ -7,7 +7,7 @@
       <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" />
       <textarea id="profileScript" class="scriptText formItem" rows="4" cols="50" placeholder="Custom Script" />
       <div>
-        <button id="addProfile" class="addProfileButton" @click=addProfile>Save Changes</button>
+        <button id="saveProfileChanges" class="addProfileButton" @click=saveChanges>Save Changes</button>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    addProfile: function () {
+    saveChanges: function () {
       /* var url = this.$apiPrefix + '/profiles/';
       var profile = {};
       profile.name = this.name;

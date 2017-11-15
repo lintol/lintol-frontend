@@ -1,5 +1,5 @@
 <template>
-  <div id="profilesTable">
+  <div id="profileTable">
     <transition name="component-fade" mode="in-out">
     <div > 
       <button id="addNewProfileButton" class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
