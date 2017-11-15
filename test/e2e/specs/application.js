@@ -35,10 +35,10 @@ module.exports = {
     browser
       .url(devServer)
       .waitForElementVisible('#profiles', visiblePauseTime)
-      .click('#profiles')
+      .click('#profilesLink')
       .waitForElementVisible('#profiles-panel', visiblePauseTime)
       .assert.cssClassPresent('#profilesLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/profiles')
+      .assert.urlEquals('http://localhost:8080/#/profiles/profiletable')
       .end()
   },
   'test reports panel exist': function (browser) {
