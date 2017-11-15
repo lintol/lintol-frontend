@@ -10,5 +10,12 @@
     { "id": 1, "body": "some comment", "postId": 1 }
   ],
   "users": { "name": "typicode" },
-  "settings": { "name": "typicode" }
+  "settings": { "name": "typicode" },
+  "processors": [
+    { "id": 1, "title": "CSV Lint", "description": "This processor will lint CSV types", "moreInfo": "Alot more information about about the processor", "type": "csv" },
+    { "id": 2, "title": "JSON Lint", "description": "This processor will lint JSON  types", "moreInfo": "Alot more information about about the processor", "type": "json" },
+    { "id": 3, "title": "RDF Lint", "description": "This processor will lint RDF types", "moreInfo": "Alot more information about about the processor", "type": "crdf" },
+    { "id": 4, "title": "XML Lint", "description": "This processor will lint XML types", "moreInfo": "Alot more information about about the processor", "type": "xml" },
+    { "id": 5, "title": "XLS Lint", "description": "This processor will lint XLS types", "moreInfo": "Alot more information about about the processor", "type": "xls" }
+  ]
 }
