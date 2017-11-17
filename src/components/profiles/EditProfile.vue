@@ -3,8 +3,8 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" />
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" />
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model="name"/>
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model="description" />
       <textarea id="profileScript" class="scriptText formItem" rows="4" cols="50" placeholder="Custom Script" />
       <div>
         <button id="saveProfileChanges" class="addProfileButton" @click=saveChanges>Save Changes</button>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 export default {
-  name: 'Name',
+  name: 'EditProfile',
   props: {
-    id: {
-      type: String,
+    profileId: {
+      type: Number,
       required: true
     }
   },
@@ -33,17 +33,27 @@ export default {
   },
   methods: {
     saveChanges: function () {
-      /* var url = this.$apiPrefix + '/profiles/';
+      var url = this.$apiPrefix + '/profiles/' + this.id;
       var profile = {};
       profile.name = this.name;
       profile.description = this.description;
-      profile.script = this.script;
-      axios.put(url, profile).then((response) => {
+      axios.post(url, profile).then((response) => {
         this.$router.push({name: 'profiles'});
+        console.log(response);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
-      }); */
+      });
       this.$router.push({name: 'profileTable'});
+    },
+    getProfile: function () {
+      axios.get(this.$apiPrefix + '/profiles/' + this.profileId).then(response => {
+        var profile = response.data;
+        this.name = profile.name;
+        this.description = profile.description;
+        console.log(response.data);
+      }, response => {
+        console.log('Couldnt get data profiles for account.');
+      });
     }
   },
   components: {
@@ -51,7 +61,7 @@ export default {
   computed: {
   },
   mounted: function () {
-    console.log('Edit profile:' + this.id);
+    this.getProfile();
   }
 };
 </script>

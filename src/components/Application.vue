@@ -17,6 +17,11 @@ export default {
   },
   components: {
     Navigation: Navigation
+  },
+  watch: {
+    $route: function () {
+      console.log(this.$route.params);
+    }
   }
 };
 </script>

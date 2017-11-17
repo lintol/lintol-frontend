@@ -25,7 +25,7 @@ export default new Router({
           children: [
             { name: 'profileTable', path: 'profiletable', component: ProfileTable },
             { name: 'addProfile', path: 'addprofile', component: AddProfile },
-            { name: 'editProfile', path: 'editprofile/:id', component: EditProfile }
+            { name: 'editProfile', path: 'editprofile/:profileId', component: EditProfile, props: true }
           ]
         },
         { name: 'reports', path: 'reports', component: Reports },

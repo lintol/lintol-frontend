@@ -1,6 +1,7 @@
 <template>
   <div id="profiles-row">
     <div class="profileRow">
+    <label class="profileColumn" >{{ profile.id }}</label>
     <label class="profileColumn" >{{ profile.name }}</label>
     <label class="profileColumn" >{{ profile.creator }}</label>
     <label class="profileColumn" >{{ convertDate(profile.created_at) }}</label>
@@ -35,7 +36,7 @@ export default {
     profileAction: function (e) {
       console.log('profile action:');
       if (e.target.value === 'edit') {
-        this.$router.push({name: 'editProfile', params: { id: this.profile.id }});
+        this.$router.push({name: 'editProfile', params: { profileId: this.profile.id }});
       }
       if (e.target.value === 'archive') {
         console.log('archiving');
