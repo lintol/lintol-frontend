@@ -33,12 +33,12 @@ export default {
   },
   methods: {
     saveChanges: function () {
-      var url = this.$apiPrefix + '/profiles/' + this.id;
+      var url = this.$apiPrefix + '/profiles/' + this.profileId;
       var profile = {};
       profile.name = this.name;
       profile.description = this.description;
-      axios.post(url, profile).then((response) => {
-        this.$router.push({name: 'profiles'});
+      axios.put(url, profile).then((response) => {
+        this.$router.push({name: 'profileTable'});
         console.log(response);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
