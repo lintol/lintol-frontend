@@ -1,8 +1,8 @@
 <template>
   <div id="profiles-row">
     <div class="profileRow">
-    <label class="profileColumn" >{{ profile.id }}</label>
     <label class="profileColumn" >{{ profile.name }}</label>
+    <label class="profileColumn" >{{ profile.description }}</label>
     <label class="profileColumn" >{{ profile.creator }}</label>
     <label class="profileColumn" >{{ convertDate(profile.created_at) }}</label>
     <label class="profileColumn" >{{ convertDate(profile.updated_at) }}</label>

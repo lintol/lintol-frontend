@@ -10,6 +10,7 @@
       <!-- tables --> 
       <div id="headings"  class="headerContainer tableSeparator">
         <label class="flexHeading">Name</label> 
+        <label class="flexHeading">Description</label> 
         <label class="flexHeading">Creator</label> 
         <label class="flexHeading">Created</label> 
         <label class="flexHeading">Last Updated</label> 
