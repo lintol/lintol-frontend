@@ -3,8 +3,8 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" />
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" />
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=name />
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=description />
       <div>
       <p>Choose your Processor<p>
       <p>Instructions<p>
@@ -39,17 +39,21 @@ export default {
   },
   methods: {
     addProfile: function () {
-      /* var url = this.$apiPrefix + '/profiles/';
+      var url = this.$apiPrefix + '/profiles/';
       var profile = {};
       profile.name = this.name;
       profile.description = this.description;
-      profile.script = this.script;
-      profile.processors = this.choosenProcessors;
-      axios.put(url, profile).then((response) => {
+      // profile.script = this.script;
+      profile.creator = 'Martin';
+      profile.version = 7;
+      profile.uniqueTag = 'uniq-66-' + this.name;
+      // profile.processors = this.choosenProcessors;
+      axios.post(url, profile).then((response) => {
         this.$router.push({name: 'profiles'});
+        console.log(response);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
-      }); */
+      });
       this.$router.push({name: 'profileTable'});
     },
     getProcessor: function () {
@@ -80,7 +84,7 @@ export default {
   computed: {
   },
   mounted: function () {
-    this.getProcessor();
+    // this.getProcessor();
   }
 };
 </script>
