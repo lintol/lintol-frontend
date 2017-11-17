@@ -13,6 +13,8 @@ export default {
     return {
     };
   },
+  methods: {
+  },
   components: {
     Navigation: Navigation
   }

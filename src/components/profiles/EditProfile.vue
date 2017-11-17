@@ -18,6 +18,10 @@
 export default {
   name: 'Name',
   props: {
+    id: {
+      type: String,
+      required: true
+    }
   },
   data () {
     return {
@@ -47,6 +51,7 @@ export default {
   computed: {
   },
   mounted: function () {
+    console.log('Edit profile:' + this.id);
   }
 };
 </script>

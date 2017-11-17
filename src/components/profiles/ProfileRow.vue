@@ -3,10 +3,9 @@
     <div class="profileRow">
     <label class="profileColumn" >{{ profile.name }}</label>
     <label class="profileColumn" >{{ profile.creator }}</label>
-    <label class="profileColumn" >{{ profile.created }}</label>
-    <label class="profileColumn" >{{ profile.lastUpdated }}</label>
-    <label class="profileColumn" >{{ profile.versionHistory }}</label>
-    <label class="profileColumn" >{{ profile.comments }}</label>
+    <label class="profileColumn" >{{ convertDate(profile.created_at) }}</label>
+    <label class="profileColumn" >{{ convertDate(profile.updated_at) }}</label>
+    <label class="profileColumn" >{{ profile.version }}</label>
     <label class="profileColumn" >{{ profile.uniqueTag }}</label>
     <select class="profileActions" id="profileAction" @click=profileAction>
       <option value=""></option> 
@@ -18,7 +17,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import moment from 'moment';
 export default {
   name: 'ProfileRow',
   props: {
@@ -36,11 +35,14 @@ export default {
     profileAction: function (e) {
       console.log('profile action:');
       if (e.target.value === 'edit') {
-        this.$router.push({name: 'editProfile'});
+        this.$router.push({name: 'editProfile', params: { id: this.profile.id }});
       }
       if (e.target.value === 'archive') {
         console.log('archiving');
       }
+    },
+    convertDate: function (dateString) {
+      return moment(dateString).format('YYYY-MM-DD');
     }
   },
   components: {

@@ -14,7 +14,6 @@
         <label class="flexHeading">Created</label> 
         <label class="flexHeading">Last Updated</label> 
         <label class="flexHeading">Version History</label> 
-        <label class="flexHeading">Comments</label> 
         <label class="flexHeading">Unique Tag</label> 
       </div>
       <div id="noProfilesAvailable" v-if="profiles.length == 0">
