@@ -1,19 +1,36 @@
 <template>
-  <div id="profiles-row">
+  <div id="profiles-row" class="shadedRow">
     <div class="profileRow">
-    <label class="profileColumn" >{{ profile.name }}</label>
-    <label class="profileColumn" >{{ profile.description }}</label>
-    <label class="profileColumn" >{{ profile.creator }}</label>
-    <label class="profileColumn" >{{ convertDate(profile.created_at) }}</label>
-    <label class="profileColumn" >{{ convertDate(profile.updated_at) }}</label>
-    <label class="profileColumn" >{{ profile.version }}</label>
-    <label class="profileColumn" >{{ profile.uniqueTag }}</label>
-    <select class="profileActions" id="profileAction" @click=profileAction>
-      <option value=""></option> 
-      <option value="edit">Edit</option> 
-      <option value="archive">Archive</option> 
-    </select>
-  </div>
+      <div class="profileColumn profileMainColumn center">
+        <div class="rightSeparator ">
+          <label> <b>{{ profile.name }}</b> by {{ profile.creator }} </label>
+          <p>{{ profile.description }} </p>
+        </div>
+      </div>
+      <div class="profileColumn center">
+        <label class="columnTitle">Created at</label>
+        <p>{{ convertDate(profile.created_at) }}</p>
+      </div>
+      <div class="profileColumn center">
+        <label class="columnTitle">Last Updated</label>
+        <p>{{ convertDate(profile.updated_at) }}</p>
+      </div>
+      <div class="profileColumn center">
+        <label class="columnTitle">Last Updated</label>
+        <p >{{ profile.version }}</p>
+      </div>
+      <div class="profileColumn center">
+        <label class="columnTitle">Last Updated</label>
+        <p>{{ profile.uniqueTag }}</p>
+      </div>
+      <div class="profileColumn">
+        <select class="profileActions verticalAlign" id="profileAction" @click=profileAction>
+          <option value=""></option> 
+          <option value="edit">Edit</option> 
+          <option value="archive">Archive</option> 
+        </select>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,7 +60,7 @@ export default {
       }
     },
     convertDate: function (dateString) {
-      return moment(dateString).format('YYYY-MM-DD');
+      return moment(dateString).format('Do MMMM YYYY');
     }
   },
   components: {
@@ -56,12 +73,24 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
 .profileColumn {
-  min-width: 120px;
-  display: inline-block;
+  min-width: 150px;
+  flex: 1;
+}
+ 
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profileMainColumn {
+  flex: 2;
+  min-height: 80px;
+  padding: 10px;
 }
 
 .profileAction {
@@ -72,6 +101,31 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: space-between;
+}
+ 
+.columnTitle {
+  font-weight: bold;
+}
+
+.rightSeparator {
+  border-right: grey 1px solid;
+}
+
+.shadedRow {
+  border: 1px solid $rowBackground;
+  border-radius: 3px;
+  background-color: $rowBackground;
+  margin: 20px;
+}
+
+.verticalAlign {
+  vertical-align: middle;
+}
+
+div .profileColumn p {
+  margin: unset;
+  color: grey;
 }
 
 </style>

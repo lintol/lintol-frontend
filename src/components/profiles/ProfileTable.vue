@@ -7,8 +7,14 @@
       <p class="instructions">
         Instructions
       </p>
+      <select class="rowFilter">
+        <option value="">Filter By Groups</option>
+      </select>
+      <select class="rowFilter">
+        <option value="">Filter By Sites</option>
+      </select>
       <!-- tables --> 
-      <div id="headings"  class="headerContainer tableSeparator">
+      <!--<div id="headings"  class="headerContainer tableSeparator">
         <label class="flexHeading">Name</label> 
         <label class="flexHeading">Description</label> 
         <label class="flexHeading">Creator</label> 
@@ -16,7 +22,7 @@
         <label class="flexHeading">Last Updated</label> 
         <label class="flexHeading">Version History</label> 
         <label class="flexHeading">Unique Tag</label> 
-      </div>
+      </div>-->
       <div id="noProfilesAvailable" v-if="profiles.length == 0">
         <p class="instructions"> No Profiles available for this account</p>
       </div>
@@ -126,5 +132,11 @@ export default {
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.shadedBox {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: pink;
 }
 </style>
