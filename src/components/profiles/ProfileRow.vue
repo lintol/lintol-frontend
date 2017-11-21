@@ -3,7 +3,7 @@
     <div class="profileRow">
       <div class="profileColumn profileMainColumn center">
         <div class="rightSeparator ">
-          <label> <b>{{ profile.name }}</b> by {{ profile.creator }} </label>
+          <label> <b>{{ profile.name }}</b> by <img class="profilePicture" src="../../assets/images/profile.png"> </img>{{ profile.creator }} </label>
           <p>{{ profile.description }} </p>
         </div>
       </div>
@@ -126,6 +126,12 @@ export default {
 div .profileColumn p {
   margin: unset;
   color: grey;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
 }
 
 </style>

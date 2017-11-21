@@ -1,14 +1,34 @@
 <template>
   <div>
      <router-link id="home" :to="{name: 'Application' }">
-       <img class="logo center" src="../assets/logo.png" title="Home">
+       <img class="logo center" src="../assets/images/logo.svg" title="Home">
      </router-link>
   <nav>
     <ul>
-      <li id="profilesLink" :class="{ active: currentView == 'profileTable'}" ><router-link id="profiles" :to="{name: 'profileTable' }">Data Profiles</router-link></li>
-      <li id="reportsLink" :class="{ active: currentView == 'reports'}"><router-link id="reports"  :to="{name: 'reports' }">Reports</router-link></li>
-      <li id="usersLink" :class="{ active: currentView == 'users'}"><router-link id="users"  :to="{name: 'users' }">Users</router-link></li>
-      <li id="settingsLink" :class="{ active: currentView == 'settings'}"><router-link id="settings" :to="{name: 'settings' }">Settings</router-link></li>
+      <li id="profilesLink" :class="{ active: currentView == 'profileTable'}" >
+         <router-link id="profiles" class="menuLink"  :to="{name: 'profileTable' }">
+            <img class="menuIcon" src="../assets/images/data-profiles.svg" />
+            <label>Data Profiles</label>
+         </router-link>
+      </li>
+      <li id="reportsLink" :class="{ active: currentView == 'reports'}">
+         <router-link id="reports" class="menuLink" :to="{name: 'reports' }">
+           <img class="menuIcon" src="../assets/images/reports.svg" />
+            <label>Reports</label>
+         </router-link>
+      </li>
+      <li id="usersLink" :class="{ active: currentView == 'users'}">
+        <router-link id="users" class="menuLink" :to="{name: 'users' }">
+           <img class="menuIcon"  src="../assets/images/users.svg" />
+           <label>Users</label>
+        </router-link>
+      </li>
+      <li id="settingsLink" :class="{ active: currentView == 'settings'}">
+         <router-link id="settings" class="menuLink" :to="{name: 'settings' }">
+           <img class="menuIcon" src="../assets/images/settings.svg" />
+           <label>Settings</label>
+         </router-link>
+      </li>
     </ul>
   </nav>
   </div>
@@ -36,7 +56,6 @@ export default {
 @import '../assets/scss/application.scss';
 
 .active {
-  color: red;
   background-color: #EDEDED;
 }
 
@@ -52,6 +71,20 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+.menuIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.menuLink {
+  display: block;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    background-color: #EDEDED;
+  }
 }
 
 </style>
