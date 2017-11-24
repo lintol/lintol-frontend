@@ -1,0 +1,40 @@
+$lightPink: #ede3e3; 
+$buttonColour: #F1592A;
+$buttonText: white;
+$inputBackground: #F8F8F8;
+$warningText: red;
+$sideBar: #F1592A;
+$rowBackground: $lightPink;
+
+
+
+textarea {
+  overflow: hidden;
+  background-color: $inputBackground;
+}
+
+input[type=text] {
+  background-color: $inputBackground;
+}
+
+.addProfileButton {
+  background-color: $buttonColour; 
+  border: none;
+  border-radius: 5px;
+  color: $buttonText;
+  padding: 15px 32px;
+  box-shadow: 0px 0px 5px black;
+  display: inline-block;
+  float: right;
+  &:active {
+    box-shadow: 0px 0px 0px black;
+  }
+  &:focus {
+    outline:0;
+    border: none;
+  }
+} 
+
+.warningText {
+  color: $warningText;
+}
