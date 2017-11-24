@@ -12,7 +12,7 @@
          </router-link>
       </li>
       <li id="processorsLink" :class="{ active: currentView == 'processors'}">
-         <router-link id="reports" class="menuLink" :to="{name: 'processorTable' }">
+         <router-link id="processors" class="menuLink" :to="{name: 'processorTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
             <label>Processors</label>
          </router-link>

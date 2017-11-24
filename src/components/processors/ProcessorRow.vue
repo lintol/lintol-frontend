@@ -5,6 +5,9 @@
         <label>{{ processor.name }}</label>
       </div>
       <div class="processorColumn center">
+        <label>{{ processor.description }}</label>
+      </div>
+      <div class="processorColumn center">
         <p>{{ convertDate(processor.created_at) }}</p>
       </div>
       <div class="processorColumn center">

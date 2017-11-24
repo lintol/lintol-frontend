@@ -50,12 +50,11 @@ export default {
       profile.uniqueTag = 'uniq-66-' + this.name;
       // profile.processors = this.choosenProcessors;
       axios.post(url, profile).then((response) => {
-        this.$router.push({name: 'profiles'});
+        this.$router.push({name: 'profileTable'});
         console.log(response);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
-      this.$router.push({name: 'profileTable'});
     },
     getProcessor: function () {
       var url = this.$apiPrefix + '/processors/';
