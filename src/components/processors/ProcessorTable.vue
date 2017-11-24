@@ -6,21 +6,21 @@
       <p class="instructions">
         Instructions
       </p>
+      <label for="processorSearch">Filter:</label>
       <input id="processorSearch" type="text" v-model="search">
       <!-- tables -->
       <div id="headings"  class="headerContainer tableSeparator">
         <label class="flexHeading">Name</label> 
         <label class="flexHeading">Description</label> 
-        <label class="flexHeading">Creator</label> 
         <label class="flexHeading">Created</label> 
         <label class="flexHeading">Last Updated</label> 
         <label class="flexHeading">Unique Tag</label> 
       </div>
-      <div id="noProcessorsAvailable" v-if="profiles.length == 0">
+      <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
         <p class="instructions"> No Processors available for this account</p>
       </div>
       <div id="columns"  v-else class="flexContainer">
-        <processor-row :key="processor.name" v-for="processor in processors" :processor="processor"></processor-row>
+        <processor-row :key="processor.name" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 
 <script>
 import axios from 'axios';
-import ProcessorRow from 'ProcessorRow';
+import ProcessorRow from './ProcessorRow';
 export default {
   name: 'ProcessorTable',
   props: {
@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       title: 'Processors',
-      search:'',
+      search: '',
       processors: []
     };
   },
@@ -44,9 +44,8 @@ export default {
     getProcessors: function () {
       axios.get(this.$apiPrefix + '/processors/').then(response => {
         this.processors = response.data;
-        console.log(response.data);
       }, response => {
-        console.log('Couldnt get processor.');
+        console.log('Couldnt get processors.');
       });
     },
     addProcessor: function () {
@@ -54,10 +53,17 @@ export default {
     }
   },
   components: {
+    ProcessorRow: ProcessorRow
   },
   computed: {
+    filteredProcessors: function () {
+      return this.processors.filter((event) => {
+        return event.name.startsWith(this.search);
+      });
+    }
   },
   mounted: function () {
+    this.getProcessors();
   }
 };
 </script>
@@ -66,6 +72,4 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
-. {
-}
 </style>

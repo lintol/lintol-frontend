@@ -2,7 +2,7 @@
   <div id="processors-row" class="shadedRow">
     <div class="processorRow">
       <div class="processorColumn center">
-        <label>{ processor.name }}</label>
+        <label>{{ processor.name }}</label>
       </div>
       <div class="processorColumn center">
         <p>{{ convertDate(processor.created_at) }}</p>
