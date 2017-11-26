@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "name": "CSV Lint",
+      "description": "This processor will lint CSV types"
+    },
+    {
+      "id": 2,
+      "name": "JSON Lint",
+      "description": "This processor will lint JSON  types"
+    },
+    {
+      "id": 3,
+      "name": "RDF Lint",
+      "description": "This processor will lint JSON  types"
+    },
+    {
+      "id": 4,
+      "name": "XML Lint",
+      "description": "This processor will lint XML types"
+    },
+    {
+      "id": 5,
+      "name": "XLS Lint",
+      "description": "This processor will lint XLS types"
+    },
+    {
+      "name": "bob processor",
+      "description": "bob description",
+      "creator": "Martin",
+      "uniqueTag": "uniq-66-bob processor",
+      "id": 6
+    }
+  ]
