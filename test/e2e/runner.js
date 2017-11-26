@@ -1,5 +1,6 @@
 // 1. start the dev server using production config
 process.env.NODE_ENV = 'testing'
+process.env.DB_PORT = ':3000'
 var server = require('../../build/dev-server.js')
 
 server.ready.then(() => {
