@@ -55,6 +55,10 @@ module.exports = {
       .waitForElementVisible('#profileDescription', visiblePauseTime)
       .setValue('input[id=profileName]', 'bob profile')
       .setValue('textarea[id=profileDescription]', 'bob description')
+      // browser.expect.element('#profileName').text.to.equal('bob profile');
+      browser.assert.value("#profileName", "bob profile");
+      browser.assert.value("#profileDescription", "bob description");
+      browser
       .click('#addProfile')
       .waitForElementVisible('#profileTable', visiblePauseTime)
       .end()
@@ -69,8 +73,12 @@ module.exports = {
       .waitForElementVisible('#editProfilePanel', visiblePauseTime)
       .waitForElementVisible('#profileName', visiblePauseTime)
       .waitForElementVisible('#profileDescription', visiblePauseTime)
-      .setValue('input[id=profileName]', 'bob profile')
-      .setValue('textarea[id=profileDescription]', 'bob description')
+      .clearValue('input[id=profileName]')
+      .clearValue('textarea[id=profileDescription]')
+      .setValue('input[id=profileName]', 'tom profile')
+      .setValue('textarea[id=profileDescription]', 'bbb')
+      browser.assert.value("#profileName", "tom profile");
+      browser
       .click('#saveProfileChanges')
       .waitForElementVisible('#profileTable', visiblePauseTime)
       .end()
