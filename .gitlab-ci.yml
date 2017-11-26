@@ -26,7 +26,7 @@ test:
     - export DISPLAY=:99.0
     - npm install 
     - npm install -g json-server
-    - json-server --watch db.json 
+    - json-server --watch db.json &
   image: martinnaughton/nightwatch-e2e-headless:latest
   script: npm run test
   dependencies:
