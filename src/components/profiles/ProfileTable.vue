@@ -2,7 +2,7 @@
   <div id="profileTable">
     <transition name="component-fade" mode="in-out">
     <div > 
-      <button id="addNewProfileButton" class="addProfileButton" @click="addProfile">Add new Data Profile + </button>
+      <button id="addNewProfileButton" class="addButton" @click="addProfile">Add new Data Profile + </button>
       <h1>{{ title }}</h1>
       <p class="instructions">
         Instructions
@@ -94,24 +94,6 @@ export default {
 
 .instructions {
 
-}
-
-.addProfileButton {
-  background-color: $buttonColour; 
-  border: none;
-  border-radius: 5px;
-  color: $buttonText;
-  padding: 15px 32px;
-  box-shadow: 0px 0px 5px black;
-  display: inline-block;
-  float: right;
-  &:active {
-    box-shadow: 0px 0px 0px black;
-  }
-  &:focus {
-    outline:0;
-    border: none;
-  }
 }
 
 .tableSeparator {

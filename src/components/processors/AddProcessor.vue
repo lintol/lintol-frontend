@@ -11,7 +11,7 @@
       <div>
       </div>
       <div>
-        <button id="addProcessor" class="addProcessorButton" @click=addProcessor>Add Processor</button>
+        <button id="addProcessor" class="saveButton" @click=addProcessor>Add Processor</button>
       </div>
       
     </div>

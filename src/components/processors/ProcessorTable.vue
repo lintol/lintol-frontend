@@ -1,7 +1,7 @@
 <template>
    <div id="processorTable">
     <div >
-      <button id="addNewProcessorButton" class="addProcessorButton" @click="addProcessor">Add new Data Processor +</button>
+      <button id="addNewProcessorButton" class="addButton" @click="addProcessor">Add new Data Processor +</button>
       <h1>{{ title }}</h1>
       <p class="instructions">
         Instructions
