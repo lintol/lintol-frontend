@@ -8,18 +8,11 @@
       <label for="reportSearch">Filter:</label>
       <input id="reportSearch" type="text" v-model="search">
       <!-- tables -->
-      <div id="headings"  class="headerContainer tableSeparator">
-        <label class="flexHeading">Name</label> 
-        <label class="flexHeading">Description</label> 
-        <label class="flexHeading">Created</label> 
-        <label class="flexHeading">Last Updated</label> 
-        <label class="flexHeading">Unique Tag</label> 
-      </div>
       <div id="noReportsAvailable" v-if="filteredReports.length == 0">
         <p class="instructions"> No Reports available for this account</p>
       </div>
-      <div id="columns"  v-else class="flexContainer">
-        <report-row :key="processor.name" v-for="processor in filteredReports" :processor="processor"></processor-row>
+      <div id="columns" v-else class="flexContainer">
+        <report-row :key="report.name" v-for="report in filteredReports" :report="report"></report-row>
       </div>
     </div>
   </div>
@@ -46,9 +39,6 @@ export default {
       }, response => {
         console.log('Couldnt get reports.');
       });
-    },
-    addReport: function () {
-      this.$router.push({name: 'addReport'});
     }
   },
   components: {

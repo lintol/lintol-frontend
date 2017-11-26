@@ -2,19 +2,27 @@
   <div id="reports-row" class="shadedRow">
     <div class="reportRow">
       <div class="reportColumn center">
-        <label>{{ report.name }}</label>
+        <label>Profile</label>
+        <p>{{ report.name }}</p>
       </div>
       <div class="reportColumn center">
-        <label>{{ report.description }}</label>
-      </div>
-      <div class="reportColumn center">
+        <label>Ran On</label>
         <p>{{ convertDate(report.created_at) }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ convertDate(report.updated_at) }}</p>
+        <p>{{ report.errors }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.uniqueTag }}</p>
+        <p>{{ report.warnings }}</p>
+      </div>
+      <div class="reportColumn center">
+        <p>{{ report.passes }}</p>
+      </div>
+      <div class="reportColumn center">
+        <p>{{ report.qualityScore }}</p>
+      </div>
+      <div class="reportColumn center">
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" /> 
       </div>
     </div>
   </div>
@@ -37,6 +45,9 @@ export default {
   methods: {
     convertDate: function (dateString) {
       return moment(dateString).format('Do MMMM YYYY');
+    },
+    viewReport: function () {
+      // $router.push(); push to new page/component with report details.
     }
   },
   components: {

@@ -17,8 +17,8 @@
             <label>Processors</label>
          </router-link>
       </li>
-      <li id="reportsLink" :class="{ active: currentView == 'reports'}">
-         <router-link id="reports" class="menuLink" :to="{name: 'reports' }">
+      <li id="reportsLink" :class="{ active: currentView == 'reportTable'}">
+         <router-link id="reports" class="menuLink" :to="{name: 'reportTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
             <label>Reports</label>
          </router-link>
