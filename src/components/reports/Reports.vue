@@ -1,20 +1,31 @@
 <template>
-  <div id="reports-panel">
-    <p>{{ msg }}</p> 
+  <div id="reportsPanel">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Reports',
+  props: {
+  },
   data () {
     return {
-      msg: 'Reports'
     };
+  },
+  methods: {
+  },
+  components: {
+  },
+  computed: {
+  },
+  mounted: function () {
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+@import '../../assets/scss/application.scss';
+
 </style>
