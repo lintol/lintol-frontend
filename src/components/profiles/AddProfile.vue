@@ -10,7 +10,7 @@
       <p>Instructions<p>
       <p v-if="availableProcessors.length == 0">No define Processors available</p>
       <div class="processorContainer">
-        <processor :key="processor.title" :title="processor.title" :description="processor.description" :moreInfo="processor.moreInfo" :type="processor.type" v-for="processor in availableProcessors" v-on:processorSelected="updateProcessors" />
+<!--        <processor :key="processor.title" :title="processor.title" :description="processor.description" :moreInfo="processor.moreInfo" :type="processor.type" v-for="processor in availableProcessors" v-on:processorSelected="updateProcessors" />-->
       </div>
       </div>
       <div>

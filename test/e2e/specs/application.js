@@ -41,13 +41,24 @@ module.exports = {
       .assert.urlEquals('http://localhost:8080/#/profiles/profiletable')
       .end()
   },
+  'test processors panel exist': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#processors', visiblePauseTime)
+      .click('#processorsLink')
+      .waitForElementVisible('#processorPanel', visiblePauseTime)
+      .assert.cssClassPresent('#processorsLink', 'active')
+      .assert.urlEquals('http://localhost:8080/#/processors/processortable')
+      .end()
+  },
   'test reports panel exist': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
       .waitForElementVisible('#reports', visiblePauseTime)
       .click('#reports')
-      .waitForElementVisible('#reports-panel', visiblePauseTime)
+      .waitForElementVisible('#reportsPanel', visiblePauseTime)
       .assert.cssClassPresent('#reportsLink', 'active')
       .assert.urlEquals('http://localhost:8080/#/reports')
       .end()

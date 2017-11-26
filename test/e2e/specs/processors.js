@@ -32,7 +32,7 @@ module.exports = {
       .waitForElementVisible('#processors-row', visiblePauseTime)
       .end()
   },
-  /* 'add new processor page exists test': function (browser) {
+  'add new processor page exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -40,7 +40,7 @@ module.exports = {
       .click('#processors')
       .waitForElementVisible('#addNewProcessorButton', visiblePauseTime)
       .click('#addNewProcessorButton')
-      .waitForElementVisible('#add-processor-panel', visiblePauseTime)
+      .waitForElementVisible('#addProcessorPanel', visiblePauseTime)
       .end()
   },
   'populate new processor test': function (browser) {
@@ -53,12 +53,12 @@ module.exports = {
       .click('#addNewProcessorButton')
       .waitForElementVisible('#processorName', visiblePauseTime)
       .waitForElementVisible('#processorDescription', visiblePauseTime)
-      .waitForElementVisible('#processorScript', visiblePauseTime)
       .setValue('input[id=processorName]', 'bob processor')
       .setValue('textarea[id=processorDescription]', 'bob description')
-      .setValue('textarea[id=processorScript]', 'bob script')
+      browser.assert.value("#processorName", "bob processor");
+      browser
       .click('#addProcessor')
       .waitForElementVisible('#processorTable', visiblePauseTime)
       .end()
-  }, */
+  }
 }

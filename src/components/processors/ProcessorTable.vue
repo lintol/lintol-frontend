@@ -1,5 +1,5 @@
 <template>
-   <div id="processorTablePanel">
+   <div id="processorTable">
     <div >
       <button id="addNewProcessorButton" class="addProcessorButton" @click="addProcessor">Add new Data Processor +</button>
       <h1>{{ title }}</h1>
