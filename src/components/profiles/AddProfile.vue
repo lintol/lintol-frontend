@@ -14,7 +14,7 @@
       </div>
       </div>
       <div>
-        <button id="addProfile" class="addProfileButton" @click=addProfile>Add Profile</button>
+        <button id="addProfile" class="saveButton" @click=addProfile>Add Profile</button>
       </div>
       
     </div>

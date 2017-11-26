@@ -25,8 +25,10 @@ test:
     - Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
     - export DISPLAY=:99.0
     - npm install 
+    - ls -l
+    - npm install -g chromedriver 
     - npm install -g json-server
-    - json-server --watch db.json &
+    - json-server --watch db.js &
   image: martinnaughton/nightwatch-e2e-headless:latest
   script: npm run test
   dependencies:
