@@ -60,7 +60,7 @@ module.exports = {
       .click('#reports')
       .waitForElementVisible('#reportsPanel', visiblePauseTime)
       .assert.cssClassPresent('#reportsLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/reports')
+      .assert.urlEquals('http://localhost:8080/#/reports/reporttable')
       .end()
   },
   'test users panel exist': function (browser) {
