@@ -11,7 +11,7 @@
             <label>Data Profiles</label>
          </router-link>
       </li>
-      <li id="processorsLink" :class="{ active: currentView == 'processors'}">
+      <li id="processorsLink" :class="{ active: currentView == 'processorTable'}">
          <router-link id="processors" class="menuLink" :to="{name: 'processorTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
             <label>Processors</label>
