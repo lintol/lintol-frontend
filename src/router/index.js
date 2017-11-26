@@ -5,6 +5,9 @@ import Profiles from '@/components/profiles/Profiles';
 import ProfileTable from '@/components/profiles/ProfileTable';
 import EditProfile from '@/components/profiles/EditProfile';
 import AddProfile from '@/components/profiles/AddProfile';
+import Processors from '@/components/processors/Processors';
+import ProcessorTable from '@/components/processors/ProcessorTable';
+// import AddProcessor from '@/components/processors/AddProcessor';
 import Reports from '@/components/reports/Reports';
 import Users from '@/components/users/Users';
 import Settings from '@/components/settings/Settings';
@@ -18,7 +21,6 @@ export default new Router({
       name: 'Application',
       component: Application,
       children: [
-        { name: 'profiles', path: 'profiles', component: Profiles },
         { name: 'profiles',
           path: 'profiles',
           component: Profiles,
@@ -26,6 +28,14 @@ export default new Router({
             { name: 'profileTable', path: 'profiletable', component: ProfileTable },
             { name: 'addProfile', path: 'addprofile', component: AddProfile },
             { name: 'editProfile', path: 'editprofile/:profileId', component: EditProfile, props: true }
+          ]
+        },
+        { name: 'processors',
+          path: 'processors',
+          component: Processors,
+          children: [
+            { name: 'processorTable', path: 'processortable', component: ProcessorTable }
+            // { name: 'addProcessor', path: 'addprocessor', component: AddProcessor },
           ]
         },
         { name: 'reports', path: 'reports', component: Reports },

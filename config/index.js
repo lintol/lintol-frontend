@@ -33,7 +33,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost' + process.env.DB_PORT,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
