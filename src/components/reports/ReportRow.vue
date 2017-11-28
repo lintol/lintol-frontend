@@ -10,19 +10,22 @@
         <p>{{ convertDate(report.created_at) }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.errors }}</p>
+        <label for="erros" class="rag errors"></label>
+        <p id="errors">{{ report.errors }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.warnings }}</p>
+        <label for="warnings" class="rag warnings"></label>
+        <p id="warnings" >{{ report.warnings }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.passes }}</p>
+        <label for="passes" class="rag passes"></label>
+        <p id="passes">{{ report.passes }}</p>
       </div>
       <div class="reportColumn center">
         <p>{{ report.qualityScore }}</p>
       </div>
       <div class="reportColumn center">
-        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" /> 
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" class="viewButton"/> 
       </div>
     </div>
   </div>
@@ -66,8 +69,8 @@ export default {
 .reportColumn {
   min-width: 150px;
   flex: 1;
-}
- 
+} 
+
 .center {
   display: flex;
   flex-direction: column;
@@ -119,6 +122,21 @@ div .reportColumn p {
   border-radius: 50%;
   width: 20px;
   height: 20px;
+}
+
+.rag {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  &.errors {
+    background-color: red;
+  } 
+  &.warnings {
+    background-color: yellow;
+  } 
+  &.passes {
+    background-color: green;
+  } 
 }
 
 </style>

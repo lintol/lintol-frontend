@@ -6,6 +6,7 @@ $warningText: red;
 $sideBar: #F1592A;
 $rowBackground: $lightPink;
 
+$orange: #F1592A;
 
 
 textarea {
@@ -16,6 +17,11 @@ textarea {
 input[type=text] {
   background-color: $inputBackground;
 }
+
+body, body * { 
+    font-family:  Montserrat;
+}  /* this affects every element in the body and the body itself */
+
 
 .saveButton {
   background-color: $buttonColour; 
@@ -40,6 +46,7 @@ input[type=text] {
 }
 
 .addButton {
+  cursor: pointer;
   background-color: $buttonColour; 
   border: none;
   border-radius: 5px;
@@ -55,5 +62,21 @@ input[type=text] {
     outline:0;
     border: none;
   }
+}
+
+.viewButton {
+  cursor: pointer;
+  background-color: white;
+  border: solid 2px $orange;
+  color: $orange;
+  border-radius: 5px;
+  &:active {
+    box-shadow: 0px 0px 0px $orange;
+  }
+  &:focus {
+    box-shadow: 0px 0px 5px $orange;
+    outline:0;
+  }
+  
 }
 
