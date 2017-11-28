@@ -8,6 +8,12 @@ $rowBackground: $lightPink;
 
 $orange: #F1592A;
 
+.rowFilter {
+  background: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 4px;
+}
 
 textarea {
   overflow: hidden;
@@ -90,3 +96,7 @@ body, body * {
   border-right: grey 1px solid;
 }
 
+.verticalCenterItems {
+  display: flex; 
+  align-items:center;
+}

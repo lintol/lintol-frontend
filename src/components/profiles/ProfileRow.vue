@@ -23,9 +23,9 @@
         <label class="columnTitle">Last Updated</label>
         <p>{{ profile.uniqueTag }}</p>
       </div>
-      <div class="profileColumn">
-        <select class="profileActions verticalAlign" id="profileAction" @click=profileAction>
-          <option value=""></option> 
+      <div class="profileColumn verticalCenterItems">
+        <select class="profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
+          <option value="">Edit/Archive</option> 
           <option value="edit">Edit</option> 
           <option value="archive">Archive</option> 
         </select>
@@ -123,5 +123,19 @@ export default {
 div .profileColumn p {
   margin: unset;
   color: grey;
+}
+
+.viewAction {
+  background: white;
+  color: $orange;
+  border: 2px solid $orange;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  &:hover {
+    box-shadow: 0px 0px 10px black;
+  }
 }
 </style>
