@@ -108,14 +108,6 @@ export default {
   font-weight: bold;
 }
 
-
-.shadedRow {
-  border: 1px solid $rowBackground;
-  border-radius: 3px;
-  background-color: $rowBackground;
-  margin: 20px;
-}
-
 .verticalAlign {
   vertical-align: middle;
 }

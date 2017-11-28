@@ -8,30 +8,28 @@
         </div>
       </div>
       <div class="reportColumn center">
-        <label class="columnHeader">Ran On</label>
-        <p>{{ convertDate(report.created_at) }}</p>
+        <label class="ranOn columnHeader">Ran On</label>
+        <label>{{ convertDate(report.created_at) }}</label>
       </div>
       <div class="reportColumn center">
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
       </div>
-      <div class="reportColumn center">
+      <div class="reportColumn ragDisplay">
         <label for="errors" class="rag errors"></label>
         <p id="errors">{{ report.errors }}</p>
-      </div>
-      <div class="reportColumn center">
         <label for="warnings" class="rag warnings"></label>
         <p id="warnings" >{{ report.warnings }}</p>
-      </div>
-      <div class="reportColumn center">
         <label for="passes" class="rag passes"></label>
         <p id="passes">{{ report.passes }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.qualityScore }}</p>
-        <p>Quality Score</p>
+        <label class="qualityScore" >{{ report.qualityScore }}</label>
+        <label>Quality Score</label>
       </div>
       <div class="reportColumn center">
+        <div>
         <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" class="viewButton"/> 
+      </div>
       </div>
     </div>
   </div>
@@ -85,7 +83,6 @@ export default {
 
 .reportMainColumn {
   flex: 2;
-  min-height: 80px;
   padding: 10px;
 }
 
@@ -98,6 +95,8 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  min-height: 100px;
+  padding: 0px 10px;
 }
  
 .columnTitle {
@@ -106,13 +105,6 @@ export default {
 
 .rightSeparator {
   border-right: grey 1px solid;
-}
-
-.shadedRow {
-  border: 1px solid $rowBackground;
-  border-radius: 3px;
-  background-color: $rowBackground;
-  margin: 20px;
 }
 
 .verticalAlign {
@@ -128,6 +120,13 @@ div .reportColumn p {
   border-radius: 50%;
   width: 20px;
   height: 20px;
+}
+
+.ragDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
 }
 
 .rag {
@@ -148,6 +147,23 @@ div .reportColumn p {
 .columnHeader {
   font-weight: bold;
 
+}
+
+.ranOn {
+  font-weight: bold;
+  text-align: center;
+  + label {
+    text-align: center;
+  }
+}
+
+.qualityScore {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  + label {
+    text-align: center;
+  }
 }
 
 </style>
