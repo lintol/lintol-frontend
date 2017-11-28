@@ -5,31 +5,31 @@
      </router-link>
   <nav>
     <ul>
-      <li id="profilesLink" :class="{ active: currentView == 'profileTable'}" >
+      <li id="profilesLink" class="menuEntry" :class="{ active: currentView == 'profileTable'}" >
          <router-link id="profiles" class="menuLink"  :to="{name: 'profileTable' }">
             <img class="menuIcon" src="../assets/images/data-profiles.svg" />
             <label>Data Profiles</label>
          </router-link>
       </li>
-      <li id="processorsLink" :class="{ active: currentView == 'processorTable'}">
+      <li id="processorsLink" class="menuEntry" :class="{ active: currentView == 'processorTable'}">
          <router-link id="processors" class="menuLink" :to="{name: 'processorTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
             <label>Processors</label>
          </router-link>
       </li>
-      <li id="reportsLink" :class="{ active: currentView == 'reportTable'}">
+      <li id="reportsLink" class="menuEntry" :class="{ active: currentView == 'reportTable'}">
          <router-link id="reports" class="menuLink" :to="{name: 'reportTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
             <label>Reports</label>
          </router-link>
       </li>
-      <li id="usersLink" :class="{ active: currentView == 'users'}">
+      <li id="usersLink" class="menuEntry" :class="{ active: currentView == 'users'}">
         <router-link id="users" class="menuLink" :to="{name: 'users' }">
            <img class="menuIcon"  src="../assets/images/users.svg" />
            <label>Users</label>
         </router-link>
       </li>
-      <li id="settingsLink" :class="{ active: currentView == 'settings'}">
+      <li id="settingsLink" class="menuEntry" :class="{ active: currentView == 'settings'}">
          <router-link id="settings" class="menuLink" :to="{name: 'settings' }">
            <img class="menuIcon" src="../assets/images/settings.svg" />
            <label>Settings</label>
@@ -63,6 +63,7 @@ export default {
 
 .active {
   background-color: #EDEDED;
+  border-radius: 5px;
 }
 
 .logo {
@@ -76,21 +77,26 @@ export default {
 ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0px 10px;
 }
 
 .menuIcon {
   width: 35px;
   height: 35px;
+  margin-right: 10px;
+}
+
+.menuEntry:hover {
+  background-color: #EDEDED;
+  border-radius: 5px;
 }
 
 .menuLink {
-  display: block;
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
   text-decoration: none;
   color: black;
-  &:hover {
-    background-color: #EDEDED;
-  }
 }
 
 </style>

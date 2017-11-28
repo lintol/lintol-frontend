@@ -33,11 +33,11 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/api': '/'  // when it searchs for api then redirect to forward slash
+          '^/api': '/api'  // when it searchs for api then redirect to forward slash
         }
       }    
     },
@@ -47,5 +47,17 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  e2e: {
+    proxyTable: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/api': '/'  // when it searchs for api then redirect to forward slash
+        }
+      }    
+    },
   }
 }

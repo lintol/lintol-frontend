@@ -2,27 +2,34 @@
   <div id="reports-row" class="shadedRow">
     <div class="reportRow">
       <div class="reportColumn center">
-        <label>Profile</label>
-        <p>{{ report.name }}</p>
+        <div class="rightSeparator">
+          <label class="columnHeader">Profile</label>
+          <p>{{ report.name }}</p>
+        </div>
       </div>
       <div class="reportColumn center">
-        <label>Ran On</label>
-        <p>{{ convertDate(report.created_at) }}</p>
+        <label class="ranOn columnHeader">Ran On</label>
+        <label>{{ convertDate(report.created_at) }}</label>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.errors }}</p>
+        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
+      </div>
+      <div class="reportColumn ragDisplay">
+        <label for="errors" class="rag errors"></label>
+        <p id="errors">{{ report.errors }}</p>
+        <label for="warnings" class="rag warnings"></label>
+        <p id="warnings" >{{ report.warnings }}</p>
+        <label for="passes" class="rag passes"></label>
+        <p id="passes">{{ report.passes }}</p>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.warnings }}</p>
+        <label class="qualityScore" >{{ report.qualityScore }}</label>
+        <label>Quality Score</label>
       </div>
       <div class="reportColumn center">
-        <p>{{ report.passes }}</p>
+        <div>
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" class="viewButton"/> 
       </div>
-      <div class="reportColumn center">
-        <p>{{ report.qualityScore }}</p>
-      </div>
-      <div class="reportColumn center">
-        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" /> 
       </div>
     </div>
   </div>
@@ -66,8 +73,8 @@ export default {
 .reportColumn {
   min-width: 150px;
   flex: 1;
-}
- 
+} 
+
 .center {
   display: flex;
   flex-direction: column;
@@ -76,7 +83,6 @@ export default {
 
 .reportMainColumn {
   flex: 2;
-  min-height: 80px;
   padding: 10px;
 }
 
@@ -89,6 +95,8 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  min-height: 100px;
+  padding: 0px 10px;
 }
  
 .columnTitle {
@@ -97,13 +105,6 @@ export default {
 
 .rightSeparator {
   border-right: grey 1px solid;
-}
-
-.shadedRow {
-  border: 1px solid $rowBackground;
-  border-radius: 3px;
-  background-color: $rowBackground;
-  margin: 20px;
 }
 
 .verticalAlign {
@@ -119,6 +120,50 @@ div .reportColumn p {
   border-radius: 50%;
   width: 20px;
   height: 20px;
+}
+
+.ragDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
+}
+
+.rag {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  &.errors {
+    background-color: red;
+  } 
+  &.warnings {
+    background-color: yellow;
+  } 
+  &.passes {
+    background-color: green;
+  } 
+}
+
+.columnHeader {
+  font-weight: bold;
+
+}
+
+.ranOn {
+  font-weight: bold;
+  text-align: center;
+  + label {
+    text-align: center;
+  }
+}
+
+.qualityScore {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  + label {
+    text-align: center;
+  }
 }
 
 </style>

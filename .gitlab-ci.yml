@@ -54,9 +54,9 @@ deploy:
   dependencies:
     - release
   script:
-    - tar -czf projectf-build.tgz dist
-    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key projectf-front-end-$CI_COMMIT_SHA.tgz --body projectf-build.tgz
-    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key projectf-front-end-latest.tgz --body projectf-build.tgz
+    - tar -czf build.tgz dist
+    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-$CI_COMMIT_SHA.tgz --body projectf-build.tgz
+    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-latest.tgz --body projectf-build.tgz
   only:
     - master
 
