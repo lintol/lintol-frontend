@@ -2,15 +2,20 @@
   <div id="reports-row" class="shadedRow">
     <div class="reportRow">
       <div class="reportColumn center">
-        <label>Profile</label>
-        <p>{{ report.name }}</p>
+        <div class="rightSeparator">
+          <label class="columnHeader">Profile</label>
+          <p>{{ report.name }}</p>
+        </div>
       </div>
       <div class="reportColumn center">
-        <label>Ran On</label>
+        <label class="columnHeader">Ran On</label>
         <p>{{ convertDate(report.created_at) }}</p>
       </div>
       <div class="reportColumn center">
-        <label for="erros" class="rag errors"></label>
+        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
+      </div>
+      <div class="reportColumn center">
+        <label for="errors" class="rag errors"></label>
         <p id="errors">{{ report.errors }}</p>
       </div>
       <div class="reportColumn center">
@@ -23,6 +28,7 @@
       </div>
       <div class="reportColumn center">
         <p>{{ report.qualityScore }}</p>
+        <p>Quality Score</p>
       </div>
       <div class="reportColumn center">
         <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" class="viewButton"/> 
@@ -137,6 +143,11 @@ div .reportColumn p {
   &.passes {
     background-color: green;
   } 
+}
+
+.columnHeader {
+  font-weight: bold;
+
 }
 
 </style>

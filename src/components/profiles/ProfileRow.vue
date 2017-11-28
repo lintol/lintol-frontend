@@ -108,9 +108,6 @@ export default {
   font-weight: bold;
 }
 
-.rightSeparator {
-  border-right: grey 1px solid;
-}
 
 .shadedRow {
   border: 1px solid $rowBackground;
@@ -127,11 +124,4 @@ div .profileColumn p {
   margin: unset;
   color: grey;
 }
-
-.profilePicture {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
-
 </style>
