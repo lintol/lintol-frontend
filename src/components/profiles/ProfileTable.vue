@@ -2,7 +2,7 @@
   <div id="profileTable">
     <transition name="component-fade" mode="in-out">
     <div > 
-      <button id="addNewProfileButton" class="addButton" @click="addProfile">Add new Data Profile + </button>
+      <button id="addNewProfileButton" class="addButton " @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
         Instructions
@@ -116,9 +116,4 @@ export default {
   opacity: 0;
 }
 
-.shadedBox {
-  border: 1px solid black;
-  border-radius: 3px;
-  background-color: pink;
-}
 </style>
