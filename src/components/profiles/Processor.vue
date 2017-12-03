@@ -1,58 +1,60 @@
 <template>
    <div class="processor">
-        <div class="item1">
-          <label></></label>
-          <input id="select" type="checkbox" class="roundCheckbox" v-model=checkboxValue />
+     <div class="processorContainer">
+         <div class="xSmall">
+            <div class="orangeCheckbox">
+    	    <input type="checkbox" value="1" :id=name name="" checked="checked" disabled/>
+  	    <label :for=name></label>
+    	  </div>
+         </div>
+         <div class="large">
+           <div>
+             <label id="processorTitle" class="processorTitle item1">{{ name }}</label>
+             <p id="processorDescription" class="processorDescription item2" >{{ description }}</p>
+           </div>
+         </div>
+         <div class="small">
+          <label class="editLabel" v-if="!editConfiguration" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
+         </div>
+     </div>
+     <div v-if=editConfiguration >
+        <div class="editArea">
+        
         </div>
-        <label id="processorTitle" class="processorTitle item1">{{ title }}</label>
-        <p id="processorDescription" class="processorDescription item2" >{{ description }}</p>
-        <a id="processorMoreInfo" class="moreInfo item1" href="https://www.w3schools.com" >More Info</a>
-      </div>
-      </div>
+        <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
+     </div>
+   </div>
 </template>
 
 <script>
-// import axios from 'axios';
 export default {
   name: 'Name',
   props: {
-    title: {
+    name: {
       type: String,
       required: true
     },
     description: {
       type: String,
       required: true
-    },
-    moreInfo: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      required: true
     }
   },
   data () {
     return {
-      checkboxValue: false
+      checkboxValue: false,
+      editConfiguration: false
     };
   },
   methods: {
+    saveConfiguration: function () {
+      this.editConfiguration = !this.editConfiguration;
+    }
   },
   components: {
   },
   computed: {
   },
   watch: {
-    checkboxValue: function () {
-      console.log('checbox changed:' + this.checkboxValue);
-      if (this.checkboxValue) {
-        this.$emit('processorSelected', this.type, 'add');
-      } else {
-        this.$emit('processorSelected', this.type, 'remove');
-      }
-    }
   },
   mounted: function () {
   }
@@ -63,36 +65,68 @@ export default {
 <style scoped>
 @import '../../assets/scss/application.scss';
 
-.item2 {
-  flex-basis: 2;
+.xSmall {
+  flex: 0.4;
+  display: flex;
+  align-items: center;
 }
 
-.item1 {
-  flex-basis: 1;
+.small {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.large {
+  flex: 3;
+  display: flex;
+  align-items: center;
 }
 
 .processorTitle {
   font-weight: bold;
 }
 
-.moreInfo {
-  color: orange;
-  margin-top: auto;
+.processorContainer {
+  padding: 5px;
+  font-size: 8pt;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 .processor {
-  font-size: 8pt;
-  width: 175px;
-  height: 120px;
   border: solid 1px black;
   border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   margin: 3px; 
+  padding: 5px;
 }
 
 .roundCheckbox {
   float: right;  
+}
+
+.editLabel {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 8pt;
+}
+
+.saveLabel {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  float: right;
+  font-size: 8pt;
+}
+
+.editArea {
+  border: solid 1px black;
+  border-radius: 3px;
+  min-height: 100px;
+  margin: 5px; 
+  background: grey;
 }
 </style>
