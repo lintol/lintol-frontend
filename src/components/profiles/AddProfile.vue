@@ -3,14 +3,16 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=name />
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=description />
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
+      <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
+      <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
       <p>Choose your Processor<p>
       <p>Instructions<p>
-      <p v-if="availableProcessors.length == 0">No define Processors available</p>
+      <v-select :clearSearchOnSelect="false" placeholder="Add Processor"  :options='processorList' :onChange=processorSelected></v-select>
       <div class="processorContainer">
-<!--        <processor :key="processor.title" :title="processor.title" :description="processor.description" :moreInfo="processor.moreInfo" :type="processor.type" v-for="processor in availableProcessors" v-on:processorSelected="updateProcessors" />-->
+      <processor :key="processor.name" :name="processor.name" :description="processor.description" v-for="processor in choosenProcessors"/>
       </div>
       </div>
       <div>
@@ -24,6 +26,7 @@
 <script>
 import axios from 'axios';
 import Processor from './Processor';
+import VSelect from 'vue-select';
 export default {
   name: 'Name',
   props: {
@@ -35,32 +38,44 @@ export default {
       description: '',
       script: '',
       availableProcessors: [],
-      choosenProcessors: []
+      choosenProcessors: [],
+      selected: null,
+      processorList: [],
+      selectedProcessors: []
     };
   },
   methods: {
     addProfile: function () {
-      var url = this.$apiPrefix + '/profiles/';
-      var profile = {};
-      profile.name = this.name;
-      profile.description = this.description;
-      // profile.script = this.script;
-      profile.creator = 'Martin';
-      profile.version = 7;
-      profile.uniqueTag = 'uniq-66-' + this.name;
-      // profile.processors = this.choosenProcessors;
-      axios.post(url, profile).then((response) => {
-        this.$router.push({name: 'profileTable'});
-        console.log(response);
-      }).catch(function (error) {
-        console.log('Error adding profile:' + error);
+      this.$validator.validateAll().then(() => {
+        var url = this.$apiPrefix + '/profiles/';
+        var profile = {};
+        profile.name = this.name;
+        profile.description = this.description;
+        // profile.script = this.script;
+        profile.creator = 'Martin';
+        profile.version = 7;
+        profile.uniqueTag = 'uniq-66-' + this.name;
+        // profile.processors = this.choosenProcessors;
+        axios.post(url, profile).then((response) => {
+          this.$router.push({name: 'profileTable'});
+          console.log(response);
+        }).catch(function (error) {
+          console.log('Error adding profile:' + error);
+        });
+      }).catch((error) => {
+        console.log('Validation error:' + error);
       });
     },
-    getProcessor: function () {
+    getProcessors: function () {
       var url = this.$apiPrefix + '/processors/';
       axios(url).then((response) => {
         this.availableProcessors = response.data;
-        console.log(this.processors);
+        var self = this;
+        this.availableProcessors.forEach((element) => {
+          var option = { 'label': element.name, 'value': element };
+          self.processorList.push(option);
+        });
+        console.log(this.processorList);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
@@ -75,16 +90,21 @@ export default {
           this.choosenProcessors.splice(index, 1);
         }
       }
-      console.log(this.choosenProcessors);
+    },
+    processorSelected: function (option) {
+      this.choosenProcessors.push(option.value);
     }
   },
   components: {
-    Processor: Processor
+    Processor: Processor,
+    VSelect: VSelect
+  },
+  watch: {
   },
   computed: {
   },
   mounted: function () {
-    this.getProcessor();
+    this.getProcessors();
   }
 };
 </script>
@@ -109,8 +129,7 @@ export default {
 
 .processorContainer {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
  
 .formItem {
