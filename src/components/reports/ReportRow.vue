@@ -15,12 +15,24 @@
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
       </div>
       <div class="reportColumn ragDisplay">
-        <label for="errors" class="rag errors"></label>
-        <p id="errors">{{ report.errors }}</p>
-        <label for="warnings" class="rag warnings"></label>
-        <p id="warnings" >{{ report.warnings }}</p>
-        <label for="passes" class="rag passes"></label>
-        <p id="passes">{{ report.passes }}</p>
+        <div>
+        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+           <circle class="ragError" cx="10" cy="10" r="10"/>
+        </svg>
+        <label id="errors" style="vertical-align: top;" >{{ report.errors }}</label>
+        </div>
+        <div>
+         <svg height="20" width="20">
+           <polygon class="ragWarning" points="0,20 10,0 20,20"/>
+         </svg> 
+        <label id="warnings" style="vertical-align: top;">{{ report.warnings }}</label>
+        </div>
+        <div>
+        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+          <rect class="ragPass" width="20" height="20" fill="lime"/>
+        </svg>
+        <label id="passes" style="vertical-align: top;">{{ report.passes }}</label>
+        </div>
       </div>
       <div class="reportColumn center">
         <label class="qualityScore" >{{ report.qualityScore }}</label>
@@ -69,6 +81,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
+@import '../../assets/scss/reports.scss';
 
 .reportColumn {
   min-width: 150px;
@@ -127,21 +140,6 @@ div .reportColumn p {
   flex-direction: row;
   justify-content: space-around;
   align-items: center; 
-}
-
-.rag {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  &.errors {
-    background-color: red;
-  } 
-  &.warnings {
-    background-color: yellow;
-  } 
-  &.passes {
-    background-color: green;
-  } 
 }
 
 .columnHeader {

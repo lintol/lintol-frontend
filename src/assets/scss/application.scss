@@ -59,12 +59,18 @@ body, body * {
   box-shadow: 0px 0px 5px black;
   display: inline-block;
   float: right;
+  font-weight: bold;
+  font-size: 1em;
   &:active {
     box-shadow: 0px 0px 0px black;
   }
   &:focus {
     outline:0;
     border: none;
+  }
+  & > label {
+    font-size: 2em;
+    vertical-align: sub;
   }
 }
 

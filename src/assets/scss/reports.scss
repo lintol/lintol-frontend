@@ -1,0 +1,18 @@
+.qualityScore {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  + label {
+    text-align: center;
+  }
+}
+
+.ragError {
+  fill: red;
+}
+.ragWarning {
+  fill: yellow;
+}
+.ragPass {
+  fill: green
+}
