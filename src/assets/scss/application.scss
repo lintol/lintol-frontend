@@ -19,10 +19,12 @@ $orange: #F1592A;
 textarea {
   overflow: hidden;
   background-color: $inputBackground;
+  border-radius: 3px;
 }
 
 input[type=text] {
   background-color: $inputBackground;
+  border-radius: 3px;yy
 }
 
 body, body * { 
