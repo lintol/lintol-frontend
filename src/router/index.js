@@ -10,7 +10,7 @@ import ProcessorTable from '@/components/processors/ProcessorTable';
 import AddProcessor from '@/components/processors/AddProcessor';
 import Reports from '@/components/reports/Reports';
 import ReportTable from '@/components/reports/ReportTable';
-// import ReportDetail from '@/components/reports/ReportDetail';
+import ReportView from '@/components/reports/ReportView';
 import Users from '@/components/users/Users';
 import Settings from '@/components/settings/Settings';
 
@@ -44,8 +44,8 @@ export default new Router({
           path: 'reports',
           component: Reports,
           children: [
-            { name: 'reportTable', path: 'reporttable', component: ReportTable }
-            // { name: 'reportDetail', path: 'reportdetail:reporttId', component: ReportDetail, props: true },
+            { name: 'reportTable', path: 'reporttable', component: ReportTable },
+            { name: 'reportView', path: 'reportview', component: ReportView, props: true }
           ]
         },
         { name: 'users', path: 'users', component: Users },

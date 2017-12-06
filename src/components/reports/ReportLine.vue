@@ -15,24 +15,12 @@
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
       </div>
       <div class="reportColumn ragDisplay">
-        <div>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-           <circle class="ragError" cx="10" cy="10" r="10"/>
-        </svg>
-        <label id="errors" style="vertical-align: top;" >{{ report.errors }}</label>
-        </div>
-        <div>
-         <svg height="20" width="20">
-           <polygon class="ragWarning" points="0,20 10,0 20,20"/>
-         </svg> 
-        <label id="warnings" style="vertical-align: top;">{{ report.warnings }}</label>
-        </div>
-        <div>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-          <rect class="ragPass" width="20" height="20" fill="lime"/>
-        </svg>
-        <label id="passes" style="vertical-align: top;">{{ report.passes }}</label>
-        </div>
+        <label for="errors" class="rag errors"></label>
+        <p id="errors">{{ report.errors }}</p>
+        <label for="warnings" class="rag warnings"></label>
+        <p id="warnings" >{{ report.warnings }}</p>
+        <label for="passes" class="rag passes"></label>
+        <p id="passes">{{ report.passes }}</p>
       </div>
       <div class="reportColumn center">
         <label class="qualityScore" >{{ report.qualityScore }}</label>
@@ -66,7 +54,7 @@ export default {
       return moment(dateString).format('Do MMMM YYYY');
     },
     viewReport: function () {
-      this.$router.push({name: 'reportView'});
+      // $router.push(); push to new page/component with report details.
     }
   },
   components: {
@@ -146,22 +134,4 @@ div .reportColumn p {
   font-weight: bold;
 
 }
-
-.ranOn {
-  font-weight: bold;
-  text-align: center;
-  + label {
-    text-align: center;
-  }
-}
-
-.qualityScore {
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  + label {
-    text-align: center;
-  }
-}
-
 </style>
