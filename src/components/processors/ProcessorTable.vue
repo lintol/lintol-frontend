@@ -4,10 +4,10 @@
       <button id="addNewProcessorButton" class="addButton" @click="addProcessor">Add new Data Processor <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
-        Instructions
+        These are the list of processors available to your profiles. 
       </p>
-      <label for="processorSearch">Filter:</label>
-      <input id="processorSearch" type="text" v-model="search">
+      <input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" type="Search" v-model="search">
+      <label class="numberOfProcessors">{{ filteredProcessors.length }} Processors</label>
       <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
         <p class="instructions"> No Processors available for this account</p>
       </div>
@@ -64,4 +64,21 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
+.processorSearch {
+  width: 50%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+.numberOfProcessors {
+ color: $greyFont;
+ float: right;
+ font-weight: bold;
+}
 </style>

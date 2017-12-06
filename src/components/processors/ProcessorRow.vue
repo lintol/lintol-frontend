@@ -1,20 +1,23 @@
 <template>
   <div id="processors-row" class="shadedRow">
     <div class="processorRow">
-      <div class="processorColumn center">
-        <label>{{ processor.name }}</label>
+      <div class="processorMainColumn center">
+        <div class="rightSeparator">
+          <label class="mainColumnHeader">{{ processor.name }}</label>
+          <p>{{ processor.description }}</p>
+        </div>
       </div>
       <div class="processorColumn center">
-        <label>{{ processor.description }}</label>
+        <label class="columnHeader">Created</label>
+        <label>{{ convertDate(processor.created_at) }}</label>
       </div>
       <div class="processorColumn center">
-        <p>{{ convertDate(processor.created_at) }}</p>
+        <label class="columnHeader">Updated</label>
+        <label>{{ convertDate(processor.updated_at) }}</label>
       </div>
       <div class="processorColumn center">
-        <p>{{ convertDate(processor.updated_at) }}</p>
-      </div>
-      <div class="processorColumn center">
-        <p>{{ processor.uniqueTag }}</p>
+        <label class="columnHeader" >Unique Tag</label>
+        <label>{{ processor.uniqueTag }}</label>
       </div>
     </div>
   </div>
@@ -69,38 +72,25 @@ export default {
   padding: 10px;
 }
 
-.processorAction {
-  min-width: 120px;
-  display: inline-block;
-}
 .processorRow {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  margin: 10px;
 }
- 
-.columnTitle {
+
+.mainColumnHeader {
+  color: $orange;
   font-weight: bold;
 }
-
-.rightSeparator {
-  border-right: grey 1px solid;
-}
-
-.verticalAlign {
-  vertical-align: middle;
+ 
+.columnHeader {
+  font-weight: bold;
 }
 
 div .processorColumn p {
   margin: unset;
   color: grey;
 }
-
-.processorPicture {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
-
 </style>
