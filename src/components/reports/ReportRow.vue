@@ -66,7 +66,7 @@ export default {
       return moment(dateString).format('Do MMMM YYYY');
     },
     viewReport: function () {
-      // $router.push(); push to new page/component with report details.
+      this.$router.push({name: 'reportView'});
     }
   },
   components: {
