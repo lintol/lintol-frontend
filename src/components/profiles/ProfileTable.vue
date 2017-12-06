@@ -7,10 +7,10 @@
       <p class="instructions">
         Instructions
       </p>
-      <select class="rowFilter">
+      <select>
         <option value="">Filter By Groups</option>
       </select>
-      <select class="rowFilter">
+      <select>
         <option value="">Filter By Sites</option>
       </select>
       <!-- tables --> 
