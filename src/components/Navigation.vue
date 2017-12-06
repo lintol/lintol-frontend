@@ -3,6 +3,7 @@
      <router-link id="home" :to="{name: 'Application' }">
        <img class="logo center" src="../assets/images/logo.svg" title="Home">
      </router-link>
+     <p>Version {{ version }}</p>
   <nav>
     <ul>
       <li id="profilesLink" class="menuEntry" :class="{ active: currentView == 'profileTable'}" >
@@ -45,7 +46,8 @@ export default {
   name: 'Navigation',
   data () {
     return {
-      currentView: 'profileTable'
+      currentView: 'profileTable',
+      version: 0.1
     };
   },
   watch: {
@@ -97,6 +99,11 @@ ul {
   margin: 10px 10px;
   text-decoration: none;
   color: black;
+  > label {
+    cursor: pointer;
+  }
 }
+
+
 
 </style>

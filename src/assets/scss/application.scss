@@ -1,3 +1,4 @@
+@import "validation.scss";
 $lightPink: #ede3e3; 
 $buttonColour: #F1592A;
 $buttonText: white;
@@ -47,9 +48,6 @@ body, body * {
   }
 } 
 
-.warningText {
-  color: $warningText;
-}
 
 .addButton {
   cursor: pointer;
@@ -61,12 +59,18 @@ body, body * {
   box-shadow: 0px 0px 5px black;
   display: inline-block;
   float: right;
+  font-weight: bold;
+  font-size: 1em;
   &:active {
     box-shadow: 0px 0px 0px black;
   }
   &:focus {
     outline:0;
     border: none;
+  }
+  & > label {
+    font-size: 2em;
+    vertical-align: sub;
   }
 }
 
@@ -109,3 +113,36 @@ body, body * {
   margin: 20px;
 }
 
+/**
+ * hiding original checkboxes
+ */
+input[type=checkbox] {
+	visibility: hidden;
+}
+
+.orangeCheckbox {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  position: relative;
+  border: 1px solid grey;
+}
+
+.orangeCheckbox label {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 100px;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  background: #333;
+  box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+.orangeCheckbox input[type=checkbox]:checked + label {
+  background: $orange;
+}

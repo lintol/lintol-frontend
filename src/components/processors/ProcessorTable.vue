@@ -1,21 +1,13 @@
 <template>
    <div id="processorTable">
     <div >
-      <button id="addNewProcessorButton" class="addButton" @click="addProcessor">Add new Data Processor +</button>
+      <button id="addNewProcessorButton" class="addButton" @click="addProcessor">Add new Data Processor <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
         Instructions
       </p>
       <label for="processorSearch">Filter:</label>
       <input id="processorSearch" type="text" v-model="search">
-      <!-- tables -->
-      <div id="headings"  class="headerContainer tableSeparator">
-        <label class="flexHeading">Name</label> 
-        <label class="flexHeading">Description</label> 
-        <label class="flexHeading">Created</label> 
-        <label class="flexHeading">Last Updated</label> 
-        <label class="flexHeading">Unique Tag</label> 
-      </div>
       <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
         <p class="instructions"> No Processors available for this account</p>
       </div>
