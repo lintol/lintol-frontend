@@ -19,8 +19,9 @@
 </template>
 
 <script>
-import axios from 'axios';
 import ProcessorRow from './ProcessorRow';
+import { LOAD_PROCESSORS } from '@/state/action-types';
+
 export default {
   name: 'ProcessorTable',
   props: {
@@ -28,18 +29,10 @@ export default {
   data () {
     return {
       title: 'Processors',
-      search: '',
-      processors: []
+      search: ''
     };
   },
   methods: {
-    getProcessors: function () {
-      axios.get(this.$apiPrefix + '/processors/').then(response => {
-        this.processors = response.data;
-      }, response => {
-        console.log('Couldnt get processors.');
-      });
-    },
     addProcessor: function () {
       this.$router.push({name: 'addProcessor'});
     }
@@ -52,10 +45,13 @@ export default {
       return this.processors.filter((event) => {
         return event.name.startsWith(this.search);
       });
+    },
+    processors: function () {
+      return this.$store.state.processors;
     }
   },
   mounted: function () {
-    this.getProcessors();
+    this.$store.dispatch(LOAD_PROCESSORS);
   }
 };
 </script>

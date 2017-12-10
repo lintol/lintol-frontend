@@ -4,15 +4,10 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import VeeValidate from 'vee-validate';
+import store from './state/store';
 
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
-
-Object.defineProperty(Vue.prototype, '$apiPrefix', {
-  get () {
-    return this.$root.apiPrefix;
-  }
-});
 
 /* eslint-disable no-new */
 new Vue({
@@ -20,7 +15,7 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
+  store,
   data: {
-    apiPrefix: process.env.API_PREFIX
   }
 });
