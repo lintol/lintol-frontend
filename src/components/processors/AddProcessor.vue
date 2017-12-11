@@ -41,6 +41,7 @@ export default {
       processor.creator = 'Martin';
       processor.uniqueTag = 'uniq-66-' + this.name;
       this.$store.dispatch(STORE_PROCESSOR, processor);
+      this.$router.push({name: 'processorTable'});
     }
   },
   components: {

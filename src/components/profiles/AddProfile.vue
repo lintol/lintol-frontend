@@ -55,8 +55,9 @@ export default {
         profile.version = 7;
         profile.uniqueTag = 'uniq-66-' + this.name;
         // profile.processors = this.choosenProcessors;
-        this.$store.dispatch(STORE_PROFILE, profile).then(function () {
-          this.$router.push({name: 'processorTable'});
+        console.log('Add Data Profile');
+        this.$store.dispatch(STORE_PROFILE, profile).then(() => {
+          this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
         console.log('Validation error:' + error);

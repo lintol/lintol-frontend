@@ -33,7 +33,7 @@ export default {
   methods: {
     saveChanges: function () {
       if (this.profile) {
-        this.$store.dispatch(SAVE_PROFILE, this.profile).then(function () {
+        this.$store.dispatch(SAVE_PROFILE, this.profile).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }
