@@ -37,20 +37,13 @@ export default {
     ReportRow: ReportRow
   },
   computed: {
-    filteredUsers: function () {
-      return this.reports.filter((event) => {
-        return event.user.startsWith(this.user);
-      });
-    },
     userList: function () {
       var userList = [];
-
       this.reports.filter((event) => {
-        if (this.userList.indexOf(event.user) === -1) {
+        if (userList.indexOf(event.user) === -1) {
           userList.push(event.user);
         }
       });
-
       return userList;
     },
     reports: function () {
