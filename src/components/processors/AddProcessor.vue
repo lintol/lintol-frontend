@@ -13,17 +13,15 @@
       <div>
         <button id="addProcessor" class="saveButton" @click=addProcessor>Add Processor</button>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { STORE_PROCESSOR } from '@/state/action-types';
+
 export default {
   name: 'Name',
-  props: {
-  },
   data () {
     return {
       title: 'Add Processor',
@@ -36,19 +34,13 @@ export default {
   },
   methods: {
     addProcessor: function () {
-      var url = this.$apiPrefix + '/processors/';
       var processor = {};
       processor.name = this.name;
       processor.description = this.description;
       // processor.script = this.script;
       processor.creator = 'Martin';
       processor.uniqueTag = 'uniq-66-' + this.name;
-      axios.post(url, processor).then((response) => {
-        this.$router.push({name: 'processorTable'});
-        console.log(response);
-      }).catch(function (error) {
-        console.log('Error adding processor:' + error);
-      });
+      this.$store.dispatch(STORE_PROCESSOR, processor);
     }
   },
   components: {

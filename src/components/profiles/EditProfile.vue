@@ -3,8 +3,8 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model="name"/>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model="description" />
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model="profile.name"/>
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model="profile.description" />
       <textarea id="profileScript" class="scriptText formItem" rows="4" cols="50" placeholder="Custom Script" />
       <div>
         <button id="saveProfileChanges" class="addProfileButton" @click=saveChanges>Save Changes</button>
@@ -14,54 +14,40 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { LOAD_PROFILE, SAVE_PROFILE } from '@/state/action-types';
+
 export default {
   name: 'EditProfile',
   props: {
     profileId: {
-      type: Number,
+      type: String,
       required: true
     }
   },
   data () {
     return {
       title: 'Edit Profile',
-      name: '',
-      description: '',
       script: ''
     };
   },
   methods: {
     saveChanges: function () {
-      var url = this.$apiPrefix + '/profiles/' + this.profileId;
-      var profile = {};
-      profile.name = this.name;
-      profile.description = this.description;
-      axios.put(url, profile).then((response) => {
-        this.$router.push({name: 'profileTable'});
-        console.log(response);
-      }).catch(function (error) {
-        console.log('Error adding profile:' + error);
-      });
-      this.$router.push({name: 'profileTable'});
-    },
-    getProfile: function () {
-      axios.get(this.$apiPrefix + '/profiles/' + this.profileId).then(response => {
-        var profile = response.data;
-        this.name = profile.name;
-        this.description = profile.description;
-        console.log(response.data);
-      }, response => {
-        console.log('Couldnt get data profiles for account.');
-      });
+      if (this.profile) {
+        this.$store.dispatch(SAVE_PROFILE, this.profile).then(function () {
+          this.$router.push({name: 'profileTable'});
+        });
+      }
     }
   },
   components: {
   },
   computed: {
+    profile: function () {
+      return this.$store.state.currentProfile;
+    }
   },
   mounted: function () {
-    this.getProfile();
+    this.$store.dispatch(LOAD_PROFILE, this.profileId);
   }
 };
 </script>

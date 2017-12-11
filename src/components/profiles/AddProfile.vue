@@ -24,9 +24,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Processor from './Processor';
 import VSelect from 'vue-select';
+import { LOAD_PROCESSORS, STORE_PROFILE } from '@/state/action-types';
+
 export default {
   name: 'Name',
   props: {
@@ -40,14 +41,12 @@ export default {
       availableProcessors: [],
       choosenProcessors: [],
       selected: null,
-      processorList: [],
       selectedProcessors: []
     };
   },
   methods: {
     addProfile: function () {
       this.$validator.validateAll().then(() => {
-        var url = this.$apiPrefix + '/profiles/';
         var profile = {};
         profile.name = this.name;
         profile.description = this.description;
@@ -56,28 +55,11 @@ export default {
         profile.version = 7;
         profile.uniqueTag = 'uniq-66-' + this.name;
         // profile.processors = this.choosenProcessors;
-        axios.post(url, profile).then((response) => {
-          this.$router.push({name: 'profileTable'});
-          console.log(response);
-        }).catch(function (error) {
-          console.log('Error adding profile:' + error);
+        this.$store.dispatch(STORE_PROFILE, profile).then(function () {
+          this.$router.push({name: 'processorTable'});
         });
       }).catch((error) => {
         console.log('Validation error:' + error);
-      });
-    },
-    getProcessors: function () {
-      var url = this.$apiPrefix + '/processors/';
-      axios(url).then((response) => {
-        this.availableProcessors = response.data;
-        var self = this;
-        this.availableProcessors.forEach((element) => {
-          var option = { 'label': element.name, 'value': element };
-          self.processorList.push(option);
-        });
-        console.log(this.processorList);
-      }).catch(function (error) {
-        console.log('Error adding profile:' + error);
       });
     },
     updateProcessors: function (type, action) {
@@ -85,7 +67,6 @@ export default {
         this.choosenProcessors.push(type);
       } else {
         var index = this.choosenProcessors.indexOf(type);
-        console.log(index);
         if (index !== -1) {
           this.choosenProcessors.splice(index, 1);
         }
@@ -102,9 +83,15 @@ export default {
   watch: {
   },
   computed: {
+    processorList: function () {
+      return this.$store.state.processors.map((element) => {
+        var option = { 'label': element.name, 'value': element };
+        return option;
+      });
+    }
   },
   mounted: function () {
-    this.getProcessors();
+    this.$store.dispatch(LOAD_PROCESSORS);
   }
 };
 </script>

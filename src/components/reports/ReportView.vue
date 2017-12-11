@@ -14,9 +14,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import ReportLine from './ReportLine';
 import goodtablesUI from 'goodtables-ui';
+import { LOAD_REPORT } from '@/state/action-types';
+
 export default {
   name: 'ReportView',
   props: {
@@ -134,19 +135,13 @@ export default {
       }
     };
   },
-  methods: {
-    getReport: function () {
-      axios.get(this.$apiPrefix + '/reports/' + this.reportId).then(response => {
-        this.report = response.data;
-      }, response => {
-        console.log('Couldnt get report.');
-      });
-    }
-  },
   components: {
     ReportLine: ReportLine
   },
   computed: {
+    report: function () {
+      return this.$store.state.currentReport;
+    },
     filteredReportLines: function () {
       return this.report.lines.filter((event) => {
         return event.name.startsWith(this.search);
@@ -154,9 +149,13 @@ export default {
     }
   },
   mounted: function () {
-    this.getReport();
-    const element = document.getElementById('report');
-    goodtablesUI.render(goodtablesUI.Report, {report: this.report}, element);
+    this.$store.dispatch(LOAD_REPORT, this.reportId);
+  },
+  watch: {
+    report: function () {
+      const element = document.getElementById('report');
+      goodtablesUI.render(goodtablesUI.Report, {report: this.report}, element);
+    }
   }
 };
 </script>

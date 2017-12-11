@@ -1,7 +1,9 @@
 <template>
   <div id="profileTable">
+
     <transition name="component-fade" mode="in-out">
-    <div > 
+    <div>
+
       <button id="addNewProfileButton" class="addButton " @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
@@ -13,60 +15,46 @@
       <select>
         <option value="">Filter By Sites</option>
       </select>
-      <!-- tables --> 
-      <!--<div id="headings"  class="headerContainer tableSeparator">
-        <label class="flexHeading">Name</label> 
-        <label class="flexHeading">Description</label> 
-        <label class="flexHeading">Creator</label> 
-        <label class="flexHeading">Created</label> 
-        <label class="flexHeading">Last Updated</label> 
-        <label class="flexHeading">Version History</label> 
-        <label class="flexHeading">Unique Tag</label> 
-      </div>-->
       <div id="noProfilesAvailable" v-if="profiles.length == 0">
         <p class="instructions"> No Profiles available for this account</p>
       </div>
       <div id="columns"  class="flexContainer">
         <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row>
       </div>
+
     </div>
     </transition>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 import ProfileRow from './ProfileRow.vue';
 import AddProfile from './AddProfile.vue';
+import { LOAD_PROFILES } from '@/state/action-types';
 export default {
   name: 'Profiles',
   data () {
     return {
       title: 'Data Profiles',
-      profiles: [],
       accountId: 0
     };
   },
   methods: {
-    getProfiles: function () {
-      axios.get(this.$apiPrefix + '/profiles/').then(response => {
-        this.profiles = response.data;
-        console.log(response.data);
-      }, response => {
-        console.log('Couldnt get data profiles for account.');
-      });
-    },
     addProfile: function () {
       this.$router.push({name: 'addProfile'});
     }
   },
+  computed: {
+    profiles: function () {
+      return this.$store.state.profiles;
+    }
+  },
   components: {
-    axios: axios,
     ProfileRow: ProfileRow,
     AddProfile: AddProfile
   },
   mounted: function () {
-    this.getProfiles();
+    this.$store.dispatch(LOAD_PROFILES);
   }
 };
 </script>

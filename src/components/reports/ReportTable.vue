@@ -20,36 +20,18 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { LOAD_REPORTS } from '@/state/action-types';
 import ReportRow from './ReportRow';
+
 export default {
   name: 'ReportTable',
-  props: {
-  },
   data () {
     return {
       title: 'Reports',
-      reports: [],
-      userList: [],
       selectedUser: ''
     };
   },
   methods: {
-    getReports: function () {
-      axios.get(this.$apiPrefix + '/reports/').then(response => {
-        this.reports = response.data;
-        this.populateUserList();
-      }, response => {
-        console.log('Couldnt get reports.');
-      });
-    },
-    populateUserList: function () {
-      this.reports.filter((event) => {
-        if (this.userList.indexOf(event.user) === -1) {
-          this.userList.push(event.user);
-        }
-      });
-    }
   },
   components: {
     ReportRow: ReportRow
@@ -59,10 +41,24 @@ export default {
       return this.reports.filter((event) => {
         return event.user.startsWith(this.user);
       });
+    },
+    userList: function () {
+      var userList = [];
+
+      this.reports.filter((event) => {
+        if (this.userList.indexOf(event.user) === -1) {
+          userList.push(event.user);
+        }
+      });
+
+      return userList;
+    },
+    reports: function () {
+      return this.$store.state.reports;
     }
   },
   mounted: function () {
-    this.getReports();
+    this.$store.dispatch(LOAD_REPORTS);
   }
 };
 </script>
