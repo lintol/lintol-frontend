@@ -1,6 +1,6 @@
 <template>
   <div id="users-panel">
-    <p>{{ msg }}</p> 
+    <h1>{{ title }}</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'Users',
   data () {
     return {
-      msg: 'Users'
+      title: 'Users'
     };
   }
 };
