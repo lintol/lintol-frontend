@@ -40,7 +40,7 @@
       </div>
       <div class="reportColumn center">
         <div>
-        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport" class="viewButton"/> 
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
       </div>
       </div>
     </div>
@@ -65,8 +65,8 @@ export default {
     convertDate: function (dateString) {
       return moment(dateString).format('Do MMMM YYYY');
     },
-    viewReport: function () {
-      this.$router.push({name: 'reportView'});
+    viewReport: function (id) {
+      this.$router.push({name: 'reportView', params: {'reportId': id}});
     }
   },
   components: {

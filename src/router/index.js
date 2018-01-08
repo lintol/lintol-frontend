@@ -45,7 +45,7 @@ export default new Router({
           component: Reports,
           children: [
             { name: 'reportTable', path: 'reporttable', component: ReportTable },
-            { name: 'reportView', path: 'reportview', component: ReportView, props: true }
+            { name: 'reportView', path: 'reportview/:reportId', component: ReportView, props: true }
           ]
         },
         { name: 'users', path: 'users', component: Users },

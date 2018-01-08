@@ -3,60 +3,57 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
       <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
-      <p>Choose your Processor<p>
-      <p>Instructions<p>
-      <v-select :clearSearchOnSelect="false" placeholder="Add Processor"  :options='processorList' :onChange=processorSelected></v-select>
-      <div class="processorContainer">
-      <processor :key="processor.name" :name="processor.name" :description="processor.description" v-for="processor in choosenProcessors"/>
-      </div>
+        <p>Choose your Processor<p>
+        <p>Instructions<p>
+        <v-select :clearSearchOnSelect="false" placeholder="Add Processor"  :options="processorList" :onChange=processorSelected></v-select>
+        <div class="processorContainer">
+          <processor-configuration
+             :key="configuration.id"
+             :configuration="configuration"
+             v-for="configuration in chosenProcessors" />
+        </div>
       </div>
       <div>
         <button id="addProfile" class="saveButton" @click=addProfile>Add Profile</button>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-import Processor from './Processor';
+import ProcessorConfiguration from './ProcessorConfiguration';
 import VSelect from 'vue-select';
 import { LOAD_PROCESSORS, STORE_PROFILE } from '@/state/action-types';
 
 export default {
-  name: 'Name',
+  name: 'AddProfile',
   props: {
   },
   data () {
     return {
-      title: 'Add Profiles',
-      name: '',
-      description: '',
-      script: '',
-      availableProcessors: [],
-      choosenProcessors: [],
-      selected: null,
-      selectedProcessors: []
+      title: 'Add Profile',
+      profile: {
+        name: '',
+        description: '',
+        creator: 'Martin',
+        version: 7,
+        uniqueTag: 'uniq-66-' + this.name
+      },
+      chosenProcessors: []
     };
   },
   methods: {
     addProfile: function () {
       this.$validator.validateAll().then(() => {
-        var profile = {};
-        profile.name = this.name;
-        profile.description = this.description;
         // profile.script = this.script;
-        profile.creator = 'Martin';
-        profile.version = 7;
-        profile.uniqueTag = 'uniq-66-' + this.name;
-        // profile.processors = this.choosenProcessors;
+        // profile.processors = this.chosenProcessors;
         console.log('Add Data Profile');
-        this.$store.dispatch(STORE_PROFILE, profile).then(() => {
+        this.$store.dispatch(STORE_PROFILE, this.profile).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
@@ -65,28 +62,39 @@ export default {
     },
     updateProcessors: function (type, action) {
       if (action === 'add') {
-        this.choosenProcessors.push(type);
+        this.chosenProcessors.push(type);
       } else {
-        var index = this.choosenProcessors.indexOf(type);
+        var index = this.chosenProcessors.indexOf(type);
         if (index !== -1) {
-          this.choosenProcessors.splice(index, 1);
+          this.chosenProcessors.splice(index, 1);
         }
       }
     },
     processorSelected: function (option) {
-      this.choosenProcessors.push(option.value);
+      this.chosenProcessors.push({
+        attributes: {
+          userConfigurationStorage: {},
+          processor: this.processors[option.value]
+        }
+      });
     }
   },
   components: {
-    Processor: Processor,
+    ProcessorConfiguration: ProcessorConfiguration,
     VSelect: VSelect
   },
   watch: {
   },
   computed: {
+    processors: function () {
+      return this.$store.state.processors.reduce((map, element) => {
+        map[element.id] = element;
+        return map;
+      }, {});
+    },
     processorList: function () {
       return this.$store.state.processors.map((element) => {
-        var option = { 'label': element.name, 'value': element };
+        var option = { 'label': element.attributes.name, 'value': element.id };
         return option;
       });
     }
