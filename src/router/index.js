@@ -7,7 +7,6 @@ import EditProfile from '@/components/profiles/EditProfile';
 import AddProfile from '@/components/profiles/AddProfile';
 import Processors from '@/components/processors/Processors';
 import ProcessorTable from '@/components/processors/ProcessorTable';
-import AddProcessor from '@/components/processors/AddProcessor';
 import Reports from '@/components/reports/Reports';
 import ReportTable from '@/components/reports/ReportTable';
 import ReportView from '@/components/reports/ReportView';
@@ -39,8 +38,7 @@ export default new Router({
           path: 'processors',
           component: Processors,
           children: [
-            { name: 'processorTable', path: 'processortable', component: ProcessorTable },
-            { name: 'addProcessor', path: 'addprocessor', component: AddProcessor }
+            { name: 'processorTable', path: 'processortable', component: ProcessorTable }
           ]
         },
         { name: 'reports',
