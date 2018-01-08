@@ -44,9 +44,7 @@
       </li>
     </ul>
   </nav>
-    <router-link id="resourcesButton" :to="{name: 'addResource' }">
-       <input type="button" value="Add Resource" class="addButton" style="float: left"/>
-    </router-link>
+    <router-link id="resourcesButton" :to="{name: 'addResource' }" tag="button" class="addButton" style="float: left">Add Resource</router-link>
   </div>
 </template>
 
