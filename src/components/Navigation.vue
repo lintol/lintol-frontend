@@ -24,6 +24,12 @@
             <label>Reports</label>
          </router-link>
       </li>
+      <li id="resourceLink" class="menuEntry" :class="{ active: currentView == 'resourceTable'}">
+         <router-link id="resource" class="menuLink" :to="{name: 'resourceTable' }">
+           <img class="menuIcon" src="../assets/images/reports.svg" />
+            <label>Resources</label>
+         </router-link>
+      </li>
       <li id="usersLink" class="menuEntry" :class="{ active: currentView == 'users'}">
         <router-link id="users" class="menuLink" :to="{name: 'users' }">
            <img class="menuIcon"  src="../assets/images/users.svg" />
@@ -38,6 +44,9 @@
       </li>
     </ul>
   </nav>
+    <router-link id="resourcesButton" :to="{name: 'addResource' }">
+       <input type="button" value="Add Resource" class="addButton" style="float: left"/>
+    </router-link>
   </div>
 </template>
 
