@@ -1,26 +1,24 @@
 <template>
-   <div class="processor">
-     <div class="processorContainer">
-         <div class="xSmall">
-            <div class="orangeCheckbox">
-    	    <input type="checkbox" value="1" :id=name name="" checked="checked" disabled/>
-  	    <label :for=name></label>
-    	  </div>
+   <div class="processorConfiguration">
+     <div class="processorContainer" v-if="configuration.attributes.processor">
+       <div class="xSmall">
+        <div class="orangeCheckbox">
+          <input type="checkbox" value="1" id="active" name="active" checked="checked" disabled/>
+          <label for=active></label>
+        </div>
+       </div>
+       <div class="large">
+         <div>
+           <label id="processorTitle" class="processorTitle item1">{{ processor.attributes.name }}</label>
+           <p id="processorDescription" class="processorDescription item2" >{{ processor.attributes.description }}</p>
          </div>
-         <div class="large">
-           <div>
-             <label id="processorTitle" class="processorTitle item1">{{ name }}</label>
-             <p id="processorDescription" class="processorDescription item2" >{{ description }}</p>
-           </div>
-         </div>
-         <div class="small">
-          <label class="editLabel" v-if="!editConfiguration" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
-         </div>
+       </div>
+       <div class="small">
+        <label class="editLabel" v-if="!editConfiguration" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
+       </div>
      </div>
      <div v-if=editConfiguration >
-        <div class="editArea">
-        
-        </div>
+        <textarea class="editArea">{{ configuration.attributes.userConfigurationStorage }}</textarea>
         <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
      </div>
    </div>
@@ -28,14 +26,10 @@
 
 <script>
 export default {
-  name: 'Name',
+  name: 'ProcessorConfiguration',
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
+    configuration: {
+      type: Object,
       required: true
     }
   },
@@ -53,6 +47,9 @@ export default {
   components: {
   },
   computed: {
+    processor: function () {
+      return this.configuration.attributes.processor;
+    }
   },
   watch: {
   },
@@ -127,6 +124,7 @@ export default {
   border-radius: 3px;
   min-height: 100px;
   margin: 5px; 
-  background: grey;
+  background: #ccc;
+  width: 100%
 }
 </style>

@@ -22,14 +22,16 @@ const store = new Vuex.Store({
   actions: {
     [a.LOAD_PROFILES] (state) {
       axios.get(apiPrefix + '/profiles/').then(response => {
-        state.commit(m.SET_PROFILES, response.data);
+        var profiles = response.data;
+        state.commit(m.SET_PROFILES, profiles.data);
       }, response => {
         console.log('Couldnt get data profiles for account.');
       });
     },
     [a.LOAD_PROFILE] (state, profileId) {
       axios.get(apiPrefix + '/profiles/' + profileId).then(response => {
-        state.commit(m.SET_CURRENT_PROFILE, response.data);
+        var profile = response.data;
+        state.commit(m.SET_CURRENT_PROFILE, profile.data);
       }, response => {
         console.log('Couldnt get data profiles for account.');
       });
@@ -40,7 +42,8 @@ const store = new Vuex.Store({
       var url = apiPrefix + '/profiles/' + profile.id;
 
       axios.put(url, profile).then((response) => {
-        state.commit(m.SET_CURRENT_PROFILE, response.data);
+        var profile = response.data;
+        state.commit(m.SET_CURRENT_PROFILE, profile.data);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
@@ -51,7 +54,8 @@ const store = new Vuex.Store({
       var url = apiPrefix + '/profiles';
 
       axios.post(url, profile).then((response) => {
-        state.commit(m.SET_CURRENT_PROFILE, response.data);
+        var profile = response.profile;
+        state.commit(m.SET_CURRENT_PROFILE, profile.data);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
@@ -59,14 +63,16 @@ const store = new Vuex.Store({
 
     [a.LOAD_REPORTS] (state) {
       axios.get(apiPrefix + '/reports/').then(response => {
-        state.commit(m.SET_REPORTS, response.data);
+        var reports = response.data;
+        state.commit(m.SET_REPORTS, reports.data);
       }, response => {
         console.log('Couldnt get reports.');
       });
     },
     [a.LOAD_REPORT] (state, reportId) {
       axios.get(apiPrefix + '/reports/' + reportId).then(response => {
-        state.commit(m.SET_CURRENT_REPORT, response.data);
+        var report = response.data;
+        state.commit(m.SET_CURRENT_REPORT, report.data);
       }, response => {
         console.log('Couldnt get report.');
       });
@@ -76,7 +82,8 @@ const store = new Vuex.Store({
       var url = apiPrefix + '/processors/';
 
       axios(url).then((response) => {
-        state.commit(m.SET_PROCESSORS, response.data);
+        var processors = response.data;
+        state.commit(m.SET_PROCESSORS, processors.data);
       }).catch(function (error) {
         console.log('Error get processors:' + error);
       });

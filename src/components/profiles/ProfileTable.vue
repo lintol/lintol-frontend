@@ -19,7 +19,7 @@
         <p class="instructions"> No Profiles available for this account</p>
       </div>
       <div id="columns"  class="flexContainer">
-        <profile-row :key="profile.name" v-for="profile in profiles" :profile="profile"></profile-row>
+        <profile-row :key="profile.id" v-for="profile in profiles" :profile="profile"></profile-row>
       </div>
 
     </div>

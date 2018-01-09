@@ -11,7 +11,7 @@
         <p class="instructions"> No Processors available for this account</p>
       </div>
       <div id="columns"  v-else class="flexContainer">
-        <processor-row :key="processor.name" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
+        <processor-row :key="processor.id" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
       </div>
     </div>
   </div>
@@ -41,9 +41,14 @@ export default {
   },
   computed: {
     filteredProcessors: function () {
-      return this.processors.filter((event) => {
-        return event.name.startsWith(this.search);
-      });
+      try {
+        var re = new RegExp(this.search);
+        return this.processors.filter((processor) => {
+          return re.exec(processor.attributes.name);
+        });
+      } catch (e) {
+        return this.processors;
+      }
     },
     processors: function () {
       return this.$store.state.processors;

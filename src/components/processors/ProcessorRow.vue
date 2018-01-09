@@ -3,21 +3,21 @@
     <div class="processorRow">
       <div class="processorMainColumn center">
         <div class="rightSeparator">
-          <label class="mainColumnHeader">{{ processor.name }}</label>
-          <p>{{ processor.description }}</p>
+          <label class="mainColumnHeader">{{ processor.attributes.name }}</label>
+          <p>{{ processor.attributes.description }}</p>
         </div>
       </div>
       <div class="processorColumn center">
         <label class="columnHeader">Created</label>
-        <label>{{ convertDate(processor.created_at) }}</label>
+        <label>{{ convertDate(processor.attributes.created_at) }}</label>
       </div>
       <div class="processorColumn center">
         <label class="columnHeader">Updated</label>
-        <label>{{ convertDate(processor.updated_at) }}</label>
+        <label>{{ convertDate(processor.attributes.updated_at) }}</label>
       </div>
       <div class="processorColumn center">
         <label class="columnHeader" >Unique Tag</label>
-        <label>{{ processor.uniqueTag }}</label>
+        <label>{{ processor.attributes.uniqueTag }}</label>
       </div>
     </div>
   </div>
