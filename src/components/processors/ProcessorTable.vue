@@ -1,7 +1,6 @@
 <template>
    <div id="processorTable">
     <div >
-      <button id="addNewProcessorButton" class="addButton" @click="addProcessor">Add new Data Processor <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
         These are the list of processors available to your profiles. 

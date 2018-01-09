@@ -1,6 +1,6 @@
 <template>
   <div id="settings-panel">
-    <p>{{ msg }}</p> 
+    <h1>{{ title }}</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'Settings',
   data () {
     return {
-      msg: 'Settings'
+      title: 'Settings'
     };
   }
 };

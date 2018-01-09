@@ -1,15 +1,14 @@
 <template>
-  <div id="users-panel">
-    <h1>{{ title }}</h1>
+  <div id="resourcesPanel">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Users',
+  name: 'Resources',
   data () {
     return {
-      title: 'Users'
     };
   }
 };

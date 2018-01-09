@@ -7,10 +7,12 @@ import EditProfile from '@/components/profiles/EditProfile';
 import AddProfile from '@/components/profiles/AddProfile';
 import Processors from '@/components/processors/Processors';
 import ProcessorTable from '@/components/processors/ProcessorTable';
-import AddProcessor from '@/components/processors/AddProcessor';
 import Reports from '@/components/reports/Reports';
 import ReportTable from '@/components/reports/ReportTable';
 import ReportView from '@/components/reports/ReportView';
+import Resources from '@/components/resources/Resources';
+import ResourceTable from '@/components/resources/ResourceTable';
+import AddResource from '@/components/resources/AddResource';
 import Users from '@/components/users/Users';
 import Settings from '@/components/settings/Settings';
 
@@ -36,8 +38,7 @@ export default new Router({
           path: 'processors',
           component: Processors,
           children: [
-            { name: 'processorTable', path: 'processortable', component: ProcessorTable },
-            { name: 'addProcessor', path: 'addprocessor', component: AddProcessor }
+            { name: 'processorTable', path: 'processortable', component: ProcessorTable }
           ]
         },
         { name: 'reports',
@@ -46,6 +47,14 @@ export default new Router({
           children: [
             { name: 'reportTable', path: 'reporttable', component: ReportTable },
             { name: 'reportView', path: 'reportview', component: ReportView, props: true }
+          ]
+        },
+        { name: 'resources',
+          path: 'resources',
+          component: Resources,
+          children: [
+            { name: 'resourceTable', path: 'resourcetable', component: ResourceTable },
+            { name: 'addResource', path: 'addresource', component: AddResource }
           ]
         },
         { name: 'users', path: 'users', component: Users },
