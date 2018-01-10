@@ -96,6 +96,16 @@ const store = new Vuex.Store({
       }).catch(function (error) {
         console.log('Error adding processor:' + error);
       });
+    },
+
+    [a.STORE_DATA_RESOURCE] (state, dataResource) {
+      var url = apiPrefix + '/data-resources';
+
+      axios.post(url, dataResource).then((response) => {
+        console.log('Added data resource');
+      }).catch(function (error) {
+        console.log('Error adding data resource:' + error);
+      });
     }
   },
   mutations: {
@@ -130,6 +140,19 @@ const store = new Vuex.Store({
     },
     [m.RESET_PROCESSORS] (state) {
       state.processors = [];
+    },
+
+    [m.SET_DATA_RESOURCES] (state, dataResource) {
+      state.dataResources = dataResource;
+    },
+    [m.RESET_DATA_RESOURCES] (state) {
+      state.dataResources = [];
+    },
+    [m.SET_CURRENT_DATA_RESOURCE] (state, dataResource) {
+      state.currentDataResource = dataResource;
+    },
+    [m.UNSET_CURRENT_DATA_RESOURCE] (state) {
+      state.currentDataResource = null;
     }
   }
 });
