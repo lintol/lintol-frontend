@@ -3,7 +3,7 @@
 const visiblePauseTime = 1000;
 
 module.exports = {
-  'check report row exists test': function (browser) {
+  /*'check report row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -11,5 +11,5 @@ module.exports = {
       .click('#reports')
       .waitForElementVisible('#reports-row', visiblePauseTime)
       .end()
-  }
+  }*/
 }
