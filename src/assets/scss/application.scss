@@ -149,3 +149,7 @@ input[type=checkbox] {
 .orangeCheckbox input[type=checkbox]:checked + label {
   background: $orange;
 }
+
+.navigationLink {
+  text-decoration: underline;
+}

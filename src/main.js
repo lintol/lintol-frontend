@@ -5,9 +5,14 @@ import App from './App';
 import router from './router';
 import VeeValidate from 'vee-validate';
 import store from './state/store';
+import Vue2Leaflet from 'vue2-leaflet';
 
 Vue.config.productionTip = false;
 Vue.use(VeeValidate);
+
+Vue.component('v-map', Vue2Leaflet.Map);
+Vue.component('v-tilelayer', Vue2Leaflet.TileLayer);
+Vue.component('v-marker', Vue2Leaflet.Marker);
 
 /* eslint-disable no-new */
 new Vue({

@@ -9,7 +9,9 @@ import Processors from '@/components/processors/Processors';
 import ProcessorTable from '@/components/processors/ProcessorTable';
 import Reports from '@/components/reports/Reports';
 import ReportTable from '@/components/reports/ReportTable';
-import ReportView from '@/components/reports/ReportView';
+import ReportView from '@/components/reports/reportview/ReportView';
+import MapDetails from '@/components/reports/reportview/map/MapDetails';
+import ProcessorReportView from '@/components/reports/reportview/ProcessorReportView';
 import Resources from '@/components/resources/Resources';
 import ResourceTable from '@/components/resources/ResourceTable';
 import AddResource from '@/components/resources/AddResource';
@@ -46,7 +48,15 @@ export default new Router({
           component: Reports,
           children: [
             { name: 'reportTable', path: 'reporttable', component: ReportTable },
-            { name: 'reportView', path: 'reportview/:reportId', component: ReportView, props: true }
+            { name: 'reportView',
+              path: 'reportview',
+              component: ReportView,
+              props: true,
+              children: [
+                { name: 'processorReportView', path: 'processorReportView', component: ProcessorReportView },
+                { name: 'mapDetails', path: 'mapdetails', component: MapDetails }
+              ]
+            }
           ]
         },
         { name: 'resources',
