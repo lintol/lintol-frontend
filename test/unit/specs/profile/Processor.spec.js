@@ -7,13 +7,22 @@ describe('ProcessorConfiguration.vue', () => {
   });
   it('Populate details', () => {
     const Constructor = Vue.extend(ProcessorConfiguration);
-    /* const vm = new Constructor({
+    const vm = new Constructor({
       propsData: {
-        name: 'csv',
-        description: 'csv linter'
+        configuration: {
+          attributes: {
+            processor: {
+              attributes: {
+                name: 'csv',
+                description: 'csv linter'
+              }
+            }
+          }
+        }
       }
     }).$mount();
+    console.log(vm);
     expect(vm.$el.querySelector('#processorTitle').textContent).to.equal('csv');
-    expect(vm.$el.querySelector('#processorDescription').textContent).to.equal('csv linter'); */
+    expect(vm.$el.querySelector('#processorDescription').textContent).to.equal('csv linter');
   });
 });
