@@ -7,13 +7,15 @@ describe('ProfileRow.vue', () => {
   });
   it('Populate details', () => {
     var profile = {
-      name: 'Waste Profile',
-      creator: 'Jay',
-      description: 'Waste Data',
-      created_at: '2001-01-01 00:00:00',
-      updated_at: '2001-01-01 00:00:00',
-      version: '2',
-      uniqueTag: 'waste-taggy'
+      attributes: {
+        name: 'Waste Profile',
+        creator: 'Jay',
+        description: 'Waste Data',
+        created_at: '2001-01-01 00:00:00',
+        updated_at: '2001-01-01 00:00:00',
+        version: '2',
+        uniqueTag: 'waste-taggy'
+      }
     };
     const Constructor = Vue.extend(ProfileRow);
     const vm = new Constructor({
