@@ -3,9 +3,9 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.attributes.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.attributes.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
       <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
         <p>Instructions<p>
@@ -14,7 +14,7 @@
           <processor-configuration
              :key="configuration.id"
              :configuration="configuration"
-             v-for="configuration in chosenProcessors" />
+             v-for="configuration in profile.relationships.configurations" />
         </div>
       </div>
       <div>
@@ -39,15 +39,7 @@ export default {
   },
   data () {
     return {
-      title: 'Edit Profile',
-      profile: {
-        name: '',
-        description: '',
-        creator: 'Martin',
-        version: 7,
-        uniqueTag: 'uniq-66-' + this.name
-      },
-      chosenProcessors: []
+      title: 'Edit Profile'
     };
   },
   methods: {
@@ -62,16 +54,16 @@ export default {
     },
     updateProcessors: function (type, action) {
       if (action === 'add') {
-        this.chosenProcessors.push(type);
+        this.profile.attributes.configurations.push(type);
       } else {
-        var index = this.chosenProcessors.indexOf(type);
+        var index = this.profile.attributes.configurations.indexOf(type);
         if (index !== -1) {
-          this.chosenProcessors.splice(index, 1);
+          this.profile.attributes.configurations.splice(index, 1);
         }
       }
     },
     processorSelected: function (option) {
-      this.chosenProcessors.push({
+      this.profile.attributes.configurations.push({
         attributes: {
           userConfigurationStorage: {},
           processor: this.processors[option.value]
@@ -84,9 +76,7 @@ export default {
     VSelect: VSelect
   },
   computed: {
-    currentProfile: function () {
-      this.profile = this.$store.state.currentProfile;
-      console.log(this.profile);
+    profile: function () {
       return this.$store.state.currentProfile;
     },
     processors: function () {

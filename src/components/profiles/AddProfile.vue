@@ -51,7 +51,7 @@ export default {
     addProfile: function () {
       this.$validator.validateAll().then(() => {
         // profile.script = this.script;
-        // profile.processors = this.chosenProcessors;
+        this.profile.configurations = this.chosenProcessors;
         console.log('Add Data Profile');
         this.$store.dispatch(STORE_PROFILE, this.profile).then(() => {
           this.$router.push({name: 'profileTable'});

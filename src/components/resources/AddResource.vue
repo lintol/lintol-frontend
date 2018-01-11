@@ -24,7 +24,8 @@ export default {
       title: 'Add Data Resource',
       resource: {
         name: '',
-        uri: ''
+        uri: '',
+        profileId: null
       }
     };
   },
