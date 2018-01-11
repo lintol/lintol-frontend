@@ -3,7 +3,7 @@
     <div >
       <h1>{{ title }}</h1>
       <p class="instructions">
-        Here is a list of generate reports for this account 
+        Here is a list of generated reports for this account 
       </p>
       <select id="userFilter" v-model="selectedUser" >
         <option disabled value="" >Filter by User</option> 
