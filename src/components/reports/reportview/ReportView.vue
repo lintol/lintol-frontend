@@ -1,6 +1,5 @@
 <template>
    <div id='reportView'>
-    <router-link></router-link>
     <div class="reportRow">
         <div class="reportColumn">
           <h1>{{ reportName }}</h1>

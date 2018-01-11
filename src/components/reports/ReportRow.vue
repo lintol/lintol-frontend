@@ -4,43 +4,43 @@
       <div class="reportColumn center">
         <div class="rightSeparator">
           <label class="columnHeader">Profile</label>
-          <p>{{ report.name }}</p>
+          <p>{{ report.attributes.name }}</p>
         </div>
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label>{{ convertDate(report.created_at) }}</label>
+        <label>{{ convertDate(report.attributes.created_at) }}</label>
       </div>
       <div class="reportColumn center">
-        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
+        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.attributes.user }}</p>
       </div>
       <div class="reportColumn ragDisplay">
         <div>
         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
            <circle class="ragError" cx="10" cy="10" r="10"/>
         </svg>
-        <label id="errors" style="vertical-align: top;" >{{ report.errors }}</label>
+        <label id="errors" style="vertical-align: top;" >{{ report.attributes.errors }}</label>
         </div>
         <div>
          <svg height="20" width="20">
            <polygon class="ragWarning" points="0,20 10,0 20,20"/>
          </svg> 
-        <label id="warnings" style="vertical-align: top;">{{ report.warnings }}</label>
+        <label id="warnings" style="vertical-align: top;">{{ report.attributes.warnings }}</label>
         </div>
         <div>
         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
           <rect class="ragPass" width="20" height="20" fill="lime"/>
         </svg>
-        <label id="passes" style="vertical-align: top;">{{ report.passes }}</label>
+        <label id="passes" style="vertical-align: top;">{{ report.attributes.passes }}</label>
         </div>
       </div>
       <div class="reportColumn center">
-        <label class="qualityScore" >{{ report.qualityScore }}</label>
+        <label class="qualityScore" >{{ report.attributes.qualityScore }}</label>
         <label>Quality Score</label>
       </div>
       <div class="reportColumn center">
         <div>
-        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
+        <input id="viewReport + 'report.attributes.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
       </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ export default {
       return moment(dateString).format('Do MMMM YYYY');
     },
     viewReport: function (id) {
-      this.$router.push({name: 'reportView', params: {'reportId': id}});
+      this.$router.push({name: 'tabularDetails', params: {'reportId': id}});
     }
   },
   components: {

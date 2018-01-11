@@ -10,17 +10,24 @@
 
 <script>
 import { LOAD_REPORT } from '@/state/action-types';
+import goodtablesUI from 'goodtables-ui';
 
 export default {
   name: 'TabularDetails',
   props: {
-    processorName: {
+    reportId: {
       type: String,
       required: true
     },
     processorName: {
       type: String,
-      required: true
+      required: false,
+      default: 'Processor Name'
+    },
+    validationName: {
+      type: String,
+      required: false,
+      default: 'Validation Name'
     }
   },
   data () {
@@ -30,6 +37,11 @@ export default {
   components: {
   },
   computed: {
+    report: function () {
+      var report = this.$store.state.currentReport;
+
+      return report;
+    }
   },
   mounted: function () {
     this.$store.dispatch(LOAD_REPORT, this.reportId);
@@ -37,7 +49,7 @@ export default {
   watch: {
     report: function () {
       const element = document.getElementById('report');
-      var content = JSON.parse(this.report.attributes.content[0])[0]['goodtables:all'][2];
+      var content = this.report.attributes.content;
       console.log(content);
       goodtablesUI.render(goodtablesUI.Report, {report: content}, element);
     }
