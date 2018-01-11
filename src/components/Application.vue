@@ -33,11 +33,14 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap; 
-  height: 800px;
+  height: 100%;
+  padding: 30px;
+  height: 1200px;
 }
 
 .menu {
   width: 15%;
+  height: 100%;
 }
 
 .panel {
