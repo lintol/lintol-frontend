@@ -42,5 +42,6 @@ export default {
 
 .panel {
   width: 75%;
+  padding: 50px 20px;
 }
 </style>

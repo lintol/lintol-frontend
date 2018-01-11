@@ -81,11 +81,12 @@ export default {
 .version {
   width: 120px; 
   margin: 0 auto;
+  padding: 10px;
 }
 
 .addResourceButton {
    width: 300px; 
-   margin: 20px auto;
+   margin: 0px auto;
    & > a { 
      padding: 15px;
      width: 250px;
@@ -105,8 +106,8 @@ export default {
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 60%;
+  height: 60%;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -133,6 +134,7 @@ ul {
   display: flex;
   align-items: center;
   margin: 10px 10px;
+  padding: 10px;
   text-decoration: none;
   color: black;
   > label {
