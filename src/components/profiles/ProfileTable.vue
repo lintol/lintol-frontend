@@ -6,7 +6,7 @@
       <button id="addNewProfileButton" class="addButton " @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
-        A List of Data Profiles associated with this account. You can add more data profiles by click the "Add New Data Profile" button.
+        A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
       </p>
       <select>
         <option value="">Filter By Groups</option>
