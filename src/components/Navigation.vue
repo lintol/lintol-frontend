@@ -1,9 +1,18 @@
 <template>
   <div>
-     <router-link id="home" :to="{name: 'Application' }">
-       <img class="logo center" src="../assets/images/logo.svg" title="Home">
-     </router-link>
-     <p>Version {{ version }}</p>
+    <div>
+       <router-link id="home" :to="{name: 'Application' }">
+         <img class="logo center" src="../assets/images/logo.svg" title="Home">
+       </router-link>
+       <div class="version">
+         <label>Version {{ version }}</label>
+       </div>
+       <div class="addResourceButton">
+         <router-link id="resourcesButton" :to="{name: 'addResource' }">
+           <label>  &#10133; </label>   Add new Resource/ File
+         </router-link>
+       </div>
+    </div>
   <nav>
     <ul>
       <li id="profilesLink" class="menuEntry" :class="{ active: currentView == 'profileTable'}" >
@@ -12,22 +21,22 @@
             <label>Data Profiles</label>
          </router-link>
       </li>
+      <li id="resourceLink" class="menuEntry" :class="{ active: currentView == 'resourceTable'}">
+         <router-link id="resource" class="menuLink" :to="{name: 'resourceTable' }">
+           <img class="menuIcon" src="../assets/images/reports.svg" />
+            <label>Resources/ Files</label>
+         </router-link>
+      </li>
       <li id="processorsLink" class="menuEntry" :class="{ active: currentView == 'processorTable'}">
          <router-link id="processors" class="menuLink" :to="{name: 'processorTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
-            <label>Processors</label>
+            <label>Data Processors</label>
          </router-link>
       </li>
       <li id="reportsLink" class="menuEntry" :class="{ active: currentView == 'reportTable'}">
          <router-link id="reports" class="menuLink" :to="{name: 'reportTable' }">
            <img class="menuIcon" src="../assets/images/reports.svg" />
-            <label>Reports</label>
-         </router-link>
-      </li>
-      <li id="resourceLink" class="menuEntry" :class="{ active: currentView == 'resourceTable'}">
-         <router-link id="resource" class="menuLink" :to="{name: 'resourceTable' }">
-           <img class="menuIcon" src="../assets/images/reports.svg" />
-            <label>Resources</label>
+            <label>Validation Reports</label>
          </router-link>
       </li>
       <li id="usersLink" class="menuEntry" :class="{ active: currentView == 'users'}">
@@ -44,7 +53,6 @@
       </li>
     </ul>
   </nav>
-    <router-link id="resourcesButton" :to="{name: 'addResource' }" tag="button" class="addButton" style="float: left">Add Resource</router-link>
   </div>
 </template>
 
@@ -69,6 +77,27 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../assets/scss/application.scss';
+
+.version {
+  width: 120px; 
+  margin: 0 auto;
+}
+
+.addResourceButton {
+   width: 300px; 
+   margin: 20px auto;
+   & > a { 
+     padding: 15px;
+     width: 250px;
+     background: white;
+     border: solid 2px black;
+     text-decoration: none;
+     color: black;
+     border-spacing: 30px;
+     display: block;
+     text-align: center;
+   }
+}
 
 .active {
   background-color: #EDEDED;
