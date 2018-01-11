@@ -54,7 +54,7 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
-      version: 0.2
+      version: 0.3
     };
   },
   watch: {
