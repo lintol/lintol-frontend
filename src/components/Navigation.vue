@@ -85,11 +85,10 @@ export default {
 }
 
 .addResourceButton {
-   width: 300px; 
+   width: 80%; 
    margin: 0px auto;
    & > a { 
      padding: 15px;
-     width: 250px;
      background: white;
      border: solid 2px black;
      text-decoration: none;
