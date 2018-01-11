@@ -1,13 +1,12 @@
 <template>
   <div id="profileTable">
-
     <transition name="component-fade" mode="in-out">
     <div>
 
       <button id="addNewProfileButton" class="addButton " @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
       <h1>{{ title }}</h1>
       <p class="instructions">
-        Instructions
+        A List of Data Profiles associated with this account. You can add more data profiles by click the "Add New Data Profile" button.
       </p>
       <select>
         <option value="">Filter By Groups</option>
