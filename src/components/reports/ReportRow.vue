@@ -66,7 +66,7 @@ export default {
       return moment(dateString).format('Do MMMM YYYY');
     },
     viewReport: function (id) {
-      this.$router.push({name: 'reportView', params: {'reportId': id}});
+      this.$router.push({name: 'tabularDetails', params: {'reportId': id}});
     }
   },
   components: {
