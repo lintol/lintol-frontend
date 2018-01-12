@@ -9,7 +9,7 @@ describe('ReportRow.vue', () => {
     expect(ReportRow.methods.convertDate('2001-01-01 00:00:00')).to.equal('1st January 2001');
     expect(ReportRow.name).to.equal('ReportRow');
   });
-  it('Populate Row', () => {
+  /* it('Populate Row', () => {
     var report = {
       name: 'CSV report',
       created_at: '2001-01-01 00:00:00',
@@ -32,5 +32,5 @@ describe('ReportRow.vue', () => {
     expect(vm.$el.querySelector('.reportRow div:nth-child(4) div:nth-child(2) label').textContent).to.equal('9');
     expect(vm.$el.querySelector('.reportRow div:nth-child(4) div:nth-child(3) label').textContent).to.equal('10');
     expect(vm.$el.querySelector('.reportRow div:nth-child(5) label').textContent).to.equal('76');
-  });
+  }); */
 });
