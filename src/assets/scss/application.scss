@@ -5,10 +5,10 @@ $buttonText: white;
 $inputBackground: #F8F8F8;
 $warningText: red;
 $sideBar: #F1592A;
-$rowBackground: $lightPink;
+$rowBackground: #F9F9F9;
 
 $orange: #F1592A;
-$greyFont: grey;
+$greyFont: #BFBFBF;
 
 select {
   background: white;
@@ -111,7 +111,7 @@ body, body * {
 }
 
 .shadedRow {
-  border: 1px solid $rowBackground;
+  border: 1px solid #F3F2F2;
   border-radius: 3px;
   background-color: $rowBackground;
   margin: 20px;

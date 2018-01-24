@@ -68,7 +68,7 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
-      version: 0.3,
+      version: 0.4,
       user: 'Bob Barker'
     };
   },

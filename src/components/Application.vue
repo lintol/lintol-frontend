@@ -20,7 +20,10 @@ export default {
   },
   watch: {
     $route: function () {
-      console.log(this.$route.params);
+      console.log(this.$route);
+      if (this.$route.path === '/') {
+        this.$router.push({name: 'profileTable'});
+      }
     }
   }
 };

@@ -4,20 +4,24 @@
       <div class="processorMainColumn center">
         <div class="rightSeparator">
           <label class="mainColumnHeader">{{ processor.attributes.name }}</label>
-          <p>{{ processor.attributes.description }}</p>
+          <p class="description">{{ processor.attributes.description }}</p>
         </div>
       </div>
       <div class="processorColumn center">
-        <label class="columnHeader">Created</label>
+        <label>Created</label>
         <label>{{ convertDate(processor.attributes.created_at) }}</label>
       </div>
       <div class="processorColumn center">
-        <label class="columnHeader">Updated</label>
+        <label>Updated</label>
         <label>{{ convertDate(processor.attributes.updated_at) }}</label>
       </div>
       <div class="processorColumn center">
-        <label class="columnHeader" >Unique Tag</label>
+        <label>Unique Tag</label>
         <label>{{ processor.attributes.uniqueTag }}</label>
+      </div>
+      <div class="configurationsColumn center">
+        <label>{{ configurations }}</label>
+        <label>Configurations</label>
       </div>
     </div>
   </div>
@@ -35,6 +39,7 @@ export default {
   },
   data () {
     return {
+      configurations: 32
     };
   },
   methods: {
@@ -56,8 +61,28 @@ export default {
 @import '../../assets/scss/application.scss';
 
 .processorColumn {
-  min-width: 150px;
   flex: 1;
+  min-width: 150px;
+  label:nth-child(1) {
+    font-weight: bold;
+    font-size: 11px;
+  }
+  label:nth-child(2) {
+    font-size: 10px;
+  }
+}
+
+.configurationsColumn {
+  min-width: 150px;
+  label:nth-child(1) {
+    font-weight: bold;
+    font-size: 21px;
+  text-align: center;
+  }
+  label:nth-child(2) {
+    font-size: 8px;
+  text-align: center;
+  }
 }
  
 .center {
@@ -76,21 +101,16 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
-  margin: 10px;
 }
 
 .mainColumnHeader {
   color: $orange;
   font-weight: bold;
-}
- 
-.columnHeader {
-  font-weight: bold;
+  font-size: 12px;
 }
 
-div .processorColumn p {
-  margin: unset;
-  color: grey;
+.description {
+   font-size: 11px;
 }
+ 
 </style>
