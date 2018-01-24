@@ -70,10 +70,15 @@ export default {
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+  background: url(../../assets/images/search.svg) no-repeat scroll 14px 14px;
   background-color: white;
   background-position: 10px 10px; 
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+  border-color: #979797;
+  &::placeholder {
+    color: #9B9B9B;
+  }
 }
 
 .numberOfProcessors {

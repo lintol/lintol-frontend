@@ -18,7 +18,7 @@
              v-for="configuration in chosenProcessors" />
         </div>
       </div>
-      <div>
+      <div class="button">
         <button id="addProfile" class="saveButton" @click=addProfile>Add Profile</button>
       </div>
     </div>
@@ -140,5 +140,9 @@ export default {
 .formItem {
   margin-bottom: 10px;
   padding-left: 10px;
+}
+
+.button {
+  margin-top: 36px;
 }
 </style>
