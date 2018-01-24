@@ -10,7 +10,7 @@
       <div>
         <p class="instructions">Choose your Processor</p>
         <p class="instructions">From the drop down list choose the processors for this Data Profilt</p>
-        <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor"  :options="processorList" :onChange=processorSelected></v-select>
+        <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
              :key="configuration.id"
@@ -134,6 +134,7 @@ export default {
 }
 
 .inputDescription {
+  margin-top: 20px;
   padding-top: 10px;
 }
  

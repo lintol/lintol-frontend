@@ -4,9 +4,6 @@
        <router-link id="home" :to="{name: 'Application' }">
          <img class="logo center" src="../assets/images/logo.svg" title="Home">
        </router-link>
-       <div class="version">
-         <label>Version {{ version }}</label>
-       </div>
        <router-link id="resourcesButton" class="addResourceButton" :to="{name: 'addResource' }">
            <img src="../assets/images/plus-icon.svg" />
            <label>Add new Resource/ File</label>
@@ -52,6 +49,16 @@
       </li>
     </ul>
   </nav>
+  
+  <div class="version">
+      <label>Version {{ version }}</label>
+  </div>
+  <div class="activityBanner">
+      <label>{{ user }}</label>
+      <router-link id="logout" :to="{name: 'logout' }">
+        <label>Logout</label>
+      </router-link>
+  </div>
   </div>
 </template>
 
@@ -61,7 +68,8 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
-      version: 0.3
+      version: 0.3,
+      user: 'Bob Barker'
     };
   },
   watch: {
@@ -82,28 +90,34 @@ export default {
   margin: 0 auto;
   padding: 10px;
   font-size: 12px;
+  position: absolute;
+  bottom: 30px;
 }
 
-/*.addResourceButton {
-   width: 80%; 
-   margin: 0px auto;
-   & > a { 
-     padding: 15px;
-     background: white;
-     border: solid 2px black;
-     text-decoration: none;
-     color: black;
-     border-spacing: 30px;
-     display: block;
-     text-align: center;
-   }
-}*/
+.activityBanner {
+  position: absolute;
+  color: #333333;
+  bottom: 20px;
+  > label {
+    font-size: 12px;
+    color: #333333;
+  }
+  > a {
+    > label {
+      font-size: 12px;
+      color: #333333;
+      text-decoration:: none;
+      cursor: pointer; 
+    }
+  }
+}
 
 .addResourceButton {	
    display: flex;
    flex-direction: row;
    height: 35px;
    width: 186px;
+   margin-top: 20px;
    margin-left: 10px;
    border: 1px solid #333333;
    border-radius: 2px;

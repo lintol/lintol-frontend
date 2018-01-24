@@ -1,7 +1,7 @@
 <template>
   <div id="addResource">
-    <h1>{{ title }}</h1>
-    <p>Add a link to a resource to be validated</p>
+    <label class="pageTitle">{{ title }}</label>
+    <p class="instructions" >Add a link to a resource to be validated</p>
     <div class="vertical">
     <input id="resourceLink" placeholder="Resource Link" type="text" v-model=resource.uri data-vv-name="resourceUrl" data-vv-as="Resource Url" v-validate="'required'" :class="{ warningBorder: errors.has('resourceUrl') }"/>
     <p v-show="errors.has('resourceUrl')" class="warningText" >{{ errors.first('resourceUrl') }}</p>
@@ -52,6 +52,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import '../../assets/scss/application.scss';
 .vertical {
    margin-top: 200px;
    width: 350px;
