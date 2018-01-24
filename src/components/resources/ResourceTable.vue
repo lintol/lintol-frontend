@@ -1,7 +1,9 @@
 <template>
   <div id="resourceTable">
-    <h1>{{ msg }}</h1>
-    <p>The list of resources that have been validated by Lintol</p>
+    <label class="pageTitle">{{ title }}</label>
+    <p class="instructions">
+      The list of resources that have been validated by Lintol</p>
+    </p>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ export default {
   name: 'ResourceTable',
   data () {
     return {
-      msg: 'Resources',
+      title: 'Resources',
       resources: []
     };
   },
@@ -21,4 +23,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import '../../assets/scss/application.scss';
 </style>
