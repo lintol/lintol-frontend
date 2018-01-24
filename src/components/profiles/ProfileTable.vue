@@ -2,9 +2,8 @@
   <div id="profileTable">
     <transition name="component-fade" mode="in-out">
     <div>
-
-      <button id="addNewProfileButton" class="addButton " @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
-      <h1>{{ title }}</h1>
+      <button id="addNewProfileButton" class="addButton" @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
+      <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
         A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
       </p>
@@ -79,9 +78,6 @@ export default {
   display: inline-block; 
 }
 
-.instructions {
-
-}
 
 .tableSeparator {
   border-bottom: 2px solid black;

@@ -1,7 +1,7 @@
 <template>
    <div id="processorTable">
     <div >
-      <h1>{{ title }}</h1>
+      <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
         These are the list of processors available to your profiles. 
       </p>
