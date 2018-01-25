@@ -5,10 +5,10 @@
     <div class="formContainer">
       <input id="profileName" class="formItem inputName" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem inputDescription" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
+      <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
       <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
-        <p class="instructions">Choose your Processor</p>
+        <p class="processorInstruction">Choose your Processor</p>
         <p class="instructions">From the drop down list choose the processors for this Data Profilt</p>
         <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
@@ -145,5 +145,11 @@ export default {
 
 .button {
   margin-top: 36px;
+}
+
+.processorInstruction {
+  font-size: 14px;
+  font-weight: bold;
+
 }
 </style>

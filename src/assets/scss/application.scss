@@ -7,13 +7,15 @@ $warningText: red;
 $sideBar: #F1592A;
 $rowBackground: #F9F9F9;
 
+
 $orange: #F1592A;
 $greyFont: #BFBFBF;
 
 select {
   background: white;
-  border: 1px solid grey;
-  border-radius: 5px;
+  border: 1px solid #777776;;
+  color: #777776;;
+  border-radius: 4px;
   padding: 4px;
 }
 
@@ -97,12 +99,13 @@ body, body * {
 
 .profilePicture {
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .rightSeparator {
-  border-right: grey 1px solid;
+  border-right: 1px solid #E5E5E5;
+  box-sizing: border-box;
 }
 
 .verticalCenterItems {
@@ -114,7 +117,7 @@ body, body * {
   border: 1px solid #F3F2F2;
   border-radius: 4px;
   background-color: $rowBackground;
-  margin: 20px;
+  margin-top: 15px;
 }
 
 /**
