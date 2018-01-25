@@ -3,9 +3,9 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.attributes.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.attributes.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
       <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
         <p>Instructions<p>
@@ -54,20 +54,18 @@ export default {
     },
     updateProcessors: function (type, action) {
       if (action === 'add') {
-        this.profile.attributes.configurations.push(type);
+        this.profile.configurations.push(type);
       } else {
-        var index = this.profile.attributes.configurations.indexOf(type);
+        var index = this.profile.configurations.indexOf(type);
         if (index !== -1) {
-          this.profile.attributes.configurations.splice(index, 1);
+          this.profile.configurations.splice(index, 1);
         }
       }
     },
     processorSelected: function (option) {
-      this.profile.attributes.configurations.push({
-        attributes: {
-          userConfigurationStorage: {},
-          processor: this.processors[option.value]
-        }
+      this.profile.configurations.push({
+        userConfigurationStorage: {},
+        processor: this.processors[option.value]
       });
     }
   },
@@ -87,7 +85,7 @@ export default {
     },
     processorList: function () {
       return this.$store.state.processors.map((element) => {
-        var option = { 'label': element.attributes.name, 'value': element.id };
+        var option = { 'label': element.name, 'value': element.id };
         return option;
       });
     }

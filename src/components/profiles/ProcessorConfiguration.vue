@@ -1,6 +1,6 @@
 <template>
    <div class="processorConfiguration">
-     <div class="processorContainer" v-if="configuration.attributes.processor">
+     <div class="processorContainer" v-if="configuration.processor">
        <div class="xSmall">
         <div class="orangeCheckbox">
           <input type="checkbox" value="1" id="active" name="active" checked="checked" disabled/>
@@ -9,8 +9,8 @@
        </div>
        <div class="large">
          <div>
-           <label id="processorTitle" class="processorTitle item1">{{ processor.attributes.name }}</label>
-           <p id="processorDescription" class="processorDescription item2" >{{ processor.attributes.description }}</p>
+           <label id="processorTitle" class="processorTitle item1">{{ processor.name }}</label>
+           <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
          </div>
        </div>
        <div class="small">
@@ -18,7 +18,7 @@
        </div>
      </div>
      <div v-if=editConfiguration >
-        <textarea class="editArea">{{ configuration.attributes.userConfigurationStorage }}</textarea>
+        <textarea class="editArea">{{ configuration.userConfigurationStorage }}</textarea>
         <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
      </div>
    </div>
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     processor: function () {
-      return this.configuration.attributes.processor;
+      return this.configuration.processor;
     }
   },
   watch: {

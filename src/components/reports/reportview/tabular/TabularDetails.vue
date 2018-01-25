@@ -49,7 +49,7 @@ export default {
   watch: {
     report: function () {
       const element = document.getElementById('report');
-      var content = this.report.attributes.content;
+      var content = this.report.content;
       console.log(content);
       goodtablesUI.render(goodtablesUI.Report, {report: content}, element);
     }

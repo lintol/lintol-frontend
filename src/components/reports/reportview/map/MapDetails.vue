@@ -12,7 +12,7 @@
           <v-polygon :lat-lngs="boundary"  color="#ffffff"></v-polygon>
         </v-map>
       </div>
-      <map-marker-detail v-for="(index, markerDetail) in markerDetails" markerNumber="index" validationName="markerDetail.validationName" validationDescription="markerDetail.description"></map-marker-detail> 
+      <map-marker-detail :key="index" v-for="(index, markerDetail) in markerDetails" markerNumber="index" validationName="markerDetail.validationName" validationDescription="markerDetail.description"></map-marker-detail> 
     </div>
   </div>
 </template>

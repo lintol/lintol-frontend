@@ -72,10 +72,8 @@ export default {
     },
     processorSelected: function (option) {
       this.chosenProcessors.push({
-        attributes: {
-          userConfigurationStorage: {},
-          processor: this.processors[option.value]
-        }
+        userConfigurationStorage: {},
+        processor: this.processors[option.value]
       });
     }
   },
@@ -94,7 +92,7 @@ export default {
     },
     processorList: function () {
       return this.$store.state.processors.map((element) => {
-        var option = { 'label': element.attributes.name, 'value': element.id };
+        var option = { 'label': element.name, 'value': element.id };
         return option;
       });
     }

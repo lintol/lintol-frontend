@@ -39,15 +39,10 @@ export default {
   computed: {
     userList: function () {
       var userList = [];
-      this.reports.filter((event) => {
-        if (userList.indexOf(event.user) === -1) {
-          userList.push(event.user);
-        }
-      });
       return userList;
     },
     reports: function () {
-      return this.$store.state.reports;
+      return this.$store.state.report;
     }
   },
   mounted: function () {
