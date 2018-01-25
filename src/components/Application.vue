@@ -20,7 +20,10 @@ export default {
   },
   watch: {
     $route: function () {
-      console.log(this.$route.params);
+      console.log(this.$route);
+      if (this.$route.path === '/') {
+        this.$router.push({name: 'profileTable'});
+      }
     }
   }
 };
@@ -34,7 +37,6 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap; 
   height: 100%;
-  padding: 30px;
   height: 1200px;
 }
 
@@ -45,6 +47,7 @@ export default {
 
 .panel {
   width: 75%;
-  padding: 50px 20px;
+  padding-left: 31px;
+  padding-top: 58px;
 }
 </style>

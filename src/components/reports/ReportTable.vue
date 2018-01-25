@@ -1,7 +1,7 @@
 <template>
    <div id="reportTable">
     <div >
-      <h1>{{ title }}</h1>
+      <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
         Here is a list of generated reports for this account 
       </p>

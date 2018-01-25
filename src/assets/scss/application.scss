@@ -5,10 +5,10 @@ $buttonText: white;
 $inputBackground: #F8F8F8;
 $warningText: red;
 $sideBar: #F1592A;
-$rowBackground: $lightPink;
+$rowBackground: #F9F9F9;
 
 $orange: #F1592A;
-$greyFont: grey;
+$greyFont: #BFBFBF;
 
 select {
   background: white;
@@ -41,7 +41,7 @@ body, body * {
   padding: 15px 32px;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
-  float: right;
+  font-weight: bold;
   &:active {
     box-shadow: 0px 0px 0px black;
   }
@@ -58,12 +58,12 @@ body, body * {
   border: none;
   border-radius: 5px;
   color: $buttonText;
-  padding: 15px 32px;
+  padding: 7px 10px;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
   float: right;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 12px;
   &:active {
     box-shadow: 0px 0px 0px black;
   }
@@ -72,6 +72,7 @@ body, body * {
     border: none;
   }
   & > label {
+    margin-left: 5px;
     font-size: 2em;
     vertical-align: sub;
   }
@@ -110,7 +111,7 @@ body, body * {
 }
 
 .shadedRow {
-  border: 1px solid $rowBackground;
+  border: 1px solid #F3F2F2;
   border-radius: 3px;
   background-color: $rowBackground;
   margin: 20px;
@@ -152,4 +153,13 @@ input[type=checkbox] {
 
 .navigationLink {
   text-decoration: underline;
+}
+
+.instructions {
+  font-size: 12px;
+}
+
+.pageTitle {
+   font-weight: bold;
+   font-size: 22px;
 }

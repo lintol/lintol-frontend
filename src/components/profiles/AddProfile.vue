@@ -1,16 +1,16 @@
 <template>
   <div id="add-profile-panel">
-    <h1>{{ title }}</h1>
-    <p class="instructions">Instructions</p>
+    <label class="pageTitle">{{ title }}</label>
+    <p class="instructions">Enter information below to add a Data Profile</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
+      <input id="profileName" class="formItem inputName" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
+      <textarea id="profileDescription" class="formItem inputDescription" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
       <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
-        <p>Choose your Processor<p>
-        <p>Instructions<p>
-        <v-select :clearSearchOnSelect="false" placeholder="Add Processor"  :options="processorList" :onChange=processorSelected></v-select>
+        <p class="instructions">Choose your Processor</p>
+        <p class="instructions">From the drop down list choose the processors for this Data Profilt</p>
+        <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
              :key="configuration.id"
@@ -18,7 +18,7 @@
              v-for="configuration in chosenProcessors" />
         </div>
       </div>
-      <div>
+      <div class="button">
         <button id="addProfile" class="saveButton" @click=addProfile>Add Profile</button>
       </div>
     </div>
@@ -36,7 +36,7 @@ export default {
   },
   data () {
     return {
-      title: 'Add Profile',
+      title: 'Add Data Profile',
       profile: {
         name: '',
         description: '',
@@ -125,8 +125,23 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+.inputName {
+  min-height: 40px;
+  border: 1px grey solid;
+}
+
+.inputDescription {
+  margin-top: 20px;
+  padding-top: 10px;
+}
  
 .formItem {
   margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.button {
+  margin-top: 36px;
 }
 </style>
