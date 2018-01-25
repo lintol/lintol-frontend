@@ -93,7 +93,7 @@ module.exports = {
       .click('#settings')
       .waitForElementVisible('#settings-panel', visiblePauseTime)
       .click('#home')
-      .assert.urlEquals('http://localhost:8080/#/')
+      .assert.urlEquals('http://localhost:8080/#/profiles/profiletable')
       .end()
   }
 }
