@@ -69,6 +69,7 @@ export default {
   }
   label:nth-child(2) {
     font-size: 10px;
+    margin-top:3px;
   }
 }
 
@@ -111,6 +112,6 @@ export default {
 
 .description {
    font-size: 11px;
+   word-wrap: break-word;
 }
- 
 </style>

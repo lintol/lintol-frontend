@@ -1,9 +1,9 @@
 <template>
   <div id="reports-row" class="shadedRow">
     <div class="reportRow">
-      <div class="reportColumn center">
+      <div class="reportMainColumn center">
         <div class="rightSeparator">
-          <label class="columnHeader">Profile</label>
+          <label class="columnHeader">Report</label>
           <p>{{ report.attributes.name }}</p>
         </div>
       </div>
@@ -16,22 +16,22 @@
       </div>
       <div class="reportColumn ragDisplay">
         <div>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-           <circle class="ragError" cx="10" cy="10" r="10"/>
+        <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+           <circle class="ragError" cx="7" cy="7" r="7"/>
         </svg>
-        <label id="errors" style="vertical-align: top;" >{{ report.attributes.errors }}</label>
+        <label id="errors" class="ragNumber" >{{ report.attributes.errors }}</label>
         </div>
         <div>
-         <svg height="20" width="20">
-           <polygon class="ragWarning" points="0,20 10,0 20,20"/>
+         <svg height="14" width="14">
+           <polygon class="ragWarning" points="0,14 7,0 14,14"/>
          </svg> 
-        <label id="warnings" style="vertical-align: top;">{{ report.attributes.warnings }}</label>
+        <label id="warnings" class="ragNumber">{{ report.attributes.warnings }}</label>
         </div>
         <div>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-          <rect class="ragPass" width="20" height="20" fill="lime"/>
+        <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+          <rect class="ragPass" width="14" height="14" fill="lime"/>
         </svg>
-        <label id="passes" style="vertical-align: top;">{{ report.attributes.passes }}</label>
+        <label id="passes" class="ragNumber">{{ report.attributes.passes }}</label>
         </div>
       </div>
       <div class="reportColumn center">
@@ -116,10 +116,6 @@ export default {
   font-weight: bold;
 }
 
-.rightSeparator {
-  border-right: grey 1px solid;
-}
-
 .verticalAlign {
   vertical-align: middle;
 }
@@ -149,19 +145,17 @@ div .reportColumn p {
 
 .ranOn {
   font-weight: bold;
-  text-align: center;
+  font-size: 10px;
+  margin-left: 20px;
   + label {
-    text-align: center;
+    font-size: 11px;
+    margin-left: 20px;
   }
 }
 
-.qualityScore {
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  + label {
-    text-align: center;
-  }
+.ragNumber {
+  vertical-align: top;
+  font-size: 12px;
 }
 
 </style>
