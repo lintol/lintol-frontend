@@ -13,6 +13,8 @@ const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = (process.env.NODE_ENV === 'testing' || process.env.NODE_ENV === 'production')
   ? require('./webpack.prod.conf')
+  : (process.env.NODE_ENV === 'mock')
+  ? require('./webpack.mock.conf')
   : require('./webpack.dev.conf')
 
 // default port where dev server listens for incoming traffic
