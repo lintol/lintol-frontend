@@ -41,6 +41,7 @@
       <div class="reportColumn center">
         <div>
         <input id="viewReport + 'report.attributes.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
+        <!--<router-link id="viewReport + 'report.attributes.name'" type="button" :to="{name: 'listReportView' }" class="viewButton">View Report</router-link>-->
       </div>
       </div>
     </div>
@@ -66,7 +67,7 @@ export default {
       return moment(dateString).format('Do MMMM YYYY');
     },
     viewReport: function (id) {
-      this.$router.push({name: 'processorReportView', params: {'reportId': id}});
+      this.$router.push({name: 'listReportView', params: {'report': this.report}});
     }
   },
   components: {

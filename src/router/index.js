@@ -12,6 +12,7 @@ import ReportTable from '@/components/reports/ReportTable';
 import ReportView from '@/components/reports/reportview/ReportView';
 import MapDetails from '@/components/reports/reportview/map/MapDetails';
 import ProcessorReportView from '@/components/reports/reportview/ProcessorReportView';
+import ListReportView from '@/components/reports/reportview/ListReportView';
 import TabularDetails from '@/components/reports/reportview/tabular/TabularDetails';
 import Resources from '@/components/resources/Resources';
 import ResourceTable from '@/components/resources/ResourceTable';
@@ -55,7 +56,8 @@ export default new Router({
               props: true,
               children: [
                 { name: 'processorReportView', path: 'processorReportView/:reportId', component: ProcessorReportView },
-                { name: 'tabularDetails', path: 'tabulardetails/:reportId', component: TabularDetails, props: true },
+                { name: 'tabularDetails', path: 'tabulardetails', component: TabularDetails, props: true },
+                { name: 'listReportView', path: 'listreportview', component: ListReportView, props: true },
                 { name: 'mapDetails', path: 'mapdetails', component: MapDetails }
               ]
             }
