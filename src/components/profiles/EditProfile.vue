@@ -2,7 +2,7 @@
   <div id="edit-profile-panel">
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
-    <div class="formContainer">
+    <div class="formContainer" v-if="profile">
       <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
       <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
@@ -14,7 +14,7 @@
           <processor-configuration
              :key="configuration.id"
              :configuration="configuration"
-             v-for="configuration in profile.relationships.configurations" />
+             v-for="configuration in profile.configurations" />
         </div>
       </div>
       <div>
@@ -78,13 +78,13 @@ export default {
       return this.$store.state.currentProfile;
     },
     processors: function () {
-      return this.$store.state.processors.reduce((map, element) => {
+      return this.$store.getters.processors.reduce((map, element) => {
         map[element.id] = element;
         return map;
       }, {});
     },
     processorList: function () {
-      return this.$store.state.processors.map((element) => {
+      return this.$store.getters.processors.map((element) => {
         var option = { 'label': element.name, 'value': element.id };
         return option;
       });

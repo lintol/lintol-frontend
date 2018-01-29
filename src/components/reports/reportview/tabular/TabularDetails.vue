@@ -1,8 +1,8 @@
 <template>
    <div id='tabularDetails'>
-    <div >
-      <h3>{{ processorName }}</h3>
-      <h4>{{ validationName }}</h4>
+    <div>
+      <h3 v-if='report && report.dataResource'>{{ report.dataResource.name }}</h3>
+      <h4 v-if='report && report.profile'>{{ report.profile.name }}</h4>
       <div id='report'/>
     </div>
   </div>
@@ -39,6 +39,9 @@ export default {
   computed: {
     report: function () {
       var report = this.$store.state.currentReport;
+      if (report) {
+        console.log(report.profile);
+      }
 
       return report;
     }

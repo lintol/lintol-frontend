@@ -85,13 +85,13 @@ export default {
   },
   computed: {
     processors: function () {
-      return this.$store.state.processors.reduce((map, element) => {
+      return this.$store.getters.processors.reduce((map, element) => {
         map[element.id] = element;
         return map;
       }, {});
     },
     processorList: function () {
-      return this.$store.state.processors.map((element) => {
+      return this.$store.getters.processors.map((element) => {
         var option = { 'label': element.name, 'value': element.id };
         return option;
       });

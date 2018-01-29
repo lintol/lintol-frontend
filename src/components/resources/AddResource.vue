@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     profiles: function () {
-      return this.$store.state.profiles;
+      return this.$store.getters.profiles;
     }
   },
   mounted: function () {

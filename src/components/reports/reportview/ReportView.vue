@@ -1,21 +1,21 @@
 <template>
    <div id='reportView'>
-    <div class="reportRow">
+    <div class="reportRow" v-if="report">
         <div class="reportColumn">
-          <h1>{{ reportName }}</h1>
-          <p class='instructions'>
-           This report was create from Data Resource {{ dataResourceName }} 
+          <h1>{{ report.name }}</h1>
+          <p class='instructions' v-if="report.dataResource">
+          This report was created from Data Resource:<br/>{{ report.dataResource.name }}
           </p>
         </div>
         <div class="reportColumn">
           <label class="ranOn columnHeader">Ran On</label>
-          <label>{{ dateString }}</label>
+          <label>2018-01-01</label>
         </div>
         <div class="reportColumn">
-          <p id="creator" ><img class="profilePicture" src="../../../assets/images/profile.png"> {{ user }}</p>
+          <p id="creator" ><img class="profilePicture" src="../../../assets/images/profile.png"> {{ report.creatorId }}</p>
         </div>
         <div class="reportColumn">
-          <label class="qualityScore" >{{ qualityScore }}</label>
+          <label class="qualityScore" >{{ report.qualityScore }}</label>
           <label>Quality Score</label>
         </div>
     </div>
@@ -26,25 +26,10 @@
 <script>
 export default {
   name: 'ReportView',
-  props: {
-    reportId: {
-      type: String,
-      required: false
-    }
-  },
-  data () {
-    return {
-      reportName: 'Default Report Name',
-      title: 'Report',
-      dataResourceName: 'Default Resource Name',
-      user: 'Default User',
-      qualityScore: '-1',
-      dateString: '00:00 01/01/2001'
-    };
-  },
-  components: {
-  },
   computed: {
+    report: function () {
+      return this.$store.state.currentReport;
+    }
   },
   mounted: function () {
   },

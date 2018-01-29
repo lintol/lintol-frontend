@@ -1,4 +1,16 @@
 {
+    "stuff": {
+        "data": [
+            {
+                "type": "stuffs",
+                "id": "7de73722-aa91-40b6-9d36-41a69e1eb51d",
+                "attributes": {
+                    "title": "Lorem stuffs",
+                    "description": "Lorem ipsiiiiiiiii dolor sit amet, consectetur adipisicing elit. Animi dicta dolorum officia sapiente. Ad alias, enim itaque iure libero maxime minus nemo, non nulla, officiis quia saepe totam veritatis voluptatem."
+                }
+            }
+        ]
+},
    "data-resources": {
       "data" : [
          {
@@ -229,208 +241,264 @@
       ]
    },
    "profiles": {
+      "included" : [
+         {
+            "attributes" : {
+               "name" : "CSV Checking by GoodTables",
+               "module" : "good",
+               "description" : "CSV checking tool from Frictionless Data project",
+               "creatorId" : null,
+               "uniqueTag" : "frictionlessdata/goodtables-py:1"
+            },
+            "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
+            "type" : null
+         },
+         {
+            "type" : null,
+            "id" : "7e6a11b5-d9c4-474b-a8b8-bb1c51874695",
+            "relationships" : {
+               "processor" : {
+                  "data" : {
+                     "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
+                     "type" : null
+                  }
+               }
+            },
+            "attributes" : []
+         }
+      ],
       "data" : [
          {
-            "attributes" : {
-               "uniqueTag" : "uniq-66-Testing",
-               "creatorId" : null,
-               "name" : "Testing",
-               "version" : "7",
-               "description" : "Testing"
-            },
+            "type" : "profile",
             "id" : "01aa762d-23f7-4cbc-b150-3a41ee4b9551",
-            "type" : "profile"
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            },
+            "attributes" : {
+               "version" : "7",
+               "description" : "Testing",
+               "creatorId" : null,
+               "uniqueTag" : "uniq-66-Testing",
+               "name" : "Testing"
+            }
          },
          {
+            "id" : "af940fa3-d2f4-4fac-ba54-86c9b39dda46",
+            "type" : "profile",
             "attributes" : {
                "name" : "New Profile",
-               "creatorId" : null,
-               "uniqueTag" : "uniq-66-undefined",
-               "description" : "Profile",
-               "version" : "7"
-            },
-            "type" : "profile",
-            "id" : "af940fa3-d2f4-4fac-ba54-86c9b39dda46"
-         },
-         {
-            "attributes" : {
-               "description" : "Profile",
                "version" : "7",
-               "name" : "A",
+               "description" : "Profile",
                "uniqueTag" : "uniq-66-undefined",
                "creatorId" : null
             },
-            "id" : "1ed078a1-ddc7-430e-b643-9c95eb1115ac",
-            "type" : "profile"
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            }
+         },
+         {
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            },
+            "attributes" : {
+               "name" : "A",
+               "version" : "7",
+               "description" : "Profile",
+               "creatorId" : null,
+               "uniqueTag" : "uniq-66-undefined"
+            },
+            "type" : "profile",
+            "id" : "1ed078a1-ddc7-430e-b643-9c95eb1115ac"
          },
          {
             "type" : "profile",
             "id" : "625dc900-cead-48e9-b5a1-0c431541e2c4",
             "attributes" : {
-               "name" : "Test Goodtables",
+               "version" : "1",
+               "description" : "Testing goodtables",
                "creatorId" : null,
                "uniqueTag" : "test-goodtables-1",
-               "description" : "Testing goodtables",
-               "version" : "1"
+               "name" : "Test Goodtables"
+            },
+            "relationships" : {
+               "configurations" : {
+                  "data" : [
+                     {
+                        "id" : "7e6a11b5-d9c4-474b-a8b8-bb1c51874695",
+                        "type" : null
+                     }
+                  ]
+               }
             }
          },
          {
-            "attributes" : {
-               "version" : "7",
-               "description" : "Check Crime is valid.",
-               "uniqueTag" : "uniq-66-undefined",
-               "creatorId" : null,
-               "name" : "Crime Reference Checker"
-            },
+            "id" : "a51609b3-d24a-4132-b7b8-e252d8e1dd7d",
             "type" : "profile",
-            "id" : "a51609b3-d24a-4132-b7b8-e252d8e1dd7d"
+            "attributes" : {
+               "name" : "Crime Reference Checker",
+               "creatorId" : null,
+               "uniqueTag" : "uniq-66-undefined",
+               "description" : "Check Crime is valid.",
+               "version" : "7"
+            },
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            }
          }
       ]
    },
    "processors": {
       "data" : [
          {
-            "id" : "e43f2460-2bab-4619-b599-cda6a4aa0c45",
             "type" : "processor",
+            "id" : "e43f2460-2bab-4619-b599-cda6a4aa0c45",
             "attributes" : {
                "module" : "cl",
-               "name" : "CSV Checking by CSVLint",
-               "uniqueTag" : "theodi/csvlint.rb:1",
+               "creatorId" : null,
                "description" : "ODI tool to processes tabular data",
-               "creatorId" : null
+               "uniqueTag" : "theodi/csvlint.rb:1",
+               "name" : "CSV Checking by CSVLint"
             }
          },
          {
-            "type" : "processor",
             "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
-            "attributes" : {
-               "name" : "CSV Checking by GoodTables",
-               "module" : "good",
-               "uniqueTag" : "frictionlessdata/goodtables-py:1",
-               "description" : "CSV checking tool from Frictionless Data project",
-               "creatorId" : null
-            }
-         },
-         {
             "type" : "processor",
-            "id" : "c3f939f7-72bb-409e-929c-695681607350",
             "attributes" : {
-               "module" : "pii",
-               "name" : "Personally-Identifiable Information Spotter",
-               "uniqueTag" : "lintol/ds-pii:1",
-               "description" : "Tool for searching for Personally-Identifiable Information within CSV data",
-               "creatorId" : null
+               "description" : "CSV checking tool from Frictionless Data project",
+               "creatorId" : null,
+               "module" : "good",
+               "name" : "CSV Checking by GoodTables",
+               "uniqueTag" : "frictionlessdata/goodtables-py:1"
             }
          },
          {
             "attributes" : {
-               "module" : "boundary_checker",
+               "uniqueTag" : "lintol/ds-pii:1",
+               "name" : "Personally-Identifiable Information Spotter",
+               "module" : "pii",
+               "creatorId" : null,
+               "description" : "Tool for searching for Personally-Identifiable Information within CSV data"
+            },
+            "id" : "c3f939f7-72bb-409e-929c-695681607350",
+            "type" : "processor"
+         },
+         {
+            "attributes" : {
                "name" : "Boundary Checker",
                "uniqueTag" : "lintol/ds-boundary-checker-py:1",
+               "creatorId" : null,
                "description" : "GeoJSON boundary checker to make sure data is within given boundaries",
-               "creatorId" : null
+               "module" : "boundary_checker"
             },
             "type" : "processor",
             "id" : "80013cbd-15f6-48a8-806b-1532f9064394"
          },
          {
-            "attributes" : {
-               "name" : "gov.uk Register Checker - Countries",
-               "module" : "registers",
-               "uniqueTag" : "lintol/ds-checker-py",
-               "description" : "Check that CSV data about countries matches gov.uk register entries",
-               "creatorId" : null
-            },
+            "type" : "processor",
             "id" : "56077c8f-0a17-49f7-b32b-a3f13f724b68",
-            "type" : "processor"
+            "attributes" : {
+               "creatorId" : null,
+               "description" : "Check that CSV data about countries matches gov.uk register entries",
+               "module" : "registers",
+               "name" : "gov.uk Register Checker - Countries",
+               "uniqueTag" : "lintol/ds-checker-py"
+            }
          }
       ]
    },
    "reports": {
       "data" : [
          {
-            "id" : "321629e0-6197-4fcb-b571-9df129bd857f",
+            "type" : "reports",
             "attributes" : {
-               "errors" : 0,
-               "warnings" : 0,
                "content" : [
                   "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.008, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.006, \"valid\": true, \"error-count\": 0, \"row-count\": 6, \"source\": \"/pfs/data/bad.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"iso8859-9\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
                ],
-               "passes" : 0,
+               "errors" : 0,
+               "warnings" : 0,
                "qualityScore" : 0,
-               "name" : "(none)"
+               "name" : "(none)",
+               "passes" : 0
             },
-            "type" : "report"
+            "id" : "321629e0-6197-4fcb-b571-9df129bd857f"
          },
          {
-            "id" : "c1c27a67-5dac-4069-8d70-20057cddf8e3",
             "attributes" : {
-               "name" : "(none)",
-               "qualityScore" : 0,
-               "passes" : 0,
                "errors" : 0,
+               "warnings" : 0,
+               "qualityScore" : 0,
                "content" : [
                   "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.083, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.082, \"valid\": true, \"error-count\": 0, \"row-count\": 6, \"source\": \"/pfs/data/bad.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"iso8859-9\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
                ],
-               "warnings" : 0
+               "passes" : 0,
+               "name" : "(none)"
             },
-            "type" : "report"
+            "id" : "c1c27a67-5dac-4069-8d70-20057cddf8e3",
+            "type" : "reports"
          },
          {
-            "type" : "report",
-            "id" : "d9c234d0-cf31-4df1-84cd-4b5fbc1126ea",
             "attributes" : {
                "passes" : 0,
+               "name" : "(none)",
+               "errors" : 0,
                "qualityScore" : 0,
                "warnings" : 0,
                "content" : [
                   "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.01, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
-               ],
-               "errors" : 0,
-               "name" : "(none)"
-            }
+               ]
+            },
+            "id" : "d9c234d0-cf31-4df1-84cd-4b5fbc1126ea",
+            "type" : "reports"
          },
          {
-            "type" : "report",
+            "id" : "ed247084-b0c0-44dd-b8ef-c55073a7a1b3",
             "attributes" : {
-               "name" : "(none)",
-               "qualityScore" : 0,
                "passes" : 0,
-               "errors" : 0,
+               "name" : "(none)",
                "warnings" : 0,
+               "qualityScore" : 0,
+               "errors" : 0,
                "content" : [
                   "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.04, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.039, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
                ]
             },
-            "id" : "ed247084-b0c0-44dd-b8ef-c55073a7a1b3"
+            "type" : "reports"
          },
          {
-            "type" : "report",
-            "id" : "6bbfd8ae-1dda-46cf-86ca-dbc9520456a5",
+            "type" : "reports",
             "attributes" : {
+               "warnings" : 0,
+               "qualityScore" : 0,
                "errors" : 0,
                "content" : [
                   "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.01, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": true, \"error-count\": 0, \"row-count\": 31, \"source\": \"/pfs/data/car-park-locations-data.csv\", \"headers\": [\"NAME\", \"ADDRESS\", \"POSTCODE\", \"NON-DESIGNATED BAYS\", \"X CO-ORDINATE\", \"Y CO-ORDINATE\", \"LATITUDE\", \"LONGITUDE\", \"BLUE BADGE BAYS\", \"FAMILY FRIENDLY BAYS\", \"E-CAR BAYS\", \"TARIFF\", \"CHARGED HOURS\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
                ],
-               "warnings" : 0,
-               "qualityScore" : 0,
-               "passes" : 0,
-               "name" : "(none)"
-            }
-         },
-         {
-            "id" : "0ceb5588-e37c-450b-8ccf-8b8f0a07d4ab",
-            "attributes" : {
-               "content" : [
-                  "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.009, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
-               ],
-               "warnings" : 0,
-               "errors" : 0,
-               "qualityScore" : 0,
                "passes" : 0,
                "name" : "(none)"
             },
-            "type" : "report"
+            "id" : "6bbfd8ae-1dda-46cf-86ca-dbc9520456a5"
+         },
+         {
+            "type" : "reports",
+            "attributes" : {
+               "errors" : 0,
+               "qualityScore" : 0,
+               "warnings" : 0,
+               "content" : [
+                  "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.009, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ],
+               "passes" : 0,
+               "name" : "(none)"
+            },
+            "id" : "0ceb5588-e37c-450b-8ccf-8b8f0a07d4ab"
          }
       ]
    }

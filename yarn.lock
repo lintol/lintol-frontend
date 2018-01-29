@@ -1280,8 +1280,8 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000795"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000795.tgz#644f03fab00dd8bd1693e5e1e70d86b31c5cfece"
+  version "1.0.30000798"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000798.tgz#92f26f77f89cc2a4d60487f41e0b3d2a6c3fe341"
 
 caniuse-lite@^1.0.30000791, caniuse-lite@^1.0.30000792:
   version "1.0.30000792"
@@ -2226,8 +2226,8 @@ dom-serializer@0:
     entities "~1.1.1"
 
 domain-browser@^1.1.1:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
 
 domelementtype@1, domelementtype@^1.3.0:
   version "1.3.0"
@@ -4168,8 +4168,8 @@ jju@^1.1.0:
   resolved "https://registry.yarnpkg.com/jju/-/jju-1.3.0.tgz#dadd9ef01924bc728b03f2f7979bdbd62f7a2aaa"
 
 js-base64@^2.1.8, js-base64@^2.1.9:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.2.tgz#1896da010ef8862f385d8887648e9b6dc4a7a2e9"
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
@@ -4268,9 +4268,9 @@ jsonapi-datastore@^0.4.0-beta:
   version "0.4.0-beta"
   resolved "https://registry.yarnpkg.com/jsonapi-datastore/-/jsonapi-datastore-0.4.0-beta.tgz#b499fce924d45e2bc3c6178681520063e2361f10"
 
-jsonapi-mock@^1.4.41:
+"jsonapi-mock@https://github.com/oberonamsterdam/jsonapi-mock":
   version "1.4.41"
-  resolved "https://registry.yarnpkg.com/jsonapi-mock/-/jsonapi-mock-1.4.41.tgz#127dce7756e23e8c6d72ebdb2beaa86de5cf2db5"
+  resolved "https://github.com/oberonamsterdam/jsonapi-mock#f681b79b96ec82030a0f04ee078f2d5628fb26a7"
   dependencies:
     body-parser "^1.18.2"
     chalk latest
@@ -4732,8 +4732,8 @@ lolex@^1.6.0:
   resolved "https://registry.yarnpkg.com/lolex/-/lolex-1.6.0.tgz#3a9a0283452a47d7439e72731b9e07d7386e49f6"
 
 lolex@^2.2.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/lolex/-/lolex-2.3.1.tgz#3d2319894471ea0950ef64692ead2a5318cff362"
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/lolex/-/lolex-2.3.2.tgz#85f9450425103bf9e7a60668ea25dc43274ca807"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -5169,8 +5169,8 @@ nightwatch@^0.9.12:
     q "1.4.1"
 
 nise@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/nise/-/nise-1.2.0.tgz#079d6cadbbcb12ba30e38f1c999f36ad4d6baa53"
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/nise/-/nise-1.2.2.tgz#9aa5edb500da38035884106e3c571341bc68b2c1"
   dependencies:
     formatio "^1.2.0"
     just-extend "^1.1.26"
@@ -5275,8 +5275,8 @@ node-version@^1.0.0:
   resolved "https://registry.yarnpkg.com/node-version/-/node-version-1.1.0.tgz#f437d7ba407e65e2c4eaef8887b1718ba523d4f0"
 
 node-watch@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/node-watch/-/node-watch-0.5.5.tgz#34865ba8bc6861ab086acdcc3403e40ed55c3274"
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/node-watch/-/node-watch-0.5.6.tgz#23cc05694da2af76b285003df141c5c763fe3a39"
 
 nodemon@^1.12.1:
   version "1.14.11"
@@ -6449,8 +6449,8 @@ regexpu-core@^2.0.0:
     regjsparser "^0.1.4"
 
 registry-auth-token@^3.0.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/registry-auth-token/-/registry-auth-token-3.3.1.tgz#fb0d3289ee0d9ada2cbb52af5dfe66cb070d3006"
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/registry-auth-token/-/registry-auth-token-3.3.2.tgz#851fd49038eecb586911115af845260eec983f20"
   dependencies:
     rc "^1.1.6"
     safe-buffer "^5.0.1"
@@ -6888,8 +6888,8 @@ sinon-chai@^2.8.0:
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-2.14.0.tgz#da7dd4cc83cd6a260b67cca0f7a9fdae26a1205d"
 
 sinon@^4.0.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-4.2.1.tgz#3664e90ea4bccec6ebde3c06e3da8179983371d9"
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-4.2.2.tgz#e039ab27bdb426fc61363c380726e996a2e2c620"
   dependencies:
     diff "^3.1.0"
     formatio "1.2.0"
@@ -7512,8 +7512,8 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 uglify-js@3.3.x:
-  version "3.3.8"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.8.tgz#51e9a5db73afb53ac98603d08224edcd0be45fd8"
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.9.tgz#33869666c8ab7f7658ce3d22f0f1ced40097d33a"
   dependencies:
     commander "~2.13.0"
     source-map "~0.6.1"

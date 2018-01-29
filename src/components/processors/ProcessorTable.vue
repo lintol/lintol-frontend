@@ -1,5 +1,5 @@
 <template>
-   <div id="processorTable">
+   <div id="processorTable" v-if="filteredProcessors">
     <div >
       <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
@@ -51,7 +51,7 @@ export default {
       }
     },
     processors: function () {
-      return this.$store.state.processors;
+      return this.$store.getters.processors;
     }
   },
   mounted: function () {
