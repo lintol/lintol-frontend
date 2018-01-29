@@ -1,8 +1,9 @@
 <template>
    <div id='reportView'>
+    <router-link id="reports" :to="{name: 'reportTable' }" class="navigateToReports"> &#x3008; Back to Reports</router-link>
     <div class="reportRow">
-        <div class="reportColumn">
-          <h1>{{ reportName }}</h1>
+        <div class="reportMainColumn">
+          <label class="pageTitle">{{ reportName }}</label>
           <p class='instructions'>
            This report was create from Data Resource {{ dataResourceName }} 
           </p>
@@ -12,7 +13,7 @@
           <label>{{ dateString }}</label>
         </div>
         <div class="reportColumn">
-          <p id="creator" ><img class="profilePicture" src="../../../assets/images/profile.png"> {{ user }}</p>
+          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ user }}</label>
         </div>
         <div class="reportColumn">
           <label class="qualityScore" >{{ qualityScore }}</label>
@@ -56,28 +57,51 @@ export default {
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
 @import '~@/assets/scss/application.scss';
+@import '~@/assets/scss/reports.scss';
 
 .reportRow {
    display: flex;
    flex-direction: row;
    flex-wrap: nowrap;
    justify-content: space-between;
-   min-height: 100px;
+   min-height: 80px;
    padding: 0px 10px;
+   border-bottom: 1px solid $separatorColour;
  }
 
 .ranOn {
   font-weight: bold;
-  text-align: center;
+  font-size: 10px;
   + label {
-    text-align: center;
+    font-size: 11px;
   }
 }
 
 .reportColumn {
-  min-width: 150px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
   flex: 1;
 }
 
+.reportMainColumn {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  flex: 2;
+}
 
+.user {
+  font-size: 12px;
+}
+
+.alignImage {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.navigateToReports {
+  font-size: 12px;
+}
+  
 </style>

@@ -66,7 +66,7 @@ export default {
       return moment(dateString).format('Do MMMM YYYY');
     },
     viewReport: function (id) {
-      this.$router.push({name: 'tabularDetails', params: {'reportId': id}});
+      this.$router.push({name: 'processorReportView', params: {'reportId': id}});
     }
   },
   components: {
@@ -140,7 +140,6 @@ div .reportColumn p {
 
 .columnHeader {
   font-weight: bold;
-
 }
 
 .ranOn {

@@ -54,7 +54,7 @@ export default new Router({
               component: ReportView,
               props: true,
               children: [
-                { name: 'processorReportView', path: 'processorReportView', component: ProcessorReportView },
+                { name: 'processorReportView', path: 'processorReportView/:reportId', component: ProcessorReportView },
                 { name: 'tabularDetails', path: 'tabulardetails/:reportId', component: TabularDetails, props: true },
                 { name: 'mapDetails', path: 'mapdetails', component: MapDetails }
               ]

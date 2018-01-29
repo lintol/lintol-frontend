@@ -6,6 +6,7 @@ $inputBackground: #F8F8F8;
 $warningText: red;
 $sideBar: #F1592A;
 $rowBackground: #F9F9F9;
+$separatorColour: #E5E5E5;
 
 
 $orange: #F1592A;
@@ -105,7 +106,7 @@ body, body * {
 }
 
 .rightSeparator {
-  border-right: 1px solid #E5E5E5;
+  border-right: 1px solid $separatorColour;
   box-sizing: border-box;
 }
 
@@ -125,7 +126,7 @@ body, body * {
  * hiding original checkboxes
  */
 input[type=checkbox] {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 .orangeCheckbox {
@@ -167,3 +168,8 @@ input[type=checkbox] {
    font-weight: bold;
    font-size: 22px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+} 
