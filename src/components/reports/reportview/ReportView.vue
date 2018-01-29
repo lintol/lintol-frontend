@@ -3,20 +3,20 @@
     <router-link id="reports" :to="{name: 'reportTable' }" class="navigateToReports"> &#x3008; Back to Reports</router-link>
     <div class="reportRow">
         <div class="reportMainColumn">
-          <label class="pageTitle">{{ reportName }}</label>
+          <label class="pageTitle">{{ report.attributes.name }}</label>
           <p class='instructions'>
-           This report was create from Data Resource {{ dataResourceName }} 
+           This report was create from Data Resource: <u>{{ content.tables[0].source}}</u>
           </p>
         </div>
         <div class="reportColumn">
           <label class="ranOn columnHeader">Ran On</label>
-          <label>{{ dateString }}</label>
+          <label>{{ report.attributes.createdAt.date }}</label>
         </div>
         <div class="reportColumn">
-          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ user }}</label>
+          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.attributes.user }}</label>
         </div>
         <div class="reportColumn">
-          <label class="qualityScore" >{{ qualityScore }}</label>
+          <label class="qualityScore" >{{ report.attributes.qualityScore }}</label>
           <label>Quality Score</label>
         </div>
     </div>
@@ -25,12 +25,13 @@
 </template>
 
 <script>
+import { LOAD_REPORT } from '@/state/action-types';
 export default {
   name: 'ReportView',
   props: {
     reportId: {
       type: String,
-      required: false
+      required: true
     }
   },
   data () {
@@ -46,8 +47,17 @@ export default {
   components: {
   },
   computed: {
+    report: function () {
+      var report = this.$store.state.currentReport;
+      return report;
+    },
+    content: function () {
+      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
+      return content;
+    }
   },
   mounted: function () {
+    this.$store.dispatch(LOAD_REPORT, this.reportId);
   },
   watch: {
   }

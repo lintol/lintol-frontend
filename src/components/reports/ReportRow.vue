@@ -9,7 +9,7 @@
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label>{{ convertDate(report.attributes.created_at) }}</label>
+        <label>{{ convertDate(report.attributes.createdAt) }}</label>
       </div>
       <div class="reportColumn center">
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.attributes.user }}</p>
@@ -64,10 +64,11 @@ export default {
   },
   methods: {
     convertDate: function (dateString) {
-      return moment(dateString).format('Do MMMM YYYY');
+      console.log(dateString);
+      return moment(dateString.date).format('Do MMMM YYYY');
     },
     viewReport: function (id) {
-      this.$router.push({name: 'listReportView', params: {'report': this.report}});
+      this.$router.push({name: 'listReportView', params: {'report': this.report, 'reportId': id}});
     }
   },
   components: {
@@ -75,6 +76,7 @@ export default {
   computed: {
   },
   mounted: function () {
+    console.log(this.report);
   }
 };
 </script>

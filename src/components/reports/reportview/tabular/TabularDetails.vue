@@ -1,10 +1,13 @@
 <template>
+   <div>
+   <router-link id="reports" :to="{name: 'listReportView' }" class="navigateToReports"> &#x3008; Back to List</router-link>
    <div id='tabularDetails'>
     <div >
       <p class="processor">{{ reportItem.processor }}</p>
       <p class="itemType">{{ reportItem.code }}</p>
       <div id='report'/>
     </div>
+  </div>
   </div>
 </template>
 
@@ -74,9 +77,7 @@ export default {
   font-weight: bold;
 }
 
-.goodtables-ui-report .panel-danger>.panel-heading {
-    color: #2f3135;
-    background-color: #695d5e;
-    border-color: #f13c3f;
+.navigateToReports {
+  font-size: 12px;
 }
 </style>
