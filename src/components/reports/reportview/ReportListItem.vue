@@ -8,7 +8,7 @@
     <label class="processorName">{{ reportItem.processor }}</label>
     <label class="issueType">{{ reportItem.code }}</label>
     <label class="issueDescription">{{ reportItem.message }}</label>
-    <router-link class="moreDetails" :to="{name: 'tabularDetails' }">More Details &#x3e;</router-link>
+    <label @click=openIssue class="moreDetails">More Details &#x3e;</label>
   </div>
 </template>
 
@@ -19,6 +19,10 @@ export default {
     reportItem: {
       type: Object,
       required: true
+    },
+    content: {
+      type: Object,
+      required: true
     }
   },
   data () {
@@ -26,6 +30,11 @@ export default {
     };
   },
   methods: {
+    openIssue: function () {
+      console.log('Sending');
+      console.log(this.content);
+      this.$router.push({name: 'tabularDetails', params: {'reportItem': this.reportItem, 'reportMetaData': this.content}});
+    }
   },
   components: {
   },
