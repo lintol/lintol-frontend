@@ -25,18 +25,18 @@
                </div>
             </div>
           <div>
-            <input id="searchValidations" type="text" class="searchBox" />
+            <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
             <select id="userFilter" v-model="filteredType" >
               <option disabled value="" >Filter by Type</option>
               <option v-for="type in filterByTypeOptions">{{ type }}</option>
             </select>
             <select id="userFilter" v-model="filteredProcessor" >
               <option disabled value="" >Filter by Processor</option>
-              <option v-for="processor in filterByiProcessorOptions">{{ processor }}</option>
+              <option v-for="processor in filterByProcessorOptions">{{ processor }}</option>
             </select>
           </div>
        </div>
-       <report-list-item :reportId="reportId" :content="report.attributes.content" :reportItem="reportItem" v-for="reportItem in reportItems"></report-list-item>
+       <report-list-item :reportId="reportId" :content="report.attributes.content" :reportItem="reportItem" v-for="reportItem in filteredReportItems"></report-list-item>
        <p v-if="reportItems.length === 0" >There is no items for this report</p>
   </div>
 </template>
@@ -56,32 +56,71 @@ export default {
     return {
       filteredType: '',
       filteredProcessor: '',
-      processorResults: []
+      processorResults: [],
+      search: ''
     };
   },
   components: {
     ReportListItem: ReportListItem
   },
   computed: {
-    filterByTypeOptions: function () {
-      return [];
-    },
-    filterByiProcessorOptions: function () {
-      return [];
-    },
     report: function () {
       var report = this.$store.state.currentReport;
       return report;
     },
     reportItems: function () {
-      /* var content = JSON.parse(this.report.attributes.content);
-      console.log(content.tables.errors);
-      return content.tables[0].errors; */
       var content = JSON.parse(this.$store.state.currentReport.attributes.content);
       var reportItems = content.tables[0].errors;
       console.log('Report');
       console.log(reportItems);
       return reportItems;
+    },
+    filterByProcessorOptions: function () {
+      var result = [];
+      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
+      var reportItems = content.tables[0].errors;
+      console.log(reportItems);
+      reportItems.forEach((reportItem) => {
+        if (result.indexOf(reportItem.processor) === -1) {
+          result.push(reportItem.processor);
+        }
+      });
+      console.log(result);
+      return result;
+    },
+    filterByTypeOptions: function () {
+      var result = [];
+      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
+      var reportItems = content.tables[0].errors;
+      console.log(reportItems);
+      reportItems.forEach((reportItem) => {
+        if (result.indexOf(reportItem.code) === -1) {
+          result.push(reportItem.code);
+        }
+      });
+      console.log(result);
+      return result;
+    },
+    filteredReportItems: function () {
+      var result = this.reportItems;
+      if (this.filteredType !== '') {
+        result = result.filter((reportItem) => {
+          return reportItem.code === this.filteredType;
+        });
+      }
+      if (this.filteredProcessor !== '') {
+        result = result.filter((reportItem) => {
+          return reportItem.processor === this.filteredProcessor;
+        });
+      }
+      try {
+        var re = new RegExp(this.search);
+        return result.filter((reportItem) => {
+          return re.exec(reportItem.message);
+        });
+      } catch (e) {
+        return this.reportItems;
+      }
     }
   },
   mounted: function () {
