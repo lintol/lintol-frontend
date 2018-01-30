@@ -36,18 +36,19 @@
             </select>
           </div>
        </div>
-       <report-list-item :content="report.attributes.content" :reportItem="reportItem" v-for="reportItem in reportItems"></report-list-item>
+       <report-list-item :reportId="reportId" :content="report.attributes.content" :reportItem="reportItem" v-for="reportItem in reportItems"></report-list-item>
        <p v-if="reportItems.length === 0" >There is no items for this report</p>
   </div>
 </template>
 
 <script>
+import { LOAD_REPORT } from '@/state/action-types';
 import ReportListItem from './ReportListItem';
 export default {
   name: 'ReportView',
   props: {
-    report: {
-      type: Object,
+    reportId: {
+      type: String,
       required: true
     }
   },
@@ -68,15 +69,23 @@ export default {
     filterByiProcessorOptions: function () {
       return [];
     },
+    report: function () {
+      var report = this.$store.state.currentReport;
+      return report;
+    },
     reportItems: function () {
-      var content = JSON.parse(this.report.attributes.content);
+      /* var content = JSON.parse(this.report.attributes.content);
       console.log(content.tables.errors);
-      return content.tables[0].errors;
+      return content.tables[0].errors; */
+      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
+      var reportItems = content.tables[0].errors;
+      console.log('Report');
+      console.log(reportItems);
+      return reportItems;
     }
   },
   mounted: function () {
-    console.log(this.report);
-    console.log(JSON.parse(this.report.attributes.content));
+    this.$store.dispatch(LOAD_REPORT, this.reportId);
   },
   watch: {
   }

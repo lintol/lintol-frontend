@@ -10,7 +10,7 @@
         </div>
         <div class="reportColumn">
           <label class="ranOn columnHeader">Ran On</label>
-          <label>{{ report.attributes.createdAt.date }}</label>
+          <label>{{ convertDate(report.attributes.createdAt.date) }}</label>
         </div>
         <div class="reportColumn">
           <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.attributes.user }}</label>
@@ -26,6 +26,7 @@
 
 <script>
 import { LOAD_REPORT } from '@/state/action-types';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ReportView',
   props: {
@@ -45,6 +46,9 @@ export default {
     };
   },
   components: {
+  },
+  methods: {
+    convertDate: convertDate
   },
   computed: {
     report: function () {

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ProfileRow',
   props: {
@@ -51,6 +51,7 @@ export default {
     };
   },
   methods: {
+    convertDate: convertDate,
     profileAction: function (e) {
       console.log('profile action:');
       if (e.target.value === 'edit') {
@@ -59,9 +60,6 @@ export default {
       if (e.target.value === 'archive') {
         console.log('archiving');
       }
-    },
-    convertDate: function (dateString) {
-      return moment(dateString).format('Do MMMM YYYY');
     }
   },
   components: {

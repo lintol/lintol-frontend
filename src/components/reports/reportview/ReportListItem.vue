@@ -23,6 +23,10 @@ export default {
     content: {
       type: Object,
       required: true
+    },
+    reportId: {
+      type: String,
+      required: true
     }
   },
   data () {
@@ -33,7 +37,7 @@ export default {
     openIssue: function () {
       console.log('Sending');
       console.log(this.content);
-      this.$router.push({name: 'tabularDetails', params: {'reportItem': this.reportItem, 'reportMetaData': this.content}});
+      this.$router.push({name: 'tabularDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
     }
   },
   components: {

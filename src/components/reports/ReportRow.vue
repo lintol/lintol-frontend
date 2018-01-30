@@ -9,7 +9,7 @@
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label>{{ convertDate(report.attributes.createdAt) }}</label>
+        <label>{{ convertDate(report.attributes.createdAt.date) }}</label>
       </div>
       <div class="reportColumn center">
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.attributes.user }}</p>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ReportRow',
   props: {
@@ -63,13 +63,10 @@ export default {
     };
   },
   methods: {
-    convertDate: function (dateString) {
-      console.log(dateString);
-      return moment(dateString.date).format('Do MMMM YYYY');
-    },
     viewReport: function (id) {
       this.$router.push({name: 'listReportView', params: {'report': this.report, 'reportId': id}});
-    }
+    },
+    convertDate: convertDate
   },
   components: {
   },

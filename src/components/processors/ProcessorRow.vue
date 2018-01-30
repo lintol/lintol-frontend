@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ProcessorRow',
   props: {
@@ -43,9 +43,7 @@ export default {
     };
   },
   methods: {
-    convertDate: function (dateString) {
-      return moment(dateString).format('Do MMMM YYYY');
-    }
+    convertDate: convertDate
   },
   components: {
   },
