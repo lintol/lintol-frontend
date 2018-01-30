@@ -37,7 +37,11 @@ export default {
     openIssue: function () {
       console.log('Sending');
       console.log(this.content);
-      this.$router.push({name: 'tabularDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
+      if (JSON.parse(this.content).preset === 'geojson') {
+        this.$router.push({name: 'mapDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
+      } else {
+        this.$router.push({name: 'tabularDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
+      }
     }
   },
   components: {
