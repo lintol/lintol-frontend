@@ -7,7 +7,7 @@
     <p v-show="errors.has('resourceUrl')" class="warningText" >{{ errors.first('resourceUrl') }}</p>
     <select v-model="resource.profileId">
       <option disabled selected value="">[Choose Profile]</option>
-      <option :value="profile.id" v-for="profile in profiles">{{ profile.attributes.name }}</option>
+      <option :value="profile.id" v-for="profile in profiles">{{ profile.name }}</option>
     </select>
     <input type="button" class="addButton" value="Validate" @click="addResource"/>
   </div>
@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     profiles: function () {
-      return this.$store.state.profiles;
+      return this.$store.getters.profiles;
     }
   },
   mounted: function () {

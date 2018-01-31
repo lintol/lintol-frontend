@@ -1,22 +1,22 @@
 <template>
    <div id='reportView'>
     <router-link id="reports" :to="{name: 'reportTable' }" class="navigateToReports"> &#x3008; Back to Reports</router-link>
-    <div class="reportRow">
+    <div class="reportRow" v-if="report">
         <div class="reportMainColumn">
-          <label class="pageTitle">{{ report.attributes.name }}</label>
+          <label class="pageTitle">{{ report.name }}</label>
           <p class='instructions'>
            This report was create from Data Resource: <u>{{ content.tables[0].source}}</u>
           </p>
         </div>
         <div class="reportColumn">
           <label class="ranOn columnHeader">Ran On</label>
-          <label>{{ convertDate(report.attributes.createdAt.date) }}</label>
+          <label>{{ convertDate(report.createdAt.date) }}</label>
         </div>
         <div class="reportColumn">
-          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.attributes.user }}</label>
+          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.user }}</label>
         </div>
         <div class="reportColumn">
-          <label class="qualityScore" >{{ report.attributes.qualityScore }}</label>
+          <label class="qualityScore" >{{ report.qualityScore }}</label>
           <label>Quality Score</label>
         </div>
     </div>
@@ -25,25 +25,11 @@
 </template>
 
 <script>
-import { LOAD_REPORT } from '@/state/action-types';
 import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ReportView',
-  props: {
-    reportId: {
-      type: String,
-      required: true
-    }
-  },
   data () {
-    return {
-      reportName: 'Default Report Name',
-      title: 'Report',
-      dataResourceName: 'Default Resource Name',
-      user: 'Default User',
-      qualityScore: '-1',
-      dateString: '00:00 01/01/2001'
-    };
+    return {};
   },
   components: {
   },
@@ -56,14 +42,14 @@ export default {
       return report;
     },
     content: function () {
-      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
+      var content;
+      if (this.report) {
+        content = this.report.content;
+      } else {
+        content = null;
+      }
       return content;
     }
-  },
-  mounted: function () {
-    this.$store.dispatch(LOAD_REPORT, this.reportId);
-  },
-  watch: {
   }
 };
 </script>

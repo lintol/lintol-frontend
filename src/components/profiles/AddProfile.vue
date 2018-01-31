@@ -49,7 +49,9 @@ export default {
   },
   methods: {
     addProfile: function () {
+      console.log('test');
       this.$validator.validateAll().then(() => {
+        console.log('testa');
         // profile.script = this.script;
         this.profile.configurations = this.chosenProcessors;
         console.log('Add Data Profile');
@@ -57,6 +59,7 @@ export default {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
+        console.log(this.profile);
         console.log('Validation error:' + error);
       });
     },
@@ -72,10 +75,8 @@ export default {
     },
     processorSelected: function (option) {
       this.chosenProcessors.push({
-        attributes: {
-          userConfigurationStorage: {},
-          processor: this.processors[option.value]
-        }
+        userConfigurationStorage: {},
+        processor: this.processors[option.value]
       });
     }
   },
@@ -87,14 +88,14 @@ export default {
   },
   computed: {
     processors: function () {
-      return this.$store.state.processors.reduce((map, element) => {
+      return this.$store.getters.processors.reduce((map, element) => {
         map[element.id] = element;
         return map;
       }, {});
     },
     processorList: function () {
-      return this.$store.state.processors.map((element) => {
-        var option = { 'label': element.attributes.name, 'value': element.id };
+      return this.$store.getters.processors.map((element) => {
+        var option = { 'label': element.name, 'value': element.id };
         return option;
       });
     }
