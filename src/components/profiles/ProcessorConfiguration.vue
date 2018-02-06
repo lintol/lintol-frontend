@@ -14,10 +14,10 @@
           </div>
         </div>
         <div class="small">
-         <label class="editLabel" v-if="!editConfiguration" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
+         <label class="editLabel" v-if="!editConfiguration && configurationOptions" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
         </div>
       </div>
-      <div v-if=editConfiguration >
+      <div v-if="editConfiguration && configurationOptions">
         <vue-form-generator :schema="configurationOptions" :model="model" :options="formOptions"></vue-form-generator>
         <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
       </div>
@@ -60,7 +60,14 @@ export default {
       return this.configuration.processor;
     },
     configurationOptions: function () {
-      return JSON.parse(this.processor.configurationOptions);
+      if (this.processor.configurationOptions) {
+        try {
+          return JSON.parse(this.processor.configurationOptions);
+        } catch (e) {
+          return null;
+        }
+      }
+      return null;
     }
   },
   watch: {
@@ -69,7 +76,11 @@ export default {
     }
   },
   mounted: function () {
-    this.model = JSON.parse(this.configuration.userConfigurationStorage);
+    try {
+      this.model = JSON.parse(this.configuration.userConfigurationStorage);
+    } catch (e) {
+      this.model = {};
+    }
   }
 };
 </script>
