@@ -1,30 +1,32 @@
 <template>
-   <div class="processorConfiguration">
-     <div class="processorContainer" v-if="configuration.processor">
-       <div class="xSmall">
-        <div class="orangeCheckbox">
-          <input type="checkbox" value="1" id="active" name="active" checked="checked" disabled/>
-          <label for=active></label>
-        </div>
-       </div>
-       <div class="large">
-         <div>
-           <label id="processorTitle" class="processorTitle item1">{{ processor.name }}</label>
-           <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
+    <div class="processorConfiguration">
+      <div class="processorContainer" v-if="configuration.processor">
+        <div class="xSmall">
+         <div class="orangeCheckbox">
+           <input type="checkbox" value="1" id="active" name="active" checked="checked" disabled/>
+           <label for=active></label>
          </div>
-       </div>
-       <div class="small">
-        <label class="editLabel" v-if="!editConfiguration" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
-       </div>
-     </div>
-     <div v-if=editConfiguration >
-        <textarea class="editArea">{{ configuration.userConfigurationStorage }}</textarea>
+        </div>
+        <div class="large">
+          <div>
+            <label id="processorTitle" class="processorTitle item1">{{ processor.name }}</label>
+            <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
+          </div>
+        </div>
+        <div class="small">
+         <label class="editLabel" v-if="!editConfiguration" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
+        </div>
+      </div>
+      <div v-if=editConfiguration >
+        <vue-form-generator :schema="configurationOptions" :model="model" :options="formOptions"></vue-form-generator>
         <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
-     </div>
+      </div>
    </div>
 </template>
 
 <script>
+import VueFormGenerator from 'vue-form-generator';
+
 export default {
   name: 'ProcessorConfiguration',
   props: {
@@ -33,10 +35,16 @@ export default {
       required: true
     }
   },
+  inject: false,
   data () {
     return {
+      model: {},
       checkboxValue: false,
-      editConfiguration: false
+      editConfiguration: false,
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true
+      }
     };
   },
   methods: {
@@ -45,15 +53,23 @@ export default {
     }
   },
   components: {
+    'vue-form-generator': VueFormGenerator.component
   },
   computed: {
     processor: function () {
       return this.configuration.processor;
+    },
+    configurationOptions: function () {
+      return JSON.parse(this.processor.configurationOptions);
     }
   },
   watch: {
+    model: function (model) {
+      this.configuration.userConfigurationStorage = JSON.stringify(model);
+    }
   },
   mounted: function () {
+    this.model = JSON.parse(this.configuration.userConfigurationStorage);
   }
 };
 </script>
@@ -96,12 +112,12 @@ export default {
 .processor {
   border: solid 1px black;
   border-radius: 3px;
-  margin: 3px; 
+  margin: 3px;
   padding: 5px;
 }
 
 .roundCheckbox {
-  float: right;  
+  float: right;
 }
 
 .editLabel {
@@ -123,7 +139,7 @@ export default {
   border: solid 1px black;
   border-radius: 3px;
   min-height: 100px;
-  margin: 5px; 
+  margin: 5px;
   background: #ccc;
   width: 100%
 }

@@ -57,8 +57,6 @@ const store = new Vuex.Store({
       });
     },
     [a.SAVE_PROFILE] (state, profile) {
-      state.commit(m.SET_CURRENT_PROFILE, profile);
-
       var url = apiPrefix + '/profiles/' + profile.id;
 
       axios.put(url, profile).then((response) => {
@@ -69,12 +67,10 @@ const store = new Vuex.Store({
       });
     },
     [a.STORE_PROFILE] (state, profile) {
-      state.commit(m.SET_CURRENT_PROFILE, profile);
-
       var url = apiPrefix + '/profiles';
 
       axios.post(url, profile).then((response) => {
-        var profile = response.profile;
+        var profile = response.data;
         state.commit(m.SET_CURRENT_PROFILE, profile);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);

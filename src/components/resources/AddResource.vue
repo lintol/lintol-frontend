@@ -3,8 +3,8 @@
     <label class="pageTitle">{{ title }}</label>
     <p class="instructions" >Add a link to a resource to be validated</p>
     <div class="vertical">
-    <input id="resourceLink" placeholder="Resource Link" type="text" v-model=resource.uri data-vv-name="resourceUrl" data-vv-as="Resource Url" v-validate="'required'" :class="{ warningBorder: errors.has('resourceUrl') }"/>
-    <p v-show="errors.has('resourceUrl')" class="warningText" >{{ errors.first('resourceUrl') }}</p>
+    <input id="resourceLink" placeholder="Resource Link" type="text" v-model=resource.uri data-vv-name="resourceUrl" data-vv-as="Resource Url" v-validate="'required'" :class="{ warningBorder: vErrors.has('resourceUrl') }"/>
+    <p v-show="vErrors.has('resourceUrl')" class="warningText" >{{ vErrors.first('resourceUrl') }}</p>
     <select v-model="resource.profileId">
       <option disabled selected value="">[Choose Profile]</option>
       <option :value="profile.id" v-for="profile in profiles">{{ profile.name }}</option>

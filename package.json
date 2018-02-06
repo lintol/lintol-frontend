@@ -30,6 +30,7 @@
     "style-loader": "^0.19.0",
     "vee-validate": "^2.0.0-rc.25",
     "vue": "^2.5.2",
+    "vue-form-generator": "^2.2.0",
     "vue-router": "^3.0.1",
     "vue-select": "^2.3.0",
     "vue-style-loader": "^3.0.3",
