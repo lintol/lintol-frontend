@@ -5,6 +5,10 @@
       <p class="instructions">
         Here is a list of generated reports for this account 
       </p>
+      <select id="dateFilter" v-model="selectedDate" >
+        <option disabled value="" >Filter by Date</option> 
+        <option v-for="date in dateList">{{ date }}</option> 
+      </select>
       <select id="userFilter" v-model="selectedUser" >
         <option disabled value="" >Filter by User</option> 
         <option v-for="user in userList">{{ user }}</option> 
@@ -28,7 +32,8 @@ export default {
   data () {
     return {
       title: 'Reports',
-      selectedUser: ''
+      selectedUser: '',
+      selectedDate: ''
     };
   },
   methods: {
@@ -40,6 +45,15 @@ export default {
     userList: function () {
       var userList = [];
       return userList;
+    },
+    dateList: function () {
+      var dateList = [];
+      this.reports.filter((event) => {
+        if (dateList.indexOf(event.user) === -1) {
+          dateList.push(event.user);
+        }
+      });
+      return dateList;
     },
     reports: function () {
       return this.$store.getters.reports;

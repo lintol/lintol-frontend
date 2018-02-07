@@ -1,33 +1,33 @@
 <template>
+   <div>
+   <router-link id="reports" :to="{name: 'listReportView', params: {'reportId': this.reportId}}" class="navigateToReports"> &#x3008; Back to List</router-link>
    <div id='tabularDetails'>
-    <div>
-      <h3 v-if='report && report.dataResource'>{{ report.dataResource.name }}</h3>
-      <h4 v-if='report && report.profile'>{{ report.profile.name }}</h4>
+    <div >
+      <p class="processor">{{ reportItem.processor }}</p>
+      <p class="itemType">{{ reportItem.code }}</p>
       <div id='report'/>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
-import { LOAD_REPORT } from '@/state/action-types';
 import goodtablesUI from 'goodtables-ui';
 
 export default {
   name: 'TabularDetails',
   props: {
-    reportId: {
+    reportMetaData: {
       type: String,
       required: true
     },
-    processorName: {
-      type: String,
-      required: false,
-      default: 'Processor Name'
+    reportItem: {
+      type: Object,
+      required: true
     },
-    validationName: {
+    reportId: {
       type: String,
-      required: false,
-      default: 'Validation Name'
+      required: true
     }
   },
   data () {
@@ -36,26 +36,23 @@ export default {
   },
   components: {
   },
-  computed: {
-    report: function () {
-      var report = this.$store.state.currentReport;
-      if (report) {
-        console.log(report.profile);
-      }
-
-      return report;
+  methods: {
+    setOneError: function (content) {
+      console.log(content['error-count']);
+      content['error-count'] = '1';
+      content.tables[0]['row-count'] = 1;
+      content.tables[0]['error-count'] = 1;
+      content.tables[0]['errors'] = [];
+      content.tables[0].errors.push(this.reportItem);
+      return content;
     }
+  },
+  computed: {
   },
   mounted: function () {
-    this.$store.dispatch(LOAD_REPORT, this.reportId);
-  },
-  watch: {
-    report: function () {
-      const element = document.getElementById('report');
-      var content = this.report.content;
-      console.log(content);
-      goodtablesUI.render(goodtablesUI.Report, {report: content}, element);
-    }
+    const element = document.getElementById('report');
+    var content = this.setOneError(JSON.parse(this.reportMetaData));
+    goodtablesUI.render(goodtablesUI.Report, {report: content}, element);
   }
 };
 </script>
@@ -64,4 +61,19 @@ export default {
 <style lang='scss' scoped>
 @import '~@/assets/scss/application.scss';
 
+.processor {
+  font-size: 17px;
+  color: #333333;
+  font-weight: bold;
+}
+
+.itemType {
+  font-size: 12px;
+  color: #777776;
+  font-weight: bold;
+}
+
+.navigateToReports {
+  font-size: 12px;
+}
 </style>

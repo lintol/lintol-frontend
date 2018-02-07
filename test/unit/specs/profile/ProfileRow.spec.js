@@ -23,7 +23,7 @@ describe('ProfileRow.vue', () => {
         profile: profile
       }
     }).$mount();
-    expect(vm.$el.querySelector('label').textContent).to.equal('Waste Profile by  Jay ');
+    expect(vm.$el.querySelector('label').textContent).to.equal(' Waste Profile ');
     expect(vm.$el.querySelector('p').textContent).to.equal('Waste Data ');
     expect(vm.$el.querySelector('.profileRow div:nth-child(2) p').textContent).to.equal('1st January 2001');
     expect(vm.$el.querySelector('.profileRow div:nth-child(3) p').textContent).to.equal('1st January 2001');

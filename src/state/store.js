@@ -69,8 +69,6 @@ const store = new Vuex.Store({
       });
     },
     [a.STORE_PROFILE] (state, profile) {
-      state.commit(m.SET_CURRENT_PROFILE, profile);
-
       var url = apiPrefix + '/profiles';
 
       axios.post(url, profile).then((response) => {
@@ -130,7 +128,6 @@ const store = new Vuex.Store({
   },
   getters: {
     reports: state => {
-      console.log(state.repository);
       return fromState(state).findAll('reports');
     },
     processors: state => {
@@ -155,7 +152,6 @@ const store = new Vuex.Store({
       var store = fromState(state);
       store.sync(profile);
       state.currentProfile = store.find('profiles', profile.data.id);
-      console.log(state.currentProfile.configurations);
     },
     [m.UNSET_CURRENT_PROFILE] (state) {
       state.currentProfile = null;

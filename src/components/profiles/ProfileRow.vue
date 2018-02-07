@@ -3,12 +3,13 @@
     <div class="profileRow">
       <div class="profileColumn profileMainColumn center">
         <div class="rightSeparator ">
-          <label> <b>{{ profile.name }}</b> by <img class="profilePicture" src="../../assets/images/profile.png"> </img>{{ profile.creator }} </label>
-          <p>{{ profile.description }} </p>
+          <label class="profileName"> {{ profile.name }} </label>
+          <label class="user"> <img class="profilePicture" src="../../assets/images/profile.png"> </img>{{ profile.creator }} </label>
+          <p style=" word-wrap: break-word;" >{{ profile.description }} </p>
         </div>
       </div>
       <div class="profileColumn center">
-        <label class="columnTitle">Created at</label>
+        <label class="columnTitle">Created</label>
         <p>{{ convertDate(profile.created_at) }}</p>
       </div>
       <div class="profileColumn center">
@@ -20,7 +21,7 @@
         <p >{{ profile.version }}</p>
       </div>
       <div class="profileColumn center">
-        <label class="columnTitle">Last Updated</label>
+        <label class="columnTitle">Unique Tag</label>
         <p>{{ profile.uniqueTag }}</p>
       </div>
       <div class="profileColumn verticalCenterItems">
@@ -35,7 +36,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ProfileRow',
   props: {
@@ -50,6 +51,7 @@ export default {
     };
   },
   methods: {
+    convertDate: convertDate,
     profileAction: function (e) {
       console.log('profile action:');
       if (e.target.value === 'edit') {
@@ -58,9 +60,6 @@ export default {
       if (e.target.value === 'archive') {
         console.log('archiving');
       }
-    },
-    convertDate: function (dateString) {
-      return moment(dateString).format('Do MMMM YYYY');
     }
   },
   components: {
@@ -78,6 +77,10 @@ export default {
 .profileColumn {
   min-width: 150px;
   flex: 1;
+  > label {
+    font-weight: bold;
+    font-size: 10px;
+  }
 }
  
 .center {
@@ -103,17 +106,14 @@ export default {
   justify-content: space-between;
 }
  
-.columnTitle {
-  font-weight: bold;
-}
-
 .verticalAlign {
   vertical-align: middle;
 }
 
 div .profileColumn p {
-  margin: unset;
+  margin-top: 4px;
   color: grey;
+  font-size: 11px;
 }
 
 .viewAction {
@@ -122,11 +122,21 @@ div .profileColumn p {
   border: 2px solid $orange;
   border-radius: 5px;
   padding: 10px;
-  font-size: 1em;
+  font-size: 12px;
   -webkit-appearance: none;
   -moz-appearance: none;
   &:hover {
     box-shadow: 0px 0px 10px black;
   }
+}
+
+.profileName {
+  font-size: 15px;
+  width: 150px;
+}
+
+.user {
+  font-size: 12px;
+  color: #777776;
 }
 </style>
