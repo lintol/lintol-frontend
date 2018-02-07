@@ -24,6 +24,8 @@ Vue.use(VeeValidate);
 Vue.component('v-map', Vue2Leaflet.Map);
 Vue.component('v-tilelayer', Vue2Leaflet.TileLayer);
 Vue.component('v-marker', Vue2Leaflet.Marker);
+Vue.component('v-polygon', Vue2Leaflet.Polygon);
+Vue.component('v-geojson-layer', Vue2Leaflet.GeoJSON);
 
 /* eslint-disable no-new */
 new Vue({
