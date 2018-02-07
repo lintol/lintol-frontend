@@ -13,8 +13,9 @@
         <div class="processorContainer">
           <processor-configuration
              :key="configuration.id"
+             v-model="configuration.userConfigurationStorage"
              :configuration="configuration"
-             v-for="configuration in profile.configurations" />
+             v-for="configuration in configurations" />
         </div>
       </div>
       <div>
@@ -39,13 +40,15 @@ export default {
   },
   data () {
     return {
-      title: 'Edit Profile'
+      title: 'Edit Profile',
+      configurations: []
     };
   },
   methods: {
     saveProfile: function () {
       this.$validator.validateAll().then(() => {
-        this.$store.dispatch(SAVE_PROFILE, this.profile).then(() => {
+        console.log(this.configurations[0].userConfigurationStorage);
+        this.$store.dispatch(SAVE_PROFILE, { profile: this.profile, configurations: this.configurations }).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
@@ -54,16 +57,16 @@ export default {
     },
     updateProcessors: function (type, action) {
       if (action === 'add') {
-        this.profile.configurations.push(type);
+        this.configurations.push(type);
       } else {
-        var index = this.profile.configurations.indexOf(type);
+        var index = this.configurations.indexOf(type);
         if (index !== -1) {
-          this.profile.configurations.splice(index, 1);
+          this.configurations.splice(index, 1);
         }
       }
     },
     processorSelected: function (option) {
-      this.profile.configurations.push({
+      this.configurations.push({
         userConfigurationStorage: {},
         processor: this.processors[option.value]
       });
@@ -72,6 +75,11 @@ export default {
   components: {
     ProcessorConfiguration: ProcessorConfiguration,
     VSelect: VSelect
+  },
+  watch: {
+    profile: function (profile) {
+      this.configurations = profile.configurations;
+    }
   },
   computed: {
     profile: function () {

@@ -30,6 +30,10 @@ import VueFormGenerator from 'vue-form-generator';
 export default {
   name: 'ProcessorConfiguration',
   props: {
+    value: {
+      type: String,
+      required: true
+    },
     configuration: {
       type: Object,
       required: true
@@ -49,6 +53,7 @@ export default {
   },
   methods: {
     saveConfiguration: function () {
+      this.$emit('input', JSON.stringify(this.model));
       this.editConfiguration = !this.editConfiguration;
     }
   },
@@ -70,14 +75,9 @@ export default {
       return null;
     }
   },
-  watch: {
-    model: function (model) {
-      this.configuration.userConfigurationStorage = JSON.stringify(model);
-    }
-  },
   mounted: function () {
     try {
-      this.model = JSON.parse(this.configuration.userConfigurationStorage);
+      this.model = JSON.parse(this.value);
     } catch (e) {
       this.model = {};
     }
