@@ -100,8 +100,5 @@ export default {
   padding-right: 10px;
 }
 
-.navigateToReports {
-  font-size: 12px;
-}
   
 </style>

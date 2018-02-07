@@ -4,23 +4,23 @@
     <div >
       <p class="processor">{{ reportItem.processor }}</p>
       <p class="itemType">{{ reportItem.code }}</p>
-      <div id="app" style="width:1300px;height:500px;">
+      <div id="app" style="width:1100px;height:500px;">
         <!--<v-map :zoom=9 :center="[54.543307, -6.744371]">-->
         <v-map :zoom=8 :center="[54.543307, -6.744371]">
           <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-          <v-marker :lat-lng="[54.643307, -6.744371]"></v-marker>
-          <v-polygon :lat-lngs="boundary"  color="#ffffff"></v-polygon>
+          <v-marker :lat-lng="[54.643307, -7.944371]" v-on:l-click="highlightError(1)"></v-marker>
+          <v-geojson-layer :geojson="boundaryObject"></v-geojson-layer>
         </v-map>
       </div>
       <!--<map-marker-detail v-for="(index, markerDetail) in markerDetails" markerNumber="index" validationName="markerDetail.validationName" validationDescription="markerDetail.description"></map-marker-detail> -->
-      <map-marker-detail :validationName="reportItem.code" :validationDescription="reportItem.message"></map-marker-detail>
+      <map-marker-detail :class="{ highlight: highlightMarkerDetail == 1 }" :validationName="reportItem.code" :validationDescription="reportItem.message"></map-marker-detail>
     </div>
   </div>
 </template>
 
 <script>
 import MapMarkerDetail from './MapMarkerDetail';
-
+import axios from 'axios';
 export default {
   name: 'ReportView',
   props: {
@@ -35,23 +35,36 @@ export default {
     reportId: {
       type: String,
       required: true
-    },
-    boundary: {
-      type: String,
-      required: false
     }
   },
   data () {
     return {
-      markerDetails: []
+      markerDetails: [],
+      boundaryObject: '',
+      highlightMarkerDetail: 0
     };
+  },
+  methods: {
+    highlightError: function () {
+      console.log('highlight');
+      this.highlightMarkerDetail = 1;
+    }
   },
   components: {
     MapMarkerDetail: MapMarkerDetail
   },
   computed: {
+    reportMetaDataObject: function () {
+      return JSON.parse(this.reportMetaData);
+    }
   },
   mounted: function () {
+    this.boundaryUrl = 'http://osni-spatial-ni.opendata.arcgis.com/datasets/d9dfdaf77847401e81efc9471dcd09e1_0.geojson';
+    axios.get(this.boundaryUrl).then(response => {
+      this.boundaryObject = response.data;
+    }, response => {
+      console.log('Couldnt get data resources for account.');
+    });
   },
   watch: {
   }
@@ -72,6 +85,10 @@ export default {
   font-size: 12px;
   color: #777776;
   font-weight: bold;
+}
+
+.highlight {
+   background-color: DarkSalmon;
 }
 
 </style>
