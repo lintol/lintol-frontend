@@ -44,7 +44,7 @@ export default {
     content: function () {
       var content;
       if (this.report) {
-        content = this.report.content;
+        content = JSON.parse(this.report.content);
       } else {
         content = null;
       }
