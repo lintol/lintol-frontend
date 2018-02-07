@@ -21,7 +21,7 @@ export default {
       required: true
     },
     content: {
-      type: Object,
+      type: String,
       required: true
     },
     reportId: {
@@ -41,6 +41,7 @@ export default {
         this.$router.push({name: 'mapDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
       } else {
         this.$router.push({name: 'tabularDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
+        // this.$router.push({name: 'profileTable'});
       }
     }
   },
@@ -90,6 +91,7 @@ export default {
 
 .moreDetails {
   flex: 0.5;
+  cursor: pointer;
 }
 
 .ragPosition {

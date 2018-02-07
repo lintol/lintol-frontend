@@ -36,7 +36,7 @@
             </select>
           </div>
        </div>
-       <report-list-item :key="index" :reportId="reportId" :content="report.content" :reportItem="reportItem" v-for="(reportItem, index) in filteredReportItems"></report-list-item>
+       <report-list-item :key="index" :reportId="reportId" :content="report.content" :reportItem="reportItem" v-for="(reportItem, index) in reportItems"></report-list-item>
        <p v-if="reportItems.length === 0" >There are no items for this report</p>
   </div>
 </template>
@@ -66,12 +66,15 @@ export default {
   computed: {
     report: function () {
       var report = this.$store.state.currentReport;
+      console.log('One report');
+      console.log(report);
       return report;
     },
     reportItems: function () {
       var reportItems = [];
+      console.log(this.report);
       if (this.report) {
-        var content = this.report.content;
+        var content = JSON.parse(this.report.content);
         reportItems = content.tables[0].errors;
         console.log('Report');
         console.log(reportItems);
@@ -82,7 +85,7 @@ export default {
       var result = [];
       var reportItems = [];
       if (this.report) {
-        var content = this.report.content;
+        var content = JSON.parse(this.report.content);
         reportItems = content.tables[0].errors;
         console.log(reportItems);
         reportItems.forEach((reportItem) => {
@@ -98,7 +101,7 @@ export default {
       var result = [];
       var reportItems = [];
       if (this.report) {
-        var content = this.report.content;
+        var content = JSON.parse(this.report.content);
         reportItems = content.tables[0].errors;
         console.log(reportItems);
         reportItems.forEach((reportItem) => {
@@ -133,6 +136,7 @@ export default {
     }
   },
   mounted: function () {
+    console.log('Loading REport');
     this.$store.dispatch(LOAD_REPORT, this.reportId);
   },
   watch: {
