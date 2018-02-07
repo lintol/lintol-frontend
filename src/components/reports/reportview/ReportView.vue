@@ -10,7 +10,7 @@
         </div>
         <div class="reportColumn">
           <label class="ranOn columnHeader">Ran On</label>
-          <label>{{ convertDate(report.createdAt.date) }}</label>
+          <label v-if="report.createdAt">{{ convertDate(report.createdAt.date) }}</label>
         </div>
         <div class="reportColumn">
           <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.user }}</label>

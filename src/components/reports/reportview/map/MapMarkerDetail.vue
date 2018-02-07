@@ -16,6 +16,10 @@ export default {
     validationDescription: {
       type: String,
       required: true
+    },
+    validationItem: {
+      type: Object,
+      required: true
     }
   },
   data () {
