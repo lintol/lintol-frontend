@@ -6,14 +6,17 @@ $inputBackground: #F8F8F8;
 $warningText: red;
 $sideBar: #F1592A;
 $rowBackground: #F9F9F9;
+$separatorColour: #E5E5E5;
+
 
 $orange: #F1592A;
 $greyFont: #BFBFBF;
 
 select {
   background: white;
-  border: 1px solid grey;
-  border-radius: 5px;
+  border: 1px solid #777776;;
+  color: #777776;;
+  border-radius: 4px;
   padding: 4px;
 }
 
@@ -83,8 +86,9 @@ body, body * {
   background-color: white;
   border: solid 2px $orange;
   color: $orange;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 10px;
+  font-size: 12px;
   &:active {
     box-shadow: 0px 0px 0px $orange;
   }
@@ -97,12 +101,13 @@ body, body * {
 
 .profilePicture {
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .rightSeparator {
-  border-right: grey 1px solid;
+  border-right: 1px solid $separatorColour;
+  box-sizing: border-box;
 }
 
 .verticalCenterItems {
@@ -112,16 +117,16 @@ body, body * {
 
 .shadedRow {
   border: 1px solid #F3F2F2;
-  border-radius: 3px;
+  border-radius: 4px;
   background-color: $rowBackground;
-  margin: 20px;
+  margin-top: 15px;
 }
 
 /**
  * hiding original checkboxes
  */
 input[type=checkbox] {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 .orangeCheckbox {
@@ -162,4 +167,13 @@ input[type=checkbox] {
 .pageTitle {
    font-weight: bold;
    font-size: 22px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+} 
+
+.navigateToReports {
+  font-size: 12px;
 }

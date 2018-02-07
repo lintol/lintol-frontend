@@ -1,4 +1,4 @@
-import Vue from 'vue';
+// import Vue from 'vue';
 import ReportRow from '@/components/reports/ReportRow';
 
 describe('ReportRow.vue', () => {

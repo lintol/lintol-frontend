@@ -11,13 +11,11 @@ describe('ProcessorRow.vue', () => {
   });
   it('Populate details', () => {
     var processor = {
-      attributes: {
-        name: 'CSV processor',
-        description: 'CSV',
-        created_at: '2001-01-01 00:00:00',
-        updated_at: '2001-01-01 00:00:00',
-        uniqueTag: 'processor-taggy'
-      }
+      name: 'CSV processor',
+      description: 'CSV',
+      created_at: '2001-01-01 00:00:00',
+      updated_at: '2001-01-01 00:00:00',
+      uniqueTag: 'processor-taggy'
     };
     const Constructor = Vue.extend(ProcessorRow);
     const vm = new Constructor({

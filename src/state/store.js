@@ -170,7 +170,6 @@ const store = new Vuex.Store({
   },
   getters: {
     reports: state => {
-      console.log(state.repository);
       return fromState(state).findAll('reports');
     },
     processors: state => {

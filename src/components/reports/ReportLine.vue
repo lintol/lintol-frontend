@@ -9,7 +9,7 @@
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label>{{ convertDate(report.created_at) }}</label>
+        <label>{{ convertDate(report.createdAt) }}</label>
       </div>
       <div class="reportColumn center">
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>

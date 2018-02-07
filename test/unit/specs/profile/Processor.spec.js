@@ -10,13 +10,9 @@ describe('ProcessorConfiguration.vue', () => {
     const vm = new Constructor({
       propsData: {
         configuration: {
-          attributes: {
-            processor: {
-              attributes: {
-                name: 'csv',
-                description: 'csv linter'
-              }
-            }
+          processor: {
+            name: 'csv',
+            description: 'csv linter'
           }
         }
       }

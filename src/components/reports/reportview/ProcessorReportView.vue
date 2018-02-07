@@ -1,10 +1,6 @@
 <template>
    <div id="processorReportView processorReportView">
      <h3>Processors</h3>
-     <div class="processorResultBoxes">
-       <processor-result-box :key=index v-for="(processorResult, index) in processorResults"></processor-result-box> 
-       <processor-result-box class="processorResultBoxes"></processor-result-box> 
-     </div>
      <div>
        <div id="reportResultDetails" class="reportColumn ragDisplay">
           <div>
@@ -28,20 +24,26 @@
           </svg>
           <label id="passes" style="vertical-align: top;">{{ passes }}</label>
           </div>
-          <input id="searchValidations" type="text" class="searchBox" />
-          <select id="userFilter" v-model="filteredType" >
-           <option disabled value="" >Filter by Type</option>
-           <option v-for="type in filterByTypeOptions">{{ type }}</option>
-         </select>
-         <select id="userFilter" v-model="filteredProcessor" >
-           <option disabled value="" >Filter by Processor</option>
-           <option v-for="processor in filterByiProcessorOptions">{{ processor }}</option>
-         </select>
        </div>
+     </div>
+     <div class="processorResultBoxes">
+       <processor-result-box :key=index v-for="(processorResult, index) in processorResults"></processor-result-box> 
+       <processor-result-box class="processorResultBoxes"></processor-result-box> 
      </div>
      <div>
        <processor-validation-group :key=index v-for="(processorResult, index) in processorResults" :proceesorName="processorResult.name" :numberOfErrors="processorResult.errors"></processor-validation-group> 
        <processor-validation-group ></processor-validation-group> 
+     </div>
+     <div>
+       <input id="searchValidations" type="text" class="searchBox" />
+       <select id="userFilter" v-model="filteredType" >
+         <option disabled value="" >Filter by Type</option>
+         <option v-for="type in filterByTypeOptions">{{ type }}</option>
+       </select>
+       <select id="userFilter" v-model="filteredProcessor" >
+         <option disabled value="" >Filter by Processor</option>
+         <option v-for="processor in filterByiProcessorOptions">{{ processor }}</option>
+       </select>
      </div>
   </div>
 </template>

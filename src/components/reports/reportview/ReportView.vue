@@ -1,18 +1,19 @@
 <template>
    <div id='reportView'>
+    <router-link id="reports" :to="{name: 'reportTable' }" class="navigateToReports"> &#x3008; Back to Reports</router-link>
     <div class="reportRow" v-if="report">
-        <div class="reportColumn">
-          <h1>{{ report.name }}</h1>
-          <p class='instructions' v-if="report.dataResource">
-          This report was created from Data Resource:<br/>{{ report.dataResource.name }}
+        <div class="reportMainColumn">
+          <label class="pageTitle">{{ report.name }}</label>
+          <p class='instructions'>
+           This report was create from Data Resource: <u>{{ content.tables[0].source}}</u>
           </p>
         </div>
         <div class="reportColumn">
           <label class="ranOn columnHeader">Ran On</label>
-          <label>2018-01-01</label>
+          <label>{{ convertDate(report.createdAt.date) }}</label>
         </div>
         <div class="reportColumn">
-          <p id="creator" ><img class="profilePicture" src="../../../assets/images/profile.png"> {{ report.creatorId }}</p>
+          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.user }}</label>
         </div>
         <div class="reportColumn">
           <label class="qualityScore" >{{ report.qualityScore }}</label>
@@ -24,16 +25,31 @@
 </template>
 
 <script>
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ReportView',
+  data () {
+    return {};
+  },
+  components: {
+  },
+  methods: {
+    convertDate: convertDate
+  },
   computed: {
     report: function () {
-      return this.$store.state.currentReport;
+      var report = this.$store.state.currentReport;
+      return report;
+    },
+    content: function () {
+      var content;
+      if (this.report) {
+        content = JSON.parse(this.report.content);
+      } else {
+        content = null;
+      }
+      return content;
     }
-  },
-  mounted: function () {
-  },
-  watch: {
   }
 };
 </script>
@@ -41,28 +57,48 @@ export default {
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
 @import '~@/assets/scss/application.scss';
+@import '~@/assets/scss/reports.scss';
 
 .reportRow {
    display: flex;
    flex-direction: row;
    flex-wrap: nowrap;
    justify-content: space-between;
-   min-height: 100px;
+   min-height: 80px;
    padding: 0px 10px;
+   border-bottom: 1px solid $separatorColour;
  }
 
 .ranOn {
   font-weight: bold;
-  text-align: center;
+  font-size: 10px;
   + label {
-    text-align: center;
+    font-size: 11px;
   }
 }
 
 .reportColumn {
-  min-width: 150px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
   flex: 1;
 }
 
+.reportMainColumn {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  flex: 2;
+}
 
+.user {
+  font-size: 12px;
+}
+
+.alignImage {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+  
 </style>

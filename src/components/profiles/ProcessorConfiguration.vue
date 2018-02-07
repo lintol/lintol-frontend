@@ -109,6 +109,11 @@ export default {
 
 .processorTitle {
   font-weight: bold;
+  font-size: 12px;
+}
+
+.processorDescription {
+  font-size: 11px;
 }
 
 .processorContainer {
@@ -144,14 +149,22 @@ export default {
   font-weight: bold;
   float: right;
   font-size: 8pt;
+  margin-top: 15px;
 }
 
 .editArea {
-  border: solid 1px black;
-  border-radius: 3px;
-  min-height: 100px;
-  margin: 5px;
-  background: #ccc;
-  width: 100%
+  display: block;
+  min-height: 125px;
+  margin-left: 60px; 
+  width: 85%;
+  background-color: #D8D8D8;
+}
+
+.processorConfiguration {
+  border: 1px solid #979797;
+  border-radius: 4px;
+  background-color: #FAFAF;
+  padding: 10px;
+  margin-top: 20px;
 }
 </style>

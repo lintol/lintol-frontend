@@ -1,5 +1,7 @@
 # lintol-frontend
 
+For more details, see [https://lintol.io/](https://lintol.io/).
+
 > Front end project for lintol application
 
 ## Build Setup

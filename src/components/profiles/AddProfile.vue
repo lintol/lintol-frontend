@@ -5,11 +5,11 @@
     <div class="formContainer">
       <input id="profileName" class="formItem inputName" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: vErrors.has('name') }"/>
       <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem inputDescription" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
       <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
-        <p class="instructions">Choose your Processor</p>
-        <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
+        <p class="processorInstruction">Choose your Processor</p>
+        <p class="instructions">From the drop down list choose the processors for this Data Profilt</p>
         <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
@@ -52,11 +52,9 @@ export default {
     addProfile: function () {
       this.$validator.validateAll().then(() => {
         // profile.script = this.script;
+        this.profile.configurations = this.chosenProcessors;
         console.log('Add Data Profile');
-        this.$store.dispatch(STORE_PROFILE, {
-          profile: this.profile,
-          configurations: this.chosenProcessors
-        }).then(() => {
+        this.$store.dispatch(STORE_PROFILE, this.profile).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
@@ -136,5 +134,11 @@ export default {
 
 .button {
   margin-top: 36px;
+}
+
+.processorInstruction {
+  font-size: 14px;
+  font-weight: bold;
+
 }
 </style>

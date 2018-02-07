@@ -1,8 +1,7 @@
 <template>
   <div class="rowBorders">
-    <p>Marker {{ markerNumber }}</p>
-    <p>{{ validationName }}</p>
-    <p>{{ validationDescription }}</p>
+    <p class="issueType">{{ validationName }}</p>
+    <p class="issueDescription">{{ validationDescription }}</p>
   </div>
 </template>
 
@@ -10,10 +9,6 @@
 export default {
   name: 'ValidationErrors',
   props: {
-    markerNumber: {
-      type: Number,
-      required: true
-    },
     validationName: {
       type: String,
       required: true
@@ -43,7 +38,20 @@ export default {
 @import '~@/assets/scss/application.scss';
 
 .rowBorders {
-  border: solid 2px black;
-  border-radius: 20px;
+  border: 1px solid #ED1D24;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.issueType {
+  color: #777776;
+  font-weight: bold;
+}
+
+.issueDescription {
+  color: #777776;
 }
 </style>

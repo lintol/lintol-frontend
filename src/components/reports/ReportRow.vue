@@ -1,37 +1,37 @@
 <template>
   <div id="reports-row" class="shadedRow">
     <div class="reportRow">
-      <div class="reportColumn center">
+      <div class="reportMainColumn center">
         <div class="rightSeparator">
-          <label class="columnHeader">Profile</label>
+          <label class="columnHeader">Report</label>
           <p>{{ report.name }}</p>
         </div>
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label>{{ convertDate(report.created_at) }}</label>
+        <label>{{ convertDate(report.createdAt.date) }}</label>
       </div>
       <div class="reportColumn center">
         <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
       </div>
       <div class="reportColumn ragDisplay">
         <div>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-           <circle class="ragError" cx="10" cy="10" r="10"/>
+        <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+           <circle class="ragError" cx="7" cy="7" r="7"/>
         </svg>
-        <label id="errors" style="vertical-align: top;" >{{ report.errors }}</label>
+        <label id="errors" class="ragNumber" >{{ report.errors }}</label>
         </div>
         <div>
-         <svg height="20" width="20">
-           <polygon class="ragWarning" points="0,20 10,0 20,20"/>
+         <svg height="14" width="14">
+           <polygon class="ragWarning" points="0,14 7,0 14,14"/>
          </svg> 
-        <label id="warnings" style="vertical-align: top;">{{ report.warnings }}</label>
+        <label id="warnings" class="ragNumber">{{ report.warnings }}</label>
         </div>
         <div>
-        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-          <rect class="ragPass" width="20" height="20" fill="lime"/>
+        <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+          <rect class="ragPass" width="14" height="14" fill="lime"/>
         </svg>
-        <label id="passes" style="vertical-align: top;">{{ report.passes }}</label>
+        <label id="passes" class="ragNumber">{{ report.passes }}</label>
         </div>
       </div>
       <div class="reportColumn center">
@@ -41,6 +41,7 @@
       <div class="reportColumn center">
         <div>
         <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
+        <!--<router-link id="viewReport + 'report.name'" type="button" :to="{name: 'listReportView' }" class="viewButton">View Report</router-link>-->
       </div>
       </div>
     </div>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ReportRow',
   props: {
@@ -62,12 +63,10 @@ export default {
     };
   },
   methods: {
-    convertDate: function (dateString) {
-      return moment(dateString).format('Do MMMM YYYY');
-    },
     viewReport: function (id) {
-      this.$router.push({name: 'tabularDetails', params: {'reportId': id}});
-    }
+      this.$router.push({name: 'listReportView', params: {'report': this.report, 'reportId': id}});
+    },
+    convertDate: convertDate
   },
   components: {
   },
@@ -116,10 +115,6 @@ export default {
   font-weight: bold;
 }
 
-.rightSeparator {
-  border-right: grey 1px solid;
-}
-
 .verticalAlign {
   vertical-align: middle;
 }
@@ -144,24 +139,21 @@ div .reportColumn p {
 
 .columnHeader {
   font-weight: bold;
-
 }
 
 .ranOn {
   font-weight: bold;
-  text-align: center;
+  font-size: 10px;
+  margin-left: 20px;
   + label {
-    text-align: center;
+    font-size: 11px;
+    margin-left: 20px;
   }
 }
 
-.qualityScore {
-  font-size: 2em;
-  font-weight: bold;
-  text-align: center;
-  + label {
-    text-align: center;
-  }
+.ragNumber {
+  vertical-align: top;
+  font-size: 12px;
 }
 
 </style>
