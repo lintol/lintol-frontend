@@ -8,7 +8,7 @@
         <!--<v-map :zoom=9 :center="[54.543307, -6.744371]">-->
         <v-map :zoom=8 :center="[54.543307, -6.744371]">
           <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-          <v-marker :lat-lng="[54.643307, -6.744371]"></v-marker>
+          <v-marker :lat-lng="[54.643307, -7.944371]"></v-marker>
           <v-geojson-layer :geojson="boundaryObject"></v-geojson-layer>
         </v-map>
       </div>
@@ -52,7 +52,7 @@ export default {
     }
   },
   mounted: function () {
-    this.boundaryUrl = 'https://www.opendatani.gov.uk/dataset/88ae4334-88fd-45c1-af63-7d64b4d88f91/resource/250e12b8-d8a7-41b6-98d4-f8862449d61c/download/agreed-revised-proposals.geojson';
+    this.boundaryUrl = 'http://osni-spatial-ni.opendata.arcgis.com/datasets/d9dfdaf77847401e81efc9471dcd09e1_0.geojson';
     axios.get(this.boundaryUrl).then(response => {
       this.boundaryObject = response.data;
     }, response => {
