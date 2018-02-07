@@ -1,6 +1,6 @@
 <template>
    <div id="processorReportView processorReportView">
-       <div id="reportResultDetails" class="infoBar">
+       <div id="reportResultDetails" class="infoBar" v-if="report">
           <div>
             <label class="issueCount">58 Issues</label>
           </div>
@@ -9,19 +9,19 @@
                    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
                       <circle class="ragError" cx="7" cy="7" r="7"/>
                     </svg>
-                    <label id="errors" style="vertical-align: top;" >{{ report.attributes.errors }}</label>
+                    <label id="errors" style="vertical-align: top;" >{{ report.errors }}</label>
                  </div>
                  <div>
                  <svg height="14" width="14">
                     <polygon class="ragWarning" points="0,14 7,0 14,14"/>
                  </svg>
-                 <label id="warnings" style="vertical-align: top;">{{ report.attributes.warnings }}</label>
+                 <label id="warnings" style="vertical-align: top;">{{ report.warnings }}</label>
                  </div>
                  <div>
                  <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
                     <rect class="ragPass" width="14" height="14" />
                  </svg>
-                 <label id="passes" style="vertical-align: top;">{{ report.attributes.passes }}</label>
+                 <label id="passes" style="vertical-align: top;">{{ report.passes }}</label>
                </div>
             </div>
           <div>
@@ -36,8 +36,8 @@
             </select>
           </div>
        </div>
-       <report-list-item :reportId="reportId" :content="report.attributes.content" :reportItem="reportItem" v-for="reportItem in filteredReportItems"></report-list-item>
-       <p v-if="reportItems.length === 0" >There is no items for this report</p>
+       <report-list-item :key="index" :reportId="reportId" :content="report.content" :reportItem="reportItem" v-for="(reportItem, index) in filteredReportItems"></report-list-item>
+       <p v-if="reportItems.length === 0" >There are no items for this report</p>
   </div>
 </template>
 
@@ -69,36 +69,45 @@ export default {
       return report;
     },
     reportItems: function () {
-      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
-      var reportItems = content.tables[0].errors;
-      console.log('Report');
-      console.log(reportItems);
+      var reportItems = [];
+      if (this.report) {
+        var content = this.report.content;
+        reportItems = content.tables[0].errors;
+        console.log('Report');
+        console.log(reportItems);
+      }
       return reportItems;
     },
     filterByProcessorOptions: function () {
       var result = [];
-      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
-      var reportItems = content.tables[0].errors;
-      console.log(reportItems);
-      reportItems.forEach((reportItem) => {
-        if (result.indexOf(reportItem.processor) === -1) {
-          result.push(reportItem.processor);
-        }
-      });
-      console.log(result);
+      var reportItems = [];
+      if (this.report) {
+        var content = this.report.content;
+        reportItems = content.tables[0].errors;
+        console.log(reportItems);
+        reportItems.forEach((reportItem) => {
+          if (result.indexOf(reportItem.processor) === -1) {
+            result.push(reportItem.processor);
+          }
+        });
+        console.log(result);
+      }
       return result;
     },
     filterByTypeOptions: function () {
       var result = [];
-      var content = JSON.parse(this.$store.state.currentReport.attributes.content);
-      var reportItems = content.tables[0].errors;
-      console.log(reportItems);
-      reportItems.forEach((reportItem) => {
-        if (result.indexOf(reportItem.code) === -1) {
-          result.push(reportItem.code);
-        }
-      });
-      console.log(result);
+      var reportItems = [];
+      if (this.report) {
+        var content = this.report.content;
+        reportItems = content.tables[0].errors;
+        console.log(reportItems);
+        reportItems.forEach((reportItem) => {
+          if (result.indexOf(reportItem.code) === -1) {
+            result.push(reportItem.code);
+          }
+        });
+        console.log(result);
+      }
       return result;
     },
     filteredReportItems: function () {

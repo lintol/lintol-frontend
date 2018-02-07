@@ -1,0 +1,150 @@
+{
+   "data-resources": [
+         {
+            "id" : "ef869d25-218a-471b-a8a2-c53411fda55b",
+            "uri" : null,
+            "filename" : "bad.csv",
+            "name" : "[unnamed data resource]",
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "name" : "[unnamed data resource]",
+            "uri" : null,
+            "filename" : "bad.csv",
+            "id" : "df66f95e-3f8b-45b7-8969-87b2aef79fa7"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "1f05e53c-ede7-467b-bee7-8122cddaa8da",
+            "name" : "[unnamed data resource]",
+            "filename" : "bad.csv",
+            "uri" : null
+         }
+   ],
+   "processorConfigurations": [
+         {
+            "id" : "7e6a11b5-d9c4-474b-a8b8-bb1c51874695",
+            "processorId" : "5dcbb803-01ed-4641-b4cd-b085d2099a38"
+         }
+   ],
+   "profiles": [
+         {
+            "type" : "profile",
+            "id" : "01aa762d-23f7-4cbc-b150-3a41ee4b9551",
+            "version" : "7",
+            "description" : "Testing",
+            "creatorId" : null,
+            "uniqueTag" : "uniq-66-Testing",
+            "name" : "Testing"
+         },
+         {
+            "id" : "af940fa3-d2f4-4fac-ba54-86c9b39dda46",
+            "type" : "profile",
+            "name" : "New Profile",
+            "version" : "7",
+            "description" : "Profile",
+            "uniqueTag" : "uniq-66-undefined",
+            "creatorId" : null
+         },
+         {
+            "name" : "A",
+            "version" : "7",
+            "description" : "Profile",
+            "creatorId" : null,
+            "uniqueTag" : "uniq-66-undefined",
+            "type" : "profile",
+            "id" : "1ed078a1-ddc7-430e-b643-9c95eb1115ac"
+         },
+         {
+            "type" : "profile",
+            "id" : "625dc900-cead-48e9-b5a1-0c431541e2c4",
+            "version" : "1",
+            "description" : "Testing goodtables",
+            "creatorId" : null,
+            "uniqueTag" : "test-goodtables-1",
+            "name" : "Test Goodtables",
+            "processorConfigurationId" : "7e6a11b5-d9c4-474b-a8b8-bb1c51874695"
+         },
+         {
+            "id" : "a51609b3-d24a-4132-b7b8-e252d8e1dd7d",
+            "type" : "profile",
+            "name" : "Crime Reference Checker",
+            "creatorId" : null,
+            "uniqueTag" : "uniq-66-undefined",
+            "description" : "Check Crime is valid.",
+            "version" : "7"
+         }
+   ],
+   "processors": [
+         {
+            "type" : "processor",
+            "id" : "e43f2460-2bab-4619-b599-cda6a4aa0c45",
+            "module" : "cl",
+            "creatorId" : null,
+            "description" : "ODI tool to processes tabular data",
+            "uniqueTag" : "theodi/csvlint.rb:1",
+            "name" : "CSV Checking by CSVLint"
+         },
+         {
+            "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
+            "type" : "processor",
+            "description" : "CSV checking tool from Frictionless Data project",
+            "creatorId" : null,
+            "module" : "good",
+            "name" : "CSV Checking by GoodTables",
+            "uniqueTag" : "frictionlessdata/goodtables-py:1"
+         },
+         {
+            "uniqueTag" : "lintol/ds-pii:1",
+            "name" : "Personally-Identifiable Information Spotter",
+            "module" : "pii",
+            "creatorId" : null,
+            "description" : "Tool for searching for Personally-Identifiable Information within CSV data",
+            "id" : "c3f939f7-72bb-409e-929c-695681607350",
+            "type" : "processor"
+         },
+         {
+            "name" : "Boundary Checker",
+            "uniqueTag" : "lintol/ds-boundary-checker-py:1",
+            "creatorId" : null,
+            "description" : "GeoJSON boundary checker to make sure data is within given boundaries",
+            "module" : "boundary_checker",
+            "type" : "processor",
+            "id" : "80013cbd-15f6-48a8-806b-1532f9064394"
+         },
+         {
+            "type" : "processor",
+            "id" : "56077c8f-0a17-49f7-b32b-a3f13f724b68",
+            "creatorId" : null,
+            "description" : "Check that CSV data about countries matches gov.uk register entries",
+            "module" : "registers",
+            "name" : "gov.uk Register Checker - Countries",
+            "uniqueTag" : "lintol/ds-checker-py"
+         }
+      ],
+   "reports": [
+      {
+            "content" : [
+               "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.008, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.006, \"valid\": true, \"error-count\": 0, \"row-count\": 6, \"source\": \"/pfs/data/bad.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"iso8859-9\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
+            ],
+            "errors" : 0,
+            "warnings" : 0,
+            "qualityScore" : 0,
+            "name" : "(none)",
+            "passes" : 0,
+            "id" : "321629e0-6197-4fcb-b571-9df129bd857f"
+         },
+         {
+            "errors" : 0,
+            "warnings" : 0,
+            "qualityScore" : 0,
+            "content" : [
+               "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.083, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.082, \"valid\": true, \"error-count\": 0, \"row-count\": 6, \"source\": \"/pfs/data/bad.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"iso8859-9\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
+            ],
+            "passes" : 0,
+            "name" : "(none)",
+            "id" : "c1c27a67-5dac-4069-8d70-20057cddf8e3"
+         }
+      ]
+}

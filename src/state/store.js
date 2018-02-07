@@ -1,5 +1,6 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
+import { JsonApiDataStore } from 'jsonapi-datastore';
 
 import * as a from './action-types';
 import * as m from './mutation-types';
@@ -7,31 +8,50 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-var apiPrefix = process.env.API_PREFIX;
+var apiPrefix = process.env.MOCK
+  ? process.env.MOCK_API_PREFIX
+  : process.env.API_PREFIX;
+
+function fromState (state) {
+  var store = new JsonApiDataStore();
+  store.graph = state.repository;
+  return store;
+}
 
 const store = new Vuex.Store({
   state: {
-    profiles: [],
+    repository: {
+      reports: {},
+      processors: {},
+      profiles: {},
+      dataResources: {}
+    },
     currentProfile: null,
-
-    reports: [],
     currentReport: null,
-
-    processors: []
+    currentDataResource: null,
+    currentProcessor: null
   },
   actions: {
+    [a.LOAD_DATA_RESOURCES] (state) {
+      axios.get(apiPrefix + '/dataResources/').then(response => {
+        var resources = response.data;
+        state.commit(m.SET_DATA_RESOURCES, resources);
+      }, response => {
+        console.log('Couldnt get data resources for account.');
+      });
+    },
     [a.LOAD_PROFILES] (state) {
       axios.get(apiPrefix + '/profiles/').then(response => {
         var profiles = response.data;
-        state.commit(m.SET_PROFILES, profiles.data);
+        state.commit(m.SET_PROFILES, profiles);
       }, response => {
         console.log('Couldnt get data profiles for account.');
       });
     },
     [a.LOAD_PROFILE] (state, profileId) {
-      axios.get(apiPrefix + '/profiles/' + profileId).then(response => {
+      axios.get(apiPrefix + '/profiles/' + profileId + '?include=configurations.processor').then(response => {
         var profile = response.data;
-        state.commit(m.SET_CURRENT_PROFILE, profile.data);
+        state.commit(m.SET_CURRENT_PROFILE, profile);
       }, response => {
         console.log('Couldnt get data profiles for account.');
       });
@@ -43,19 +63,17 @@ const store = new Vuex.Store({
 
       axios.put(url, profile).then((response) => {
         var profile = response.data;
-        state.commit(m.SET_CURRENT_PROFILE, profile.data);
+        state.commit(m.SET_CURRENT_PROFILE, profile);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
     },
     [a.STORE_PROFILE] (state, profile) {
-      state.commit(m.SET_CURRENT_PROFILE, profile);
-
       var url = apiPrefix + '/profiles';
 
       axios.post(url, profile).then((response) => {
         var profile = response.profile;
-        state.commit(m.SET_CURRENT_PROFILE, profile.data);
+        state.commit(m.SET_CURRENT_PROFILE, profile);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
@@ -64,15 +82,15 @@ const store = new Vuex.Store({
     [a.LOAD_REPORTS] (state) {
       axios.get(apiPrefix + '/reports/').then(response => {
         var reports = response.data;
-        state.commit(m.SET_REPORTS, reports.data);
+        state.commit(m.SET_REPORTS, reports);
       }, response => {
         console.log('Couldnt get reports.');
       });
     },
     [a.LOAD_REPORT] (state, reportId) {
-      axios.get(apiPrefix + '/reports/' + reportId).then(response => {
+      axios.get(apiPrefix + '/reports/' + reportId + '?include=dataResource,profile').then(response => {
         var report = response.data;
-        state.commit(m.SET_CURRENT_REPORT, report.data);
+        state.commit(m.SET_CURRENT_REPORT, report);
       }, response => {
         console.log('Couldnt get report.');
       });
@@ -83,7 +101,7 @@ const store = new Vuex.Store({
 
       axios(url).then((response) => {
         var processors = response.data;
-        state.commit(m.SET_PROCESSORS, processors.data);
+        state.commit(m.SET_PROCESSORS, processors);
       }).catch(function (error) {
         console.log('Error get processors:' + error);
       });
@@ -99,7 +117,7 @@ const store = new Vuex.Store({
     },
 
     [a.STORE_DATA_RESOURCE] (state, dataResource) {
-      var url = apiPrefix + '/data-resources';
+      var url = apiPrefix + '/dataResources';
 
       axios.post(url, dataResource).then((response) => {
         console.log('Added data resource');
@@ -108,48 +126,80 @@ const store = new Vuex.Store({
       });
     }
   },
+  getters: {
+    reports: state => {
+      return fromState(state).findAll('reports');
+    },
+    processors: state => {
+      return fromState(state).findAll('processors');
+    },
+    profiles: state => {
+      return fromState(state).findAll('profiles');
+    },
+    dataResources: state => {
+      return fromState(state).findAll('dataResources');
+    }
+  },
   mutations: {
     [m.SET_PROFILES] (state, profiles) {
-      state.profiles = profiles;
+      state.repository.profiles = {};
+      fromState(state).sync(profiles);
     },
     [m.RESET_PROFILES] (state) {
-      state.profiles = [];
+      state.repository.profiles = {};
     },
     [m.SET_CURRENT_PROFILE] (state, profile) {
-      state.currentProfile = profile;
+      var store = fromState(state);
+      store.sync(profile);
+      state.currentProfile = store.find('profiles', profile.data.id);
     },
     [m.UNSET_CURRENT_PROFILE] (state) {
       state.currentProfile = null;
     },
 
     [m.SET_REPORTS] (state, reports) {
-      state.reports = reports;
+      state.repository.reports = {};
+      fromState(state).sync(reports);
     },
     [m.RESET_REPORTS] (state) {
-      state.reports = [];
+      state.repository.reports = {};
     },
     [m.SET_CURRENT_REPORT] (state, report) {
-      state.currentReport = report;
+      var store = fromState(state);
+      store.sync(report);
+      state.currentReport = store.find('reports', report.data.id);
     },
     [m.UNSET_CURRENT_REPORT] (state) {
       state.currentReport = null;
     },
 
     [m.SET_PROCESSORS] (state, processors) {
-      state.processors = processors;
+      state.repository.processors = {};
+      fromState(state).sync(processors);
     },
     [m.RESET_PROCESSORS] (state) {
-      state.processors = [];
+      state.repository.processors = {};
+    },
+    [m.SET_CURRENT_PROCESSOR] (state, processor) {
+      var store = fromState(state);
+      store.sync(processor);
+      state.currentProcessor = store.find('processors', processor.data.id);
+    },
+    [m.UNSET_CURRENT_PROCESSOR] (state) {
+      state.currentProcessor = null;
     },
 
     [m.SET_DATA_RESOURCES] (state, dataResource) {
-      state.dataResources = dataResource;
+      state.repository.dataResources = {};
+      fromState(state).sync(dataResource);
     },
     [m.RESET_DATA_RESOURCES] (state) {
-      state.dataResources = [];
+      state.repository.dataResources = {};
     },
     [m.SET_CURRENT_DATA_RESOURCE] (state, dataResource) {
-      state.currentDataResource = dataResource;
+      var store = fromState(state);
+      store.sync(dataResource);
+      state.currentDataResource = store.find('dataResources', dataResource.data.id);
     },
     [m.UNSET_CURRENT_DATA_RESOURCE] (state) {
       state.currentDataResource = null;

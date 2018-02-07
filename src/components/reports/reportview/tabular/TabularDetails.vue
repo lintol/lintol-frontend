@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import { LOAD_REPORT } from '@/state/action-types';
 import goodtablesUI from 'goodtables-ui';
 
 export default {
@@ -49,18 +48,11 @@ export default {
     }
   },
   computed: {
-    /* report: function () {
-      var report = this.$store.state.currentReport;
-      return report;
-    } */
   },
   mounted: function () {
-    // this.$store.dispatch(LOAD_REPORT, this.reportId);
     const element = document.getElementById('report');
     var content = this.setOneError(JSON.parse(this.reportMetaData));
     goodtablesUI.render(goodtablesUI.Report, {report: content}, element);
-  },
-  watch: {
   }
 };
 </script>

@@ -3,26 +3,26 @@
     <div class="profileRow">
       <div class="profileColumn profileMainColumn center">
         <div class="rightSeparator ">
-          <label class="profileName"> {{ profile.attributes.name }} </label>
-          <label class="user"> <img class="profilePicture" src="../../assets/images/profile.png"> </img>{{ profile.attributes.creator }} </label>
-          <p style=" word-wrap: break-word;" >{{ profile.attributes.description }} </p>
+          <label class="profileName"> {{ profile.name }} </label>
+          <label class="user"> <img class="profilePicture" src="../../assets/images/profile.png"> </img>{{ profile.creator }} </label>
+          <p style=" word-wrap: break-word;" >{{ profile.description }} </p>
         </div>
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Created</label>
-        <p>{{ convertDate(profile.attributes.created_at) }}</p>
+        <p>{{ convertDate(profile.created_at) }}</p>
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Last Updated</label>
-        <p>{{ convertDate(profile.attributes.updated_at) }}</p>
+        <p>{{ convertDate(profile.updated_at) }}</p>
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Last Updated</label>
-        <p >{{ profile.attributes.version }}</p>
+        <p >{{ profile.version }}</p>
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Unique Tag</label>
-        <p>{{ profile.attributes.uniqueTag }}</p>
+        <p>{{ profile.uniqueTag }}</p>
       </div>
       <div class="profileColumn verticalCenterItems">
         <select class="profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>

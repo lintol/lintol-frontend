@@ -4,44 +4,44 @@
       <div class="reportMainColumn center">
         <div class="rightSeparator">
           <label class="columnHeader">Report</label>
-          <p>{{ report.attributes.name }}</p>
+          <p>{{ report.name }}</p>
         </div>
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label>{{ convertDate(report.attributes.createdAt.date) }}</label>
+        <label>{{ convertDate(report.createdAt.date) }}</label>
       </div>
       <div class="reportColumn center">
-        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.attributes.user }}</p>
+        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
       </div>
       <div class="reportColumn ragDisplay">
         <div>
         <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
            <circle class="ragError" cx="7" cy="7" r="7"/>
         </svg>
-        <label id="errors" class="ragNumber" >{{ report.attributes.errors }}</label>
+        <label id="errors" class="ragNumber" >{{ report.errors }}</label>
         </div>
         <div>
          <svg height="14" width="14">
            <polygon class="ragWarning" points="0,14 7,0 14,14"/>
          </svg> 
-        <label id="warnings" class="ragNumber">{{ report.attributes.warnings }}</label>
+        <label id="warnings" class="ragNumber">{{ report.warnings }}</label>
         </div>
         <div>
         <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
           <rect class="ragPass" width="14" height="14" fill="lime"/>
         </svg>
-        <label id="passes" class="ragNumber">{{ report.attributes.passes }}</label>
+        <label id="passes" class="ragNumber">{{ report.passes }}</label>
         </div>
       </div>
       <div class="reportColumn center">
-        <label class="qualityScore" >{{ report.attributes.qualityScore }}</label>
+        <label class="qualityScore" >{{ report.qualityScore }}</label>
         <label>Quality Score</label>
       </div>
       <div class="reportColumn center">
         <div>
-        <input id="viewReport + 'report.attributes.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
-        <!--<router-link id="viewReport + 'report.attributes.name'" type="button" :to="{name: 'listReportView' }" class="viewButton">View Report</router-link>-->
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
+        <!--<router-link id="viewReport + 'report.name'" type="button" :to="{name: 'listReportView' }" class="viewButton">View Report</router-link>-->
       </div>
       </div>
     </div>
@@ -73,7 +73,6 @@ export default {
   computed: {
   },
   mounted: function () {
-    console.log(this.report);
   }
 };
 </script>

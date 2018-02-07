@@ -2,7 +2,7 @@
   <div>
     <h4>{{ processorName }}</h4>
     <h5>{{ numberOfErrors }} ERRORS</h5>
-    <validation-errors v-for="validationObject in validationObjects" :validationObject="validationObject"></validation-errors>
+    <validation-errors :key="index" v-for="(index, validationObject) in validationObjects" :validationObject="validationObject"></validation-errors>
   </div>
 </template>
 

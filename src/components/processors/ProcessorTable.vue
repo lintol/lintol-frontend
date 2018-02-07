@@ -1,5 +1,5 @@
 <template>
-   <div id="processorTable">
+   <div id="processorTable" v-if="filteredProcessors">
     <div >
       <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
@@ -44,14 +44,14 @@ export default {
       try {
         var re = new RegExp(this.search);
         return this.processors.filter((processor) => {
-          return re.exec(processor.attributes.name);
+          return re.exec(processor.name);
         });
       } catch (e) {
         return this.processors;
       }
     },
     processors: function () {
-      return this.$store.state.processors;
+      return this.$store.getters.processors;
     }
   },
   mounted: function () {

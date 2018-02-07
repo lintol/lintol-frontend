@@ -1,5 +1,5 @@
 <template>
-   <div id="reportTable">
+   <div id="reportTable" v-if="reports">
     <div >
       <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
@@ -17,7 +17,7 @@
         <p class="instructions">No Reports available for this account</p>
       </div>
       <div id="columns" v-else class="flexContainer">
-        <report-row :key="report.name" v-for="report in reports" :report="report"></report-row>
+        <report-row :key="report.id" v-for="report in reports" :report="report"></report-row>
       </div>
     </div>
   </div>
@@ -44,11 +44,6 @@ export default {
   computed: {
     userList: function () {
       var userList = [];
-      this.reports.filter((event) => {
-        if (userList.indexOf(event.user) === -1) {
-          userList.push(event.user);
-        }
-      });
       return userList;
     },
     dateList: function () {
@@ -61,7 +56,7 @@ export default {
       return dateList;
     },
     reports: function () {
-      return this.$store.state.reports;
+      return this.$store.getters.reports;
     }
   },
   mounted: function () {

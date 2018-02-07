@@ -1,0 +1,505 @@
+{
+    "stuff": {
+        "data": [
+            {
+                "type": "stuffs",
+                "id": "7de73722-aa91-40b6-9d36-41a69e1eb51d",
+                "attributes": {
+                    "title": "Lorem stuffs",
+                    "description": "Lorem ipsiiiiiiiii dolor sit amet, consectetur adipisicing elit. Animi dicta dolorum officia sapiente. Ad alias, enim itaque iure libero maxime minus nemo, non nulla, officiis quia saepe totam veritatis voluptatem."
+                }
+            }
+        ]
+},
+   "data-resources": {
+      "data" : [
+         {
+            "id" : "ef869d25-218a-471b-a8a2-c53411fda55b",
+            "attributes" : {
+               "uri" : null,
+               "filename" : "bad.csv",
+               "name" : "[unnamed data resource]"
+            },
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "attributes" : {
+               "name" : "[unnamed data resource]",
+               "uri" : null,
+               "filename" : "bad.csv"
+            },
+            "id" : "df66f95e-3f8b-45b7-8969-87b2aef79fa7"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "1f05e53c-ede7-467b-bee7-8122cddaa8da",
+            "attributes" : {
+               "name" : "[unnamed data resource]",
+               "filename" : "bad.csv",
+               "uri" : null
+            }
+         },
+         {
+            "attributes" : {
+               "uri" : null,
+               "filename" : "awful.csv",
+               "name" : "[unnamed data resource]"
+            },
+            "id" : "4d3115f5-de7a-44f3-9f83-fe0cfdb4da49",
+            "type" : "dataResource"
+         },
+         {
+            "id" : "17213b76-2bfd-4fe7-bc6f-15ded0deffd0",
+            "attributes" : {
+               "filename" : "awful.csv",
+               "uri" : null,
+               "name" : "[unnamed data resource]"
+            },
+            "type" : "dataResource"
+         },
+         {
+            "id" : "8d675f77-a196-44f7-be41-1694a2d607e8",
+            "attributes" : {
+               "name" : "[unnamed data resource]",
+               "uri" : null,
+               "filename" : "awful.csv"
+            },
+            "type" : "dataResource"
+         },
+         {
+            "attributes" : {
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv",
+               "name" : "car-park-locations-data.csv"
+            },
+            "id" : "7a7578cd-0464-49b3-8d29-3b96411d43fa",
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "a2d41c63-889c-4a2e-90ea-283949659b33",
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv"
+            }
+         },
+         {
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null
+            },
+            "id" : "a392e2fe-ca1a-49a8-b615-e385434afd10",
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "e6d00774-122e-4e52-840f-9beee1268942",
+            "attributes" : {
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv",
+               "name" : "car-park-locations-data.csv"
+            }
+         },
+         {
+            "id" : "ba0ed18f-6f63-40f6-b467-9177f032b30e",
+            "attributes" : {
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv",
+               "name" : "car-park-locations-data.csv"
+            },
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "43370481-219a-4022-b629-9f388f7dc2a9",
+            "attributes" : {
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv",
+               "name" : "car-park-locations-data.csv"
+            }
+         },
+         {
+            "type" : "dataResource",
+            "id" : "75a67c1a-c0fb-4a74-a383-d7657f4c8640",
+            "attributes" : {
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null,
+               "name" : "car-park-locations-data.csv"
+            }
+         },
+         {
+            "type" : "dataResource",
+            "attributes" : {
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null,
+               "name" : "car-park-locations-data.csv"
+            },
+            "id" : "45572293-25be-4480-9df3-088ab58bb488"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "160d2318-7f5c-4a6e-ba3e-9d632926dd6d",
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv"
+            }
+         },
+         {
+            "type" : "dataResource",
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null
+            },
+            "id" : "ca76f827-983d-494d-b464-eb520fd351fb"
+         },
+         {
+            "attributes" : {
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null,
+               "name" : "car-park-locations-data.csv"
+            },
+            "id" : "f08be90f-0aa2-4c5b-b299-50c3f14dcc41",
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "93611fe1-56eb-410d-8400-24ab749a45a5",
+            "attributes" : {
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null,
+               "name" : "car-park-locations-data.csv"
+            }
+         },
+         {
+            "type" : "dataResource",
+            "id" : "f3ea0aab-73a2-4a7f-9e46-1f24de4fe9d0",
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null
+            }
+         },
+         {
+            "type" : "dataResource",
+            "id" : "4b72cad8-ec40-45ce-a5bf-342d99baa14b",
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "filename" : "car-park-locations-data.csv",
+               "uri" : null
+            }
+         },
+         {
+            "id" : "9c7f3c21-05f5-4413-a605-6092d5293894",
+            "attributes" : {
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv",
+               "name" : "car-park-locations-data.csv"
+            },
+            "type" : "dataResource"
+         },
+         {
+            "id" : "bb17a131-e249-427f-9fe8-1740976c539a",
+            "attributes" : {
+               "name" : "awful.csv",
+               "uri" : null,
+               "filename" : "awful.csv"
+            },
+            "type" : "dataResource"
+         },
+         {
+            "id" : "e3d80525-1a92-48a9-93b0-5eeb344d2290",
+            "attributes" : {
+               "name" : "bad.csv",
+               "filename" : "bad.csv",
+               "uri" : null
+            },
+            "type" : "dataResource"
+         },
+         {
+            "attributes" : {
+               "name" : "awful.csv",
+               "uri" : null,
+               "filename" : "awful.csv"
+            },
+            "id" : "5df27a21-7a28-42ba-a426-a58f9494c728",
+            "type" : "dataResource"
+         },
+         {
+            "type" : "dataResource",
+            "id" : "61cd1f81-b024-4df1-9b44-9f47a121b608",
+            "attributes" : {
+               "name" : "car-park-locations-data.csv",
+               "uri" : null,
+               "filename" : "car-park-locations-data.csv"
+            }
+         }
+      ]
+   },
+   "profiles": {
+      "included" : [
+         {
+            "attributes" : {
+               "name" : "CSV Checking by GoodTables",
+               "module" : "good",
+               "description" : "CSV checking tool from Frictionless Data project",
+               "creatorId" : null,
+               "uniqueTag" : "frictionlessdata/goodtables-py:1"
+            },
+            "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
+            "type" : null
+         },
+         {
+            "type" : null,
+            "id" : "7e6a11b5-d9c4-474b-a8b8-bb1c51874695",
+            "relationships" : {
+               "processor" : {
+                  "data" : {
+                     "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
+                     "type" : null
+                  }
+               }
+            },
+            "attributes" : []
+         }
+      ],
+      "data" : [
+         {
+            "type" : "profile",
+            "id" : "01aa762d-23f7-4cbc-b150-3a41ee4b9551",
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            },
+            "attributes" : {
+               "version" : "7",
+               "description" : "Testing",
+               "creatorId" : null,
+               "uniqueTag" : "uniq-66-Testing",
+               "name" : "Testing"
+            }
+         },
+         {
+            "id" : "af940fa3-d2f4-4fac-ba54-86c9b39dda46",
+            "type" : "profile",
+            "attributes" : {
+               "name" : "New Profile",
+               "version" : "7",
+               "description" : "Profile",
+               "uniqueTag" : "uniq-66-undefined",
+               "creatorId" : null
+            },
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            }
+         },
+         {
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            },
+            "attributes" : {
+               "name" : "A",
+               "version" : "7",
+               "description" : "Profile",
+               "creatorId" : null,
+               "uniqueTag" : "uniq-66-undefined"
+            },
+            "type" : "profile",
+            "id" : "1ed078a1-ddc7-430e-b643-9c95eb1115ac"
+         },
+         {
+            "type" : "profile",
+            "id" : "625dc900-cead-48e9-b5a1-0c431541e2c4",
+            "attributes" : {
+               "version" : "1",
+               "description" : "Testing goodtables",
+               "creatorId" : null,
+               "uniqueTag" : "test-goodtables-1",
+               "name" : "Test Goodtables"
+            },
+            "relationships" : {
+               "configurations" : {
+                  "data" : [
+                     {
+                        "id" : "7e6a11b5-d9c4-474b-a8b8-bb1c51874695",
+                        "type" : null
+                     }
+                  ]
+               }
+            }
+         },
+         {
+            "id" : "a51609b3-d24a-4132-b7b8-e252d8e1dd7d",
+            "type" : "profile",
+            "attributes" : {
+               "name" : "Crime Reference Checker",
+               "creatorId" : null,
+               "uniqueTag" : "uniq-66-undefined",
+               "description" : "Check Crime is valid.",
+               "version" : "7"
+            },
+            "relationships" : {
+               "configurations" : {
+                  "data" : []
+               }
+            }
+         }
+      ]
+   },
+   "processors": {
+      "data" : [
+         {
+            "type" : "processor",
+            "id" : "e43f2460-2bab-4619-b599-cda6a4aa0c45",
+            "attributes" : {
+               "module" : "cl",
+               "creatorId" : null,
+               "description" : "ODI tool to processes tabular data",
+               "uniqueTag" : "theodi/csvlint.rb:1",
+               "name" : "CSV Checking by CSVLint"
+            }
+         },
+         {
+            "id" : "5dcbb803-01ed-4641-b4cd-b085d2099a38",
+            "type" : "processor",
+            "attributes" : {
+               "description" : "CSV checking tool from Frictionless Data project",
+               "creatorId" : null,
+               "module" : "good",
+               "name" : "CSV Checking by GoodTables",
+               "uniqueTag" : "frictionlessdata/goodtables-py:1"
+            }
+         },
+         {
+            "attributes" : {
+               "uniqueTag" : "lintol/ds-pii:1",
+               "name" : "Personally-Identifiable Information Spotter",
+               "module" : "pii",
+               "creatorId" : null,
+               "description" : "Tool for searching for Personally-Identifiable Information within CSV data"
+            },
+            "id" : "c3f939f7-72bb-409e-929c-695681607350",
+            "type" : "processor"
+         },
+         {
+            "attributes" : {
+               "name" : "Boundary Checker",
+               "uniqueTag" : "lintol/ds-boundary-checker-py:1",
+               "creatorId" : null,
+               "description" : "GeoJSON boundary checker to make sure data is within given boundaries",
+               "module" : "boundary_checker"
+            },
+            "type" : "processor",
+            "id" : "80013cbd-15f6-48a8-806b-1532f9064394"
+         },
+         {
+            "type" : "processor",
+            "id" : "56077c8f-0a17-49f7-b32b-a3f13f724b68",
+            "attributes" : {
+               "creatorId" : null,
+               "description" : "Check that CSV data about countries matches gov.uk register entries",
+               "module" : "registers",
+               "name" : "gov.uk Register Checker - Countries",
+               "uniqueTag" : "lintol/ds-checker-py"
+            }
+         }
+      ]
+   },
+   "reports": {
+      "data" : [
+         {
+            "type" : "reports",
+            "attributes" : {
+               "content" : [
+                  "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.008, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.006, \"valid\": true, \"error-count\": 0, \"row-count\": 6, \"source\": \"/pfs/data/bad.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"iso8859-9\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ],
+               "errors" : 0,
+               "warnings" : 0,
+               "qualityScore" : 0,
+               "name" : "(none)",
+               "passes" : 0
+            },
+            "id" : "321629e0-6197-4fcb-b571-9df129bd857f"
+         },
+         {
+            "attributes" : {
+               "errors" : 0,
+               "warnings" : 0,
+               "qualityScore" : 0,
+               "content" : [
+                  "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.083, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.082, \"valid\": true, \"error-count\": 0, \"row-count\": 6, \"source\": \"/pfs/data/bad.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"iso8859-9\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ],
+               "passes" : 0,
+               "name" : "(none)"
+            },
+            "id" : "c1c27a67-5dac-4069-8d70-20057cddf8e3",
+            "type" : "reports"
+         },
+         {
+            "attributes" : {
+               "passes" : 0,
+               "name" : "(none)",
+               "errors" : 0,
+               "qualityScore" : 0,
+               "warnings" : 0,
+               "content" : [
+                  "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.01, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ]
+            },
+            "id" : "d9c234d0-cf31-4df1-84cd-4b5fbc1126ea",
+            "type" : "reports"
+         },
+         {
+            "id" : "ed247084-b0c0-44dd-b8ef-c55073a7a1b3",
+            "attributes" : {
+               "passes" : 0,
+               "name" : "(none)",
+               "warnings" : 0,
+               "qualityScore" : 0,
+               "errors" : 0,
+               "content" : [
+                  "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.04, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.039, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ]
+            },
+            "type" : "reports"
+         },
+         {
+            "type" : "reports",
+            "attributes" : {
+               "warnings" : 0,
+               "qualityScore" : 0,
+               "errors" : 0,
+               "content" : [
+                  "[{\"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.01, \"valid\": true, \"error-count\": 0, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": true, \"error-count\": 0, \"row-count\": 31, \"source\": \"/pfs/data/car-park-locations-data.csv\", \"headers\": [\"NAME\", \"ADDRESS\", \"POSTCODE\", \"NON-DESIGNATED BAYS\", \"X CO-ORDINATE\", \"Y CO-ORDINATE\", \"LATITUDE\", \"LONGITUDE\", \"BLUE BADGE BAYS\", \"FAMILY FRIENDLY BAYS\", \"E-CAR BAYS\", \"TARIFF\", \"CHARGED HOURS\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": []}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ],
+               "passes" : 0,
+               "name" : "(none)"
+            },
+            "id" : "6bbfd8ae-1dda-46cf-86ca-dbc9520456a5"
+         },
+         {
+            "type" : "reports",
+            "attributes" : {
+               "errors" : 0,
+               "qualityScore" : 0,
+               "warnings" : 0,
+               "content" : [
+                  "[{\"goodtables:error-count\": [\"Errors found\", 30, 2], \"goodtables:table-count\": [\"Number of tables\", 20, 1], \"goodtables:formats\": [\"Data formats\", 20, \"csv\"], \"goodtables:all\": [\"Full Goodtables analysis\", 20, {\"time\": 0.009, \"valid\": false, \"error-count\": 2, \"table-count\": 1, \"tables\": [{\"time\": 0.008, \"valid\": false, \"error-count\": 2, \"row-count\": 5, \"source\": \"/pfs/data/awful.csv\", \"headers\": [\"ID\", \"Name\", \"N\", \"Mean\", \"Standard Deviation\"], \"scheme\": \"file\", \"format\": \"csv\", \"encoding\": \"utf-8\", \"schema\": null, \"errors\": [{\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 4\", \"row-number\": 5, \"column-number\": 4, \"row\": [\"4\", \"Salad\", \"3\"]}, {\"code\": \"missing-value\", \"message\": \"Row 5 has a missing value in column 5\", \"row-number\": 5, \"column-number\": 5, \"row\": [\"4\", \"Salad\", \"3\"]}]}], \"warnings\": [], \"preset\": \"table\"}]}]"
+               ],
+               "passes" : 0,
+               "name" : "(none)"
+            },
+            "id" : "0ceb5588-e37c-450b-8ccf-8b8f0a07d4ab"
+         }
+      ]
+   }
+}
