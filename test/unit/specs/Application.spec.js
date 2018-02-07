@@ -24,33 +24,17 @@ describe('Application.vue', () => {
   describe('Template', () => {
     Vue.use(VueRouter);
 
-    it('should mount correctly', () => {
-      const component = getComponent();
+    const component = getComponent();
 
-      expect(component.$el);
-    });
+    it('should mount correctly', () => expect(component.$el));
 
-    it('should have a "div" element', () => {
-      const component = getComponent();
+    it('should have a "div" element', () => expect(component.$el.querySelector('div').length));
 
-      expect(component.$el.querySelector('div').length);
-    });
+    it('should have a "div" element with a "className" set to "app"', () => expect(component.$el.className).to.equal('app'));
 
-    it('should have a "div" element with a "className" set to "app"', () => {
-      const component = getComponent();
-
-      expect(component.$el.className).to.equal('app');
-    });
-
-    it('should have a "nav" element', () => {
-      const component = getComponent();
-
-      expect(component.$el.querySelector('nav').length);
-    });
+    it('should have a "nav" element', () => expect(component.$el.querySelector('nav').length));
 
     it('should have a "ul" element with 12 "li" elements', () => {
-      const component = getComponent();
-
       expect(component.$el.querySelector('ul').length);
       expect(component.$el.querySelectorAll('li').length).to.equal(12);
     });
