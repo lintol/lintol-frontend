@@ -8,12 +8,17 @@
         <!--<v-map :zoom=9 :center="[54.543307, -6.744371]">-->
         <v-map :zoom=8 :center="[54.543307, -6.744371]">
           <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-          <v-marker :lat-lng="[54.643307, -7.944371]" v-on:l-click="highlightError(1)"></v-marker>
+          <v-marker :lat-lng="[reportItem.item.entity.definition.coordinates[1], reportItem.item.entity.definition.coordinates[0]]" v-on:l-click="highlightError(1)"></v-marker>
           <v-geojson-layer :geojson="boundaryObject"></v-geojson-layer>
         </v-map>
       </div>
       <!--<map-marker-detail v-for="(index, markerDetail) in markerDetails" markerNumber="index" validationName="markerDetail.validationName" validationDescription="markerDetail.description"></map-marker-detail> -->
-      <map-marker-detail :class="{ highlight: highlightMarkerDetail == 1 }" :validationName="reportItem.code" :validationDescription="reportItem.message"></map-marker-detail>
+      <map-marker-detail :class="{ highlight: highlightMarkerDetail == 1 }" :validationName="reportItem.code" :validationItem="reportItem.item" :validationDescription="reportItem.message"></map-marker-detail>
+      <table v-if="highlightMarkerDetail" class="markerDetailTable">
+        <tr v-for="(value, field) in reportItem.item.properties">
+          <td>{{ field }}</td><td>{{ value }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -89,6 +94,19 @@ export default {
 
 .highlight {
    background-color: DarkSalmon;
+}
+
+.markerDetailTable {
+  padding: 1%;
+  width: 100%;
+}
+
+.markerDetailTable tr:nth-child(even) {
+  background-color: #EEEEEE
+}
+
+.markerDetailTable tr:nth-child(odd) {
+  background-color: #DDDDDD
 }
 
 </style>

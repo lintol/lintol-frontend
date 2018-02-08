@@ -3,18 +3,19 @@
     <h1>{{ title }}</h1>
     <p class="instructions">Instructions</p>
     <div class="formContainer" v-if="profile">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
-      <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
-      <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
+      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: vErrors.has('name') }"/>
+      <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
+      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
         <p>Instructions<p>
         <v-select :clearSearchOnSelect="false" placeholder="Add Processor"  :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
              :key="configuration.id"
+             v-model="configuration.userConfigurationStorage"
              :configuration="configuration"
-             v-for="configuration in profile.configurations" />
+             v-for="configuration in configurations" />
         </div>
       </div>
       <div>
@@ -39,13 +40,14 @@ export default {
   },
   data () {
     return {
-      title: 'Edit Profile'
+      title: 'Edit Profile',
+      configurations: []
     };
   },
   methods: {
     saveProfile: function () {
       this.$validator.validateAll().then(() => {
-        this.$store.dispatch(SAVE_PROFILE, this.profile).then(() => {
+        this.$store.dispatch(SAVE_PROFILE, { profile: this.profile, configurations: this.configurations }).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
@@ -54,16 +56,16 @@ export default {
     },
     updateProcessors: function (type, action) {
       if (action === 'add') {
-        this.profile.configurations.push(type);
+        this.configurations.push(type);
       } else {
-        var index = this.profile.configurations.indexOf(type);
+        var index = this.configurations.indexOf(type);
         if (index !== -1) {
-          this.profile.configurations.splice(index, 1);
+          this.configurations.splice(index, 1);
         }
       }
     },
     processorSelected: function (option) {
-      this.profile.configurations.push({
+      this.configurations.push({
         userConfigurationStorage: {},
         processor: this.processors[option.value]
       });
@@ -72,6 +74,11 @@ export default {
   components: {
     ProcessorConfiguration: ProcessorConfiguration,
     VSelect: VSelect
+  },
+  watch: {
+    profile: function (profile) {
+      this.configurations = profile.configurations;
+    }
   },
   computed: {
     profile: function () {

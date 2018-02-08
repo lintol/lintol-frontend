@@ -75,6 +75,7 @@ export default {
       console.log(this.report);
       if (this.report) {
         var content = JSON.parse(this.report.content);
+        console.log(content);
         reportItems = content.tables[0].errors;
         console.log('Report');
         console.log(reportItems);

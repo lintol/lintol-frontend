@@ -14,6 +14,7 @@
         <div class="processorContainer">
           <processor-configuration
              :key="configuration.id"
+             v-model="configuration.userConfigurationStorage"
              :configuration="configuration"
              v-for="configuration in chosenProcessors" />
         </div>
@@ -49,35 +50,21 @@ export default {
   },
   methods: {
     addProfile: function () {
-      console.log('test');
-      this.$validator.validateAll();
       this.$validator.validateAll().then((result) => {
-        console.log(result);
-        console.log('testa');
-        console.log(this.profile.name);
         this.profile.configurations = this.chosenProcessors;
-        console.log('Add Data Profile');
-        this.$store.dispatch(STORE_PROFILE, this.profile).then(() => {
+        this.$store.dispatch(STORE_PROFILE, {
+          profile: this.profile,
+          configurations: this.chosenProcessors
+        }).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
-        console.log(this.profile);
         console.log('Validation error:' + error);
       });
     },
-    updateProcessors: function (type, action) {
-      if (action === 'add') {
-        this.chosenProcessors.push(type);
-      } else {
-        var index = this.chosenProcessors.indexOf(type);
-        if (index !== -1) {
-          this.chosenProcessors.splice(index, 1);
-        }
-      }
-    },
     processorSelected: function (option) {
       this.chosenProcessors.push({
-        userConfigurationStorage: {},
+        userConfigurationStorage: this.processors[option.value].configurationDefaults,
         processor: this.processors[option.value]
       });
     }

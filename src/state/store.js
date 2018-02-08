@@ -1,12 +1,13 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
-import { JsonApiDataStore } from 'jsonapi-datastore';
+import { JsonApiDataStore, JsonApiDataStoreModel } from 'jsonapi-datastore';
 
 import * as a from './action-types';
 import * as m from './mutation-types';
 import axios from 'axios';
 
 Vue.use(Vuex);
+var idctr = 1;
 
 var apiPrefix = process.env.MOCK
   ? process.env.MOCK_API_PREFIX
@@ -16,6 +17,41 @@ function fromState (state) {
   var store = new JsonApiDataStore();
   store.graph = state.repository;
   return store;
+}
+
+function toModelReal (type, attributes, relationships, id) {
+  var jsonObj = new JsonApiDataStoreModel(type, id);
+  for (var key in attributes) {
+    jsonObj.setAttribute(key, attributes[key]);
+  }
+  var included = [];
+  if (relationships) {
+    for (var rel in relationships) {
+      var relations = [];
+      console.log(relationships);
+      relationships[rel].relations.map(function (relation) {
+        idctr += 1;
+        var jsonRel = toModelReal(relationships[rel].type, relation, false, 'temp-id-' + idctr);
+        relations.push(jsonRel.jsonObj);
+        included.push(jsonRel.jsonObj.serialize().data);
+      });
+
+      /* TODO: submit upstream PR to allow optional temp-id */
+      jsonObj.setRelationship(
+        rel,
+        relations
+      );
+    }
+  }
+  return { jsonObj, included };
+}
+
+function toModel (type, attributes, relationships, id) {
+  var model = toModelReal(type, attributes, relationships, null);
+
+  var serialized = model.jsonObj.serialize();
+  serialized.included = model.included;
+  return serialized;
 }
 
 const store = new Vuex.Store({
@@ -56,23 +92,30 @@ const store = new Vuex.Store({
         console.log('Couldnt get data profiles for account.');
       });
     },
-    [a.SAVE_PROFILE] (state, profile) {
-      state.commit(m.SET_CURRENT_PROFILE, profile);
-
+    [a.SAVE_PROFILE] (state, { profile, configurations }) {
       var url = apiPrefix + '/profiles/' + profile.id;
 
-      axios.put(url, profile).then((response) => {
+      var jsonProfile = toModel('profiles', profile, {
+        configurations: { type: 'processorConfigurations', relations: configurations }
+      });
+
+      axios.put(url, jsonProfile).then((response) => {
         var profile = response.data;
         state.commit(m.SET_CURRENT_PROFILE, profile);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
       });
     },
-    [a.STORE_PROFILE] (state, profile) {
+    [a.STORE_PROFILE] (state, { profile, configurations }) {
+      console.log(profile);
+      var jsonProfile = toModel('profiles', profile, {
+        configurations: { type: 'processorConfigurations', relations: configurations }
+      });
+
       var url = apiPrefix + '/profiles';
 
-      axios.post(url, profile).then((response) => {
-        var profile = response.profile;
+      axios.post(url, jsonProfile).then((response) => {
+        var profile = response.data;
         state.commit(m.SET_CURRENT_PROFILE, profile);
       }).catch(function (error) {
         console.log('Error adding profile:' + error);
