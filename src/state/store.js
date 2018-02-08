@@ -107,6 +107,7 @@ const store = new Vuex.Store({
       });
     },
     [a.STORE_PROFILE] (state, { profile, configurations }) {
+      console.log(profile);
       var jsonProfile = toModel('profiles', profile, {
         configurations: { type: 'processorConfigurations', relations: configurations }
       });

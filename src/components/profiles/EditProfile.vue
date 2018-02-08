@@ -47,7 +47,6 @@ export default {
   methods: {
     saveProfile: function () {
       this.$validator.validateAll().then(() => {
-        console.log(this.configurations[0].userConfigurationStorage);
         this.$store.dispatch(SAVE_PROFILE, { profile: this.profile, configurations: this.configurations }).then(() => {
           this.$router.push({name: 'profileTable'});
         });

@@ -52,9 +52,11 @@ export default {
     addProfile: function () {
       this.$validator.validateAll().then(() => {
         // profile.script = this.script;
-        this.profile.configurations = this.chosenProcessors;
         console.log('Add Data Profile');
-        this.$store.dispatch(STORE_PROFILE, this.profile).then(() => {
+        this.$store.dispatch(STORE_PROFILE, {
+          profile: this.profile,
+          configurations: this.chosenProcessors
+        }).then(() => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
