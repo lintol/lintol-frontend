@@ -7,20 +7,16 @@
       <p class="instructions">
         A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
       </p>
-      <select id="dateFilter" v-model="selectedDate" >
-        <option disabled value="" >Filter by Date</option> 
-        <option v-for="date in dateList">{{ date }}</option> 
-      </select>
-      <select>
-        <option value="">Filter By Sites</option>
+      <select id="nameFilter" v-model="selectedName" >
+        <option value="" >Filter by Group</option> 
+        <option v-for="name in nameList">{{ name }}</option> 
       </select>
       <div id="noProfilesAvailable" v-if="profiles.length == 0">
         <p class="instructions"> No Profiles available for this account</p>
       </div>
       <div id="columns"  class="flexContainer">
-        <profile-row :key="profile.id" v-for="profile in profiles" :profile="profile"></profile-row>
+        <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
       </div>
-
     </div>
     </transition>
   </div>
@@ -37,7 +33,7 @@ export default {
     return {
       title: 'Data Profiles',
       accountId: 0,
-      selectedDate: ''
+      selectedName: ''
     };
   },
   methods: {
@@ -49,14 +45,14 @@ export default {
     profiles: function () {
       return this.$store.getters.profiles;
     },
-    userList: function () {
-      var userList = [];
-      this.reports.filter((event) => {
-        if (userList.indexOf(event.user) === -1) {
-          userList.push(event.user);
+    nameList: function () {
+      var nameList = [];
+      this.profiles.filter((event) => {
+        if (nameList.indexOf(event.name) === -1) {
+          nameList.push(event.name);
         }
       });
-      return userList;
+      return nameList;
     },
     dateList: function () {
       var dateList = [];
@@ -67,6 +63,16 @@ export default {
         }
       });
       return dateList;
+    },
+    filteredProfiles: function () {
+      var result = this.profiles;
+      if (this.selectedName !== '') {
+        result = result.filter((profile) => {
+          return profile.name === this.selectedName;
+        });
+      }
+      console.log(result);
+      return result;
     }
   },
   components: {

@@ -36,7 +36,7 @@
             </select>
           </div>
        </div>
-       <report-list-item :key="index" :reportId="reportId" :content="report.content" :reportItem="reportItem" v-for="(reportItem, index) in reportItems"></report-list-item>
+       <report-list-item :key="index" :reportId="reportId" :content="report.content" :reportItem="reportItem" v-for="(reportItem, index) in filteredReportItems"></report-list-item>
        <p v-if="reportItems.length === 0" >There are no items for this report</p>
   </div>
 </template>

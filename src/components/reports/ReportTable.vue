@@ -17,7 +17,7 @@
         <p class="instructions">No Reports available for this account</p>
       </div>
       <div id="columns" v-else class="flexContainer">
-        <report-row :key="report.id" v-for="report in reports" :report="report"></report-row>
+        <report-row :key="report.id" v-for="report in filteredReports" :report="report"></report-row>
       </div>
     </div>
   </div>
@@ -62,6 +62,20 @@ export default {
     },
     reports: function () {
       return this.$store.getters.reports;
+    },
+    filteredReports: function () {
+      var result = this.reports;
+      if (this.selectedDate !== '') {
+        result = result.filter((report) => {
+          return convertDate(report.createdAt.date) === this.selectedDate;
+        });
+      }
+      if (this.selectedUser !== '') {
+        result = result.filter((report) => {
+          return report.user === this.selectedUser;
+        });
+      }
+      return result;
     }
   },
   mounted: function () {
