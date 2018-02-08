@@ -3,10 +3,10 @@
     <label class="pageTitle">{{ title }}</label>
     <p class="instructions">Enter information below to add a Data Profile</p>
     <div class="formContainer">
-      <input id="profileName" :class="[ errors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
-      <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
-      <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
+      <input id="profileName" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
+      <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
+      <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
         <p class="processorInstruction">Choose your Processor</p>
         <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
