@@ -7,8 +7,9 @@
       <p class="instructions">
         A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
       </p>
-      <select>
-        <option value="">Filter By Groups</option>
+      <select id="dateFilter" v-model="selectedDate" >
+        <option disabled value="" >Filter by Date</option> 
+        <option v-for="date in dateList">{{ date }}</option> 
       </select>
       <select>
         <option value="">Filter By Sites</option>
@@ -29,12 +30,14 @@
 import ProfileRow from './ProfileRow.vue';
 import AddProfile from './AddProfile.vue';
 import { LOAD_PROFILES } from '@/state/action-types';
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'Profiles',
   data () {
     return {
       title: 'Data Profiles',
-      accountId: 0
+      accountId: 0,
+      selectedDate: ''
     };
   },
   methods: {
@@ -45,6 +48,25 @@ export default {
   computed: {
     profiles: function () {
       return this.$store.getters.profiles;
+    },
+    userList: function () {
+      var userList = [];
+      this.reports.filter((event) => {
+        if (userList.indexOf(event.user) === -1) {
+          userList.push(event.user);
+        }
+      });
+      return userList;
+    },
+    dateList: function () {
+      var dateList = [];
+      this.profiles.filter((event) => {
+        console.log(event);
+        if (dateList.indexOf(convertDate(event.created_at)) === -1) {
+          dateList.push(convertDate(event.created_at));
+        }
+      });
+      return dateList;
     }
   },
   components: {
