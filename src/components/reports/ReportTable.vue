@@ -26,7 +26,7 @@
 <script>
 import { LOAD_REPORTS } from '@/state/action-types';
 import ReportRow from './ReportRow';
-
+import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'ReportTable',
   data () {
@@ -44,13 +44,18 @@ export default {
   computed: {
     userList: function () {
       var userList = [];
+      this.reports.filter((event) => {
+        if (userList.indexOf(event.user) === -1) {
+          userList.push(event.user);
+        }
+      });
       return userList;
     },
     dateList: function () {
       var dateList = [];
       this.reports.filter((event) => {
-        if (dateList.indexOf(event.user) === -1) {
-          dateList.push(event.user);
+        if (dateList.indexOf(convertDate(event.createdAt.date)) === -1) {
+          dateList.push(convertDate(event.createdAt.date));
         }
       });
       return dateList;

@@ -3,13 +3,13 @@
     <label class="pageTitle">{{ title }}</label>
     <p class="instructions">Enter information below to add a Data Profile</p>
     <div class="formContainer">
-      <input id="profileName" class="formItem inputName" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: errors.has('name') }"/>
+      <input id="profileName" :class="[ errors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
       <p v-show="errors.has('name')" class="warningText" >{{ errors.first('name') }}</p>
       <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: errors.has('description') }" />
       <p v-show="errors.has('description')" class="warningText" >{{ errors.first('description') }}</p>
       <div>
         <p class="processorInstruction">Choose your Processor</p>
-        <p class="instructions">From the drop down list choose the processors for this Data Profilt</p>
+        <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
         <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
@@ -50,9 +50,11 @@ export default {
   methods: {
     addProfile: function () {
       console.log('test');
-      this.$validator.validateAll().then(() => {
+      this.$validator.validateAll();
+      this.$validator.validateAll().then((result) => {
+        console.log(result);
         console.log('testa');
-        // profile.script = this.script;
+        console.log(this.profile.name);
         this.profile.configurations = this.chosenProcessors;
         console.log('Add Data Profile');
         this.$store.dispatch(STORE_PROFILE, this.profile).then(() => {
@@ -131,6 +133,9 @@ export default {
 
 .inputName {
   min-height: 40px;
+}
+
+.inputNameBorder {
   border: 1px grey solid;
 }
 
