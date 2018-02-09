@@ -54,7 +54,7 @@ export default {
     dateList: function () {
       var dateList = [];
       this.reports.filter((event) => {
-        if (dateList.indexOf(convertDate(event.createdAt.date)) === -1) {
+        if (event.createdAt && dateList.indexOf(convertDate(event.createdAt.date)) === -1) {
           dateList.push(convertDate(event.createdAt.date));
         }
       });
