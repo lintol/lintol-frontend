@@ -51,7 +51,6 @@ export default {
   methods: {
     addProfile: function () {
       this.$validator.validateAll().then((result) => {
-        this.profile.configurations = this.chosenProcessors;
         this.$store.dispatch(STORE_PROFILE, {
           profile: this.profile,
           configurations: this.chosenProcessors
