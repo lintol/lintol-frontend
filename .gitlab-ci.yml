@@ -27,7 +27,8 @@ test:
     - npm install 
     - npm install -g chromedriver 
     - npm install -g json-server
-    - json-server --watch db.js &
+    - git clone https://github.com/lintol/jsonapi-server-mock-lintol.git
+    - npm start --prefix jsonapi-server-mock-lintol/ &
   image: martinnaughton/nightwatch-e2e-headless:latest
   script: npm run test
   dependencies:
