@@ -30,12 +30,14 @@
         </div>
     </div>
     <div class="headerContainer greySeparator">
-      <label>Resource Name</label>
-      <label>File Type</label>
-      <label>Stored</label>
-      <label>Date Added</label>
-      <label>Owner</label>
-      <label>Status</label>
+      <label class="selectedResource"></label>
+      <label class="resourceName">Resource Name</label>
+      <label class="fileType">File Type</label>
+      <label class="stored">Stored</label>
+      <label class="dateAdded">Date Added</label>
+      <label class="owner">Owner</label>
+      <label class="status">Status</label>
+      <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row :key="resource.id" :resource="resource" v-for="resource in resources" />
@@ -75,6 +77,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
+@import './table.scss';
 
 .actionContainer {
   display: flex;

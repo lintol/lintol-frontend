@@ -1,7 +1,7 @@
 <template>
   <div id="resources-row" class="shadedRow">
     <div class="resourceRow">
-      <div class="resourceColumn center">
+      <div class="resourceColumn selectedResource center">
          <div>
          <div class="blackCheckbox">
            <input type="checkbox" value="1" id="active" name="active" checked="checked"/>
@@ -9,28 +9,28 @@
          </div>
          </div>
       </div>
-      <div class="resourceColumn resourceMainColumn center">
+      <div class="resourceColumn resourceMainColumn resourceName center">
         <div class="rightSeparator ">
           <label class="resourceName"> {{ resource.filename }} </label>
         </div>
       </div>
-      <div class="resourceColumn center">
+      <div class="resourceColumn center fileType">
         <p class="fileType">{{ resource.filetype }}</p>
       </div>
-      <div class="resourceColumn center">
+      <div class="resourceColumn center stored">
         <p class="stored">{{ resource.stored }}</p>
       </div>
-      <div class="resourceColumn center">
+      <div class="resourceColumn center dateAdded">
         <p>{{ convertDate(resource.created_at) }}</p>
       </div>
-      <div class="resourceColumn center">
+      <div class="resourceColumn center owner">
         <p>{{ resource.owner }}</p>
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
       </div>
-      <div class="center">
-        <p class="status">{{ resource.status }}</p>
+      <div class="resourceColumn center status">
+        <p class="status2">{{ resource.status }}</p>
       </div>
-      <div class="resourceColumn verticalCenterItems">
+      <div class="resourceColumn verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
       </div>
     </div>
@@ -71,6 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
+@import './table.scss';
 
 .fileType {
   text-transform: uppercase;
@@ -80,19 +81,16 @@ export default {
   text-transform: uppercase;
 }
 
-.status {
+.status2 {
   border: 1px black solid;
   border-radius: 40px;
   background-color: #333333;
   padding: 20px;
-  color: #FFFFFF;
   font-size: 10px;
 }
 
+
 .resourceColumn {
-  min-width: 150px;
-  border: 1px solid black;
-  flex: 1;
   > label {
     font-weight: bold;
     font-size: 10px;
@@ -106,7 +104,6 @@ export default {
 }
 
 .resourceMainColumn {
-  flex: 2;
   min-height: 80px;
   padding: 10px;
 }
@@ -115,6 +112,7 @@ export default {
   min-width: 120px;
   display: inline-block;
 }
+
 .resourceRow {
   display: flex;
   flex-direction: row;
