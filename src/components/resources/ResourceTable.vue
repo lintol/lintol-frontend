@@ -7,7 +7,7 @@
     <p>Your Resources</p>
     <add-resource-block></add-resource-block>
     <div>
-        <select id="userFilter" v-model="filteredType" >
+        <!--<select id="userFilter" v-model="filteredType" >
           <option disabled value="" >Filter by Type</option>
           <option v-for="type in filterByTypeOptions">{{ type }}</option>
         </select>
@@ -18,13 +18,15 @@
         <select id="userFilter" v-model="filteredProcessor" >
           <option disabled value="" >Filter by Processor</option>
           <option v-for="processor in filterByProcessorOptions">{{ processor }}</option>
-        </select>
+        </select>-->
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
         <div style="float: right;">
         <div class="actionContainer">
-          <label class="rightSeparator">{{ selectedResources }} Selected </label>
-          <select id="resourceAction" v-model="filteredType" >
-            <option value="actionDropDown" >Choose Function</option>
+          <label class="rightSeparator">{{ selectedResources.length }} Selected </label>
+          <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
+            <option value="" >Choose Function</option>
+            <option value="archive" >Archive</option>
+            <option value="delete" >Delete</option>
           </select>
         </div>
         </div>
@@ -39,7 +41,7 @@
       <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row :key="resource.id" :resource="resource" :index=index v-for="(resource, index) in orderedResources" />
+      <resource-row :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in orderedResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
   </div>
 </template>
@@ -56,9 +58,11 @@ export default {
       filteredType: '',
       filteredProcessor: '',
       search: '',
-      selectedResources: 12,
+      action: '',
+      selectedResources: [],
       sortBy: '',
-      ascDesc: 'asc'
+      ascDesc: 'asc',
+      clearSelected: false
     };
   },
   methods: {
@@ -66,6 +70,20 @@ export default {
       this.sortBy = sortBy;
       this.revertAscDesc();
       console.log('Sort By:' + sortBy + ' ascDesc:' + this.ascDesc);
+    },
+    resourceAction: function (e) {
+      this.clearSelected = true;
+      if (e.target.value === 'archive') {
+        console.log('archive');
+      }
+      if (e.target.value === 'delete') {
+        console.log('delete');
+      }
+    },
+    selectedResource: function (resourceId) {
+      if (this.selectedResources.indexOf(resourceId) === -1) {
+        this.selectedResources.push(resourceId);
+      }
     },
     revertAscDesc: function () {
       if (this.ascDesc === 'asc') {
@@ -97,6 +115,13 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 @import './table.scss';
+
+.blackDropDown {
+  background-color: #333333;
+  color: white;
+  border: none;
+  outline: none;
+}
  
 .arrowDown:after {
   content: '\2193';

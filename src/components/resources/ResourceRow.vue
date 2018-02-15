@@ -4,7 +4,7 @@
       <div class="resourceColumn selectedResource center">
          <div>
          <div class="blackCheckbox">
-           <input type="checkbox" :id="'active' + index" @click="resourceSelected"/>
+           <input type="checkbox" :id="'active' + index" @click="resourceSelected" v-model=isResourceSelected />
            <label :for="'active' + index"></label>
          </div>
          </div>
@@ -47,12 +47,17 @@ export default {
       required: true
     },
     index: {
-      type: Number,
+      type: String,
+      required: true
+    },
+    clearSelected: {
+      type: Boolean,
       required: true
     }
   },
   data () {
     return {
+      isResourceSelected: false
     };
   },
   methods: {
@@ -63,7 +68,16 @@ export default {
       location.href = 'http://' + this.resource.url;
     },
     resourceSelected: function (e) {
+      this.$emit('resourceSelected', this.resource.id);
       console.log('resource selected');
+    }
+  },
+  watch: {
+    clearSelected: function () {
+      console.log('clear:' + this.clearSelected);
+      if (this.clearSelected) {
+        this.isResourceSelected = false;
+      }
     }
   },
   components: {

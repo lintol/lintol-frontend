@@ -32,6 +32,13 @@ Vue.component('v-geojson-layer', Vue2Leaflet.GeoJSON);
 
 Object.defineProperty(Vue.prototype, '$lodash', { value: lodash });
 
+var bus = new Vue({});
+Object.defineProperty(Vue.prototype, '$bus', {
+  get () {
+    return this.$root.bus;
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -40,5 +47,6 @@ new Vue({
   components: { App },
   store,
   data: {
+    bus: bus
   }
 });
