@@ -1,14 +1,21 @@
 <template>
   <div id="resources-row" class="shadedRow">
     <div class="resourceRow">
-      <input id="checkBox" type="checkbox">
+      <div class="resourceColumn center">
+         <div>
+         <div class="blackCheckbox">
+           <input type="checkbox" value="1" id="active" name="active" checked="checked"/>
+           <label for=active></label>
+         </div>
+         </div>
+      </div>
       <div class="resourceColumn resourceMainColumn center">
         <div class="rightSeparator ">
-          <label class="resourceName"> {{ resource.name }} </label>
+          <label class="resourceName"> {{ resource.filename }} </label>
         </div>
       </div>
       <div class="resourceColumn center">
-        <p class="fileType">{{ resource.fileType }}</p>
+        <p class="fileType">{{ resource.filetype }}</p>
       </div>
       <div class="resourceColumn center">
         <p class="stored">{{ resource.stored }}</p>
@@ -20,11 +27,11 @@
         <p>{{ resource.owner }}</p>
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
       </div>
-      <div class="resourceColumn center">
+      <div class="center">
         <p class="status">{{ resource.status }}</p>
       </div>
       <div class="resourceColumn verticalCenterItems">
-          <button class="viewResourceButton" @click="addProfile">View Resource</button>
+          <button class="viewResourceButton" @click="viewResource">View Resource</button>
       </div>
     </div>
   </div>
@@ -46,8 +53,10 @@ export default {
   },
   methods: {
     convertDate: convertDate,
-    resourceAction: function (e) {
-      // this.$router.push({name: 'editResource', params: { resourceId: this.resource.id }});
+    viewResource: function (e) {
+      console.log('Redirecting to: ' + this.resource.url);
+      // `this.$router.push(this.resource.url);
+      location.href = 'http://' + this.resource.url;
     }
   },
   components: {
@@ -55,6 +64,7 @@ export default {
   computed: {
   },
   mounted: function () {
+    console.log(this.resource);
   }
 };
 </script>
@@ -72,11 +82,16 @@ export default {
 
 .status {
   border: 1px black solid;
-  border-radius: 50%;
+  border-radius: 40px;
+  background-color: #333333;
+  padding: 20px;
+  color: #FFFFFF;
+  font-size: 10px;
 }
 
 .resourceColumn {
   min-width: 150px;
+  border: 1px solid black;
   flex: 1;
   > label {
     font-weight: bold;
@@ -117,7 +132,7 @@ div .resourceColumn p {
   font-size: 11px;
 }
 
-.viewAction {
+.viewResourceButton {
   background: white;
   color: $orange;
   border: 2px solid $orange;
@@ -132,8 +147,10 @@ div .resourceColumn p {
 }
 
 .resourceName {
-  font-size: 15px;
+  font-size: 12px;
   width: 150px;
+  font-weight: bold;
+  color: #333333;
 }
 
 .user {

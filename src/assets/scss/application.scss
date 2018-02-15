@@ -129,6 +129,30 @@ input[type=checkbox] {
   visibility: hidden;
 }
 
+.blackCheckbox {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.blackCheckbox label {
+  display: block;
+  width: 11px;
+  height: 11px;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 0.01px;
+  z-index: 1;
+  box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+.blackCheckbox input[type=checkbox]:checked + label {
+  background: black;
+}
+
 .orangeCheckbox {
   width: 25px;
   height: 25px;
