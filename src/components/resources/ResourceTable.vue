@@ -30,16 +30,16 @@
         </div>
     </div>
     <div class="headerContainer greySeparator">
-      <label class="resourceName">Resource Name</label>
-      <label class="fileType">File Type</label>
-      <label class="stored">Stored</label>
-      <label class="dateAdded">Date Added</label>
-      <label class="owner">Owner</label>
-      <label class="status">Status</label>
+      <label class="resourceName" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
+      <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
+      <label class="stored":class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('stored')">Stored</label>
+      <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
+      <label class="owner" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('owner')">Owner</label>
+      <label class="status" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('status')">Status</label>
       <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row :key="resource.id" :resource="resource" :index=index v-for="(resource, index) in resources" />
+      <resource-row :key="resource.id" :resource="resource" :index=index v-for="(resource, index) in orderedResources" />
     </div>
   </div>
 </template>
@@ -55,12 +55,32 @@ export default {
       'title': 'Resources',
       filteredType: '',
       filteredProcessor: '',
-      selectedResources: 12
+      search: '',
+      selectedResources: 12,
+      sortBy: '',
+      ascDesc: 'asc'
     };
+  },
+  methods: {
+    sort: function (sortBy) {
+      this.sortBy = sortBy;
+      this.revertAscDesc();
+      console.log('Sort By:' + sortBy + ' ascDesc:' + this.ascDesc);
+    },
+    revertAscDesc: function () {
+      if (this.ascDesc === 'asc') {
+        this.ascDesc = 'desc';
+      } else {
+        this.ascDesc = 'asc';
+      }
+    }
   },
   computed: {
     resources: function () {
       return this.$store.getters.dataResources;
+    },
+    orderedResources: function () {
+      return this.$lodash.orderBy(this.resources, this.sortBy, this.ascDesc);
     }
   },
   mounted: function () {
@@ -77,6 +97,18 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 @import './table.scss';
+ 
+.arrowDown:after {
+  content: '\2193';
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.arrowUp:after {
+  content: '\2191';
+  font-size: 25px;
+  font-weight: bold;
+}
 
 .actionContainer {
   display: flex;

@@ -117,6 +117,7 @@ export default {
 }
 
 .resourceRow {
+  padding: 5px 0px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
