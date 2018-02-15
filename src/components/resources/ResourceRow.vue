@@ -4,8 +4,8 @@
       <div class="resourceColumn selectedResource center">
          <div>
          <div class="blackCheckbox">
-           <input type="checkbox" value="1" id="active" name="active" checked="checked"/>
-           <label for=active></label>
+           <input type="checkbox" :id="'active' + index" @click="resourceSelected"/>
+           <label :for="'active' + index"></label>
          </div>
          </div>
       </div>
@@ -28,7 +28,7 @@
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
       </div>
       <div class="resourceColumn center status">
-        <p class="status2">{{ resource.status }}</p>
+        <label class="status2">{{ resource.status }}</label>
       </div>
       <div class="resourceColumn verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
@@ -45,6 +45,10 @@ export default {
     resource: {
       type: Object,
       required: true
+    },
+    index: {
+      type: Number,
+      required: true
     }
   },
   data () {
@@ -57,6 +61,9 @@ export default {
       console.log('Redirecting to: ' + this.resource.url);
       // `this.$router.push(this.resource.url);
       location.href = 'http://' + this.resource.url;
+    },
+    resourceSelected: function (e) {
+      console.log('resource selected');
     }
   },
   components: {
@@ -85,16 +92,13 @@ export default {
   border: 1px black solid;
   border-radius: 40px;
   background-color: #333333;
-  padding: 20px;
+  padding: 5px;
   font-size: 10px;
-}
-
-
-.resourceColumn {
-  > label {
-    font-weight: bold;
-    font-size: 10px;
-  }
+  width: 100px;
+  text-transform: capitalize;
+  color: white;
+  font-weight: bold;
+  
 }
  
 .center {

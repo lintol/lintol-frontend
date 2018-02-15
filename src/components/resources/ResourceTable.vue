@@ -40,7 +40,7 @@
       <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row :key="resource.id" :resource="resource" v-for="resource in resources" />
+      <resource-row :key="resource.id" :resource="resource" :index=index v-for="(resource, index) in resources" />
     </div>
   </div>
 </template>
