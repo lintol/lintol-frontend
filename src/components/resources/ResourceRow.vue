@@ -9,7 +9,7 @@
          </div>
          </div>
       </div>
-      <div class="resourceColumn resourceMainColumn resourceName center">
+      <div class="resourceColumn resourceMainColumn resourceNameValue center">
         <div class="rightSeparator ">
           <label class="resourceName"> {{ resource.filename }} </label>
         </div>
@@ -108,7 +108,6 @@ export default {
 }
 
 .resourceMainColumn {
-  min-height: 80px;
   padding: 10px;
 }
 

@@ -30,7 +30,6 @@
         </div>
     </div>
     <div class="headerContainer greySeparator">
-      <label class="selectedResource"></label>
       <label class="resourceName">Resource Name</label>
       <label class="fileType">File Type</label>
       <label class="stored">Stored</label>
