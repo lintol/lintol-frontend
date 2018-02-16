@@ -7,18 +7,18 @@
     <p>Your Resources</p>
     <add-resource-block></add-resource-block>
     <div>
-        <!--<select id="userFilter" v-model="filteredType" >
+        <select id="typeFilter" v-model="filteredType" >
           <option disabled value="" >Filter by Type</option>
           <option v-for="type in filterByTypeOptions">{{ type }}</option>
         </select>
-        <select id="userFilter" v-model="filteredType" >
-          <option disabled value="" >Filter by Type</option>
-          <option v-for="type in filterByTypeOptions">{{ type }}</option>
+        <select id="storedFilter" v-model="filteredStored" >
+          <option disabled value="" >Filter by Stored</option>
+          <option v-for="stored in filterByStoredOptions">{{ stored }}</option>
         </select>
-        <select id="userFilter" v-model="filteredProcessor" >
-          <option disabled value="" >Filter by Processor</option>
-          <option v-for="processor in filterByProcessorOptions">{{ processor }}</option>
-        </select>-->
+        <select id="dateFilter" v-model="filteredDate" >
+          <option disabled value="" >Filter by Date</option>
+          <option v-for="date in dateList">{{ date }}</option>
+        </select>
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
         <div style="float: right;">
         <div class="actionContainer">
@@ -50,13 +50,16 @@
 import { LOAD_DATA_RESOURCES } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
+import { convertDate, filter } from '@/components/common/date.js';
+
 export default {
   name: 'ResourceTable',
   data () {
     return {
       'title': 'Resources',
       filteredType: '',
-      filteredProcessor: '',
+      filteredStored: '',
+      filteredDate: '',
       search: '',
       action: '',
       selectedResources: [],
@@ -66,6 +69,7 @@ export default {
     };
   },
   methods: {
+    convertDate: convertDate,
     sort: function (sortBy) {
       this.sortBy = sortBy;
       this.revertAscDesc();
@@ -99,6 +103,21 @@ export default {
     },
     orderedResources: function () {
       return this.$lodash.orderBy(this.resources, this.sortBy, this.ascDesc);
+    },
+    dateList: function () {
+      var dateList = [];
+      this.orderedResources.filter((event) => {
+        if (dateList.indexOf(convertDate(event.created_at)) === -1) {
+          dateList.push(convertDate(event.created_at));
+        }
+      });
+      return dateList;
+    },
+    filterByStoredOptions: function () {
+      return filter(this.resources, 'stored');
+    },
+    filterByTypeOptions: function () {
+      return filter(this.resources, 'filetype');
     }
   },
   mounted: function () {
