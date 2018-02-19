@@ -4,7 +4,7 @@
       <div class="resourceColumn selectedResource center">
          <div>
          <div class="blackCheckbox">
-           <input type="checkbox" :id="'active' + index" @click="resourceSelected" v-model=isResourceSelected />
+           <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
            <label :for="'active' + index"></label>
          </div>
          </div>
@@ -68,8 +68,8 @@ export default {
       location.href = 'http://' + this.resource.url;
     },
     resourceSelected: function (e) {
-      this.$emit('resourceSelected', this.resource.id);
-      console.log('resource selected');
+      this.isResourceSelected = !this.isResourceSelected;
+      this.$emit('resourceSelected', this.resource.id, this.isResourceSelected);
     }
   },
   watch: {

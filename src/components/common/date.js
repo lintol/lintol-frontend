@@ -24,3 +24,12 @@ export function filter (objects, prop) {
   });
   return resultList;
 }
+
+export function selectedFiltered (result, selected, prop) {
+  if (selected !== '') {
+    result = result.filter((element) => {
+      return element[prop] === selected;
+    });
+  }
+  return result;
+}

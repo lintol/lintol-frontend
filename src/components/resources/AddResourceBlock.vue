@@ -70,6 +70,7 @@ export default {
 
 
 .uploadYourFiles {
+  background: url(../../assets/images/upload-icon.svg) no-repeat scroll 14px 14px;
   border: dashed 1px black;
   font-size: 14px;
   padding: 14px;
@@ -77,6 +78,7 @@ export default {
 }
 
 .addFromURL {
+  background: url(../../assets/images/add-url.svg) no-repeat scroll 14px 14px;
   border: dashed 1px black;
   font-size: 14px;
   padding: 14px;

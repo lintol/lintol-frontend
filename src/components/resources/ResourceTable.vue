@@ -7,15 +7,15 @@
     <p>Your Resources</p>
     <add-resource-block></add-resource-block>
     <div>
-        <select id="typeFilter" v-model="filteredType" >
+        <select id="typeFilter" v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
           <option v-for="type in filterByTypeOptions">{{ type }}</option>
         </select>
-        <select id="storedFilter" v-model="filteredStored" >
+        <select id="storedFilter" v-model="selectedStored" >
           <option disabled value="" >Filter by Stored</option>
           <option v-for="stored in filterByStoredOptions">{{ stored }}</option>
         </select>
-        <select id="dateFilter" v-model="filteredDate" >
+        <select id="dateFilter" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
           <option v-for="date in dateList">{{ date }}</option>
         </select>
@@ -25,8 +25,9 @@
           <label class="rightSeparator">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
-            <option value="archive" >Archive</option>
-            <option value="delete" >Delete</option>
+            <option value="runProfile">Run Profile</option>
+            <!--<option value="archive" >Archive</option>
+            <option value="delete" >Delete</option>-->
           </select>
         </div>
         </div>
@@ -41,7 +42,7 @@
       <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in orderedResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
+      <resource-row :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
   </div>
 </template>
@@ -50,16 +51,16 @@
 import { LOAD_DATA_RESOURCES } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
-import { convertDate, filter } from '@/components/common/date.js';
+import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
 
 export default {
   name: 'ResourceTable',
   data () {
     return {
       'title': 'Resources',
-      filteredType: '',
-      filteredStored: '',
-      filteredDate: '',
+      selectedType: '',
+      selectedStored: '',
+      selectedDate: '',
       search: '',
       action: '',
       selectedResources: [],
@@ -85,8 +86,11 @@ export default {
       }
     },
     selectedResource: function (resourceId) {
-      if (this.selectedResources.indexOf(resourceId) === -1) {
+      var index = this.selectedResources.indexOf(resourceId);
+      if (index === -1) {
         this.selectedResources.push(resourceId);
+      } else {
+        this.selectedResources.splice(index, 1);
       }
     },
     revertAscDesc: function () {
@@ -103,6 +107,13 @@ export default {
     },
     orderedResources: function () {
       return this.$lodash.orderBy(this.resources, this.sortBy, this.ascDesc);
+    },
+    filteredResources: function () {
+      var result = this.orderedResources;
+      result = selectedFiltered(result, this.selectedDate, 'created_at');
+      result = selectedFiltered(result, this.selectedStored, 'stored');
+      result = selectedFiltered(result, this.selectedType, 'filetype');
+      return result;
     },
     dateList: function () {
       var dateList = [];
