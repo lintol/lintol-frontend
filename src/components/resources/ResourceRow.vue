@@ -28,7 +28,7 @@
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
       </div>
       <div class="resourceColumn center status">
-        <label class="status2">{{ resource.status }}</label>
+        <label class="status2" :class="statusColor">{{ resource.status }}</label>
       </div>
       <div class="resourceColumn verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
@@ -83,6 +83,27 @@ export default {
   components: {
   },
   computed: {
+    statusColor: function () {
+      var result;
+      switch (this.resource.status) {
+        case 'report run':
+          result = 'runStatus';
+          break;
+        case 'archived':
+          result = 'archivedStatus';
+          break;
+        case 'valid link':
+          result = 'validLinkStatus';
+          break;
+        case 'invalid link':
+          result = 'invalidLinkStatus';
+          break;
+        default:
+          result = 'invalidStatus';
+          break;
+      }
+      return result;
+    }
   },
   mounted: function () {
     console.log(this.resource);
@@ -98,6 +119,31 @@ export default {
   text-transform: uppercase;
 }
 
+.invalidStatus {
+  color: black;
+  background-color: purple;
+}
+
+.runStatus {
+  color: black;
+  background-color: green;
+}
+
+.archivedStatus {
+  color: black;
+  background-color: grey;
+}
+
+.validLinkStatus {
+  color: black;
+  background-color: yellow;
+}
+
+.invalidLinkStatus {
+  color: black;
+  background-color: red;
+}
+
 .stored {
   text-transform: uppercase;
 }
@@ -105,14 +151,11 @@ export default {
 .status2 {
   border: 1px black solid;
   border-radius: 40px;
-  background-color: #333333;
   padding: 5px;
   font-size: 10px;
   width: 100px;
   text-transform: capitalize;
-  color: white;
   font-weight: bold;
-  
 }
  
 .center {
