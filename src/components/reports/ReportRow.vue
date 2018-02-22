@@ -3,7 +3,7 @@
     <div class="reportRow">
       <div class="reportMainColumn center">
         <div class="rightSeparator">
-          <label class="columnHeader">Report</label>
+          <label class="columnHeader">Report {{ report.profile }}</label>
           <p>{{ report.name }}</p>
         </div>
       </div>

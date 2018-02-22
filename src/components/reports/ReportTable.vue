@@ -13,6 +13,10 @@
         <option disabled value="" >Filter by User</option> 
         <option v-for="user in userList">{{ user }}</option> 
       </select>
+      <select id="profileFilter" v-model="selectedProfile" >
+        <option disabled value="" >Filter by Profile</option> 
+        <option v-for="profile in profileList">{{ profile }}</option> 
+      </select>
       <div id="noReportsAvailable" v-if="reports.length == 0">
         <p class="instructions">No Reports available for this account</p>
       </div>
@@ -26,14 +30,15 @@
 <script>
 import { LOAD_REPORTS } from '@/state/action-types';
 import ReportRow from './ReportRow';
-import { convertDate } from '@/components/common/date.js';
+import { convertDate, selectedFiltered } from '@/components/common/date.js';
 export default {
   name: 'ReportTable',
   data () {
     return {
       title: 'Reports',
       selectedUser: '',
-      selectedDate: ''
+      selectedDate: '',
+      selectedProfile: ''
     };
   },
   methods: {
@@ -60,6 +65,15 @@ export default {
       });
       return dateList;
     },
+    profileList: function () {
+      var profileList = [];
+      this.reports.filter((event) => {
+        if (profileList.indexOf(event.profile) === -1) {
+          profileList.push(event.profile);
+        }
+      });
+      return profileList;
+    },
     reports: function () {
       return this.$store.getters.reports;
     },
@@ -70,11 +84,8 @@ export default {
           return convertDate(report.createdAt.date) === this.selectedDate;
         });
       }
-      if (this.selectedUser !== '') {
-        result = result.filter((report) => {
-          return report.user === this.selectedUser;
-        });
-      }
+      result = selectedFiltered(result, this.selectedUser, 'user');
+      result = selectedFiltered(result, this.selectedProfile, 'profile');
       return result;
     }
   },
