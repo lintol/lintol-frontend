@@ -113,6 +113,16 @@ export default {
       result = selectedFiltered(result, this.selectedDate, 'created_at');
       result = selectedFiltered(result, this.selectedStored, 'stored');
       result = selectedFiltered(result, this.selectedType, 'filetype');
+      try {
+        console.log('Here');
+        var re = new RegExp(this.search);
+        result = result.filter((resource) => {
+          return re.exec(resource.filename);
+        });
+      } catch (e) {
+        console.log(e);
+        return this.orderedResources;
+      }
       return result;
     },
     dateList: function () {
