@@ -120,28 +120,23 @@ export default {
 }
 
 .invalidStatus {
-  color: black;
   background-color: purple;
 }
 
 .runStatus {
-  color: black;
-  background-color: green;
+  background-color: #7BA74D;
 }
 
 .archivedStatus {
-  color: black;
-  background-color: grey;
+  background-color: #777776;
 }
 
 .validLinkStatus {
-  color: black;
-  background-color: yellow;
+  background-color: #DBD25A;
 }
 
 .invalidLinkStatus {
-  color: black;
-  background-color: red;
+  background-color: #FF4E50;
 }
 
 .stored {
@@ -149,13 +144,14 @@ export default {
 }
 
 .status2 {
-  border: 1px black solid;
+  color: white;
   border-radius: 40px;
   padding: 5px;
   font-size: 10px;
   width: 100px;
   text-transform: capitalize;
   font-weight: bold;
+   text-align: center;
 }
  
 .center {

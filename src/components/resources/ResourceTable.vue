@@ -4,8 +4,8 @@
     <p class="instructions">
       The list of resources that have been validated by Lintol</p>
     </p>
-    <p>Your Resources</p>
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
+    <p class="subHeading">Your Resources</p>
     <div>
         <select id="typeFilter" v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
@@ -221,13 +221,18 @@ export default {
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background: url(../../assets/images/search.svg) no-repeat scroll 5px 5px;
+  background: url(../../assets/images/search.svg) no-repeat scroll 13px 13px;
   background-color: white;
-  background-position: 1px 1px; 
+  background-position: right; 
   background-repeat: no-repeat;
   border-color: #979797;
   &::placeholder {
     color: #9B9B9B;
   }
+}
+
+.subHeading {
+  font-size: 18px;
+  font-weight: bold;
 }
 </style>
