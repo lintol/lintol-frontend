@@ -1,4 +1,3 @@
-// For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
 const visiblePauseTime = 1000;
 

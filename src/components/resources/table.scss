@@ -1,0 +1,62 @@
+.xsmallColumn {
+  flex: 0.2;
+}
+
+.smallColumn {
+  flex: 0.5;
+}
+
+.mediumColumn {
+  flex: 1;
+}
+
+.largeColumn {
+  flex: 1;
+}
+
+.selectedResource {
+  min-width: 50px;
+  max-width: 60px;
+  margin: auto;
+}
+.resourceName {
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.resourceNameValue {
+  min-width: 100px;
+  max-width: 200px;
+}
+
+.fileType {
+  min-width: 100px;
+  max-width: 200px;
+  margin: auto;
+}
+.stored {
+  min-width: 50px;
+  max-width: 100px;
+  margin: auto;
+}
+.dateAdded {
+  min-width: 50px;
+  max-width: 120px;
+  margin: auto;
+}
+.owner {
+  min-width: 100px;
+  max-width: 200px;
+  margin: auto;
+}
+.status {
+  min-width: 50px;
+  max-width: 150px;
+  margin: auto;
+}
+
+.actionButton {
+  min-width: 100px;
+  max-width: 150px;
+  margin: auto;
+}

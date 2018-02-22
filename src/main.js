@@ -7,6 +7,7 @@ import router from './router';
 import VeeValidate from 'vee-validate';
 import store from './state/store';
 import Vue2Leaflet from 'vue2-leaflet';
+import lodash from 'lodash';
 
 /* Work around to get Vue2Leaflet markers working */
 import L from 'leaflet';
@@ -29,6 +30,15 @@ Vue.component('v-marker', Vue2Leaflet.Marker);
 Vue.component('v-polygon', Vue2Leaflet.Polygon);
 Vue.component('v-geojson-layer', Vue2Leaflet.GeoJSON);
 
+Object.defineProperty(Vue.prototype, '$lodash', { value: lodash });
+
+var bus = new Vue({});
+Object.defineProperty(Vue.prototype, '$bus', {
+  get () {
+    return this.$root.bus;
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -37,5 +47,6 @@ new Vue({
   components: { App },
   store,
   data: {
+    bus: bus
   }
 });

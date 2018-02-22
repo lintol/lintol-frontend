@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #F8F8F8;">
     <div>
        <router-link id="home" :to="{name: 'Application' }">
          <img class="logo center" src="../assets/images/logo.svg" title="Home">
