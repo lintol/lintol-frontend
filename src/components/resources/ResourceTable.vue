@@ -5,7 +5,7 @@
       The list of resources that have been validated by Lintol</p>
     </p>
     <p>Your Resources</p>
-    <add-resource-block></add-resource-block>
+    <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
     <div>
         <select id="typeFilter" v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
@@ -71,6 +71,13 @@ export default {
   },
   methods: {
     convertDate: convertDate,
+    addResourceAction: function (resourceType) {
+      console.log('Action:' + resourceType);
+      switch (resourceType) {
+        case 'url':
+          break;
+      }
+    },
     sort: function (sortBy) {
       this.sortBy = sortBy;
       this.revertAscDesc();

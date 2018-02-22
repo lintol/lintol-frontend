@@ -4,8 +4,27 @@
         <label class="uploadYourFiles">Upload your Files</label>
       </div>
       <div class="resourceColumn">
-        <label class="addFromURL">Add From URL</label>
+        <label class="addFromURL" data-toggle="modal" data-target="#exampleModal"  @click="addResource('url')" >Add From URL</label>
       </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Url</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="resources"/> 
+              </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="addResource">Save changes</button>
+          </div>
+    </div>
+  </div>
+</div>
       <div class="resourceColumn">
         <div >
           <label class="addFromURL">Add From Source</label>
@@ -26,12 +45,23 @@ export default {
   },
   data () {
     return {
+      resources: ''
     };
   },
   methods: {
     convertDate: convertDate,
     resourceAction: function (e) {
       // this.$router.push({name: 'editResource', params: { resourceId: this.resource.id }});
+    },
+    /* addResource: function (action) {
+      this.$emit('addResource', action);
+    }, */
+    addResource: function () {
+      var filename = this.resources.replace(/^.*[\\/]/, '');
+      var resource = { stored: 'External Link', url: this.resources, filename: filename };
+      console.log(resource);
+      this.$emit('addResource', resource);
+      this.resources = '';
     }
   },
   components: {
@@ -83,5 +113,6 @@ export default {
   font-size: 14px;
   padding: 14px;
   margin: 0px 5px;
+  cursor: pointer; 
 }
 </style>
