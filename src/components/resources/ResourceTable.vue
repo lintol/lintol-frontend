@@ -85,6 +85,9 @@ export default {
     },
     resourceAction: function (e) {
       this.clearSelected = true;
+      if (e.target.value === 'runProfile') {
+        console.log('runProfile');
+      }
       if (e.target.value === 'archive') {
         console.log('archive');
       }

@@ -24,8 +24,8 @@
         <p>{{ convertDate(resource.created_at) }}</p>
       </div>
       <div class="resourceColumn center owner">
-        <p>{{ resource.owner }}</p>
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
+        <label>{{ resource.owner }}</label>
       </div>
       <div class="resourceColumn center status">
         <label class="status2" :class="statusColor">{{ resource.status }}</label>
@@ -175,6 +175,7 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  max-height: 40px;
 }
  
 .verticalAlign {
@@ -192,7 +193,6 @@ div .resourceColumn p {
   color: $orange;
   border: 2px solid $orange;
   border-radius: 5px;
-  padding: 10px;
   font-size: 12px;
   -webkit-appearance: none;
   -moz-appearance: none;
