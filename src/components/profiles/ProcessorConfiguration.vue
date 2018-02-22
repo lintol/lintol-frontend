@@ -87,7 +87,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 
 .xSmall {
   flex: 0.4;
