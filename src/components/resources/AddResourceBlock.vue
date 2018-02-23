@@ -4,7 +4,7 @@
         <label class="uploadYourFiles">Upload your Files</label>
       </div>
       <div class="resourceColumn">
-        <label class="addFromURL" data-toggle="modal" data-target="#exampleModal"  @click="addResource('url')" >Add From URL</label>
+        <label class="addFromURL" data-toggle="modal" data-target="#exampleModal"  >Add From URL</label>
       </div>
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
@@ -39,6 +39,7 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
+import { STORE_DATA_RESOURCE } from '@/state/action-types';
 export default {
   name: 'AddResourceBlock',
   props: {
@@ -58,9 +59,12 @@ export default {
     }, */
     addResource: function () {
       var filename = this.resources.replace(/^.*[\\/]/, '');
-      var resource = { stored: 'External Link', url: this.resources, filename: filename };
+      var resource = { stored: 'External Link', url: this.resources, filename: filename, user: 'martin', filetype: 'csv' };
       console.log(resource);
       this.$emit('addResource', resource);
+      this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
+        this.$router.push({name: 'resourceTable'});
+      });
       this.resources = '';
     }
   },

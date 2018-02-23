@@ -44,7 +44,8 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
-  </div>
+    <paginate :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+    </div>
 </template>
 
 <script>
@@ -72,11 +73,7 @@ export default {
   methods: {
     convertDate: convertDate,
     addResourceAction: function (resourceType) {
-      console.log('Action:' + resourceType);
-      switch (resourceType) {
-        case 'url':
-          break;
-      }
+      this.$store.dispatch(LOAD_DATA_RESOURCES, 1);
     },
     sort: function (sortBy) {
       this.sortBy = sortBy;
@@ -109,6 +106,10 @@ export default {
       } else {
         this.ascDesc = 'asc';
       }
+    },
+    getResources: function (pageNum) {
+      console.log(pageNum);
+      this.$store.dispatch(LOAD_DATA_RESOURCES, pageNum);
     }
   },
   computed: {
@@ -124,7 +125,6 @@ export default {
       result = selectedFiltered(result, this.selectedStored, 'stored');
       result = selectedFiltered(result, this.selectedType, 'filetype');
       try {
-        console.log('Here');
         var re = new RegExp(this.search);
         result = result.filter((resource) => {
           return re.exec(resource.filename);
@@ -152,7 +152,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$store.dispatch(LOAD_DATA_RESOURCES);
+    this.$store.dispatch(LOAD_DATA_RESOURCES, 1);
   },
   components: {
     ResourceRow: ResourceRow,

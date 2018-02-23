@@ -68,8 +68,8 @@ const store = new Vuex.Store({
     currentProcessor: null
   },
   actions: {
-    [a.LOAD_DATA_RESOURCES] (state) {
-      axios.get(apiPrefix + '/dataResources/').then(response => {
+    [a.LOAD_DATA_RESOURCES] (state, page) {
+      axios.get(apiPrefix + '/dataResources' + '?page=' + page).then(response => {
         var resources = response.data;
         state.commit(m.SET_DATA_RESOURCES, resources);
       }, response => {

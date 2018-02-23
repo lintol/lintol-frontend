@@ -86,6 +86,9 @@ export default {
     statusColor: function () {
       var result;
       switch (this.resource.status) {
+        case 'new resource':
+          result = 'newStatus';
+          break;
         case 'report run':
           result = 'runStatus';
           break;
@@ -106,7 +109,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.resource);
   }
 };
 </script>
@@ -117,6 +119,10 @@ export default {
 
 .fileType {
   text-transform: uppercase;
+}
+
+.newStatus {
+  background-color: blue;
 }
 
 .invalidStatus {
