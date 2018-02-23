@@ -109,7 +109,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.resource);
   }
 };
 </script>
