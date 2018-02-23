@@ -52,7 +52,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 .vertical {
    margin-top: 200px;
    width: 350px;

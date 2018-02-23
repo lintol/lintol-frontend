@@ -4,8 +4,8 @@
     <p class="instructions">
       The list of resources that have been validated by Lintol</p>
     </p>
-    <p>Your Resources</p>
-    <add-resource-block></add-resource-block>
+    <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
+    <p class="subHeading">Your Resources</p>
     <div>
         <select id="typeFilter" v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
@@ -71,6 +71,13 @@ export default {
   },
   methods: {
     convertDate: convertDate,
+    addResourceAction: function (resourceType) {
+      console.log('Action:' + resourceType);
+      switch (resourceType) {
+        case 'url':
+          break;
+      }
+    },
     sort: function (sortBy) {
       this.sortBy = sortBy;
       this.revertAscDesc();
@@ -78,6 +85,9 @@ export default {
     },
     resourceAction: function (e) {
       this.clearSelected = true;
+      if (e.target.value === 'runProfile') {
+        console.log('runProfile');
+      }
       if (e.target.value === 'archive') {
         console.log('archive');
       }
@@ -153,7 +163,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 @import './table.scss';
 
 .blackDropDown {
@@ -214,13 +224,18 @@ export default {
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background: url(../../assets/images/search.svg) no-repeat scroll 5px 5px;
+  background: url(../../assets/images/search.svg) no-repeat scroll 13px 13px;
   background-color: white;
-  background-position: 1px 1px; 
+  background-position: right; 
   background-repeat: no-repeat;
   border-color: #979797;
   &::placeholder {
     color: #9B9B9B;
   }
+}
+
+.subHeading {
+  font-size: 18px;
+  font-weight: bold;
 }
 </style>

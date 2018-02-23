@@ -24,8 +24,8 @@
         <p>{{ convertDate(resource.created_at) }}</p>
       </div>
       <div class="resourceColumn center owner">
-        <p>{{ resource.owner }}</p>
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
+        <label>{{ resource.owner }}</label>
       </div>
       <div class="resourceColumn center status">
         <label class="status2" :class="statusColor">{{ resource.status }}</label>
@@ -112,7 +112,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 @import './table.scss';
 
 .fileType {
@@ -120,28 +120,23 @@ export default {
 }
 
 .invalidStatus {
-  color: black;
   background-color: purple;
 }
 
 .runStatus {
-  color: black;
-  background-color: green;
+  background-color: #7BA74D;
 }
 
 .archivedStatus {
-  color: black;
-  background-color: grey;
+  background-color: #777776;
 }
 
 .validLinkStatus {
-  color: black;
-  background-color: yellow;
+  background-color: #DBD25A;
 }
 
 .invalidLinkStatus {
-  color: black;
-  background-color: red;
+  background-color: #FF4E50;
 }
 
 .stored {
@@ -149,13 +144,14 @@ export default {
 }
 
 .status2 {
-  border: 1px black solid;
+  color: white;
   border-radius: 40px;
   padding: 5px;
   font-size: 10px;
   width: 100px;
   text-transform: capitalize;
   font-weight: bold;
+   text-align: center;
 }
  
 .center {
@@ -179,6 +175,7 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  max-height: 40px;
 }
  
 .verticalAlign {
@@ -196,7 +193,6 @@ div .resourceColumn p {
   color: $orange;
   border: 2px solid $orange;
   border-radius: 5px;
-  padding: 10px;
   font-size: 12px;
   -webkit-appearance: none;
   -moz-appearance: none;

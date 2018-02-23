@@ -83,7 +83,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 
 .version {
   width: 120px; 

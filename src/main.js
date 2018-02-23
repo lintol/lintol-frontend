@@ -8,6 +8,8 @@ import VeeValidate from 'vee-validate';
 import store from './state/store';
 import Vue2Leaflet from 'vue2-leaflet';
 import lodash from 'lodash';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 /* Work around to get Vue2Leaflet markers working */
 import L from 'leaflet';
