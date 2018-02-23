@@ -39,6 +39,7 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
+import { STORE_DATA_RESOURCE } from '@/state/action-types';
 export default {
   name: 'AddResourceBlock',
   props: {
@@ -58,9 +59,12 @@ export default {
     }, */
     addResource: function () {
       var filename = this.resources.replace(/^.*[\\/]/, '');
-      var resource = { stored: 'External Link', url: this.resources, filename: filename };
+      var resource = { stored: 'External Link', url: this.resources, filename: filename, user: 'martin', filetype: 'csv' };
       console.log(resource);
       this.$emit('addResource', resource);
+      this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
+        this.$router.push({name: 'resourceTable'});
+      });
       this.resources = '';
     }
   },

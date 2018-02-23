@@ -44,7 +44,8 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
-  </div>
+    <paginate :page-count="5" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+    </div>
 </template>
 
 <script>
@@ -109,6 +110,9 @@ export default {
       } else {
         this.ascDesc = 'asc';
       }
+    },
+    getResources: function (pageNum) {
+      console.log(pageNum);
     }
   },
   computed: {
