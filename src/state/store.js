@@ -87,6 +87,15 @@ const store = new Vuex.Store({
         console.log('Error saving data resource:' + error);
       });
     },
+    [a.DELETE_DATA_RESOURCE] (state, resource) {
+      var url = apiPrefix + '/dataResources/' + resource.id;
+      axios.delete(url).then((response) => {
+        var resource = response.data;
+        state.commit(m.UNSET_CURRENT_DATA_RESOURCE, resource);
+      }).catch(function (error) {
+        console.log('Error deleting data resource:' + error);
+      });
+    },
     [a.LOAD_PROFILES] (state) {
       axios.get(apiPrefix + '/profiles/').then(response => {
         var profiles = response.data;

@@ -11,9 +11,9 @@
           <option disabled value="" >Filter by Type</option>
           <option v-for="type in filterByTypeOptions">{{ type }}</option>
         </select>
-        <select id="storedFilter" v-model="selectedStored" >
-          <option disabled value="" >Filter by Stored</option>
-          <option v-for="stored in filterByStoredOptions">{{ stored }}</option>
+        <select id="sourceFilter" v-model="selectedSource" >
+          <option disabled value="" >Filter by Source</option>
+          <option v-for="source in filterBySourceOptions">{{ source }}</option>
         </select>
         <select id="dateFilter" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
@@ -22,7 +22,7 @@
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
         <div style="float: right;">
         <div class="actionContainer">
-          <label class="rightSeparator">{{ selectedResources.length }} Selected </label>
+          <label id="numberOfSelectedResources" class="rightSeparator">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
             <option value="runProfile">Run Profile</option>
@@ -35,7 +35,7 @@
     <div class="headerContainer greySeparator">
       <label class="resourceName" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
       <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
-      <label class="stored":class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('stored')">Stored</label>
+      <label class="source":class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('source')">Source</label>
       <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
       <label class="owner" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('owner')">Owner</label>
       <label class="status" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('status')">Status</label>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE } from '@/state/action-types';
+import { LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
 import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
@@ -60,7 +60,7 @@ export default {
     return {
       'title': 'Resources',
       selectedType: '',
-      selectedStored: '',
+      selectedSource: '',
       selectedDate: '',
       search: '',
       action: '',
@@ -87,15 +87,24 @@ export default {
       }
       if (e.target.value === 'archive') {
         var archivedResource = this.selectedResources[0];
-        console.log(this.selectedResources[0]);
         archivedResource.archived = '1';
         this.$store.dispatch(SAVE_DATA_RESOURCE, archivedResource).then(() => {
         });
-        console.log('Archived');
       }
       if (e.target.value === 'delete') {
-        console.log('delete');
+        var deleteResource = this.selectedResources[0];
+        this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
+          var index = this.selectedResources.indexOf(deleteResource);
+          console.log('selected index:' + index);
+          this.selectedResources.splice(index, 1);
+          index = this.resources.indexOf(deleteResource);
+          console.log('resource index:' + index);
+          this.filteredResources.splice(index, 1);
+        }).catch((error) => {
+          console.log('Error deleting resource:' + error);
+        });
       }
+      this.action = '';
     },
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);
@@ -128,7 +137,7 @@ export default {
     filteredResources: function () {
       var result = this.orderedResources;
       result = selectedFiltered(result, this.selectedDate, 'created_at');
-      result = selectedFiltered(result, this.selectedStored, 'stored');
+      result = selectedFiltered(result, this.selectedSource, 'source');
       result = selectedFiltered(result, this.selectedType, 'filetype');
       try {
         var re = new RegExp(this.search);
@@ -150,8 +159,8 @@ export default {
       });
       return dateList;
     },
-    filterByStoredOptions: function () {
-      return filter(this.resources, 'stored');
+    filterBySourceOptions: function () {
+      return filter(this.resources, 'source');
     },
     filterByTypeOptions: function () {
       return filter(this.resources, 'filetype');

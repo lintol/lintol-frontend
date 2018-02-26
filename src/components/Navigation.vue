@@ -18,7 +18,7 @@
          </router-link>
       </li>
       <li id="resourceLink" class="menuEntry" :class="{ active: currentView == 'resourceTable'}">
-         <router-link id="resource" :to="{name: 'resourceTable' }">
+         <router-link id="resources" :to="{name: 'resourceTable' }">
            <img src="../assets/images/resources.svg" />
             <label>Resources/ Files</label>
          </router-link>
