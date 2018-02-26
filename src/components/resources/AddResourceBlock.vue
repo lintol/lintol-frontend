@@ -1,12 +1,12 @@
 <template>
     <div class="sourceRow">
       <div class="resourceColumn">
-        <label class="uploadYourFiles">Upload your Files</label>
+        <label id="uploadYourFiles" class="uploadYourFiles">Upload your Files</label>
       </div>
       <div class="resourceColumn">
-        <label class="addFromURL" data-toggle="modal" data-target="#exampleModal"  >Add From URL</label>
+        <label id="addFromUrl" class="addFromURL" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>
       </div>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="addUrlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -27,7 +27,7 @@
 </div>
       <div class="resourceColumn">
         <div >
-          <label class="addFromURL">Add From Source</label>
+          <label id="addFromSource" class="addFromURL">Add From Source</label>
           <label class="externalResource dropbox">Dropbox</label>
           <label class="externalResource google">Google</label>
           <label class="externalResource sharefile">ShareFile</label>

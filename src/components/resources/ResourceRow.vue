@@ -11,7 +11,7 @@
       </div>
       <div class="resourceColumn resourceMainColumn resourceNameValue center">
         <div class="rightSeparator ">
-          <label class="resourceName"> {{ resource.filename }} </label>
+          <label id="resourceName" class="resourceName"> {{ resource.filename }} </label>
         </div>
       </div>
       <div class="resourceColumn center fileType">
@@ -28,7 +28,7 @@
         <label>{{ resource.owner }}</label>
       </div>
       <div class="resourceColumn center status">
-        <label class="status2" :class="statusColor">{{ resource.status }}</label>
+        <label id="resourceStatus" class="status2" :class="statusColor">{{ resource.status }}</label>
       </div>
       <div class="resourceColumn verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
