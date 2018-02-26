@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE } from '@/state/action-types';
+import { LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
 import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
@@ -87,15 +87,24 @@ export default {
       }
       if (e.target.value === 'archive') {
         var archivedResource = this.selectedResources[0];
-        console.log(this.selectedResources[0]);
         archivedResource.archived = '1';
         this.$store.dispatch(SAVE_DATA_RESOURCE, archivedResource).then(() => {
         });
-        console.log('Archived');
       }
       if (e.target.value === 'delete') {
-        console.log('delete');
+        var deleteResource = this.selectedResources[0];
+        this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
+          var index = this.selectedResources.indexOf(deleteResource);
+          console.log('selected index:' + index);
+          this.selectedResources.splice(index, 1);
+          index = this.resources.indexOf(deleteResource);
+          console.log('resource index:' + index);
+          this.filteredResources.splice(index, 1);
+        }).catch((error) => {
+          console.log('Error deleting resource:' + error);
+        });
       }
+      this.action = '';
     },
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);
