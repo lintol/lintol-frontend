@@ -76,6 +76,17 @@ const store = new Vuex.Store({
         console.log('Couldnt get data resources for account.');
       });
     },
+    [a.SAVE_DATA_RESOURCE] (state, resource) {
+      var url = apiPrefix + '/dataResources/' + resource.id;
+      var jsonDataResource = toModel('dataResources', resource);
+
+      axios.put(url, jsonDataResource).then((response) => {
+        var resource = response.data;
+        state.commit(m.SET_CURRENT_DATA_RESOURCE, resource);
+      }).catch(function (error) {
+        console.log('Error saving data resource:' + error);
+      });
+    },
     [a.LOAD_PROFILES] (state) {
       axios.get(apiPrefix + '/profiles/').then(response => {
         var profiles = response.data;

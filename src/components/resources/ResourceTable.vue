@@ -26,8 +26,8 @@
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
             <option value="runProfile">Run Profile</option>
-            <!--<option value="archive" >Archive</option>
-            <option value="delete" >Delete</option>-->
+            <option value="archive" >Archive</option>
+            <option value="delete" >Delete</option>
           </select>
         </div>
         </div>
@@ -42,14 +42,14 @@
       <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
+      <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
     <paginate :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
     </div>
 </template>
 
 <script>
-import { LOAD_DATA_RESOURCES } from '@/state/action-types';
+import { LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
 import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
@@ -86,16 +86,22 @@ export default {
         console.log('runProfile');
       }
       if (e.target.value === 'archive') {
-        console.log('archive');
+        var archivedResource = this.selectedResources[0];
+        console.log(this.selectedResources[0]);
+        archivedResource.archived = '1';
+        this.$store.dispatch(SAVE_DATA_RESOURCE, archivedResource).then(() => {
+        });
+        console.log('Archived');
       }
       if (e.target.value === 'delete') {
         console.log('delete');
       }
     },
-    selectedResource: function (resourceId) {
-      var index = this.selectedResources.indexOf(resourceId);
+    selectedResource: function (selectedResource) {
+      var index = this.selectedResources.indexOf(selectedResource);
+      console.log('Index found:' + index);
       if (index === -1) {
-        this.selectedResources.push(resourceId);
+        this.selectedResources.push(selectedResource);
       } else {
         this.selectedResources.splice(index, 1);
       }
