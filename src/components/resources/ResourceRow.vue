@@ -69,7 +69,7 @@ export default {
     },
     resourceSelected: function (e) {
       this.isResourceSelected = !this.isResourceSelected;
-      this.$emit('resourceSelected', this.resource.id, this.isResourceSelected);
+      this.$emit('resourceSelected', this.resource, this.isResourceSelected);
     }
   },
   watch: {
