@@ -28,7 +28,6 @@ function toModelReal (type, attributes, relationships, id) {
   if (relationships) {
     for (var rel in relationships) {
       var relations = [];
-      console.log(relationships);
       relationships[rel].relations.map(function (relation) {
         idctr += 1;
         var jsonRel = toModelReal(relationships[rel].type, relation, false, 'temp-id-' + idctr);
@@ -50,7 +49,9 @@ function toModel (type, attributes, relationships, id) {
   var model = toModelReal(type, attributes, relationships, null);
 
   var serialized = model.jsonObj.serialize();
-  serialized.included = model.included;
+  if (model.included) {
+    serialized.included = model.included;
+  }
   return serialized;
 }
 
@@ -127,7 +128,6 @@ const store = new Vuex.Store({
       });
     },
     [a.STORE_PROFILE] (state, { profile, configurations }) {
-      console.log(profile);
       var jsonProfile = toModel('profiles', profile, {
         configurations: { type: 'processorConfigurations', relations: configurations }
       });
