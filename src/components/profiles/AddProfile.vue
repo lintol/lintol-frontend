@@ -115,7 +115,6 @@ export default {
 .formContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 50%;
 }
 
