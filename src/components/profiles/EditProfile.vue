@@ -15,7 +15,8 @@
              :key="configuration.id"
              v-model="configuration.userConfigurationStorage"
              :configuration="configuration"
-             v-for="configuration in configurations" />
+             v-for="configuration in configurations"
+             v-on:removeProcessor="removeSelectedProcessor" />
         </div>
       </div>
       <div>
@@ -28,7 +29,7 @@
 <script>
 import ProcessorConfiguration from './ProcessorConfiguration';
 import VSelect from 'vue-select';
-import { LOAD_PROFILE, SAVE_PROFILE } from '@/state/action-types';
+import { LOAD_PROCESSORS, LOAD_PROFILE, SAVE_PROFILE } from '@/state/action-types';
 
 export default {
   name: 'EditProfile',
@@ -69,6 +70,11 @@ export default {
         userConfigurationStorage: {},
         processor: this.processors[option.value]
       });
+    },
+    removeSelectedProcessor: function (name) {
+      this.configurations = this.configurations.filter((element) => {
+        return element.processor.name !== name;
+      });
     }
   },
   components: {
@@ -99,6 +105,7 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch(LOAD_PROFILE, this.profileId);
+    this.$store.dispatch(LOAD_PROCESSORS);
   }
 };
 </script>
