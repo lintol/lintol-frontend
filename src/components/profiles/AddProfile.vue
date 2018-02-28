@@ -16,7 +16,8 @@
              :key="configuration.id"
              v-model="configuration.userConfigurationStorage"
              :configuration="configuration"
-             v-for="configuration in chosenProcessors" />
+             v-for="configuration in chosenProcessors"
+             v-on:removeProcessor="removeSelectedProcessor" />
         </div>
       </div>
       <div class="button">
@@ -67,6 +68,11 @@ export default {
         userConfigurationStorage: this.processors[option.value].configurationDefaults,
         processor: this.processors[option.value]
       });
+    },
+    removeSelectedProcessor: function (name) {
+      this.chosenProcessors = this.chosenProcessors.filter((element) => {
+        return element.processor.name !== name;
+      });
     }
   },
   components: {
@@ -109,7 +115,6 @@ export default {
 .formContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 50%;
 }
 

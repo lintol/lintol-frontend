@@ -15,6 +15,7 @@
         </div>
         <div class="small">
          <label class="editLabel" v-if="!editConfiguration && configurationOptions" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
+         <label class="xmark" @click="removeProcessor">&#x274C; </label>
         </div>
       </div>
       <div v-if="editConfiguration && configurationOptions">
@@ -55,6 +56,9 @@ export default {
     saveConfiguration: function () {
       this.$emit('input', JSON.stringify(this.model));
       this.editConfiguration = !this.editConfiguration;
+    },
+    removeProcessor: function () {
+      this.$emit('removeProcessor', this.processor.name);
     }
   },
   components: {
@@ -88,6 +92,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import '~@/assets/scss/application.scss';
+
+.xmark {
+  cursor: pointer;
+  position: relative;
+  left: 25px;
+  top: -28px;
+  font-size: 12px;
+}
 
 .xSmall {
   flex: 0.4;
