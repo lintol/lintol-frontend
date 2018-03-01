@@ -1,36 +1,38 @@
 <template>
   <div id="resources-row" class="shadedRow">
     <div class="resourceRow">
-      <div class="resourceColumn selectedResource center">
+      <div class="selectedResource center">
          <div>
-         <div class="blackCheckbox">
-           <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
-           <label :for="'active' + index"></label>
-         </div>
+           <div class="blackCheckbox">
+             <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
+             <label :for="'active' + index"></label>
+           </div>
          </div>
       </div>
-      <div class="resourceColumn resourceMainColumn resourceNameValue center">
+      <div class="filename center">
         <div class="rightSeparator ">
-          <label id="resourceName" class="resourceName"> {{ resource.filename }} </label>
+          <label id="resourceName" class="filenameLabel"> {{ resource.filename }} </label>
         </div>
       </div>
-      <div class="resourceColumn center fileType">
-        <p class="fileType">{{ resource.filetype }}</p>
+      <div class="wrapper type-source-dataAdded">
+        <div class="center fileType ">
+          <p>{{ resource.filetype }}</p>
+        </div>
+        <div class="center source">
+          <p>{{ resource.source }}</p>
+        </div>
+        <div class="center dateAdded">
+          <p>{{ convertDate(resource.created_at) }}</p>
+        </div>
       </div>
-      <div class="resourceColumn center source">
-        <p class="source">{{ resource.source }}</p>
-      </div>
-      <div class="resourceColumn center dateAdded">
-        <p>{{ convertDate(resource.created_at) }}</p>
-      </div>
-      <div class="resourceColumn center owner">
+      <div class="center owner">
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
         <label>{{ resource.owner }}</label>
       </div>
-      <div class="resourceColumn center status">
+      <div class="center status">
         <label id="resourceStatus" class="status2" :class="statusColor">{{ resource.status }}</label>
       </div>
-      <div class="resourceColumn verticalCenterItems actionButton">
+      <div class="verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
       </div>
     </div>
@@ -117,10 +119,6 @@ export default {
 @import '~@/assets/scss/application.scss';
 @import './table.scss';
 
-.fileType {
-  text-transform: uppercase;
-}
-
 .newStatus {
   background-color: blue;
 }
@@ -143,10 +141,6 @@ export default {
 
 .invalidLinkStatus {
   background-color: #FF4E50;
-}
-
-.source {
-  text-transform: uppercase;
 }
 
 .status2 {
@@ -188,11 +182,6 @@ export default {
   vertical-align: middle;
 }
 
-div .resourceColumn p {
-  margin-top: 4px;
-  color: grey;
-  font-size: 11px;
-}
 
 .viewResourceButton {
   background: white;
@@ -207,9 +196,8 @@ div .resourceColumn p {
   }
 }
 
-.resourceName {
+.filenameLabel {
   font-size: 12px;
-  width: 150px;
   font-weight: bold;
   color: #333333;
 }
@@ -218,4 +206,10 @@ div .resourceColumn p {
   font-size: 12px;
   color: #777776;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
 </style>

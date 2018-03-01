@@ -21,6 +21,7 @@
         </select>
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
         <div style="float: right;">
+        <label>Resources {{ filteredResources.length }}</label>
         <div class="actionContainer">
           <label id="numberOfSelectedResources" class="rightSeparator">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
@@ -33,7 +34,7 @@
         </div>
     </div>
     <div class="headerContainer greySeparator">
-      <label class="resourceName" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
+      <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
       <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
       <label class="source":class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('source')">Source</label>
       <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
@@ -220,7 +221,6 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
   > label {
     font-weight: bold;
   }
@@ -228,8 +228,7 @@ export default {
 
 .greySeparator {
   border-bottom: 1px solid #EAE5E5;
-  padding-bottom: 12px;
-  margin: 10px;
+  margin: 10px 0px;
 }
 
 .rightSeparator {

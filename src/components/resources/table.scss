@@ -14,14 +14,24 @@
   flex: 1;
 }
 
+$blackCheckboxMinWidth: 50px;
+$blackCheckboxMaxWidth: 60px;
+
 .selectedResource {
-  min-width: 50px;
-  max-width: 60px;
-  margin: auto;
+  min-width: $blackCheckboxMinWidth;
+  max-width: $blackCheckboxMaxWidth;
 }
-.resourceName {
-  min-width: 250px;
-  max-width: 300px;
+
+$filenameMinWidth: 250px;
+$filenameMaxWidth: 300px;
+.filename {
+  min-width: $filenameMinWidth;
+  max-width: $filenameMaxWidth;
+}
+
+.filenameHeader {
+  min-width: $blackCheckboxMinWidth + $filenameMinWidth;
+  max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
 }
 
 .resourceNameValue {
@@ -29,21 +39,6 @@
   max-width: 200px;
 }
 
-.fileType {
-  min-width: 100px;
-  max-width: 200px;
-  margin: auto;
-}
-.stored {
-  min-width: 50px;
-  max-width: 100px;
-  margin: auto;
-}
-.dateAdded {
-  min-width: 50px;
-  max-width: 120px;
-  margin: auto;
-}
 .owner {
   min-width: 100px;
   max-width: 200px;
@@ -59,4 +54,39 @@
   min-width: 100px;
   max-width: 150px;
   margin: auto;
+}
+
+$fileTypeMinWidth: 90px;
+$sourceMinWidth: 100px;
+$dateAddedMinWidth: 50px;
+
+$fileTypeMaxWidth: 100px;
+$sourceMaxWidth: 140px;
+$dateAddedMaxWidth: 150px;
+
+.fileType {
+  min-width: $fileTypeMinWidth;
+  max-width:$fileTypeMaxWidth; 
+  margin-left: 10px;
+}
+
+.source {
+  min-width: $sourceMinWidth;
+  max-width: $sourceMaxWidth;
+}
+
+.dateAdded {
+  min-width: $dateAddedMinWidth;
+  max-width: $dateAddedMaxWidth;
+}
+
+.type-source-dataAdded {
+  min-width: $fileTypeMinWidth + $sourceMinWidth + $dateAddedMinWidth;
+  max-width: $fileTypeMaxWidth + $sourceMaxWidth + $dateAddedMaxWidth;
+  > div p {
+    text-transform: uppercase;
+    margin-top: 4px;
+    color: grey;
+    font-size: 11px;
+  }
 }
