@@ -112,6 +112,9 @@ export default {
   min-width: 190px;
   cursor: pointer; 
   font-weight: bold;
+  &:hover {
+    box-shadow: 0px 0px 4px  #888888;
+  }
 }
 
 .externalResource {

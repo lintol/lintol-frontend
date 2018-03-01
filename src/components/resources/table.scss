@@ -42,23 +42,24 @@ $filenameMaxWidth: 300px;
 .owner {
   min-width: 100px;
   max-width: 200px;
-  margin: auto;
+  margin: 0px auto;
 }
+
 .status {
-  min-width: 50px;
-  max-width: 150px;
-  margin: auto;
+  min-width: 90px;
+  max-width: 100px;
+  margin: 0px auto;
 }
 
 .actionButton {
   min-width: 100px;
   max-width: 150px;
-  margin: auto;
+  margin: 0px auto;
 }
 
 $fileTypeMinWidth: 90px;
 $sourceMinWidth: 100px;
-$dateAddedMinWidth: 50px;
+$dateAddedMinWidth: 70px;
 
 $fileTypeMaxWidth: 100px;
 $sourceMaxWidth: 140px;

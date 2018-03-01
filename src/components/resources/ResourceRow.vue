@@ -30,7 +30,7 @@
         <label>{{ resource.owner }}</label>
       </div>
       <div class="center status">
-        <label id="resourceStatus" class="status2" :class="statusColor">{{ resource.status }}</label>
+        <label id="resourceStatus" class="statusLabel" :class="statusColor">{{ resource.status }}</label>
       </div>
       <div class="verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
@@ -143,25 +143,20 @@ export default {
   background-color: #FF4E50;
 }
 
-.status2 {
+.statusLabel {
   color: white;
   border-radius: 40px;
   padding: 5px;
   font-size: 10px;
-  width: 100px;
   text-transform: capitalize;
   font-weight: bold;
-   text-align: center;
+  text-align: center;
 }
  
 .center {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.resourceMainColumn {
-  padding: 10px;
 }
 
 .resourceAction {
@@ -174,14 +169,13 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
   max-height: 40px;
+  margin-left: 10px;
 }
  
 .verticalAlign {
   vertical-align: middle;
 }
-
 
 .viewResourceButton {
   background: white;

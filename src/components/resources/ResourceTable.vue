@@ -228,7 +228,7 @@ export default {
 
 .greySeparator {
   border-bottom: 1px solid #EAE5E5;
-  margin: 10px 0px;
+  margin: 10px 10px;
 }
 
 .rightSeparator {
