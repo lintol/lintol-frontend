@@ -17,8 +17,8 @@
       <div class="resourceColumn center fileType">
         <p class="fileType">{{ resource.filetype }}</p>
       </div>
-      <div class="resourceColumn center stored">
-        <p class="stored">{{ resource.stored }}</p>
+      <div class="resourceColumn center source">
+        <p class="source">{{ resource.source }}</p>
       </div>
       <div class="resourceColumn center dateAdded">
         <p>{{ convertDate(resource.created_at) }}</p>
@@ -145,7 +145,7 @@ export default {
   background-color: #FF4E50;
 }
 
-.stored {
+.source {
   text-transform: uppercase;
 }
 

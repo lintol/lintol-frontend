@@ -81,7 +81,6 @@ export default {
       console.log('Sort By:' + sortBy + ' ascDesc:' + this.ascDesc);
     },
     resourceAction: function (e) {
-      this.clearSelected = true;
       if (e.target.value === 'runProfile') {
         console.log('runProfile');
       }
@@ -92,19 +91,23 @@ export default {
         });
       }
       if (e.target.value === 'delete') {
-        var deleteResource = this.selectedResources[0];
-        this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
-          var index = this.selectedResources.indexOf(deleteResource);
-          console.log('selected index:' + index);
-          this.selectedResources.splice(index, 1);
-          index = this.resources.indexOf(deleteResource);
-          console.log('resource index:' + index);
-          this.filteredResources.splice(index, 1);
-        }).catch((error) => {
-          console.log('Error deleting resource:' + error);
-        });
+        var decision = confirm('Please confirm you want to delete these resources!');
+        if (decision) {
+          var deleteResource = this.selectedResources[0];
+          this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
+            var index = this.selectedResources.indexOf(deleteResource);
+            console.log('selected index:' + index);
+            this.selectedResources.splice(index, 1);
+            index = this.resources.indexOf(deleteResource);
+            console.log('resource index:' + index);
+            this.filteredResources.splice(index, 1);
+          }).catch((error) => {
+            console.log('Error deleting resource:' + error);
+          });
+        }
       }
       this.action = '';
+      this.clearSelected = true;
     },
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);
