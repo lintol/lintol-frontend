@@ -6,6 +6,22 @@ import * as a from './action-types';
 import * as m from './mutation-types';
 import axios from 'axios';
 
+var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': csrfToken
+};
+
+axios.interceptors.response.use(
+  response => { return response; },
+  function (error) {
+    if (error.response.status === 401) {
+      window.location = process.env.LOGIN_URL;
+    }
+  }
+);
+
 Vue.use(Vuex);
 var idctr = 1;
 
@@ -61,8 +77,11 @@ const store = new Vuex.Store({
       reports: {},
       processors: {},
       profiles: {},
-      dataResources: {}
+      dataResources: {},
+      users: {}
     },
+    loggedInUser: null,
+    currentUser: null,
     currentProfile: null,
     currentReport: null,
     currentDataResource: null,
@@ -70,7 +89,7 @@ const store = new Vuex.Store({
   },
   actions: {
     [a.LOAD_DATA_RESOURCES] (state, page) {
-      axios.get(apiPrefix + '/dataResources' + '?page=' + page).then(response => {
+      axios.get(apiPrefix + '/dataResources' + '?page=' + page).then((response) => {
         var resources = response.data;
         state.commit(m.SET_DATA_RESOURCES, resources);
       }, response => {
@@ -98,7 +117,7 @@ const store = new Vuex.Store({
       });
     },
     [a.LOAD_PROFILES] (state) {
-      axios.get(apiPrefix + '/profiles/').then(response => {
+      axios.get(apiPrefix + '/profiles/').then((response) => {
         var profiles = response.data;
         state.commit(m.SET_PROFILES, profiles);
       }, response => {
@@ -106,7 +125,7 @@ const store = new Vuex.Store({
       });
     },
     [a.LOAD_PROFILE] (state, profileId) {
-      axios.get(apiPrefix + '/profiles/' + profileId + '?include=configurations.processor').then(response => {
+      axios.get(apiPrefix + '/profiles/' + profileId + '?include=configurations.processor').then((response) => {
         var profile = response.data;
         state.commit(m.SET_CURRENT_PROFILE, profile);
       }, response => {
@@ -142,8 +161,25 @@ const store = new Vuex.Store({
       });
     },
 
+    [a.LOAD_USERS] (state) {
+      axios.get(apiPrefix + '/users/').then((response) => {
+        var users = response.data;
+        state.commit(m.SET_USERS, users);
+      }, response => {
+        console.log('Couldnt get users.');
+      });
+    },
+    [a.LOAD_USER] (state, userId) {
+      axios.get(apiPrefix + '/users/' + userId).then((response) => {
+        var user = response.data;
+        state.commit(m.SET_CURRENT_USER, user);
+      }, response => {
+        console.log('Couldnt get user.');
+      });
+    },
+
     [a.LOAD_REPORTS] (state) {
-      axios.get(apiPrefix + '/reports/').then(response => {
+      axios.get(apiPrefix + '/reports/').then((response) => {
         var reports = response.data;
         state.commit(m.SET_REPORTS, reports);
       }, response => {
@@ -151,7 +187,7 @@ const store = new Vuex.Store({
       });
     },
     [a.LOAD_REPORT] (state, reportId) {
-      axios.get(apiPrefix + '/reports/' + reportId + '?include=dataResource,profile').then(response => {
+      axios.get(apiPrefix + '/reports/' + reportId + '?include=dataResource,profile').then((response) => {
         var report = response.data;
         state.commit(m.SET_CURRENT_REPORT, report);
       }, response => {
@@ -187,9 +223,21 @@ const store = new Vuex.Store({
       }).catch(function (error) {
         console.log('Error adding data resource:' + error);
       });
+    },
+
+    [a.LOAD_LOGGED_IN_USER] (state) {
+      axios.get(apiPrefix + '/users/me').then((response) => {
+        var user = response.data;
+        state.commit(m.SET_LOGGED_IN_USER, user);
+      }, error => {
+        console.log('Couldnt get logged in user:' + error);
+      });
     }
   },
   getters: {
+    users: state => {
+      return fromState(state).findAll('users');
+    },
     reports: state => {
       return fromState(state).findAll('reports');
     },
@@ -252,6 +300,22 @@ const store = new Vuex.Store({
       state.currentProcessor = null;
     },
 
+    [m.SET_USERS] (state, users) {
+      state.repository.users = {};
+      fromState(state).sync(users);
+    },
+    [m.RESET_USERS] (state) {
+      state.repository.users = {};
+    },
+    [m.SET_CURRENT_USER] (state, user) {
+      var store = fromState(state);
+      store.sync(user);
+      state.currentUser = store.find('users', user.data.id);
+    },
+    [m.UNSET_CURRENT_USER] (state) {
+      state.currentUser = null;
+    },
+
     [m.SET_DATA_RESOURCES] (state, dataResource) {
       state.repository.dataResources = {};
       fromState(state).sync(dataResource);
@@ -266,6 +330,15 @@ const store = new Vuex.Store({
     },
     [m.UNSET_CURRENT_DATA_RESOURCE] (state) {
       state.currentDataResource = null;
+    },
+
+    [m.SET_LOGGED_IN_USER] (state, user) {
+      var store = fromState(state);
+      store.sync(user);
+      state.loggedInUser = store.find('users', user.data.id);
+    },
+    [m.UNSET_LOGGED_IN_USER] (state) {
+      state.loggedInUser = null;
     }
   }
 });
