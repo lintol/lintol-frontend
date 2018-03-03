@@ -16,7 +16,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                <textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="resources"/> 
+                <textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> 
               </div>
           <div class="modal-footer">
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -46,7 +46,7 @@ export default {
   },
   data () {
     return {
-      resources: ''
+      urls: ''
     };
   },
   methods: {
@@ -58,14 +58,18 @@ export default {
       this.$emit('addResource', action);
     }, */
     addResource: function () {
-      var filename = this.resources.replace(/^.*[\\/]/, '');
-      var resource = { stored: 'External Link', url: this.resources, filename: filename, user: 'martin', filetype: 'csv' };
-      console.log(resource);
+      var urlArray = this.urls.replace(/[\n\r]+/g, '').split(',');
+      console.log(urlArray);
+      for (var index = 0; index < urlArray.length; index++) {
+        var url = urlArray[index];
+        var filename = url.replace(/^.*[\\/]/, '');
+        var filetype = filename.split('.').pop();
+        var resource = { source: 'External Link', url: url, filename: filename, user: 'martin', filetype: filetype };
+        this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
+        });
+      }
       this.$emit('addResource', resource);
-      this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
-        this.$router.push({name: 'resourceTable'});
-      });
-      this.resources = '';
+      this.urls = '';
     }
   },
   components: {
