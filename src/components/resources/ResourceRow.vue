@@ -18,7 +18,7 @@
         <p class="fileType">{{ resource.filetype }}</p>
       </div>
       <div class="resourceColumn center source">
-        <p class="source">{{ resource.source }}</p>
+        <p class="source">{{ resource.stored }}</p>
       </div>
       <div class="resourceColumn center dateAdded">
         <p>{{ convertDate(resource.created_at) }}</p>
