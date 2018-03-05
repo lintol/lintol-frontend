@@ -49,34 +49,44 @@
       </li>
     </ul>
   </nav>
-  
-  <div class="version">
-      <label>Version {{ version }}</label>
-  </div>
-  <div class="activityBanner">
-      <label>{{ user }}</label>
-      <router-link id="logout" :to="{name: 'logout' }">
-        <label>Logout</label>
-      </router-link>
+
+  <div class="navFooter">
+      <div class="version">
+          <label>Version {{ version }}</label>
+          <label><a id="logout" href="/logout" v-if="user">Logout</a></label>
+      </div>
+      <div class="activityBanner" v-if="user">
+          <div class="loggedInUser">{{ user.email }}</div>
+          <div class="loggedInUserServer">{{ user.driverServer }}</div>
+      </div>
   </div>
   </div>
 </template>
 
 <script>
+import { LOAD_LOGGED_IN_USER } from '@/state/action-types';
+
 export default {
   name: 'Navigation',
   data () {
     return {
       currentView: 'profileTable',
-      version: 0.6,
-      user: 'Bob Barker'
+      version: 0.6
     };
+  },
+  computed: {
+    user: function () {
+      return this.$store.state.loggedInUser;
+    }
   },
   watch: {
     $route: function () {
       console.log('New route:' + this.$route.name);
       this.currentView = this.$route.name;
     }
+  },
+  mounted: function () {
+    this.$store.dispatch(LOAD_LOGGED_IN_USER);
   }
 };
 </script>
@@ -85,34 +95,32 @@ export default {
 <style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
 
-.version {
-  width: 120px; 
-  margin: 0 auto;
-  padding: 10px;
-  font-size: 12px;
+.navFooter {
+  width: 120px;
   position: absolute;
   bottom: 30px;
+  padding: 10px;
+}
+
+.loggedInUserServer {
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.version {
+  margin: 0 auto;
+  font-size: 12px;
 }
 
 .activityBanner {
-  position: absolute;
   color: #333333;
-  bottom: 20px;
-  > label {
-    font-size: 12px;
-    color: #333333;
-  }
   > a {
-    > label {
-      font-size: 12px;
-      color: #333333;
-      text-decoration:: none;
-      cursor: pointer; 
-    }
+    text-decoration: none;
+    cursor: pointer;
   }
 }
 
-.addResourceButton {	
+.addResourceButton {
    display: flex;
    flex-direction: row;
    height: 35px;
@@ -185,6 +193,12 @@ ul {
   margin-left: 17px;
   margin-top: 25px;
   display: block;
+}
+
+.user {
+}
+
+.user-server {
 }
 
 </style>
