@@ -45,12 +45,12 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
-    <paginate :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+    <paginate :initial-page="0" :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
     </div>
 </template>
 
 <script>
-import { LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE } from '@/state/action-types';
+import { UPDATE_DATA_RESOURCES_FILTERS, UPDATE_DATA_RESOURCES_PAGE, LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
 import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
@@ -128,7 +128,7 @@ export default {
     },
     getResources: function (pageNum) {
       console.log(pageNum);
-      this.$store.dispatch(LOAD_DATA_RESOURCES, pageNum);
+      this.$store.dispatch(UPDATE_DATA_RESOURCES_PAGE, pageNum);
     }
   },
   computed: {
@@ -138,20 +138,46 @@ export default {
     orderedResources: function () {
       return this.$lodash.orderBy(this.resources, this.sortBy, this.ascDesc);
     },
+    filters: function () {
+      var filters = {};
+
+      if (this.selectedDate) {
+        filters['created_at'] = this.selectedDate;
+      }
+
+      if (this.selectedDate) {
+        filters['source'] = this.selectedSource;
+      }
+
+      if (this.selectedType) {
+        filters['filetype'] = this.selectedType;
+      }
+
+      if (this.search) {
+        filters['search'] = this.search;
+      }
+
+      return filters;
+    },
     filteredResources: function () {
       var result = this.orderedResources;
+
       result = selectedFiltered(result, this.selectedDate, 'created_at');
       result = selectedFiltered(result, this.selectedSource, 'source');
       result = selectedFiltered(result, this.selectedType, 'filetype');
-      try {
-        var re = new RegExp(this.search);
-        result = result.filter((resource) => {
-          return re.exec(resource.filename);
-        });
-      } catch (e) {
-        console.log(e);
-        return this.orderedResources;
+
+      if (this.search) {
+        try {
+          var re = new RegExp(this.search);
+          result = result.filter((resource) => {
+            return re.exec(resource.filename);
+          });
+        } catch (e) {
+          console.log(e);
+          return this.orderedResources;
+        }
       }
+
       return result;
     },
     dateList: function () {
@@ -172,6 +198,11 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch(LOAD_DATA_RESOURCES, 1);
+  },
+  watch: {
+    filters: function (filters) {
+      this.$store.dispatch(UPDATE_DATA_RESOURCES_FILTERS, filters);
+    }
   },
   components: {
     ResourceRow: ResourceRow,

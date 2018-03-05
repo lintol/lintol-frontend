@@ -75,8 +75,10 @@ export default {
       console.log(this.report);
       if (this.report) {
         var content = JSON.parse(this.report.content);
-        console.log(content);
-        reportItems = content.tables[0].errors;
+        reportItems = [];
+        reportItems = reportItems.concat(content.tables[0].errors);
+        reportItems = reportItems.concat(content.tables[0].warnings);
+        reportItems = reportItems.concat(content.tables[0].informations);
         console.log('Report');
         console.log(reportItems);
       }
@@ -87,7 +89,10 @@ export default {
       var reportItems = [];
       if (this.report) {
         var content = JSON.parse(this.report.content);
-        reportItems = content.tables[0].errors;
+        reportItems = [];
+        reportItems = reportItems.concat(content.tables[0].errors);
+        reportItems = reportItems.concat(content.tables[0].warnings);
+        reportItems = reportItems.concat(content.tables[0].informations);
         console.log(reportItems);
         reportItems.forEach((reportItem) => {
           if (result.indexOf(reportItem.processor) === -1) {
@@ -103,7 +108,10 @@ export default {
       var reportItems = [];
       if (this.report) {
         var content = JSON.parse(this.report.content);
-        reportItems = content.tables[0].errors;
+        reportItems = [];
+        reportItems = reportItems.concat(content.tables[0].errors);
+        reportItems = reportItems.concat(content.tables[0].warnings);
+        reportItems = reportItems.concat(content.tables[0].informations);
         console.log(reportItems);
         reportItems.forEach((reportItem) => {
           if (result.indexOf(reportItem.code) === -1) {

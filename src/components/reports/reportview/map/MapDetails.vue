@@ -61,17 +61,34 @@ export default {
   computed: {
     reportMetaDataObject: function () {
       return JSON.parse(this.reportMetaData);
+    },
+    boundaryUrl: function () {
+      var url = 'http://osni-spatial-ni.opendata.arcgis.com/datasets/d9dfdaf77847401e81efc9471dcd09e1_0.geojson';
+
+      if (this.reportMetaDataObject && 'supplementary' in this.reportMetaDataObject) {
+        var boundary = this.reportMetaDataObject.supplementary.find(function (supplementary) {
+          return (supplementary.type === 'boundary');
+        });
+        if (boundary) {
+          url = boundary.source;
+        }
+      }
+
+      /* TODO: check why this is not working in a watcher for boundaryUrl */
+      axios.get(url).then(response => {
+        this.boundaryObject = response.data;
+      }, response => {
+        console.log('Couldnt get data resources for account.');
+      });
+
+      return url;
     }
   },
   mounted: function () {
-    this.boundaryUrl = 'http://osni-spatial-ni.opendata.arcgis.com/datasets/d9dfdaf77847401e81efc9471dcd09e1_0.geojson';
-    axios.get(this.boundaryUrl).then(response => {
-      this.boundaryObject = response.data;
-    }, response => {
-      console.log('Couldnt get data resources for account.');
-    });
   },
   watch: {
+    boundaryUrl: function (boundaryUrl) {
+    }
   }
 };
 </script>
