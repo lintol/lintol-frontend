@@ -146,21 +146,18 @@ export default {
    }
 }
 
-.active {
-  background-color: #EDEDED;
-  border-radius: 5px;
-  width: 186px;
-  height: 35px;
-}
 
 .menuEntry {
   width: 186px;
   height: 35px;
   margin: 10px 0px;
   padding-left: 4px;
-  &:hover {
+  &:hover{
     background-color: #EDEDED;
     border-radius: 5px;
+    & a label{
+      color: black;
+    }
   }
   > a {
     display: flex;
@@ -168,7 +165,6 @@ export default {
     flex-direction: row;
     padding-top: 7px;
     text-decoration: none;
-    color: black;
     cursor: pointer;
     > img {
       width: 20px;
@@ -178,8 +174,20 @@ export default {
     > label {
       margin: 0px 10px;
       font-size: 12px;
+      color: #777776;
       cursor: pointer;
     }
+  }
+}
+
+.active {
+  background-color: #EDEDED;
+  border-radius: 5px;
+  width: 186px;
+  height: 35px;
+  color: #333333;
+  & a label {
+    color: black;
   }
 }
 
