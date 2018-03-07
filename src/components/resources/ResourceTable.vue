@@ -45,12 +45,12 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
-    <paginate :initial-page="0" :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+    <paginate :initial-page="0" :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
       <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
-                  <h5 class="modal-title" id="chooseFunctionModalTitle">Select Profile</h5>
+                  <label class="modalTitle" id="chooseFunctionModalTitle">Select Profile</label>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -61,9 +61,8 @@
                   <option :value="profile.id" v-for="profile in profiles">{{ profile.name }}</option>
                 </select>
               </div>
-              <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Save changes</button>
+              <div class="modal-footer buttonFooter">
+                 <button type="button" class="btn runProfileButton" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Run Profile</button>
               </div>
             </div>
           </div>
@@ -331,4 +330,34 @@ export default {
 .numberOfSelected {
   width: 83px;
 }
+
+
+.modalTitle {
+  font-weight: bold;
+}
+
+.buttonFooter {
+  box-pack:start; 
+  display: block;
+}
+
+.runProfileButton {
+  background-color: $buttonColour; 
+  border: none;
+  font-size: 12px;
+  padding: 13px;
+  border-radius: 5px;
+  color: $buttonText;
+  box-shadow: 0px 0px 5px black;
+  display: inline-block;
+  font-weight: bold;
+  &:active {
+    box-shadow: 0px 0px 0px black;
+  }
+  &:focus {
+    outline:0;
+    border: none;
+  }
+} 
+
 </style>
