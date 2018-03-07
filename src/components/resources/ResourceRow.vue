@@ -154,7 +154,6 @@ export default {
 .center {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .resourceAction {

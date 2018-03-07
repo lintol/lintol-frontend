@@ -3,8 +3,8 @@
     <div class="reportRow">
       <div class="reportMainColumn center">
         <div class="rightSeparator">
-          <label class="columnHeader">Report {{ report.profile }}</label>
-          <p>{{ report.name }}</p>
+          <label class="profileName columnHeader">Report {{ report.profile }}</label>
+          <p class="reportName">{{ report.name }}</p>
         </div>
       </div>
       <div class="reportColumn center">
@@ -12,7 +12,7 @@
         <label v-if="report.createdAt">{{ convertDate(report.createdAt.date) }}</label>
       </div>
       <div class="reportColumn center">
-        <p id="creator" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
+        <p id="creator" class="user" ><img class="profilePicture" src="../../assets/images/profile.png"> {{ report.user }}</p>
       </div>
       <div class="reportColumn ragDisplay">
         <div>
@@ -107,7 +107,7 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  min-height: 100px;
+  max-height: 70px;
   padding: 0px 10px;
 }
  
@@ -153,6 +153,18 @@ div .reportColumn p {
 
 .ragNumber {
   vertical-align: top;
+  font-size: 12px;
+}
+
+.profileName {
+  font-size: 10px;
+}
+
+.reportName {
+  font-size: 10px;
+}
+
+.user {
   font-size: 12px;
 }
 
