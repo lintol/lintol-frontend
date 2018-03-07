@@ -1,36 +1,36 @@
 <template>
   <div id="resources-row" class="shadedRow">
     <div class="resourceRow">
-      <div class="resourceColumn selectedResource center">
-         <div>
-         <div class="blackCheckbox">
+      <div class="selectedResource center">
+         <label class="container">
            <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
-           <label :for="'active' + index"></label>
-         </div>
-         </div>
+           <span :for="'active' + index" class="checkmark"></span>
+         </label>
       </div>
-      <div class="resourceColumn resourceMainColumn resourceNameValue center">
+      <div class="filename center">
         <div class="rightSeparator ">
-          <label id="resourceName" class="resourceName"> {{ resource.filename }} </label>
+          <label id="resourceName" class="filenameLabel"> {{ resource.filename }} </label>
         </div>
       </div>
-      <div class="resourceColumn center fileType">
-        <p class="fileType">{{ resource.filetype }}</p>
+      <div class="wrapper type-source-dataAdded">
+        <div class="center fileType ">
+          <p>{{ resource.filetype }}</p>
+        </div>
+        <div class="center source">
+          <p>{{ resource.source }}</p>
+        </div>
+        <div class="center dateAdded">
+          <p>{{ convertDate(resource.created_at) }}</p>
+        </div>
       </div>
-      <div class="resourceColumn center source">
-        <p class="source">{{ resource.stored }}</p>
-      </div>
-      <div class="resourceColumn center dateAdded">
-        <p>{{ convertDate(resource.created_at) }}</p>
-      </div>
-      <div class="resourceColumn center owner">
+      <div class="center owner">
         <img class="profilePicture" src="../../assets/images/profile.png"></img>
         <label>{{ resource.owner }}</label>
       </div>
-      <div class="resourceColumn center status">
-        <label id="resourceStatus" class="status2" :class="statusColor">{{ resource.status }}</label>
+      <div class="center status">
+        <label id="resourceStatus" class="statusLabel" :class="statusColor">{{ resource.status }}</label>
       </div>
-      <div class="resourceColumn verticalCenterItems actionButton">
+      <div class="verticalCenterItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
       </div>
     </div>
@@ -117,10 +117,6 @@ export default {
 @import '~@/assets/scss/application.scss';
 @import './table.scss';
 
-.fileType {
-  text-transform: uppercase;
-}
-
 .newStatus {
   background-color: blue;
 }
@@ -145,29 +141,20 @@ export default {
   background-color: #FF4E50;
 }
 
-.source {
-  text-transform: uppercase;
-}
-
-.status2 {
+.statusLabel {
   color: white;
   border-radius: 40px;
   padding: 5px;
   font-size: 10px;
-  width: 100px;
   text-transform: capitalize;
   font-weight: bold;
-   text-align: center;
+  text-align: center;
 }
  
 .center {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.resourceMainColumn {
-  padding: 10px;
 }
 
 .resourceAction {
@@ -180,18 +167,12 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
   max-height: 40px;
+  margin-left: 10px;
 }
  
 .verticalAlign {
   vertical-align: middle;
-}
-
-div .resourceColumn p {
-  margin-top: 4px;
-  color: grey;
-  font-size: 11px;
 }
 
 .viewResourceButton {
@@ -207,9 +188,8 @@ div .resourceColumn p {
   }
 }
 
-.resourceName {
+.filenameLabel {
   font-size: 12px;
-  width: 150px;
   font-weight: bold;
   color: #333333;
 }
@@ -218,4 +198,78 @@ div .resourceColumn p {
   font-size: 12px;
   color: #777776;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 12px;
+    width: 12px;
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: black;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 4px;
+    top: 0px;
+    width: 3px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 </style>

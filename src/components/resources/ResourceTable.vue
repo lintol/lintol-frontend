@@ -5,24 +5,25 @@
       The list of resources that have been validated by Lintol</p>
     </p>
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
-    <p class="subHeading">Your Resources</p>
+    <label class="subHeading">Your Resources</label>
+    <!--<label>(36 Archived)</label>-->
     <div>
-        <select id="typeFilter" v-model="selectedType" >
+        <select id="typeFilter" class="filter"  v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
           <option v-for="type in filterByTypeOptions">{{ type }}</option>
         </select>
-        <select id="sourceFilter" v-model="selectedSource" >
+        <select id="sourceFilter" class="filter"  v-model="selectedSource" >
           <option disabled value="" >Filter by Source</option>
           <option v-for="source in filterBySourceOptions">{{ source }}</option>
         </select>
-        <select id="dateFilter" v-model="selectedDate" >
+        <select id="dateFilter" class="filter" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
           <option v-for="date in dateList">{{ date }}</option>
         </select>
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
         <div style="float: right;">
         <div class="actionContainer">
-          <label id="numberOfSelectedResources" class="rightSeparator">{{ selectedResources.length }} Selected </label>
+          <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
             <option value="runProfile">Run Profile</option>
@@ -33,7 +34,7 @@
         </div>
     </div>
     <div class="headerContainer greySeparator">
-      <label class="resourceName" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
+      <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
       <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
       <label class="source":class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('source')">Source</label>
       <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
@@ -45,14 +46,37 @@
       <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
     <paginate :initial-page="0" :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+      <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="chooseFunctionModalTitle">Select Profile</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <select v-model="selectedProfileId">
+                  <option disabled selected value="">[Choose Profile]</option>
+                  <option :value="profile.id" v-for="profile in profiles">{{ profile.name }}</option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </template>
 
 <script>
-import { UPDATE_DATA_RESOURCES_FILTERS, UPDATE_DATA_RESOURCES_PAGE, LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE } from '@/state/action-types';
+import { UPDATE_DATA_RESOURCES_FILTERS, UPDATE_DATA_RESOURCES_PAGE, LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE, STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES, LOAD_PROFILES } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
 import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
+import $ from 'jquery';
 
 export default {
   name: 'ResourceTable',
@@ -65,6 +89,7 @@ export default {
       search: '',
       action: '',
       selectedResources: [],
+      selectedProfileId: null,
       sortBy: '',
       ascDesc: 'asc',
       clearSelected: false
@@ -80,9 +105,16 @@ export default {
       this.revertAscDesc();
       console.log('Sort By:' + sortBy + ' ascDesc:' + this.ascDesc);
     },
+    matchDataResourcesToProfile () {
+      this.$store.dispatch(STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES, {
+        profileId: this.selectedProfileId,
+        resources: this.selectedResources
+      });
+    },
     resourceAction: function (e) {
       if (e.target.value === 'runProfile') {
         console.log('runProfile');
+        $('#chooseFunctionModal').modal('show');
       }
       if (e.target.value === 'archive') {
         var archivedResource = this.selectedResources[0];
@@ -131,6 +163,9 @@ export default {
     }
   },
   computed: {
+    profiles: function () {
+      return this.$store.getters.profiles;
+    },
     resources: function () {
       return this.$store.getters.dataResources;
     },
@@ -197,6 +232,7 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch(LOAD_DATA_RESOURCES, 1);
+    this.$store.dispatch(LOAD_PROFILES);
   },
   watch: {
     filters: function (filters) {
@@ -242,6 +278,7 @@ export default {
   border-radius: 4px;
   background-color: #333333;
   font-size: 10px;
+  width: 213px;
 }
 
 .actionDropDown {
@@ -251,7 +288,6 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
   > label {
     font-weight: bold;
   }
@@ -259,8 +295,7 @@ export default {
 
 .greySeparator {
   border-bottom: 1px solid #EAE5E5;
-  padding-bottom: 12px;
-  margin: 10px;
+  margin: 10px 10px;
 }
 
 .rightSeparator {
@@ -270,12 +305,13 @@ export default {
 }
 
 .searchBox {
+  max-height: 28px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   background: url(../../assets/images/search.svg) no-repeat scroll 13px 13px;
   background-color: white;
-  background-position: right; 
+  background-position: 95% 50%;
   background-repeat: no-repeat;
   border-color: #979797;
   &::placeholder {
@@ -286,5 +322,13 @@ export default {
 .subHeading {
   font-size: 18px;
   font-weight: bold;
+}
+
+.filter {
+  height: 28px;;
+}
+
+.numberOfSelected {
+  width: 83px;
 }
 </style>

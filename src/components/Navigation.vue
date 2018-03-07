@@ -4,7 +4,7 @@
        <router-link id="home" :to="{name: 'Application' }">
          <img class="logo center" src="../assets/images/logo.svg" title="Home">
        </router-link>
-       <router-link id="resourcesButton" class="addResourceButton" :to="{name: 'addResource' }">
+       <router-link id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }">
            <img src="../assets/images/plus-icon.svg" />
            <label>Add new Resource/ File</label>
        </router-link>
@@ -173,7 +173,7 @@ export default {
       height: 20px;
     }
     > label {
-      margin-left: 10px;
+      margin: auto 10px;
       cursor: pointer;
       font-size: 12px;
     }

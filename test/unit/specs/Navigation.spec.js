@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import router from '@/router';
 import VueRouter from 'vue-router';
 import Navigation from '@/components/Navigation';
@@ -7,8 +8,11 @@ describe('Navigation.vue', () => {
   // Nice little helper to return our component within a div
   const getComponent = () => {
     const Constructor = Vue.extend(Navigation);
+    let store = new Vuex.Store({
+    });
 
     return new Constructor({
+      store,
       router
     }).$mount();
   };
@@ -26,16 +30,10 @@ describe('Navigation.vue', () => {
       expect(defaultData.currentView).to.equal('profileTable');
     });
 
-    it('should have a default "version" set to "0.5"', () => {
+    it('should have a default "version" set to "0.6"', () => {
       const defaultData = Navigation.data();
 
-      expect(defaultData.version).to.equal(0.5);
-    });
-
-    it('should have a default "user" set to "Bob Barker"', () => {
-      const defaultData = Navigation.data();
-
-      expect(defaultData.user).to.equal('Bob Barker');
+      expect(defaultData.version).to.equal(0.6);
     });
   });
 
@@ -70,12 +68,6 @@ describe('Navigation.vue', () => {
       const component = getComponent();
 
       expect(component.$el.querySelector('label').length);
-    });
-
-    it('should have an element with text set to "Bob Barker"', () => {
-      const component = getComponent();
-
-      expect(component.$el.textContent).to.contain('Bob Barker');
     });
 
     it('should have a "nav" element', () => {
