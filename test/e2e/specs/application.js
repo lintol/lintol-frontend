@@ -1,5 +1,5 @@
 // http://nightwatchjs.org/guide#usage
-/* const visiblePauseTime = 1000;
+const visiblePauseTime = 1000;
 
 module.exports = {
   'website up Test': function (browser) {
@@ -95,4 +95,4 @@ module.exports = {
       .assert.urlEquals('http://localhost:8080/#/profiles/profiletable')
       .end()
   }
-} */
+} 
