@@ -305,15 +305,15 @@ export default {
 }
 
 .searchBox {
+  max-height: 28px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   background: url(../../assets/images/search.svg) no-repeat scroll 13px 13px;
   background-color: white;
-  background-position: right; 
+  background-position: 95% 50%;
   background-repeat: no-repeat;
   border-color: #979797;
-  font-size: 11.5px;
   &::placeholder {
     color: #9B9B9B;
   }
@@ -325,7 +325,7 @@ export default {
 }
 
 .filter {
-  max-width: 250px;
+  height: 28px;;
 }
 
 .numberOfSelected {
