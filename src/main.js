@@ -8,8 +8,9 @@ import VeeValidate from 'vee-validate';
 import store from './state/store';
 import Vue2Leaflet from 'vue2-leaflet';
 import lodash from 'lodash';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
 import Paginate from 'vuejs-paginate';
 import VueSelect from 'vue-select';
 

@@ -94,6 +94,26 @@ const store = new Vuex.Store({
     filtersDataResources: {}
   },
   actions: {
+    [a.STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES] ({ commit, state, dispatch }, { profileId, resources }) {
+      var dataResourceUrls = resources.map(function (resource) {
+        console.log(resource.url);
+        return resource.url;
+      });
+      var settingMap = {
+        dataProfileId: profileId,
+        dataResourceUrls: dataResourceUrls
+      };
+
+      var url = apiPrefix + '/dataResources/settings';
+
+      axios.post(url, settingMap).then((response) => {
+        commit(m.SET_DATA_RESOURCES_PAGE, 1);
+        commit(m.RESET_DATA_RESOURCES);
+        dispatch(a.LOAD_DATA_RESOURCES, 1);
+      }, error => {
+        console.log('Couldnt get data resources for account.:' + error);
+      });
+    },
     [a.UPDATE_DATA_RESOURCES_FILTERS] ({ commit, state, dispatch }, filters) {
       if (filters !== state.filtersDataResources) {
         commit(m.SET_DATA_RESOURCES_FILTERS, filters);
