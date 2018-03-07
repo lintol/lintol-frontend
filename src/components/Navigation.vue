@@ -71,7 +71,7 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
-      version: 0.6
+      version: 0.7
     };
   },
   computed: {
@@ -156,26 +156,29 @@ export default {
 .menuEntry {
   width: 186px;
   height: 35px;
+  margin: 10px 0px;
+  padding-left: 4px;
   &:hover {
     background-color: #EDEDED;
     border-radius: 5px;
   }
   > a {
     display: flex;
+    height: 35px;
     flex-direction: row;
-    align-items: center;
-    margin: 10px 10px;
     padding-top: 7px;
     text-decoration: none;
     color: black;
+    cursor: pointer;
     > img {
       width: 20px;
       height: 20px;
+      cursor: pointer;
     }
     > label {
-      margin: auto 10px;
-      cursor: pointer;
+      margin: 0px 10px;
       font-size: 12px;
+      cursor: pointer;
     }
   }
 }
