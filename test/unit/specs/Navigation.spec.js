@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import router from '@/router';
 import VueRouter from 'vue-router';
 import Navigation from '@/components/Navigation';
@@ -7,8 +8,11 @@ describe('Navigation.vue', () => {
   // Nice little helper to return our component within a div
   const getComponent = () => {
     const Constructor = Vue.extend(Navigation);
+    let store = new Vuex.Store({
+    });
 
     return new Constructor({
+      store,
       router
     }).$mount();
   };
