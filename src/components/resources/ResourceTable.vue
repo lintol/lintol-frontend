@@ -5,17 +5,18 @@
       The list of resources that have been validated by Lintol</p>
     </p>
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
-    <p class="subHeading">Your Resources</p>
+    <label class="subHeading">Your Resources</label>
+    <label>(36 Archived)</label>
     <div>
-        <select id="typeFilter" v-model="selectedType" >
+        <select id="typeFilter" class="filter"  v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
           <option v-for="type in filterByTypeOptions">{{ type }}</option>
         </select>
-        <select id="sourceFilter" v-model="selectedSource" >
+        <select id="sourceFilter" class="filter"  v-model="selectedSource" >
           <option disabled value="" >Filter by Source</option>
           <option v-for="source in filterBySourceOptions">{{ source }}</option>
         </select>
-        <select id="dateFilter" v-model="selectedDate" >
+        <select id="dateFilter" class="filter" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
           <option v-for="date in dateList">{{ date }}</option>
         </select>
@@ -277,6 +278,7 @@ export default {
   background-position: right; 
   background-repeat: no-repeat;
   border-color: #979797;
+  font-size: 11.5px;
   &::placeholder {
     color: #9B9B9B;
   }
@@ -285,5 +287,9 @@ export default {
 .subHeading {
   font-size: 18px;
   font-weight: bold;
+}
+
+.filter {
+  font-size: 10px;
 }
 </style>

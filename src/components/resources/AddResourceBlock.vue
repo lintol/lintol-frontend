@@ -26,8 +26,8 @@
   </div>
 </div>
       <div class="resourceColumn">
-        <div >
-          <label id="addFromSource" class="addFromURL">Add From Source</label>
+        <div class="dashBorder">
+          <label id="addFromSource" class="addFromSource">Add From Source</label>
           <label class="externalResource dropbox">Dropbox</label>
           <label class="externalResource google">Google</label>
           <label class="externalResource sharefile">ShareFile</label>
@@ -90,7 +90,6 @@ export default {
    margin: 20px 0px;
 }
 
-
 .uploadYourFiles {
   background: url(../../assets/images/upload-icon.svg) no-repeat scroll 14px 14px;
   border: dashed 1px black;
@@ -115,6 +114,10 @@ export default {
   &:hover {
     box-shadow: 0px 0px 4px  #888888;
   }
+}
+
+.addFromSource {
+  font-weight: bold; 
 }
 
 .externalResource {
@@ -146,5 +149,8 @@ export default {
   background-color: #76C54C;
 }
 
-
+.dashBorder {
+  border: dashed 1px black;
+  padding: 8px 20px;
+}
 </style>
