@@ -123,7 +123,8 @@ export default {
 }
 
 .inputName {
-  min-height: 40px;
+  max-height: 40px;
+  font-size: 14px;
 }
 
 .inputNameBorder {
@@ -133,6 +134,7 @@ export default {
 .inputDescription {
   margin-top: 20px;
   padding-top: 10px;
+  font-size: 14px;
 }
  
 .formItem {

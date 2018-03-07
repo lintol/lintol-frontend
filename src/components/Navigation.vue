@@ -173,7 +173,7 @@ export default {
       height: 20px;
     }
     > label {
-      margin-left: 10px;
+      margin: auto 10px;
       cursor: pointer;
       font-size: 12px;
     }

@@ -66,6 +66,7 @@ export default {
 
 .processorSearch {
   width: 50%;
+  height: 40px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
