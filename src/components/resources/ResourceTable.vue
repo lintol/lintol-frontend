@@ -6,7 +6,7 @@
     </p>
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
     <label class="subHeading">Your Resources</label>
-    <label>(36 Archived)</label>
+    <!--<label>(36 Archived)</label>-->
     <div>
         <select id="typeFilter" class="filter"  v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
@@ -22,9 +22,8 @@
         </select>
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
         <div style="float: right;">
-        <label>Resources {{ filteredResources.length }}</label>
         <div class="actionContainer">
-          <label id="numberOfSelectedResources" class="rightSeparator">{{ selectedResources.length }} Selected </label>
+          <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
             <option value="runProfile">Run Profile</option>
@@ -244,6 +243,7 @@ export default {
   border-radius: 4px;
   background-color: #333333;
   font-size: 10px;
+  width: 213px;
 }
 
 .actionDropDown {
@@ -290,6 +290,10 @@ export default {
 }
 
 .filter {
-  font-size: 10px;
+  max-width: 250px;
+}
+
+.numberOfSelected {
+  width: 83px;
 }
 </style>

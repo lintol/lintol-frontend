@@ -41,7 +41,7 @@ export default {
 }
 
 .menu {
-  width: 15%;
+  width: 204px;;
   height: 100%;
 }
 

@@ -1,40 +1,37 @@
 <template>
     <div class="sourceRow">
       <div class="resourceColumn">
-        <label id="uploadYourFiles" class="uploadYourFiles">Upload your Files</label>
+        <label id="uploadYourFiles" class="uploadYourFiles dashedBox">Upload your Files</label>
       </div>
       <div class="resourceColumn">
-        <label id="addFromUrl" class="addFromURL" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>
+        <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>
       </div>
       <div class="modal fade" id="addUrlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add Url</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                <textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> 
-              </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="addResource">Save changes</button>
-          </div>
-    </div>
+           <div class="modal-content">
+             <div class="modal-header">
+                <label class="modalTitle" id="exampleModalLabel">Add from URL</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+           </div>
+           <div class="modal-body">
+              <textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> 
+           </div>
+           <div class="modal-footer buttonFooter">
+             <button type="button" class="btn addUrlButton" data-dismiss="modal"  @click="addResource">Add URLs to Lintol</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="externalBox dashedBox">
+       <label id="addFromSource" class="addFromSource">Add From Source</label>
+       <label class="externalResource dropbox">Dropbox</label>
+       <label class="externalResource google">Google</label>
+       <label class="externalResource sharefile">ShareFile</label>
+       <label class="newResource">Link to New Source</label>
+     </div>
   </div>
-</div>
-      <div class="resourceColumn">
-        <div class="dashBorder">
-          <label id="addFromSource" class="addFromSource">Add From Source</label>
-          <label class="externalResource dropbox">Dropbox</label>
-          <label class="externalResource google">Google</label>
-          <label class="externalResource sharefile">ShareFile</label>
-          <label class="newResource">Link to New Source</label>
-        </div>
-      </div>
-    </div>
 </template>
 
 <script>
@@ -92,7 +89,6 @@ export default {
 
 .uploadYourFiles {
   background: url(../../assets/images/upload-icon.svg) no-repeat scroll 14px 14px;
-  border: dashed 1px black;
   font-size: 14px;
   padding: 14px 14px 14px 60px;
   margin: 0px 5px;
@@ -104,7 +100,7 @@ export default {
 .addFromURL {
   background: url(../../assets/images/add-url.svg) no-repeat scroll 14px 14px;
   position: relative;
-  border: dashed 1px black;
+  background-color: #FAFAFA; 
   font-size: 14px;
   padding: 14px 14px 14px 50px;
   margin: 0px 5px;
@@ -116,8 +112,19 @@ export default {
   }
 }
 
+.dashedBox {
+  background-color: #FAFAFA; 
+  border: dashed 1px #979797;
+  border-radius: 4px;
+}
+
 .addFromSource {
   font-weight: bold; 
+  font-size: 14px;
+}
+
+.externalBox {
+  padding: 12px 16px 0px 16px;  
 }
 
 .externalResource {
@@ -149,8 +156,31 @@ export default {
   background-color: #76C54C;
 }
 
-.dashBorder {
-  border: dashed 1px black;
-  padding: 8px 20px;
+.modalTitle {
+  font-weight: bold;
 }
+
+.buttonFooter {
+  box-pack:start; 
+  display: block;
+}
+
+.addUrlButton {
+  background-color: $buttonColour; 
+  border: none;
+  font-size: 12px;
+  padding: 13px;
+  border-radius: 5px;
+  color: $buttonText;
+  box-shadow: 0px 0px 5px black;
+  display: inline-block;
+  font-weight: bold;
+  &:active {
+    box-shadow: 0px 0px 0px black;
+  }
+  &:focus {
+    outline:0;
+    border: none;
+  }
+} 
 </style>

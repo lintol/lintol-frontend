@@ -229,9 +229,12 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    height: 15px;
-    width: 15px;
+    height: 12px;
+    width: 12px;
     background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
 }
 
 /* On mouse-over, add a grey background color */
@@ -259,11 +262,11 @@ export default {
 /* Style the checkmark/indicator */
 .container .checkmark:after {
     left: 4px;
-    top: 1px;
-    width: 5px;
-    height: 10px;
+    top: 0px;
+    width: 3px;
+    height: 8px;
     border: solid white;
-    border-width: 0 2px 2px 0;
+    border-width: 0 1px 1px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
