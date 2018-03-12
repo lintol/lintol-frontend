@@ -2,26 +2,28 @@
   <div id="resourceTable" v-if="resources">
     <label class="pageTitle">{{ title }}</label>
     <p class="instructions">
-      The list of resources that have been validated by Lintol</p>
+      The list of resources that are available for validation by Lintol</p>
     </p>
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
     <label class="subHeading">Your Resources</label>
     <!--<label>(36 Archived)</label>-->
-    <div>
-        <select id="typeFilter" class="filter"  v-model="selectedType" >
+    <div class="filterContainer">
+      <div class="btn-group">
+        <select id="typeFilter" class="filter custom-select"  v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
-          <option v-for="type in filterByTypeOptions">{{ type }}</option>
+          <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
         </select>
-        <select id="sourceFilter" class="filter"  v-model="selectedSource" >
+        <select id="sourceFilter" class="filter custom-select"  v-model="selectedSource" >
           <option disabled value="" >Filter by Source</option>
-          <option v-for="source in filterBySourceOptions">{{ source }}</option>
+          <option :value="source" v-for="(desc, source) in filterBySourceOptions">{{ desc }}</option>
         </select>
-        <select id="dateFilter" class="filter" v-model="selectedDate" >
+        <select id="dateFilter" class="filter custom-select" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
-          <option v-for="date in dateList">{{ date }}</option>
+          <option v-for="date in dateList" value="date[0]">{{ date[1] }}</option>
         </select>
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
-        <div style="float: right;">
+      </div>
+      <div style="float: right;">
         <div class="actionContainer">
           <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
@@ -31,7 +33,7 @@
             <option value="delete" >Delete</option>
           </select>
         </div>
-        </div>
+      </div>
     </div>
     <div class="headerContainer greySeparator">
       <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
@@ -45,7 +47,7 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
-    <paginate :initial-page="0" :page-count="2" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+    <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
       <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -71,10 +73,21 @@
 </template>
 
 <script>
-import { UPDATE_DATA_RESOURCES_FILTERS, UPDATE_DATA_RESOURCES_PAGE, LOAD_DATA_RESOURCES, SAVE_DATA_RESOURCE, DELETE_DATA_RESOURCE, STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES, LOAD_PROFILES } from '@/state/action-types';
+import {
+  UPDATE_DATA_RESOURCES_FILTERS,
+  UPDATE_DATA_RESOURCES_PAGE,
+  LOAD_DATA_RESOURCES,
+  SAVE_DATA_RESOURCE,
+  DELETE_DATA_RESOURCE,
+  STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES,
+  LOAD_PROFILES,
+  LOAD_LOGGED_IN_USER,
+  UPDATE_DATA_RESOURCES_SORT,
+  UPDATE_DATA_RESOURCES_ORDER
+} from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
-import { convertDate, filter, selectedFiltered } from '@/components/common/date.js';
+import { convertDate, selectedFiltered } from '@/components/common/date.js';
 import $ from 'jquery';
 
 export default {
@@ -97,12 +110,11 @@ export default {
   methods: {
     convertDate: convertDate,
     addResourceAction: function (resourceType) {
-      this.$store.dispatch(LOAD_DATA_RESOURCES, 1);
+      this.$store.dispatch(LOAD_DATA_RESOURCES, { reset: true, page: 1 });
     },
     sort: function (sortBy) {
       this.sortBy = sortBy;
       this.revertAscDesc();
-      console.log('Sort By:' + sortBy + ' ascDesc:' + this.ascDesc);
     },
     matchDataResourcesToProfile () {
       this.$store.dispatch(STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES, {
@@ -112,7 +124,6 @@ export default {
     },
     resourceAction: function (e) {
       if (e.target.value === 'runProfile') {
-        console.log('runProfile');
         $('#chooseFunctionModal').modal('show');
       }
       if (e.target.value === 'archive') {
@@ -127,10 +138,8 @@ export default {
           var deleteResource = this.selectedResources[0];
           this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
             var index = this.selectedResources.indexOf(deleteResource);
-            console.log('selected index:' + index);
             this.selectedResources.splice(index, 1);
             index = this.resources.indexOf(deleteResource);
-            console.log('resource index:' + index);
             this.filteredResources.splice(index, 1);
           }).catch((error) => {
             console.log('Error deleting resource:' + error);
@@ -142,7 +151,6 @@ export default {
     },
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);
-      console.log('Index found:' + index);
       if (index === -1) {
         this.selectedResources.push(selectedResource);
       } else {
@@ -165,11 +173,14 @@ export default {
     profiles: function () {
       return this.$store.getters.profiles;
     },
+    resourcePages: function () {
+      return this.$store.getters.dataResourcePageCount;
+    },
     resources: function () {
       return this.$store.getters.dataResources;
     },
-    orderedResources: function () {
-      return this.$lodash.orderBy(this.resources, this.sortBy, this.ascDesc);
+    loggedInUser: function () {
+      return this.$store.state.loggedInUser;
     },
     filters: function () {
       var filters = {};
@@ -178,7 +189,7 @@ export default {
         filters['created_at'] = this.selectedDate;
       }
 
-      if (this.selectedDate) {
+      if (this.selectedSource) {
         filters['source'] = this.selectedSource;
       }
 
@@ -193,10 +204,9 @@ export default {
       return filters;
     },
     filteredResources: function () {
-      var result = this.orderedResources;
+      var result = this.resources;
 
       result = selectedFiltered(result, this.selectedDate, 'created_at');
-      result = selectedFiltered(result, this.selectedSource, 'source');
       result = selectedFiltered(result, this.selectedType, 'filetype');
 
       if (this.search) {
@@ -207,7 +217,7 @@ export default {
           });
         } catch (e) {
           console.log(e);
-          return this.orderedResources;
+          return this.resources;
         }
       }
 
@@ -215,25 +225,37 @@ export default {
     },
     dateList: function () {
       var dateList = [];
-      this.orderedResources.filter((event) => {
-        if (dateList.indexOf(convertDate(event.created_at)) === -1) {
-          dateList.push(convertDate(event.created_at));
+      var datePairs = [];
+      this.resources.filter((event) => {
+        if (dateList.indexOf(event.created_at) === -1) {
+          datePairs.push([event.created_at, convertDate(event.created_at)]);
+          dateList.push(event.created_at);
         }
       });
-      return dateList;
+      return datePairs;
     },
     filterBySourceOptions: function () {
-      return filter(this.resources, 'source');
+      if (this.loggedInUser && this.loggedInUser.driver) {
+        return {'': '(any)', '_local': 'via Lintol', '_remote': this.loggedInUser.driver.toUpperCase()};
+      }
+      return {'': '(any)'};
     },
     filterByTypeOptions: function () {
-      return filter(this.resources, 'filetype');
+      return {'': '(any)', 'geojson': 'GeoJSON', 'csv': 'CSV'};
     }
   },
   mounted: function () {
-    this.$store.dispatch(LOAD_DATA_RESOURCES, 1);
+    this.$store.dispatch(LOAD_DATA_RESOURCES, { reset: true, page: 1 });
     this.$store.dispatch(LOAD_PROFILES);
+    this.$store.dispatch(LOAD_LOGGED_IN_USER);
   },
   watch: {
+    ascDesc: function (ascDesc) {
+      this.$store.dispatch(UPDATE_DATA_RESOURCES_ORDER, ascDesc);
+    },
+    sortBy: function (sortBy) {
+      this.$store.dispatch(UPDATE_DATA_RESOURCES_SORT, sortBy);
+    },
     filters: function (filters) {
       this.$store.dispatch(UPDATE_DATA_RESOURCES_FILTERS, filters);
     }
@@ -245,7 +267,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
 @import './table.scss';
@@ -260,13 +281,13 @@ export default {
  
 .arrowDown:after {
   content: '\2193';
-  font-size: 25px;
+  font-size: 12px;
   font-weight: $bold;
 }
 
 .arrowUp:after {
   content: '\2191';
-  font-size: 25px;
+  font-size: 12px;
   font-weight: $bold;
 }
 
@@ -296,7 +317,12 @@ export default {
 
 .greySeparator {
   border-bottom: 1px solid #EAE5E5;
-  margin: 10px 10px;
+  margin: 15px 10px 25px 10px;
+}
+
+.filterContainer {
+  padding-top: 5px;
+  padding-bottom: 20px;
 }
 
 .rightSeparator {
@@ -316,7 +342,7 @@ export default {
   background-color: white;
   background-position: 95% 50%;
   background-repeat: no-repeat;
-  border-color: #979797;
+  border-color: #dedede;
   &::placeholder {
     color: #9B9B9B;
   }
@@ -329,6 +355,9 @@ export default {
 
 .filter {
   height: 28px;;
+  &.custom-select {
+    margin: auto 10px 10px auto;
+  }
 }
 
 .numberOfSelected {
@@ -362,6 +391,6 @@ export default {
     outline:0;
     border: none;
   }
-} 
+}
 
 </style>

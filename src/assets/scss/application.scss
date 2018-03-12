@@ -15,11 +15,9 @@ $orange: #F1592A;
 $greyFont: #BFBFBF;
 
 select {
-  background: white;
   border: 1px solid #777776;;
   color: #777776;;
   border-radius: 4px;
-  padding: 4px;
   font-size: 0.625em;
 }
 
@@ -225,4 +223,8 @@ a {
 }
 .instructions {
    font-size: 0.75em;
+}
+
+.pagination li {
+  padding: 10px;
 }

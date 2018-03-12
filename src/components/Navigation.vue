@@ -59,7 +59,7 @@
       </div>
       <div class="activityBanner" v-if="user">
           <div class="loggedInUser">{{ user.email }}</div>
-          <div class="loggedInUserServer">{{ user.driverServer }}</div>
+          <div class="loggedInUserServer" v-if="user.driver">via <a :href="user.driverServer">{{ user.driver.toUpperCase() }}</a></div>
       </div>
   </div>
   </div>
@@ -104,9 +104,13 @@ export default {
   padding: 10px;
 }
 
+.loggedInUser {
+  font-size: 80%;
+}
+
 .loggedInUserServer {
   font-weight: bold;
-  font-size: 80%;
+  font-size: 60%;
 }
 
 .version {
