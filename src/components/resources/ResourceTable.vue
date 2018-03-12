@@ -276,18 +276,19 @@ export default {
   color: white;
   border: none;
   outline: none;
+  font-size: 10px;
 }
  
 .arrowDown:after {
   content: '\2193';
   font-size: 12px;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .arrowUp:after {
   content: '\2191';
   font-size: 12px;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .actionContainer {
@@ -297,7 +298,7 @@ export default {
   float: right;
   border-radius: 4px;
   background-color: #333333;
-  font-size: 10px;
+  font-size: 0.625em;
   width: 213px;
 }
 
@@ -309,8 +310,8 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap;
   > label {
-    font-weight: bold;
-    font-size: 12px;
+    font-weight: $bold;
+    font-size: 0.75em;
   }
 }
 
@@ -333,8 +334,10 @@ export default {
 .searchBox {
   max-height: 28px;
   box-sizing: border-box;
-  border: 2px solid #dadada;
-  border-radius: 5px;
+  border: 2px solid #ccc;
+  font-size: 13px;
+  padding-bottom: 3px;
+  border-radius: 4px;
   background: url(../../assets/images/search.svg) no-repeat scroll 13px 13px;
   background-color: white;
   background-position: 95% 50%;
@@ -346,8 +349,8 @@ export default {
 }
 
 .subHeading {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 1.125em;
+  font-weight: $bold;
 }
 
 .filter {
@@ -363,7 +366,7 @@ export default {
 
 
 .modalTitle {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .buttonFooter {
@@ -374,13 +377,13 @@ export default {
 .runProfileButton {
   background-color: $buttonColour; 
   border: none;
-  font-size: 12px;
+  font-size: 0.75em;
   padding: 13px;
   border-radius: 5px;
   color: $buttonText;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
-  font-weight: bold;
+  font-weight: $bold;
   &:active {
     box-shadow: 0px 0px 0px black;
   }

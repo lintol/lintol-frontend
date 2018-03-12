@@ -65,20 +65,22 @@ export default {
 @import '~@/assets/scss/application.scss';
 
 .processorSearch {
-  width: 50%;
-  height: 40px;
+  width: 30%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
-  background: url(../../assets/images/search.svg) no-repeat scroll 14px 14px;
+  font-size: 0.8125em;
+  background: url(../../assets/images/search.svg) no-repeat scroll 0.875em 0.875em;
   background-color: white;
-  background-position: 10px 10px; 
+  background-position: 0.3125em 0.9375em; 
   background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
+  padding-left: 1.6625em; 
+  padding-top: 0.625em; 
+  padding-bottom: 0.625em; 
   border-color: #979797;
   &::placeholder {
     color: #9B9B9B;
+    font-size: 0.8125em;
   }
 }
 
@@ -86,5 +88,6 @@ export default {
  color: $greyFont;
  float: right;
  font-weight: bold;
+ font-size: 0.875em;
 }
 </style>

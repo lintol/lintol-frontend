@@ -2,7 +2,10 @@
   <div id="profileTable">
     <transition name="component-fade" mode="in-out">
     <div>
-      <button id="addNewProfileButton" class="addButton" @click="addProfile">Add new Data Profile <label>&#10133;</label></button>
+      <button id="addNewProfileButton" class="addButton" @click="addProfile">
+        Add new Data Profile
+        <img src="~@/assets/images/white-plus-icon.svg" />
+      </button>
       <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
         A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.

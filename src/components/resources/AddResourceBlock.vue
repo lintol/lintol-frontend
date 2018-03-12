@@ -1,9 +1,9 @@
 <template>
     <div class="sourceRow">
-      <div class="resourceColumn">
-        <label id="uploadYourFiles" class="uploadYourFiles dashedBox">Upload your Files</label>
+      <div> 
+        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Not availble yet">Upload your Files</label>
       </div>
-      <div class="resourceColumn">
+      <div>
         <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>
       </div>
       <div class="modal fade" id="addUrlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -24,13 +24,13 @@
          </div>
        </div>
      </div>
-     <div class="externalBox dashedBox">
+     <!--<div class="externalBox dashedBox">
        <label id="addFromSource" class="addFromSource">Add From Source</label>
        <label class="externalResource dropbox">Dropbox</label>
        <label class="externalResource google">Google</label>
        <label class="externalResource sharefile">ShareFile</label>
        <label class="newResource">Link to New Source</label>
-     </div>
+     </div> -->
   </div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 
 .sourceRow {
    display: flex;
@@ -88,25 +88,25 @@ export default {
 }
 
 .uploadYourFiles {
-  background: url(../../assets/images/upload-icon.svg) no-repeat scroll 14px 14px;
-  font-size: 14px;
+  background: url(../../assets/images/upload-icon.svg) no-repeat scroll 0.875em 0.875em;
+  font-size: 0.875em;
   padding: 14px 14px 14px 60px;
   margin: 0px 5px;
   min-width: 190px;
-  font-weight: bold;
+  font-weight: $bold;
   cursor: pointer; 
 }
 
 .addFromURL {
-  background: url(../../assets/images/add-url.svg) no-repeat scroll 14px 14px;
+  background: url(../../assets/images/add-url.svg) no-repeat scroll 0.875em 0.875em;
   position: relative;
   background-color: #FAFAFA; 
-  font-size: 14px;
+  font-size: 0.875em;
   padding: 14px 14px 14px 50px;
   margin: 0px 5px;
   min-width: 190px;
   cursor: pointer; 
-  font-weight: bold;
+  font-weight: $bold;
   &:hover {
     box-shadow: 0px 0px 4px  #888888;
   }
@@ -119,8 +119,8 @@ export default {
 }
 
 .addFromSource {
-  font-weight: bold; 
-  font-size: 14px;
+  font-weight: $bold; 
+  font-size: 0.875em;
 }
 
 .externalBox {
@@ -130,18 +130,18 @@ export default {
 .externalResource {
   border-radius: 40px;
   padding: 5px;
-  font-size: 11px;
+  font-size: 0.6875em;
   width: 100px;
   text-transform: capitalize;
-  font-weight: bold;
+  font-weight: $bold;
   color: white;
 }
 
 .newResource {
   color: #777776;
-  font-size: 11px;
+  font-size: 0.6875em;
   text-decoration: underline;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .dropbox {
@@ -169,7 +169,7 @@ export default {
 }
 
 .modalTitle {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .modal-backdrop.fade {
@@ -184,13 +184,13 @@ export default {
 .addUrlButton {
   background-color: $buttonColour; 
   border: none;
-  font-size: 12px;
+  font-size: 0.75em;
   padding: 13px;
   border-radius: 5px;
   color: $buttonText;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
-  font-weight: bold;
+  font-weight: $bold;
   &:active {
     box-shadow: 0px 0px 0px black;
   }
