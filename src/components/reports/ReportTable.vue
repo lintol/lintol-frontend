@@ -5,14 +5,14 @@
       <p class="instructions">
         Here is a list of generated reports for this account 
       </p>
-      <div class="btn-group">
+      <div class="btn-group filters">
         <select class="custom-select" id="dateFilter" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option> 
           <option v-for="date in dateList">{{ date }}</option> 
         </select>
         <select class="custom-select" id="userFilter" v-model="selectedUser" >
           <option disabled value="" >Filter by User</option> 
-          <option v-for="user in userList">{{ user }}</option> 
+          <option v-for="user in userList">{{ user.name }}</option> 
         </select>
         <select class="custom-select" id="profileFilter" v-model="selectedProfile" >
           <option disabled value="" >Filter by Profile</option> 
@@ -106,6 +106,10 @@ select {
   &.custom-select {
     margin: auto 10px 10px auto;
   }
+}
+
+.filters {
+  max-width: 40%;
 }
 
 </style>
