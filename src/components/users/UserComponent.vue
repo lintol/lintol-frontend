@@ -26,7 +26,7 @@ export default {
 @import '~@/assets/scss/application.scss';
 
 label {
-  font-size: 12px;
+  font-size: 0.75em;
   color: #777776;
 }
 

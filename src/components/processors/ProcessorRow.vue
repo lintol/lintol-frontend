@@ -57,6 +57,11 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
+/* Because bootstrap has all labels margin-bottom: 0.5rem */
+label {
+  margin-bottom: 0px;
+}
+
 .processorColumn {
   flex: 1;
   min-width: 150px;

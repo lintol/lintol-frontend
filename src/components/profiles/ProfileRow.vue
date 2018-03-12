@@ -74,12 +74,16 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
+/* Because bootstrap has all labels margin-bottom: 0.5rem */
+label {
+  margin-bottom: 0px;
+}
+
 .profileColumn {
-  min-width: 150px;
   flex: 1;
   > label {
     font-weight: bold;
-    font-size: 10px;
+    font-size: 0.625em;
   }
 }
  
@@ -91,8 +95,7 @@ export default {
 
 .profileMainColumn {
   flex: 2;
-  min-height: 80px;
-  padding: 10px;
+  padding: 0.625em;
 }
 
 .profileAction {
@@ -113,7 +116,7 @@ export default {
 div .profileColumn p {
   margin-top: 4px;
   color: grey;
-  font-size: 11px;
+  font-size: 0.6875em;
 }
 
 .viewAction {
@@ -122,7 +125,7 @@ div .profileColumn p {
   border: 2px solid $orange;
   border-radius: 5px;
   padding: 10px;
-  font-size: 12px;
+  font-size: 0.75em;
   -webkit-appearance: none;
   -moz-appearance: none;
   &:hover {
@@ -131,12 +134,12 @@ div .profileColumn p {
 }
 
 .profileName {
-  font-size: 15px;
+  font-size: 0.9375em;
   width: 150px;
 }
 
 .user {
-  font-size: 12px;
+  font-size: 0.75em;
   color: #777776;
 }
 </style>
