@@ -97,6 +97,7 @@ const store = new Vuex.Store({
     orderDataResources: 'asc',
     filtersDataResources: {},
     inProgressDataResources: {},
+    pagesRequestedDataResources: [],
     pageCountDataResources: {}
   },
   actions: {
@@ -145,14 +146,16 @@ const store = new Vuex.Store({
         dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
       }
     },
-    [a.LOAD_DATA_RESOURCES] ({ commit, state, dispatch }, { reset, page }) {
-      for (var provider in state.inProgressDataResources) {
-        var stat = state.inProgressDataResources;
-        if (stat === ACTION_PENDING) {
-          commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_REQUESTED]);
-        } else if (stat === ACTION_REQUESTED) {
-          /* Wait until this completes */
-          return;
+    [a.LOAD_DATA_RESOURCES] ({ commit, state, dispatch }, { reset, page, skipInterpolation, ignoreProgress }) {
+      if (!skipInterpolation) {
+        for (var provider in state.inProgressDataResources) {
+          var stat = state.inProgressDataResources;
+          if (stat === ACTION_PENDING) {
+            commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_REQUESTED]);
+          } else if (stat === ACTION_REQUESTED) {
+            /* Wait until this completes */
+            return;
+          }
         }
       }
 
@@ -181,28 +184,43 @@ const store = new Vuex.Store({
         commit(m.RESET_DATA_RESOURCES);
       }
 
+      commit(m.ADD_DATA_RESOURCE_PAGE_REQUEST, page);
+      if (!skipInterpolation) {
+        for (var i = 1; i < page; i++) {
+          if (state.pagesRequestedDataResources.indexOf(i) === -1) {
+            dispatch(a.LOAD_DATA_RESOURCES, { reset: false, page: i, skipInterpolation: true });
+          }
+        }
+      }
+
       providers.forEach(function (provider) {
-        if (state.inProgressDataResources[provider] === ACTION_PENDING) {
+        if (!skipInterpolation && state.inProgressDataResources[provider] === ACTION_PENDING) {
           commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_REQUESTED]);
-        } else if (state.inProgressDataResources[provider] === ACTION_REQUESTED) {
+        } else if (!skipInterpolation && state.inProgressDataResources[provider] === ACTION_REQUESTED) {
           /* Already pending and requested */
         } else {
-          commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_PENDING]);
+          if (!skipInterpolation) {
+            commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_PENDING]);
+          }
           axios.get(apiPrefix + '/dataResources' + '?provider=' + provider + '&' + query).then((response) => {
             var resources = response.data;
             /* While this approach works for stepping through,
              * further investigation may be required around jumping cold into page N>1 */
             commit(m.APPEND_DATA_RESOURCES, resources);
 
-            var actionRequested = (state.inProgressDataResources === ACTION_REQUESTED);
-            commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
-            commit(m.SET_DATA_RESOURCE_PROVIDER_PAGE_COUNT, [provider, resources.meta.pagination.total_pages]);
-            if (actionRequested) {
-              dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
+            if (!skipInterpolation) {
+              var actionRequested = (state.inProgressDataResources === ACTION_REQUESTED);
+              commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
+              commit(m.SET_DATA_RESOURCE_PROVIDER_PAGE_COUNT, [provider, resources.meta.pagination.total_pages]);
+              if (actionRequested) {
+                dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
+              }
             }
           }, error => {
             console.log('Couldnt get data resources for account.:' + error);
-            commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
+            if (!skipInterpolation) {
+              commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
+            }
           });
         }
       });
@@ -469,6 +487,7 @@ const store = new Vuex.Store({
       var store = fromState(state);
       store.sync(dataResources);
       state.dataResources = store.findAll('dataResources');
+      console.log('appended');
     },
     [m.RESET_DATA_RESOURCES] (state) {
       state.repository.dataResources = {};
@@ -497,6 +516,10 @@ const store = new Vuex.Store({
 
     [m.SET_DATA_RESOURCE_PROVIDER_PAGE_COUNT] (state, setting) {
       Vue.set(state.pageCountDataResources, setting[0], setting[1]);
+    },
+
+    [m.ADD_DATA_RESOURCE_PAGE_REQUEST] (state, pageNumber) {
+      state.pagesRequestedDataResources.push(pageNumber);
     }
   }
 });
