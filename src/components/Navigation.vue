@@ -89,6 +89,7 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch(LOAD_LOGGED_IN_USER);
+    this.currentView = this.$route.name;
   }
 };
 </script>
