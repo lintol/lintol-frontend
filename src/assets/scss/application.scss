@@ -44,7 +44,8 @@ body, body * {
   border: none;
   border-radius: 5px;
   color: $buttonText;
-  padding: 15px 32px;
+  padding: 2% 3%;
+  font-size: 0.75em;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
   font-weight: $bold;
@@ -78,9 +79,7 @@ body, body * {
     border: none;
   }
   & > label {
-    margin-left: 5px;
-    font-size: 2em;
-    vertical-align: sub;
+    font-size: 1em;
   }
 }
 

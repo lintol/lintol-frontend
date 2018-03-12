@@ -309,6 +309,8 @@ export default {
   max-height: 28px;
   box-sizing: border-box;
   border: 2px solid #ccc;
+  font-size: 13px;
+  padding-bottom: 3px;
   border-radius: 4px;
   background: url(../../assets/images/search.svg) no-repeat scroll 13px 13px;
   background-color: white;
