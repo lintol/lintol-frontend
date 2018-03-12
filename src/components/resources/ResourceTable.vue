@@ -58,7 +58,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                <select v-model="selectedProfileId">
+                <select v-model="selectedProfileId" class="custom-select">
                   <option disabled selected value="">[Choose Profile]</option>
                   <option :value="profile.id" v-for="profile in profiles">{{ profile.name }}</option>
                 </select>
@@ -351,7 +351,7 @@ export default {
 }
 
 .filter {
-  height: 28px;;
+  height: 28px;
   &.custom-select {
     margin: auto 10px 10px auto;
   }
@@ -388,6 +388,11 @@ export default {
     outline:0;
     border: none;
   }
+}
+
+select.custom-select {
+  height: 28px;
+  margin: auto 10px 10px auto;
 }
 
 </style>
