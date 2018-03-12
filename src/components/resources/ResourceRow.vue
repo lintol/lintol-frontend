@@ -24,8 +24,7 @@
         </div>
       </div>
       <div class="center owner">
-        <img class="profilePicture" src="../../assets/images/profile.png"></img>
-        <label>{{ resource.owner }}</label>
+        <user :user="resource.user"></user>
       </div>
       <div class="center status">
         <label id="resourceStatus" class="statusLabel" :class="statusColor">{{ resource.status }}</label>
@@ -39,6 +38,8 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
+import userComponent from '@/components/users/UserComponent.vue';
+
 export default {
   name: 'ResourceRow',
   props: {
@@ -63,7 +64,6 @@ export default {
   methods: {
     convertDate: convertDate,
     viewResource: function (e) {
-      console.log('Redirecting to: ' + this.resource.url);
       window.open(this.resource.url, '_blank');
     },
     resourceSelected: function (e) {
@@ -73,13 +73,13 @@ export default {
   },
   watch: {
     clearSelected: function () {
-      console.log('clear:' + this.clearSelected);
       if (this.clearSelected) {
         this.isResourceSelected = false;
       }
     }
   },
   components: {
+    user: userComponent
   },
   computed: {
     statusColor: function () {
@@ -190,11 +190,6 @@ export default {
   font-size: 0.75em;
   font-weight: bold;
   color: #333333;
-}
-
-.user {
-  font-size: 0.75em;
-  color: #777776;
 }
 
 .wrapper {
