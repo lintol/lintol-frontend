@@ -109,7 +109,7 @@ export default {
 
 .version {
   margin: 0 auto;
-  font-size: 12px;
+  font-size: 0.75em;
 }
 
 .activityBanner {
@@ -141,7 +141,7 @@ export default {
      padding-left: 10px;
      padding-top: 10px;
      color: #333333;
-     font-size: 10px;
+     font-size: 0.625em;
      cursor: pointer;
    }
 }
@@ -167,13 +167,13 @@ export default {
     text-decoration: none;
     cursor: pointer;
     > img {
-      width: 20px;
-      height: 20px;
+      width: 1.25em;
+      height: 1.25em;
       cursor: pointer;
     }
     > label {
       margin: 0px 10px;
-      font-size: 12px;
+      font-size: 0.75em;
       color: #777776;
       cursor: pointer;
     }
