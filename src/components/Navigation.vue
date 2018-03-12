@@ -13,37 +13,37 @@
     </div>
   <nav>
     <ul>
-      <li id="profilesLink" class="menuEntry" :class="{ active: currentView == 'profileTable'}" >
+      <li id="profilesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'profileTable'}" >
          <router-link id="profiles" :to="{name: 'profileTable' }">
             <img src="~@/assets/images/data-profiles.svg" />
             <label>Data Profiles</label>
          </router-link>
       </li>
-      <li id="resourceLink" class="menuEntry" :class="{ active: currentView == 'resourceTable'}">
+      <li id="resourceLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'resourceTable'}">
          <router-link id="resources" :to="{name: 'resourceTable' }">
            <img src="~@/assets/images/resources.svg" />
             <label>Resources/ Files</label>
          </router-link>
       </li>
-      <li id="processorsLink" class="menuEntry" :class="{ active: currentView == 'processorTable'}">
+      <li id="processorsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'processorTable'}">
          <router-link id="processors" :to="{name: 'processorTable' }">
            <img src="~@/assets/images/data-processors.svg" />
             <label>Data Processors</label>
          </router-link>
       </li>
-      <li id="reportsLink" class="menuEntry" :class="{ active: currentView == 'reportTable'}">
+      <li id="reportsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'reportTable'}">
          <router-link id="reports" :to="{name: 'reportTable' }">
            <img src="~@/assets/images/validation-reports.svg" />
             <label>Validation Reports</label>
          </router-link>
       </li>
-      <li id="usersLink" class="menuEntry" :class="{ active: currentView == 'users'}">
+      <li id="usersLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'users'}">
         <router-link id="users" :to="{name: 'users' }">
            <img src="~@/assets/images/users.svg" />
            <label>Users</label>
         </router-link>
       </li>
-      <li id="settingsLink" class="menuEntry" :class="{ active: currentView == 'settings'}">
+      <li id="settingsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'settings'}">
          <router-link id="settings" :to="{name: 'settings' }">
            <img  src="~@/assets/images/settings.svg" />
            <label>Settings</label>
@@ -130,8 +130,6 @@ export default {
 .addResourceButton {
    display: flex;
    flex-direction: row;
-   height: 35px;
-   width: 186px;
    margin-top: 20px;
    margin-left: 10px;
    border: 1px solid #333333;
@@ -142,12 +140,12 @@ export default {
    padding-left: 10px;
    > div {
      > img {
-        width: 1.25em;
-        height: 1.25em;
+        width: 1em;
+        height: 1em;
         cursor: pointer;
      }
      > label {
-       padding-left: 10px;
+       padding-left: 0.625em;
        color: #333333;
        font-size: 0.625em;
        cursor: pointer;
@@ -157,8 +155,6 @@ export default {
 
 
 .menuEntry {
-  width: 186px;
-  height: 35px;
   margin: 10px 0px;
   padding-left: 4px;
   &:hover{
@@ -170,7 +166,6 @@ export default {
   }
   > a {
     display: flex;
-    height: 35px;
     flex-direction: row;
     padding-top: 7px;
     text-decoration: none;
@@ -189,11 +184,9 @@ export default {
   }
 }
 
-.active {
+.menuEntryActive {
   background-color: #EDEDED;
   border-radius: 5px;
-  width: 186px;
-  height: 35px;
   color: #333333;
   & a label {
     color: black;
@@ -208,8 +201,6 @@ ul {
 
 
 .logo {
-  height: 29px;	
-  width: 101px;
   margin-left: 17px;
   margin-top: 25px;
   display: block;

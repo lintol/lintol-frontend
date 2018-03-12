@@ -1,7 +1,8 @@
 /* Mobile first queries */
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (min-width: 400px) {
+}
 
 /* Larger than phablet */
 @media (min-width: 550px) {}
@@ -10,12 +11,70 @@
 @media (min-width: 750px) {}
 
 /* Larger than desktop */
-@media (min-width: 1000px) {}
+@media (min-width: 1000px) {
+    body {
+      font-size: 12px;
+    }
+    .logo {
+      height: 19px;
+      width: 61px;
+    }
+    $menuWidth: 125px;
+    $menuHeight: 25px;
+    .addResourceButton {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntry {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntryActive {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+}
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {
     body {
       font-size: 14px;
+    }
+    .logo {
+      height: 24px;
+      width: 81px;
+    }
+    $menuWidth: 150px;
+    $menuHeight: 30px;
+    .addResourceButton {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntry {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntryActive {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
     }
 }
 
@@ -23,4 +82,32 @@
     body {
       font-size: 16px;
     }
+    .logo {
+      height: 29px;
+      width: 101px;
+    }
+    $menuWidth: 186px;
+    $menuHeight: 35;
+    .addResourceButton {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntry {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntryActive {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+  
 }
