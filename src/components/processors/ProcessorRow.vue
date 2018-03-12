@@ -64,7 +64,6 @@ label {
 
 .processorColumn {
   flex: 1;
-  min-width: 150px;
   label:nth-child(1) {
     font-weight: bold;
     font-size: 11px;
@@ -76,7 +75,6 @@ label {
 }
 
 .configurationsColumn {
-  min-width: 150px;
   label:nth-child(1) {
     font-weight: bold;
     font-size: 21px;
