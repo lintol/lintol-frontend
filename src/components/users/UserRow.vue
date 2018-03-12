@@ -4,8 +4,10 @@
       <div class="userMainColumn center">
         <div class="rightSeparator">
           <label class="columnHeader">{{ user.email }}</label>
-          <p>{{ user.name }}</p>
         </div>
+      </div>
+      <div class="userColumn center">
+          <p>{{ user.name }}</p>
       </div>
       <div class="userColumn center">
         <label class="user-present" v-if="user.present">has logged on here</label>

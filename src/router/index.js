@@ -18,6 +18,7 @@ import Resources from '@/components/resources/Resources';
 import ResourceTable from '@/components/resources/ResourceTable';
 import AddResource from '@/components/resources/AddResource';
 import Users from '@/components/users/Users';
+import UserTable from '@/components/users/UserTable';
 import Settings from '@/components/settings/Settings';
 
 Vue.use(Router);
@@ -71,7 +72,13 @@ export default new Router({
             { name: 'addResource', path: 'addresource', component: AddResource }
           ]
         },
-        { name: 'users', path: 'users', component: Users },
+        { name: 'users',
+          path: 'users',
+          component: Users,
+          children: [
+            { name: 'userTable', path: 'usertable', component: UserTable }
+          ]
+        },
         { name: 'settings', path: 'settings', component: Settings }
       ]
     }

@@ -35,8 +35,8 @@
             <label>Validation Reports</label>
          </router-link>
       </li>
-      <li id="usersLink" class="menuEntry" :class="{ active: currentView == 'users'}">
-        <router-link id="users" :to="{name: 'users' }">
+      <li id="usersLink" class="menuEntry" :class="{ active: currentView == 'userTable'}">
+        <router-link id="users" :to="{name: 'userTable' }">
            <img src="../assets/images/users.svg" />
            <label>Users</label>
         </router-link>
