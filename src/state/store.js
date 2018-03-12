@@ -71,6 +71,10 @@ function toModel (type, attributes, relationships, id) {
   return serialized;
 }
 
+const ACTION_NONE = 'action:none';
+const ACTION_PENDING = 'action:pending';
+const ACTION_REQUESTED = 'action:requested';
+
 const store = new Vuex.Store({
   state: {
     repository: {
@@ -89,15 +93,17 @@ const store = new Vuex.Store({
     currentProcessor: null,
     pageDataResources: 1,
     pageLengthDataResources: 5,
-    sortDataResources: 'name',
+    sortDataResources: 'filename',
     orderDataResources: 'asc',
-    filtersDataResources: {}
+    filtersDataResources: {},
+    inProgressDataResources: {},
+    pagesRequestedDataResources: [],
+    pageCountDataResources: {}
   },
   actions: {
     [a.STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES] ({ commit, state, dispatch }, { profileId, resources }) {
       var dataResourceUrls = resources.map(function (resource) {
-        console.log(resource.url);
-        return resource.url;
+        return {'id': resource.id, 'providerId': resource.providerId, 'url': resource.url, 'filetype': resource.filetype};
       });
       var settingMap = {
         dataProfileId: profileId,
@@ -108,8 +114,7 @@ const store = new Vuex.Store({
 
       axios.post(url, settingMap).then((response) => {
         commit(m.SET_DATA_RESOURCES_PAGE, 1);
-        commit(m.RESET_DATA_RESOURCES);
-        dispatch(a.LOAD_DATA_RESOURCES, 1);
+        dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
       }, error => {
         console.log('Couldnt get data resources for account.:' + error);
       });
@@ -118,50 +123,106 @@ const store = new Vuex.Store({
       if (filters !== state.filtersDataResources) {
         commit(m.SET_DATA_RESOURCES_FILTERS, filters);
         commit(m.SET_DATA_RESOURCES_PAGE, 1);
-        commit(m.RESET_DATA_RESOURCES);
-        dispatch(a.LOAD_DATA_RESOURCES, 1);
+        dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
       }
     },
     [a.UPDATE_DATA_RESOURCES_PAGE] ({ state, commit, dispatch }, page) {
       if (page !== state.pageDataResources) {
         commit(m.SET_DATA_RESOURCES_PAGE, page);
-        dispatch(a.LOAD_DATA_RESOURCES, page);
+        dispatch(a.LOAD_DATA_RESOURCES, { reset: false, page: page });
       }
     },
     [a.UPDATE_DATA_RESOURCES_ORDER] ({ state, commit, dispatch }, order) {
       if (order !== state.orderDataResources) {
         commit(m.SET_DATA_RESOURCES_PAGE, 1);
         commit(m.SET_DATA_RESOURCES_ORDER, order);
-        dispatch(a.LOAD_DATA_RESOURCES, 1);
+        dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
       }
     },
     [a.UPDATE_DATA_RESOURCES_SORT] ({ state, commit, dispatch }, sort) {
       if (sort !== state.sortDataResources) {
         commit(m.SET_DATA_RESOURCES_PAGE, 1);
         commit(m.SET_DATA_RESOURCES_SORT, sort);
-        dispatch(a.LOAD_DATA_RESOURCES, 1);
+        dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
       }
     },
-    [a.LOAD_DATA_RESOURCES] ({ commit, state }, page) {
-      var query = 'page=' + page;
+    [a.LOAD_DATA_RESOURCES] ({ commit, state, dispatch }, { reset, page, skipInterpolation, ignoreProgress }) {
+      if (!skipInterpolation) {
+        for (var provider in state.inProgressDataResources) {
+          var stat = state.inProgressDataResources;
+          if (stat === ACTION_PENDING) {
+            commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_REQUESTED]);
+          } else if (stat === ACTION_REQUESTED) {
+            /* Wait until this completes */
+            return;
+          }
+        }
+      }
+
+      var filtersDataResources = Object.keys(state.filtersDataResources)
+        .filter((key) => { console.log(state.filtersDataResources[key]); return state.filtersDataResources[key]; })
+        .map((key) => { return key + ':' + state.filtersDataResources[key]; })
+        .join(',');
+
+      var query = 'page=' + page +
+        '&count=' + state.pageLengthDataResources +
+        '&filters=' + filtersDataResources +
+        '&sortBy=' + state.sortDataResources +
+        '&order=' + state.orderDataResources;
+
+      var providers = ['_local', '_remote'];
+      if (state.filtersDataResources && state.filtersDataResources.source) {
+        providers = [state.filtersDataResources.source];
+      }
+
       var search = state.filtersDataResources.search;
       if (search) {
         query += '&search=' + search;
       }
-      axios.get(apiPrefix + '/dataResources' + '?' + query).then((response) => {
-        var resources = response.data;
-        commit(m.APPEND_DATA_RESOURCES, resources);
-      }, error => {
-        console.log('Couldnt get data resources for account.:' + error);
-      });
 
-      axios.get(apiPrefix + '/dataResources' + '?provider=_remote&' + query).then((response) => {
-        var resources = response.data;
-        /* While this approach works for stepping through,
-         * further investigation may be required around jumping cold into page N>1 */
-        commit(m.APPEND_DATA_RESOURCES, resources);
-      }, error => {
-        console.log('Couldnt get data resources for account.:' + error);
+      if (reset) {
+        commit(m.RESET_DATA_RESOURCES);
+      }
+
+      commit(m.ADD_DATA_RESOURCE_PAGE_REQUEST, page);
+      if (!skipInterpolation) {
+        for (var i = 1; i < page; i++) {
+          if (state.pagesRequestedDataResources.indexOf(i) === -1) {
+            dispatch(a.LOAD_DATA_RESOURCES, { reset: false, page: i, skipInterpolation: true });
+          }
+        }
+      }
+
+      providers.forEach(function (provider) {
+        if (!skipInterpolation && state.inProgressDataResources[provider] === ACTION_PENDING) {
+          commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_REQUESTED]);
+        } else if (!skipInterpolation && state.inProgressDataResources[provider] === ACTION_REQUESTED) {
+          /* Already pending and requested */
+        } else {
+          if (!skipInterpolation) {
+            commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_PENDING]);
+          }
+          axios.get(apiPrefix + '/dataResources' + '?provider=' + provider + '&' + query).then((response) => {
+            var resources = response.data;
+            /* While this approach works for stepping through,
+             * further investigation may be required around jumping cold into page N>1 */
+            commit(m.APPEND_DATA_RESOURCES, resources);
+
+            if (!skipInterpolation) {
+              var actionRequested = (state.inProgressDataResources === ACTION_REQUESTED);
+              commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
+              commit(m.SET_DATA_RESOURCE_PROVIDER_PAGE_COUNT, [provider, resources.meta.pagination.total_pages]);
+              if (actionRequested) {
+                dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
+              }
+            }
+          }, error => {
+            console.log('Couldnt get data resources for account.:' + error);
+            if (!skipInterpolation) {
+              commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
+            }
+          });
+        }
       });
     },
     [a.SAVE_DATA_RESOURCE] ({ commit }, resource) {
@@ -315,16 +376,33 @@ const store = new Vuex.Store({
     profiles: state => {
       return fromState(state).findAll('profiles');
     },
+    dataResourcePageCount: state => {
+      var pages = 0;
+      console.log(state.pageCountDataResources);
+      console.log(Object.keys(state.pageCountDataResources));
+      Object.values(state.pageCountDataResources).forEach(function (count) {
+        pages += count;
+        console.log(pages);
+      });
+      return pages;
+    },
     dataResources: state => {
       /* Newer approach: compatible with dataResources reactivity rules.
        * However, related objects may have issues when using this style. */
-      var resources = state.dataResources;
+      var column = state.sortDataResources;
+      var direction = (state.orderDataResources === 'asc' ? 1 : -1);
+      var resources = state.dataResources.sort(function (a, b) {
+        if (a[column] < b[column]) {
+          return direction * -1;
+        }
+        if (a[column] > b[column]) {
+          return direction;
+        }
+        return 0;
+      });
       var to = state.pageDataResources * state.pageLengthDataResources;
       var from = to - state.pageLengthDataResources;
 
-      console.log(resources);
-      console.log(state);
-      console.log(from + to);
       return resources.slice(from, to);
     }
   },
@@ -409,6 +487,7 @@ const store = new Vuex.Store({
       var store = fromState(state);
       store.sync(dataResources);
       state.dataResources = store.findAll('dataResources');
+      console.log('appended');
     },
     [m.RESET_DATA_RESOURCES] (state) {
       state.repository.dataResources = {};
@@ -429,6 +508,18 @@ const store = new Vuex.Store({
     },
     [m.UNSET_LOGGED_IN_USER] (state) {
       state.loggedInUser = null;
+    },
+
+    [m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS] (state, setting) {
+      state.inProgressDataResources[setting[0]] = setting[1];
+    },
+
+    [m.SET_DATA_RESOURCE_PROVIDER_PAGE_COUNT] (state, setting) {
+      Vue.set(state.pageCountDataResources, setting[0], setting[1]);
+    },
+
+    [m.ADD_DATA_RESOURCE_PAGE_REQUEST] (state, pageNumber) {
+      state.pagesRequestedDataResources.push(pageNumber);
     }
   }
 });

@@ -20,7 +20,7 @@
         <label>{{ processor.uniqueTag }}</label>
       </div>
       <div class="configurationsColumn center">
-        <label>{{ configurations }}</label>
+        <label>{{ processor.configurationCount ? processor.configurationCount : 0 }}</label>
         <label>Configurations</label>
       </div>
     </div>
@@ -39,7 +39,6 @@ export default {
   },
   data () {
     return {
-      configurations: 32
     };
   },
   methods: {
