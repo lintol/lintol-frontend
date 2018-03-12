@@ -82,8 +82,11 @@ export default {
 @import '../../assets/scss/application.scss';
 @import '../../assets/scss/reports.scss';
 
+label {
+  margin-bottom: 0px;
+}
+
 .reportColumn {
-  min-width: 150px;
   flex: 1;
 } 
 
