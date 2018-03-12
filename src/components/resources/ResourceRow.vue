@@ -144,7 +144,7 @@ export default {
   color: white;
   border-radius: 40px;
   padding: 5px;
-  font-size: 10px;
+  font-size: 0.625em;
   text-transform: capitalize;
   font-weight: bold;
   text-align: center;
@@ -178,7 +178,7 @@ export default {
   color: $orange;
   border: 2px solid $orange;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 0.75em;
   -webkit-appearance: none;
   -moz-appearance: none;
   &:hover {
@@ -187,13 +187,13 @@ export default {
 }
 
 .filenameLabel {
-  font-size: 12px;
+  font-size: 0.75em;
   font-weight: bold;
   color: #333333;
 }
 
 .user {
-  font-size: 12px;
+  font-size: 0.75em;
   color: #777776;
 }
 
