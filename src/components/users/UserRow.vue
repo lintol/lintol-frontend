@@ -3,7 +3,7 @@
     <div class="userRow">
       <div class="selectedResource">
          <label class="checkbox-container">
-           <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
+           <input type="checkbox" :id="'active' + index" @click="userSelected" :checked=isResourceSelected />
            <span :for="'active' + index" class="checkmark"></span>
          </label>
       </div>
@@ -33,6 +33,10 @@ import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'UserRow',
   props: {
+    index: {
+      type: Number,
+      required: true
+    },
     user: {
       type: Object,
       required: true
@@ -40,10 +44,13 @@ export default {
   },
   data () {
     return {
+      isResourceSelected: false
     };
   },
   methods: {
-    convertDate: convertDate
+    convertDate: convertDate,
+    userSelected: function () {
+    }
   },
   components: {
   },

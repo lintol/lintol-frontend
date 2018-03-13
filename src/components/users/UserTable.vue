@@ -15,7 +15,7 @@
         <p class="instructions">No Users available for this account</p>
       </div>
       <div id="columns" v-else class="flexContainer">
-        <user-row :key="user.id" v-for="user in filteredUsers" :user="user"></user-row>
+        <user-row :key="user.id" :index="index" v-for="(user, index) in filteredUsers" :user="user"></user-row>
       </div>
     </div>
   </div>

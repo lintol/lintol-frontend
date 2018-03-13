@@ -43,12 +43,12 @@
            <label>Users</label>
         </router-link>
       </li>
-      <li id="settingsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'settings'}">
+      <!--<li id="settingsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'settings'}">
          <router-link id="settings" :to="{name: 'settings' }">
            <img  src="~@/assets/images/settings.svg" />
            <label>Settings</label>
          </router-link>
-      </li>
+      </li> -->
     </ul>
   </nav>
 
