@@ -108,11 +108,11 @@ label {
 .mainColumnHeader {
   color: $orange;
   font-weight: $bold;
-  font-size: 0.75;
+  font-size: 0.75em;
 }
 
 .description {
-   font-size: 0.688;
+   font-size: 0.688em;
    word-wrap: break-word;
 }
 </style>
