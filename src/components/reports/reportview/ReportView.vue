@@ -5,7 +5,7 @@
         <div class="reportMainColumn">
           <label class="pageTitle">{{ report.name }}</label>
           <p class='instructions'>
-           This report was create from Data Resource: <u>{{ content.tables[0].source}}</u>
+           This report was created from Data Resource: <u>{{ content.tables[0].source}}</u>
           </p>
         </div>
         <div class="reportColumn">
