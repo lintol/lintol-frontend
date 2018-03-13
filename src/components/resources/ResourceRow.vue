@@ -14,13 +14,13 @@
       </div>
       <div class="wrapper type-source-dataAdded">
         <div class="center fileType ">
-          <p>{{ resource.filetype }}</p>
+          <label>{{ resource.filetype }}</label>
         </div>
         <div class="center source">
-          <p>{{ resource.source }}</p>
+          <label>{{ resource.source }}</label>
         </div>
         <div class="center dateAdded">
-          <p>{{ convertDate(resource.created_at) }}</p>
+          <label>{{ convertDate(resource.created_at) }}</label>
         </div>
       </div>
       <div class="center owner">
@@ -29,7 +29,7 @@
       <div class="center status">
         <label id="resourceStatus" class="statusLabel" :class="statusColor">{{ resource.status }}</label>
       </div>
-      <div class="verticalCenterItems actionButton">
+      <div class="center actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
       </div>
     </div>

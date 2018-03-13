@@ -22,17 +22,6 @@ $blackCheckboxMaxWidth: 60px;
   max-width: $blackCheckboxMaxWidth;
 }
 
-$filenameMinWidth: 200px;
-$filenameMaxWidth: 200px;
-.filename {
-  min-width: $filenameMinWidth;
-  max-width: $filenameMaxWidth;
-}
-
-.filenameHeader {
-  min-width: $blackCheckboxMinWidth + $filenameMinWidth;
-  max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
-}
 
 .resourceNameValue {
   min-width: 100px;
@@ -84,10 +73,54 @@ $dateAddedMaxWidth: 150px;
 .type-source-dataAdded {
   min-width: $fileTypeMinWidth + $sourceMinWidth + $dateAddedMinWidth;
   max-width: $fileTypeMaxWidth + $sourceMaxWidth + $dateAddedMaxWidth;
-  > div p {
+  > div label {
     text-transform: uppercase;
     margin-top: 4px;
     color: grey;
     font-size: 0.6875em;
+  }
+}
+/* Mobile first queries */
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {
+$filenameMinWidth: 200px;
+$filenameMaxWidth: 200px;
+  .filename {
+    min-width: $filenameMinWidth;
+    max-width: $filenameMaxWidth;
+  }
+
+  .filenameHeader {
+    min-width: $blackCheckboxMinWidth + $filenameMinWidth;
+    max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-height: 1024px) {
+$filenameMinWidth: 300px;
+$filenameMaxWidth: 300px;
+  .filename {
+    min-width: $filenameMinWidth;
+    max-width: $filenameMaxWidth;
+  }
+
+  .filenameHeader {
+    min-width: $blackCheckboxMinWidth + $filenameMinWidth;
+    max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
   }
 }
