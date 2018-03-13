@@ -1,15 +1,21 @@
 <template>
   <div id="users-row" class="shadedRow">
     <div class="userRow">
+      <div class="selectedResource">
+         <label class="checkbox-container">
+           <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
+           <span :for="'active' + index" class="checkmark"></span>
+         </label>
+      </div>
       <div class="userMainColumn center">
         <div class="rightSeparator">
-          <label class="columnHeader">{{ user.email }}</label>
+          <label class="name">{{ user.name }}</label>
         </div>
       </div>
       <div class="userColumn center">
-          <p>{{ user.name }}</p>
+          <label class="email">{{ user.email }}</label>
       </div>
-      <div class="userColumn center">
+      <!--<div class="userColumn center">
         <label class="user-present" v-if="user.present">has logged on here</label>
         <label class="user-not-present" v-else>has not logged on here</label>
       </div>
@@ -17,7 +23,7 @@
         <label class="driver">From</label>
         <label v-if="user.driver">{{ user.driver }}<span v-if="user.driverServer"> : {{ user.driverServer }}</span></label>
         <label v-else>(local)</label>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -50,10 +56,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
+@import '~@/assets/scss/checkbox.scss';
+
+.rightSeparator {
+  margin-right: 10px;
+}
+
+/* Because bootstrap has all labels margin-bottom: 0.5rem */
+label {
+  margin-bottom: 0px;
+}
 
 .userColumn {
-  min-width: 150px;
+  min-width:100px;
   flex: 1;
 } 
 
@@ -65,20 +81,14 @@ export default {
 
 .userMainColumn {
   flex: 2;
-  padding: 10px;
 }
 
-.userAction {
-  min-width: 120px;
-  display: inline-block;
-}
 .userRow {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
-  min-height: 100px;
-  padding: 0px 10px;
+  width: 450px;
+  height: 40px;
 }
  
 .columnTitle {
@@ -100,30 +110,19 @@ div .userColumn p {
   height: 20px;
 }
 
-.ragDisplay{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center; 
+.selectedResource {
+  padding-top: 13px;
+  padding-left: 10px;
+} 
+
+.name {
+  color: #333333;
+  font-size: 0.75em;	
+  font-weight: $bold; 
 }
 
-.columnHeader {
-  font-weight: bold;
+.email {
+  color: #918484;	
+  font-size: 0.75em;
 }
-
-.ranOn {
-  font-weight: bold;
-  font-size: 10px;
-  margin-left: 20px;
-  + label {
-    font-size: 11px;
-    margin-left: 20px;
-  }
-}
-
-.ragNumber {
-  vertical-align: top;
-  font-size: 12px;
-}
-
 </style>

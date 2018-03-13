@@ -10,6 +10,7 @@
       <!--<select id="groupFilter" v-model="group">
         <option disabled value="" >Filter by Groups</option> 
       </select>-->
+      <input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" type="Search" v-model="search">
       <div id="noUsersAvailable" v-if="users.length == 0">
         <p class="instructions">No Users available for this account</p>
       </div>
@@ -29,8 +30,9 @@ export default {
   name: 'Users',
   data () {
     return {
-      title: 'Users',
-      group: ''
+      title: 'UserTable',
+      group: '',
+      search: ''
     };
   },
   components: {
@@ -41,8 +43,14 @@ export default {
       return this.$store.getters.users;
     },
     filteredUsers: function () {
-      var result = this.users;
-      return result;
+      try {
+        var re = new RegExp(this.search);
+        return this.users.filter((user) => {
+          return re.exec(user.name);
+        });
+      } catch (e) {
+        return this.users;
+      }
     }
   },
   mounted: function () {
@@ -54,4 +62,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
+
+.processorSearch {
+  width: 30%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.8125em;
+  background: url(../../assets/images/search.svg) no-repeat scroll 0.875em 0.875em;
+  background-color: white;
+  background-position: 0.3125em 0.9375em; 
+  background-repeat: no-repeat;
+  padding-left: 1.6625em; 
+  padding-top: 0.625em; 
+  padding-bottom: 0.625em; 
+  border-color: #979797;
+  &::placeholder {
+    color: #9B9B9B;
+    font-size: 0.8125em;
+  }
+}
+
 </style>
