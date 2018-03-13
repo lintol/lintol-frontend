@@ -19,12 +19,6 @@ export default {
     Navigation: Navigation
   },
   watch: {
-    $route: function () {
-      console.log(this.$route);
-      if (this.$route.path === '/') {
-        this.$router.push({name: 'profileTable'});
-      }
-    }
   }
 };
 </script>
@@ -37,6 +31,7 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap; 
   height: 100%;
+  height: 100vh;
 }
 
 .menu {

@@ -202,7 +202,6 @@ export default {
       if (this.search) {
         filters['search'] = this.search;
       }
-
       return filters;
     },
     filteredResources: function () {
@@ -353,10 +352,6 @@ export default {
   }
 }
 
-.subHeading {
-  font-size: 1.125em;
-  font-weight: $bold;
-}
 
 .filter {
   height: 28px;
