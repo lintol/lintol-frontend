@@ -114,6 +114,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
+@import '~@/assets/scss/checkbox.scss';
 @import './table.scss';
 
 .newStatus {
@@ -138,6 +139,11 @@ export default {
 
 .invalidLinkStatus {
   background-color: #FF4E50;
+}
+
+.checkbox-container {
+   margin-top: 5px;
+   margin-bottom: 5px;
 }
 
 .statusLabel {
@@ -195,72 +201,6 @@ export default {
 .wrapper {
   display: flex;
   flex-direction: row;
-}
-
-.checkbox-container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    font-size: 35px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.checkbox-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 16px;
-    width: 16px;
-    background-color: #eee;
-    border-radius: 3px;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-}
-
-.checkbox-container input ~ .checkmark {
-    background-color: #fff;
-}
-
-.checkbox-container:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-.checkbox-container input:checked ~ .checkmark {
-    background-color: black;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.checkbox-container input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.checkbox-container .checkmark:after {
-    left: 4px;
-    top: 0px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
 }
 
 </style>
