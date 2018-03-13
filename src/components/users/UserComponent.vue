@@ -16,7 +16,7 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true
+      required: false
     }
   }
 };
@@ -28,6 +28,7 @@ export default {
 label {
   font-size: 0.75em;
   color: #777776;
+  margin-bottom: 0px;
 }
 
 .userProfilePicture {

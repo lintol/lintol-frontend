@@ -1,5 +1,6 @@
 <template>
     <div class="processorConfiguration">
+      <label class="xmark" @click="removeProcessor">&#x274C; </label>
       <div class="processorContainer" v-if="configuration.processor">
         <div class="xSmall">
          <div class="orangeCheckbox">
@@ -7,15 +8,14 @@
            <label for=active></label>
          </div>
         </div>
-        <div class="large">
+        <div class="largeSpace">
           <div>
             <label id="processorTitle" class="processorTitle item1">{{ processor.name }}</label>
             <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
           </div>
         </div>
-        <div class="small">
-         <label class="editLabel" v-if="!editConfiguration && configurationOptions" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
-         <label class="xmark" @click="removeProcessor">&#x274C; </label>
+        <div class="smallSpace">
+         <label class="editConfigurationLabel" v-if="!editConfiguration && configurationOptions" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
         </div>
       </div>
       <div v-if="editConfiguration && configurationOptions">
@@ -95,10 +95,8 @@ export default {
 
 .xmark {
   cursor: pointer;
-  position: relative;
-  left: 25px;
-  top: -28px;
-  font-size: 12px;
+  font-size: 1em;
+  float: right;
 }
 
 .xSmall {
@@ -107,30 +105,29 @@ export default {
   align-items: center;
 }
 
-.small {
+.smallSpace {
   flex: 1;
   display: flex;
   align-items: center;
 }
 
-.large {
+.largeSpace {
   flex: 3;
   display: flex;
   align-items: center;
 }
 
 .processorTitle {
-  font-weight: bold;
-  font-size: 12px;
+  font-weight: $$bold;
+  font-size: 0.75em;
 }
 
 .processorDescription {
-  font-size: 11px;
+  font-size: 0.688em;
 }
 
 .processorContainer {
-  padding: 5px;
-  font-size: 8pt;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -148,19 +145,19 @@ export default {
   float: right;
 }
 
-.editLabel {
+.editConfigurationLabel {
   text-decoration: underline;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 8pt;
+  font-weight: $bold;
+  font-size: 0.688em;
 }
 
 .saveLabel {
   text-decoration: underline;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: $bold;
   float: right;
-  font-size: 8pt;
+  font-size: 0.688em;
   margin-top: 15px;
 }
 
@@ -176,7 +173,7 @@ export default {
   border: 1px solid #979797;
   border-radius: 4px;
   background-color: #FAFAF;
-  padding: 10px;
+  padding: 0px 10px;
   margin-top: 20px;
 }
 </style>

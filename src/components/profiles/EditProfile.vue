@@ -1,14 +1,15 @@
 <template>
   <div id="edit-profile-panel">
-    <h1>{{ title }}</h1>
-    <p class="instructions">Instructions</p>
+    <label class="pageTitle">{{ title }}</label>
+    <p class="instructions">Edit your profile below</p>
     <div class="formContainer" v-if="profile">
       <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: vErrors.has('name') }"/>
       <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
       <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
       <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
-        <p>Instructions<p>
+        <p class="subHeading">Choose your Processor</p>
+        <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
         <v-select :clearSearchOnSelect="false" placeholder="Add Processor"  :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
@@ -19,7 +20,7 @@
              v-on:removeProcessor="removeSelectedProcessor" />
         </div>
       </div>
-      <div>
+      <div class="button">
         <button id="saveProfile" class="saveButton" @click=saveProfile>Update Profile</button>
       </div>
     </div>
@@ -131,4 +132,14 @@ export default {
 .formItem {
   margin-bottom: 10px;
 }
+
+.button {
+  margin-top: 36px;
+}
+
+.processorContainer {
+   display: flex;
+   flex-direction: column;
+}
+
 </style>

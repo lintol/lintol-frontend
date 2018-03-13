@@ -8,7 +8,7 @@
       <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
       <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
-        <p class="processorInstruction">Choose your Processor</p>
+        <p class="subHeading">Choose your Processor</p>
         <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
         <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
