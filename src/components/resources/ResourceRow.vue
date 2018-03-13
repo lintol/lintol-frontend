@@ -23,14 +23,16 @@
           <label>{{ convertDate(resource.created_at) }}</label>
         </div>
       </div>
-      <div class="center owner">
-        <user :user="resource.user"></user>
-      </div>
-      <div class="center status">
-        <label id="resourceStatus" class="statusLabel" :class="statusColor">{{ resource.status }}</label>
-      </div>
-      <div class="center actionButton">
+      <div class="wrapper owner-status-action">
+        <div class="center owner">
+          <user :user="resource.user"></user>
+        </div>
+        <div class="center status">
+          <label id="resourceStatus" class="statusLabel" :class="statusColor" >{{ resource.status }}</label>
+        </div>
+        <div class="center actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
+        </div>
       </div>
     </div>
   </div>
@@ -149,10 +151,11 @@ export default {
 .statusLabel {
   color: white;
   border-radius: 40px;
+  width: 10em;
   padding: 5px;
   font-size: 0.625em;
   text-transform: capitalize;
-  font-weight: bold;
+  font-weight: $bold;
   text-align: center;
 }
  

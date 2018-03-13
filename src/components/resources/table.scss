@@ -22,33 +22,42 @@ $blackCheckboxMaxWidth: 60px;
   max-width: $blackCheckboxMaxWidth;
 }
 
-
 .resourceNameValue {
   min-width: 100px;
   max-width: 200px;
 }
 
+$ownerMinWidth: 120px;
+$statusMinWidth: 110px;
+$actionMinWidth: 100px;
+
+$ownerMaxWidth: 200px;
+$statusMaxWidth: 100px;
+$actionMaxWidth: 150px;
+
 .owner {
-  min-width: 100px;
-  max-width: 200px;
-  margin: 0px auto;
+  min-width: $ownerMinWidth;
+  max-width: $ownerMaxWidth;
 }
 
 .status {
-  min-width: 90px;
-  max-width: 100px;
-  margin: 0px auto;
+  min-width: $statusMinWidth;
+  max-width: $statusMaxWidth;
 }
 
 .actionButton {
-  min-width: 100px;
-  max-width: 150px;
-  margin: 0px auto;
+  min-width: $actionMinWidth;
+  max-width: $actionMaxWidth;
+}
+
+.owner-status-action {
+  min-width: $ownerMinWidth + $statusMinWidth + $actionMinWidth;
+  max-width: $ownerMaxWidth + $statusMaxWidth + $actionMaxWidth;
 }
 
 $fileTypeMinWidth: 90px;
 $sourceMinWidth: 100px;
-$dateAddedMinWidth: 70px;
+$dateAddedMinWidth: 100px;
 
 $fileTypeMaxWidth: 100px;
 $sourceMaxWidth: 140px;
