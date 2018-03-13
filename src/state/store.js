@@ -92,7 +92,7 @@ const store = new Vuex.Store({
     currentDataResource: null,
     currentProcessor: null,
     pageDataResources: 1,
-    pageLengthDataResources: 5,
+    pageLengthDataResources: 25,
     sortDataResources: 'filename',
     orderDataResources: 'asc',
     filtersDataResources: {},
