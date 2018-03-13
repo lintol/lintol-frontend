@@ -191,7 +191,7 @@ label {
   color: $orange;
   border: 2px solid $orange;
   border-radius: 5px;
-  font-size: 0.75em;
+  font-size: 0.65em;
   -webkit-appearance: none;
   -moz-appearance: none;
   &:hover {
