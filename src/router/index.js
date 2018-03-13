@@ -27,6 +27,10 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/application/profiles/profiletable'
+    },
+    {
+      path: '/application',
       name: 'Application',
       component: Application,
       children: [
