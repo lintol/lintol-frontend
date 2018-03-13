@@ -196,6 +196,7 @@ export default {
   font-size: 0.75em;
   font-weight: bold;
   color: #333333;
+  word-wrap: break-word;
 }
 
 .wrapper {

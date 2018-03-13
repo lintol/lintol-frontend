@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      title: 'Processors',
+      title: 'Data Processors',
       search: ''
     };
   },
