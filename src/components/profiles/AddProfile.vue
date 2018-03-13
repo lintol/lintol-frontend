@@ -103,9 +103,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
-.instructions {
-}
-
 .scriptText {
   border: black dashed 3px;
   overflow: auto;
@@ -124,7 +121,8 @@ export default {
 
 .inputName {
   max-height: 40px;
-  font-size: 14px;
+  font-size: 0.75em;
+  padding: 10px 0px;
 }
 
 .inputNameBorder {
@@ -134,7 +132,7 @@ export default {
 .inputDescription {
   margin-top: 20px;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 0.75em;
 }
  
 .formItem {

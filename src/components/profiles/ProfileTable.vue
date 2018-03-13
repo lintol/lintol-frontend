@@ -3,7 +3,7 @@
     <transition name="component-fade" mode="in-out">
     <div>
       <button id="addNewProfileButton" class="addButton" @click="addProfile">
-        Add new Data Profile
+        <label>Add new Data Profile</label>
         <img src="~@/assets/images/white-plus-icon.svg" />
       </button>
       <label class="pageTitle">{{ title }}</label>

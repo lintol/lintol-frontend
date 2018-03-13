@@ -3,9 +3,9 @@
     <label class="pageTitle">{{ title }}</label>
     <p class="instructions">Edit your profile below</p>
     <div class="formContainer" v-if="profile">
-      <input id="profileName" class="formItem" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" :class="{ warningBorder: vErrors.has('name') }"/>
+      <input id="profileName" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
       <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem" rows="4" cols="50" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
       <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
         <p class="subHeading">Choose your Processor</p>
@@ -115,9 +115,10 @@ export default {
 <style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
 
-.instructions {
+.processorContainer {
+   display: flex;
+   flex-direction: column;
 }
-
 .scriptText {
   border: black dashed 3px;
   overflow: auto;
@@ -128,18 +129,41 @@ export default {
   flex-direction: column;
   width: 50%;
 }
+
+.processorContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputName {
+  max-height: 40px;
+  font-size: 0.75em;
+  padding: 10px 0px;
+}
+
+.inputNameBorder {
+  border: 1px grey solid;
+}
+
+.inputDescription {
+  margin-top: 20px;
+  padding-top: 10px;
+  font-size: 0.75em;
+}
  
 .formItem {
   margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 .button {
   margin-top: 36px;
 }
 
-.processorContainer {
-   display: flex;
-   flex-direction: column;
+.processorInstruction {
+  font-size: 14px;
+  font-weight: bold;
+
 }
 
 </style>
