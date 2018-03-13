@@ -52,7 +52,7 @@ export default {
     userList: function () {
       var userList = [];
       this.reports.filter((event) => {
-        if (userList.indexOf(event.user) === -1) {
+        if (userList.indexOf(event.user) === -1 && event.user) {
           userList.push(event.user);
         }
       });
