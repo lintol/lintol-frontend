@@ -4,7 +4,7 @@
       <div class="profileColumn profileMainColumn center">
         <div class="rightSeparator ">
           <label class="profileName"> {{ profile.name }} </label>
-          <label class="user"> <img class="profilePicture" src="../../assets/images/profile.png"> </img>{{ profile.creator }} </label>
+          <user v-if="profile.creator" class="user" :user="profile.creator"></user>
           <p style=" word-wrap: break-word;" >{{ profile.description }} </p>
         </div>
       </div>
@@ -37,6 +37,8 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
+import userComponent from '@/components/users/UserComponent.vue';
+
 export default {
   name: 'ProfileRow',
   props: {
@@ -63,6 +65,7 @@ export default {
     }
   },
   components: {
+    user: userComponent
   },
   computed: {
   },
