@@ -334,6 +334,9 @@ export default {
 }
 
 .searchBox {
+  @media (min-width: 1000px) and (max-width: 1024px) {
+    width: 125px;
+  }
   max-height: 28px;
   box-sizing: border-box;
   border: 2px solid #ccc;

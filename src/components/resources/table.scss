@@ -38,6 +38,7 @@ $actionMaxWidth: 150px;
 .owner {
   min-width: $ownerMinWidth;
   max-width: $ownerMaxWidth;
+  margin-left: 10px;
 }
 
 .status {
@@ -55,40 +56,6 @@ $actionMaxWidth: 150px;
   max-width: $ownerMaxWidth + $statusMaxWidth + $actionMaxWidth;
 }
 
-$fileTypeMinWidth: 90px;
-$sourceMinWidth: 100px;
-$dateAddedMinWidth: 100px;
-
-$fileTypeMaxWidth: 100px;
-$sourceMaxWidth: 140px;
-$dateAddedMaxWidth: 150px;
-
-.fileType {
-  min-width: $fileTypeMinWidth;
-  max-width:$fileTypeMaxWidth; 
-  margin-left: 10px;
-}
-
-.source {
-  min-width: $sourceMinWidth;
-  max-width: $sourceMaxWidth;
-}
-
-.dateAdded {
-  min-width: $dateAddedMinWidth;
-  max-width: $dateAddedMaxWidth;
-}
-
-.type-source-dataAdded {
-  min-width: $fileTypeMinWidth + $sourceMinWidth + $dateAddedMinWidth;
-  max-width: $fileTypeMaxWidth + $sourceMaxWidth + $dateAddedMaxWidth;
-  > div label {
-    text-transform: uppercase;
-    margin-top: 4px;
-    color: grey;
-    font-size: 0.6875em;
-  }
-}
 /* Mobile first queries */
 
 /* Larger than mobile */
@@ -103,6 +70,51 @@ $dateAddedMaxWidth: 150px;
 
 /* Larger than desktop */
 @media (min-width: 1000px) {
+$filenameMinWidth: 130px;
+$filenameMaxWidth: 130px;
+  .filename {
+    min-width: $filenameMinWidth;
+    max-width: $filenameMaxWidth;
+  }
+
+  .filenameHeader {
+    min-width: $blackCheckboxMinWidth + $filenameMinWidth;
+    max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
+  }
+  $fileTypeMinWidth: 50px;
+  $sourceMinWidth: 50px;
+  $dateAddedMinWidth: 50px;
+  
+  $fileTypeMaxWidth: 50px;
+  $sourceMaxWidth: 70px;
+  $dateAddedMaxWidth: 90px;
+  
+  .fileType {
+    min-width: $fileTypeMinWidth;
+    max-width:$fileTypeMaxWidth; 
+    margin-left: 10px;
+  }
+  
+  .source {
+    min-width: $sourceMinWidth;
+    max-width: $sourceMaxWidth;
+  }
+  
+  .dateAdded {
+    min-width: $dateAddedMinWidth;
+    max-width: $dateAddedMaxWidth;
+  }
+  
+  .type-source-dataAdded {
+    min-width: $fileTypeMinWidth + $sourceMinWidth + $dateAddedMinWidth;
+    max-width: $fileTypeMaxWidth + $sourceMaxWidth + $dateAddedMaxWidth;
+    > div label {
+      text-transform: uppercase;
+      margin-top: 4px;
+      color: grey;
+      font-size: 0.6875em;
+    }
+  }
 }
 
 /* Larger than Desktop HD */
@@ -118,6 +130,40 @@ $filenameMaxWidth: 200px;
     min-width: $blackCheckboxMinWidth + $filenameMinWidth;
     max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
   }
+  $fileTypeMinWidth: 70px;
+  $sourceMinWidth: 70px;
+  $dateAddedMinWidth: 70px;
+  
+  $fileTypeMaxWidth: 70px;
+  $sourceMaxWidth: 100px;
+  $dateAddedMaxWidth: 120px;
+  
+  .fileType {
+    min-width: $fileTypeMinWidth;
+    max-width:$fileTypeMaxWidth; 
+    margin-left: 10px;
+  }
+  
+  .source {
+    min-width: $sourceMinWidth;
+    max-width: $sourceMaxWidth;
+  }
+  
+  .dateAdded {
+    min-width: $dateAddedMinWidth;
+    max-width: $dateAddedMaxWidth;
+  }
+  
+  .type-source-dataAdded {
+    min-width: $fileTypeMinWidth + $sourceMinWidth + $dateAddedMinWidth;
+    max-width: $fileTypeMaxWidth + $sourceMaxWidth + $dateAddedMaxWidth;
+    > div label {
+      text-transform: uppercase;
+      margin-top: 4px;
+      color: grey;
+      font-size: 0.6875em;
+    }
+  }
 }
 
 @media only screen and (min-width: 1400px) and (max-height: 1024px) {
@@ -131,5 +177,39 @@ $filenameMaxWidth: 300px;
   .filenameHeader {
     min-width: $blackCheckboxMinWidth + $filenameMinWidth;
     max-width: $blackCheckboxMaxWidth +  $filenameMaxWidth;
+  }
+  $fileTypeMinWidth: 90px;
+  $sourceMinWidth: 100px;
+  $dateAddedMinWidth: 100px;
+  
+  $fileTypeMaxWidth: 100px;
+  $sourceMaxWidth: 140px;
+  $dateAddedMaxWidth: 150px;
+  
+  .fileType {
+    min-width: $fileTypeMinWidth;
+    max-width:$fileTypeMaxWidth; 
+    margin-left: 10px;
+  }
+  
+  .source {
+    min-width: $sourceMinWidth;
+    max-width: $sourceMaxWidth;
+  }
+  
+  .dateAdded {
+    min-width: $dateAddedMinWidth;
+    max-width: $dateAddedMaxWidth;
+  }
+  
+  .type-source-dataAdded {
+    min-width: $fileTypeMinWidth + $sourceMinWidth + $dateAddedMinWidth;
+    max-width: $fileTypeMaxWidth + $sourceMaxWidth + $dateAddedMaxWidth;
+    > div label {
+      text-transform: uppercase;
+      margin-top: 4px;
+      color: grey;
+      font-size: 0.6875em;
+    }
   }
 }

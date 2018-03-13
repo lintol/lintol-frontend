@@ -119,6 +119,10 @@ export default {
 @import '~@/assets/scss/checkbox.scss';
 @import './table.scss';
 
+label {
+  margin-bottom: 0px;
+}
+
 .newStatus {
   background-color: blue;
 }
