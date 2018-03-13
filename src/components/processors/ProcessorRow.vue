@@ -65,23 +65,23 @@ label {
 .processorColumn {
   flex: 1;
   label:nth-child(1) {
-    font-weight: bold;
-    font-size: 11px;
+    font-weight: $bold;
+    font-size: 0.688em;
   }
   label:nth-child(2) {
-    font-size: 10px;
+    font-size: 0.625em;
     margin-top:3px;
   }
 }
 
 .configurationsColumn {
   label:nth-child(1) {
-    font-weight: bold;
-    font-size: 21px;
+    font-weight: $bold;
+    font-size: 1.313em;
   text-align: center;
   }
   label:nth-child(2) {
-    font-size: 8px;
+    font-size: 0.5em;
   text-align: center;
   }
 }
@@ -102,16 +102,17 @@ label {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding-right: 5px;
 }
 
 .mainColumnHeader {
   color: $orange;
-  font-weight: bold;
-  font-size: 12px;
+  font-weight: $bold;
+  font-size: 0.75;
 }
 
 .description {
-   font-size: 11px;
+   font-size: 0.688;
    word-wrap: break-word;
 }
 </style>

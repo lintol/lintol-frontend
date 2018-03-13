@@ -37,7 +37,6 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap; 
   height: 100%;
-  height: 1200px;
 }
 
 .menu {

@@ -34,10 +34,10 @@
         <label id="passes" class="ragNumber">{{ report.passes }}</label>
         </div>
       </div>
-      <div class="reportColumn center">
+      <!--<div class="reportColumn center">
         <label class="qualityScore" >{{ report.qualityScore }}</label>
         <label>Quality Score</label>
-      </div>
+      </div>-->
       <div class="reportColumn center">
         <div>
         <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
@@ -141,6 +141,7 @@ div .reportColumn p {
   flex-direction: row;
   justify-content: space-around;
   align-items: center; 
+  padding-right: 10px;
 }
 
 .columnHeader {
@@ -149,29 +150,29 @@ div .reportColumn p {
 
 .ranOn {
   font-weight: bold;
-  font-size: 10px;
+  font-size: 0.625em;
   margin-left: 20px;
   + label {
-    font-size: 11px;
+    font-size: 0.688em;
     margin-left: 20px;
   }
 }
 
 .ragNumber {
   vertical-align: top;
-  font-size: 12px;
+  font-size: 0.75em;
 }
 
 .profileName {
-  font-size: 10px;
+  font-size: 0.625em;
 }
 
 .reportName {
-  font-size: 10px;
+  font-size: 0.625em;
 }
 
 .user {
-  font-size: 12px;
+  font-size: 0.75em;
 }
 
 </style>
