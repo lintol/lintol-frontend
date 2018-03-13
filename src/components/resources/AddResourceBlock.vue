@@ -1,7 +1,7 @@
 <template>
     <div class="sourceRow">
       <div> 
-        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Not availble yet">Upload your Files</label>
+        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Not available yet">Upload your Files</label>
       </div>
       <div>
         <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>

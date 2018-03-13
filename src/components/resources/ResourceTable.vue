@@ -117,10 +117,12 @@ export default {
       this.revertAscDesc();
     },
     matchDataResourcesToProfile () {
+      var resources = this.selectedResources;
       this.$store.dispatch(STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES, {
         profileId: this.selectedProfileId,
-        resources: this.selectedResources
+        resources: resources
       });
+      this.selectedResources = [];
     },
     resourceAction: function (e) {
       if (e.target.value === 'runProfile') {
