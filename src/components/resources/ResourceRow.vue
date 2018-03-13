@@ -2,7 +2,7 @@
   <div id="resources-row" class="shadedRow">
     <div class="resourceRow">
       <div class="selectedResource center">
-         <label class="container">
+         <label class="checkbox-container">
            <input type="checkbox" :id="'active' + index" @click="resourceSelected" :checked=isResourceSelected />
            <span :for="'active' + index" class="checkmark"></span>
          </label>
@@ -24,8 +24,7 @@
         </div>
       </div>
       <div class="center owner">
-        <img class="profilePicture" src="../../assets/images/profile.png"></img>
-        <label>{{ resource.owner }}</label>
+        <user :user="resource.user"></user>
       </div>
       <div class="center status">
         <label id="resourceStatus" class="statusLabel" :class="statusColor">{{ resource.status }}</label>
@@ -39,6 +38,8 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
+import userComponent from '@/components/users/UserComponent.vue';
+
 export default {
   name: 'ResourceRow',
   props: {
@@ -63,9 +64,7 @@ export default {
   methods: {
     convertDate: convertDate,
     viewResource: function (e) {
-      console.log('Redirecting to: ' + this.resource.url);
-      // `this.$router.push(this.resource.url);
-      location.href = 'http://' + this.resource.url;
+      window.open(this.resource.url, '_blank');
     },
     resourceSelected: function (e) {
       this.isResourceSelected = !this.isResourceSelected;
@@ -74,13 +73,13 @@ export default {
   },
   watch: {
     clearSelected: function () {
-      console.log('clear:' + this.clearSelected);
       if (this.clearSelected) {
         this.isResourceSelected = false;
       }
     }
   },
   components: {
+    user: userComponent
   },
   computed: {
     statusColor: function () {
@@ -145,7 +144,7 @@ export default {
   color: white;
   border-radius: 40px;
   padding: 5px;
-  font-size: 10px;
+  font-size: 0.625em;
   text-transform: capitalize;
   font-weight: bold;
   text-align: center;
@@ -179,7 +178,7 @@ export default {
   color: $orange;
   border: 2px solid $orange;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 0.75em;
   -webkit-appearance: none;
   -moz-appearance: none;
   &:hover {
@@ -188,14 +187,9 @@ export default {
 }
 
 .filenameLabel {
-  font-size: 12px;
+  font-size: 0.75em;
   font-weight: bold;
   color: #333333;
-}
-
-.user {
-  font-size: 12px;
-  color: #777776;
 }
 
 .wrapper {
@@ -203,69 +197,67 @@ export default {
   flex-direction: row;
 }
 
-.container {
+.checkbox-container {
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 35px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-/* Hide the browser's default checkbox */
-.container input {
+.checkbox-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
 
-/* Create a custom checkbox */
 .checkmark {
     position: absolute;
     top: 0;
     left: 0;
-    height: 12px;
-    width: 12px;
+    height: 16px;
+    width: 16px;
     background-color: #eee;
     border-radius: 3px;
     border: 1px solid #000000;
     box-sizing: border-box;
 }
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.checkbox-container input ~ .checkmark {
+    background-color: #fff;
+}
+
+.checkbox-container:hover input ~ .checkmark {
     background-color: #ccc;
 }
 
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.checkbox-container input:checked ~ .checkmark {
     background-color: black;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.checkbox-container input:checked ~ .checkmark:after {
     display: block;
 }
 
-/* Style the checkmark/indicator */
-.container .checkmark:after {
+.checkbox-container .checkmark:after {
     left: 4px;
     top: 0px;
-    width: 3px;
-    height: 8px;
+    width: 5px;
+    height: 10px;
     border: solid white;
-    border-width: 0 1px 1px 0;
+    border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);

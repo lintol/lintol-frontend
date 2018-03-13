@@ -5,18 +5,20 @@
       <p class="instructions">
         Here is a list of generated reports for this account 
       </p>
-      <select id="dateFilter" v-model="selectedDate" >
-        <option disabled value="" >Filter by Date</option> 
-        <option v-for="date in dateList">{{ date }}</option> 
-      </select>
-      <select id="userFilter" v-model="selectedUser" >
-        <option disabled value="" >Filter by User</option> 
-        <option v-for="user in userList">{{ user }}</option> 
-      </select>
-      <select id="profileFilter" v-model="selectedProfile" >
-        <option disabled value="" >Filter by Profile</option> 
-        <option v-for="profile in profileList">{{ profile }}</option> 
-      </select>
+      <div class="btn-group">
+        <select class="custom-select" id="dateFilter" v-model="selectedDate" >
+          <option disabled value="" >Filter by Date</option> 
+          <option v-for="date in dateList">{{ date }}</option> 
+        </select>
+        <select class="custom-select" id="userFilter" v-model="selectedUser" >
+          <option disabled value="" >Filter by User</option> 
+          <option v-for="user in userList">{{ user }}</option> 
+        </select>
+        <select class="custom-select" id="profileFilter" v-model="selectedProfile" >
+          <option disabled value="" >Filter by Profile</option> 
+          <option v-for="profile in profileList">{{ profile }}</option> 
+        </select>
+      </div>
       <div id="noReportsAvailable" v-if="reports.length == 0">
         <p class="instructions">No Reports available for this account</p>
       </div>
@@ -98,5 +100,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
+
+select {
+  height: 28px;
+  &.custom-select {
+    margin: auto 10px 10px auto;
+  }
+}
 
 </style>

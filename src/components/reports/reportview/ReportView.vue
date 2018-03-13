@@ -13,7 +13,7 @@
           <label v-if="report.createdAt">{{ convertDate(report.createdAt.date) }}</label>
         </div>
         <div class="reportColumn">
-          <label id="creator" class="user"><img class="profilePicture alignImage" src="../../../assets/images/profile.png" /> {{ report.user }}</label>
+          <user :user="report.user"></user>
         </div>
         <div class="reportColumn">
           <label class="qualityScore" >{{ report.qualityScore }}</label>
@@ -26,12 +26,15 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
+import userComponent from '@/components/users/UserComponent.vue';
+
 export default {
   name: 'ReportView',
   data () {
     return {};
   },
   components: {
+    user: userComponent
   },
   methods: {
     convertDate: convertDate

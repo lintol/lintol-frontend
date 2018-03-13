@@ -20,7 +20,7 @@
         <label>{{ processor.uniqueTag }}</label>
       </div>
       <div class="configurationsColumn center">
-        <label>{{ configurations }}</label>
+        <label>{{ processor.configurationCount ? processor.configurationCount : 0 }}</label>
         <label>Configurations</label>
       </div>
     </div>
@@ -39,7 +39,6 @@ export default {
   },
   data () {
     return {
-      configurations: 32
     };
   },
   methods: {
@@ -58,9 +57,13 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/application.scss';
 
+/* Because bootstrap has all labels margin-bottom: 0.5rem */
+label {
+  margin-bottom: 0px;
+}
+
 .processorColumn {
   flex: 1;
-  min-width: 150px;
   label:nth-child(1) {
     font-weight: bold;
     font-size: 11px;
@@ -72,7 +75,6 @@ export default {
 }
 
 .configurationsColumn {
-  min-width: 150px;
   label:nth-child(1) {
     font-weight: bold;
     font-size: 21px;
