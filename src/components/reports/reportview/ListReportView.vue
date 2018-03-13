@@ -2,7 +2,7 @@
    <div id="processorReportView processorReportView">
        <div id="reportResultDetails" class="infoBar" v-if="report">
           <div>
-            <label class="issueCount">58 Issues</label>
+            <label class="issueCount">{{ report.errors }} Issues</label>
           </div>
               <div class="ragBar">
                 <div>

@@ -98,7 +98,8 @@ const store = new Vuex.Store({
     filtersDataResources: {},
     inProgressDataResources: {},
     pagesRequestedDataResources: [],
-    pageCountDataResources: {}
+    pageCountDataResources: {},
+    refreshRequestedDataResources: false
   },
   actions: {
     [a.STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES] ({ commit, state, dispatch }, { profileId, resources }) {
@@ -181,7 +182,7 @@ const store = new Vuex.Store({
       }
 
       if (reset) {
-        commit(m.RESET_DATA_RESOURCES);
+        commit(m.SET_DATA_RESOURCES_REFRESH_REQUESTED);
       }
 
       commit(m.ADD_DATA_RESOURCE_PAGE_REQUEST, page);
@@ -206,6 +207,9 @@ const store = new Vuex.Store({
             var resources = response.data;
             /* While this approach works for stepping through,
              * further investigation may be required around jumping cold into page N>1 */
+            if (state.refreshRequestedDataResources) {
+              commit(m.RESET_DATA_RESOURCES);
+            }
             commit(m.APPEND_DATA_RESOURCES, resources);
 
             if (!skipInterpolation) {
@@ -491,6 +495,7 @@ const store = new Vuex.Store({
     },
     [m.RESET_DATA_RESOURCES] (state) {
       state.repository.dataResources = {};
+      state.refreshRequestedDataResources = false;
       state.dataResources = [];
     },
     [m.SET_CURRENT_DATA_RESOURCE] (state, dataResource) {
@@ -520,6 +525,10 @@ const store = new Vuex.Store({
 
     [m.ADD_DATA_RESOURCE_PAGE_REQUEST] (state, pageNumber) {
       state.pagesRequestedDataResources.push(pageNumber);
+    },
+
+    [m.SET_DATA_RESOURCES_REFRESH_REQUESTED] (state) {
+      state.refreshRequestedDataResources = true;
     }
   }
 });
