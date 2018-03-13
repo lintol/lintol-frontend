@@ -30,7 +30,7 @@
         <div class="center status">
           <label id="resourceStatus" class="statusLabel" :class="statusColor" >{{ resource.status }}</label>
         </div>
-        <div class="center actionButton">
+        <div class="vertialAlignItems actionButton">
           <button class="viewResourceButton" @click="viewResource">View Resource</button>
         </div>
       </div>
