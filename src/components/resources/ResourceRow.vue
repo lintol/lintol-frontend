@@ -203,7 +203,8 @@ label {
   font-size: 0.75em;
   font-weight: bold;
   color: #333333;
-  word-break: break-all
+  word-break: break-all;
+  padding-right: 3px;
 }
 
 .wrapper {
