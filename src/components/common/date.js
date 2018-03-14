@@ -8,6 +8,14 @@ export function convertDate (dateString) {
   }
 }
 
+export function convertToTimeStamp (dateString) {
+  if (dateString === undefined || dateString === '') {
+    return 'undefined';
+  } else {
+    return moment(dateString).format('X'); // for seconds timestamp
+  }
+}
+
 export function dateList (objects) {
   console.log(objects);
   var dateList = [];
