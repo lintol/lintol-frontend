@@ -150,6 +150,7 @@ export default {
       }
       this.action = '';
       this.clearSelected = true;
+      this.selectedProfileId = '';
     },
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);

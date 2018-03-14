@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: #F8F8F8;">
     <div>
-       <router-link id="home" :to="{name: 'Application' }">
+       <router-link id="home" :to="{name: 'profileTable' }">
          <img class="logo center" src="~@/assets/images/logo.svg" title="Home">
        </router-link>
        <router-link id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }">
