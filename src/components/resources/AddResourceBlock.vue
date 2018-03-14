@@ -79,7 +79,7 @@ export default {
         var url = urlArray[index];
         var filename = url.replace(/^.*[\\/]/, '');
         var filetype = filename.split('.').pop();
-        var resource = { source: 'External Link', url: url, filename: filename, user: 'martin', filetype: filetype };
+        var resource = { source: 'External Link', url: url, filename: filename, filetype: filetype };
         this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
         });
       }
