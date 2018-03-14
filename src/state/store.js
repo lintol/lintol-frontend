@@ -358,13 +358,15 @@ const store = new Vuex.Store({
       });
     },
 
-    [a.LOAD_LOGGED_IN_USER] ({ commit }) {
-      axios.get(apiPrefix + '/users/me').then((response) => {
-        var user = response.data;
-        commit(m.SET_LOGGED_IN_USER, user);
-      }, error => {
-        console.log('Couldnt get logged in user:' + error);
-      });
+    [a.LOAD_LOGGED_IN_USER] ({ commit, state }) {
+      if (!state.loggedInUser) {
+        axios.get(apiPrefix + '/users/me').then((response) => {
+          var user = response.data;
+          commit(m.SET_LOGGED_IN_USER, user);
+        }, error => {
+          console.log('Couldnt get logged in user:' + error);
+        });
+      }
     }
   },
   getters: {

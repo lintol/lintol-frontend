@@ -195,7 +195,7 @@ label {
   -webkit-appearance: none;
   -moz-appearance: none;
   &:hover {
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 6px #a66;
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
     <div class="sourceRow">
       <div> 
-        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Not available yet">Upload your Files</label>
+        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
       </div>
       <div>
         <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>
@@ -36,7 +36,8 @@
 
 <script>
 import { convertDate } from '@/components/common/date.js';
-import { STORE_DATA_RESOURCE } from '@/state/action-types';
+import { STORE_DATA_RESOURCE, LOAD_LOGGED_IN_USER } from '@/state/action-types';
+
 export default {
   name: 'AddResourceBlock',
   props: {
@@ -54,6 +55,23 @@ export default {
     /* addResource: function (action) {
       this.$emit('addResource', action);
     }, */
+    uploadFiles: function () {
+      var uploadTarget = null;
+
+      if (this.loggedInUser && this.loggedInUser.driver && this.loggedInUser.driverServer) {
+        var driver = this.loggedInUser.driver;
+        var driverServer = this.loggedInUser.driverServer;
+        if (driver === 'ckan') {
+          uploadTarget = driverServer + '/dataset/new';
+        } else if (driver === 'github') {
+          uploadTarget = driverServer + '/new';
+        }
+      }
+
+      if (uploadTarget) {
+        window.open(uploadTarget, '_uploadFiles');
+      }
+    },
     addResource: function () {
       var urlArray = this.urls.replace(/[\n\r]+/g, '').split(',');
       console.log(urlArray);
@@ -72,8 +90,12 @@ export default {
   components: {
   },
   computed: {
+    loggedInUser: function () {
+      return this.$store.state.loggedInUser;
+    }
   },
   mounted: function () {
+    this.$store.dispatch(LOAD_LOGGED_IN_USER);
   }
 };
 </script>
