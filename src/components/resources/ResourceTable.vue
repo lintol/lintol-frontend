@@ -208,7 +208,7 @@ export default {
       var dateList = [];
       var datePairs = [];
       this.resources.filter((event) => {
-        if (dateList.indexOf(convertDate(event.created_at.date)) === -1) {
+        if (event.created_at && dateList.indexOf(convertDate(event.created_at.date)) === -1) {
           datePairs.push([convertToTimeStamp(event.created_at.date), convertDate(event.created_at.date)]);
           dateList.push(convertDate(event.created_at.date));
         }
