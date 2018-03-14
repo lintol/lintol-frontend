@@ -12,6 +12,7 @@ $bold: 500;
 
 
 $orange: #F1592A;
+$orangeDark: #AA6666;
 $greyFont: #BFBFBF;
 
 select {
@@ -96,10 +97,10 @@ body, body * {
   padding: 5px 10px;
   font-size: 0.75em;
   &:active {
-    box-shadow: 0px 0px 0px $orange;
+    box-shadow: 0px 0px 0px $orangeDark;
   }
   &:focus {
-    box-shadow: 0px 0px 5px $orange;
+    box-shadow: 0px 0px 5px $orangeDark;
     outline:0;
   }
   
