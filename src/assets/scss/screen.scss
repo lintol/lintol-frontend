@@ -42,6 +42,9 @@
         height: $menuHeight;
       }
     }
+    .panel {
+      width: 80%;
+    }
 }
 
 /* Larger than Desktop HD */
@@ -76,6 +79,9 @@
         height: $menuHeight;
       }
     }
+    .panel {
+      width: 80%;
+    }
 }
 
 @media (min-width: 1400px) {
@@ -109,5 +115,44 @@
         height: $menuHeight;
       }
     }
+    .panel {
+      width: 80%;
+    }
   
 }
+
+@media (min-width: 1600px) {
+    body {
+      font-size: 16px;
+    }
+    .logo {
+      height: 29px;
+      width: 101px;
+    }
+    $menuWidth: 186px;
+    $menuHeight: 35;
+    .addResourceButton {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntry {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .menuEntryActive {
+      width: $menuWidth;
+      height: $menuHeight;
+      > a {
+        height: $menuHeight;
+      }
+    }
+    .panel {
+      width: 60%;
+    }
+ } 

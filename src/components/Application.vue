@@ -39,7 +39,6 @@ export default {
 }
 
 .panel {
-  width: 75%;
   padding-left: 31px;
   padding-top: 58px;
 }

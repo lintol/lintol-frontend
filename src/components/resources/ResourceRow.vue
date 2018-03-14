@@ -20,7 +20,7 @@
           <label>{{ resource.source }}</label>
         </div>
         <div class="center dateAdded">
-          <label>{{ convertDate(resource.created_at) }}</label>
+          <label>{{ convertDate(resource.created_at.date) }}</label>
         </div>
       </div>
       <div class="wrapper owner-status-action">

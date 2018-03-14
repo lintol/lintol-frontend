@@ -228,9 +228,9 @@ export default {
       var dateList = [];
       var datePairs = [];
       this.resources.filter((event) => {
-        if (dateList.indexOf(event.created_at) === -1) {
-          datePairs.push([event.created_at, convertDate(event.created_at)]);
-          dateList.push(event.created_at);
+        if (dateList.indexOf(convertDate(event.created_at.date)) === -1) {
+          datePairs.push([event.created_at.date, convertDate(event.created_at.date)]);
+          dateList.push(convertDate(event.created_at.date));
         }
       });
       return datePairs;

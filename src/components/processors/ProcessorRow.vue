@@ -78,12 +78,13 @@ label {
   label:nth-child(1) {
     font-weight: $bold;
     font-size: 1.313em;
-  text-align: center;
+    text-align: center;
   }
   label:nth-child(2) {
     font-size: 0.5em;
-  text-align: center;
+    text-align: center;
   }
+  padding-right: 10px;
 }
  
 .center {
