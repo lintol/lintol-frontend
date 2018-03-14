@@ -17,7 +17,7 @@
         <p>{{ convertDate(profile.updated_at) }}</p>
       </div>
       <div class="profileColumn center">
-        <label class="columnTitle">Last Updated</label>
+        <label class="columnTitle">Version</label>
         <p >{{ profile.version }}</p>
       </div>
       <div class="profileColumn center">
@@ -137,7 +137,7 @@ div .profileColumn p {
 }
 
 .profileName {
-  font-size: 0.9375em;
+  font-size: 0.75em;
   width: 150px;
 }
 

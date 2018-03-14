@@ -19,7 +19,7 @@
         </select>
         <select id="dateFilter" class="filter custom-select" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
-          <option v-for="date in dateList" value="date[0]">{{ date[1] }}</option>
+          <option v-for="date in dateList" :value="date[0]">{{ date[1] }}</option>
         </select>
         <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
       </div>
@@ -45,7 +45,7 @@
       <label class="actionButton"></label>
     </div>
     <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in filteredResources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
+      <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in resources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
     <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
       <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
@@ -87,7 +87,7 @@ import {
 } from '@/state/action-types';
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
-import { convertDate, selectedFiltered } from '@/components/common/date.js';
+import { convertDate, convertToTimeStamp } from '@/components/common/date.js';
 import $ from 'jquery';
 
 export default {
@@ -204,33 +204,13 @@ export default {
       }
       return filters;
     },
-    filteredResources: function () {
-      var result = this.resources;
-
-      result = selectedFiltered(result, this.selectedDate, 'created_at');
-      result = selectedFiltered(result, this.selectedType, 'filetype');
-
-      if (this.search) {
-        try {
-          var re = new RegExp(this.search);
-          result = result.filter((resource) => {
-            return re.exec(resource.filename);
-          });
-        } catch (e) {
-          console.log(e);
-          return this.resources;
-        }
-      }
-
-      return result;
-    },
     dateList: function () {
       var dateList = [];
       var datePairs = [];
       this.resources.filter((event) => {
-        if (dateList.indexOf(event.created_at) === -1) {
-          datePairs.push([event.created_at, convertDate(event.created_at)]);
-          dateList.push(event.created_at);
+        if (dateList.indexOf(convertDate(event.created_at.date)) === -1) {
+          datePairs.push([convertToTimeStamp(event.created_at.date), convertDate(event.created_at.date)]);
+          dateList.push(convertDate(event.created_at.date));
         }
       });
       return datePairs;

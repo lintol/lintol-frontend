@@ -86,7 +86,7 @@ export default {
           return convertDate(report.createdAt.date) === this.selectedDate;
         });
       }
-      result = selectedFiltered(result, this.selectedUser, 'user');
+      result = selectedFiltered(result, this.selectedUser, 'user', 'name');
       result = selectedFiltered(result, this.selectedProfile, 'profile');
       return result.reverse();
     }

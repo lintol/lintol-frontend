@@ -72,7 +72,7 @@ export default {
   font-size: 0.8125em;
   background: url(../../assets/images/search.svg) no-repeat scroll 0.875em 0.875em;
   background-color: white;
-  background-position: 0.3125em 0.9375em; 
+  background-position: 0.3125em 0.8375em; 
   background-repeat: no-repeat;
   padding-left: 1.6625em; 
   padding-top: 0.625em; 
