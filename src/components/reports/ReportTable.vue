@@ -88,7 +88,7 @@ export default {
       }
       result = selectedFiltered(result, this.selectedUser, 'user');
       result = selectedFiltered(result, this.selectedProfile, 'profile');
-      return result;
+      return result.reverse();
     }
   },
   mounted: function () {
