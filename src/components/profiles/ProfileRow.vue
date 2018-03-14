@@ -10,11 +10,11 @@
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Created</label>
-        <p>{{ convertDate(profile.created_at) }}</p>
+        <p>{{ convertDate(profile.created_at.date) }}</p>
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Last Updated</label>
-        <p>{{ convertDate(profile.updated_at) }}</p>
+        <p>{{ convertDate(profile.updated_at.date) }}</p>
       </div>
       <div class="profileColumn center">
         <label class="columnTitle">Version</label>

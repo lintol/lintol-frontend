@@ -9,11 +9,11 @@
       </div>
       <div class="processorColumn center">
         <label>Created</label>
-        <label>{{ convertDate(processor.created_at) }}</label>
+        <label>{{ convertDate(processor.created_at.date) }}</label>
       </div>
       <div class="processorColumn center">
         <label>Updated</label>
-        <label>{{ convertDate(processor.updated_at) }}</label>
+        <label>{{ convertDate(processor.updated_at.date) }}</label>
       </div>
       <div class="processorColumn center">
         <label>Unique Tag</label>
