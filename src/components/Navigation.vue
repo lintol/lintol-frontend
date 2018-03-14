@@ -74,7 +74,7 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
-      version: 0.10
+      version: '0.11'
     };
   },
   computed: {
