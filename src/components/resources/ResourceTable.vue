@@ -338,6 +338,7 @@ export default {
   height: 28px;
   &.custom-select {
     margin: auto 10px 10px auto;
+    width: auto;
   }
 }
 

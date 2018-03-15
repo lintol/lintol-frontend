@@ -194,8 +194,8 @@ label {
   font-size: 0.65em;
   -webkit-appearance: none;
   -moz-appearance: none;
+  cursor: pointer;
   &:hover {
-    box-shadow: 0px 0px 6px #a66;
   }
 }
 
