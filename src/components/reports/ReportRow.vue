@@ -9,7 +9,7 @@
       </div>
       <div class="reportColumn center">
         <label class="ranOn columnHeader">Ran On</label>
-        <label v-if="report.createdAt">{{ convertDate(report.createdAt.date) }}</label>
+        <label v-if="report.createdAt">{{ convertDateTime(report.createdAt.date) }}</label>
       </div>
       <div class="reportColumn center">
         <user id="creator" :user="report.user"></user>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { convertDate } from '@/components/common/date.js';
+import { convertDateTime } from '@/components/common/date.js';
 import userComponent from '@/components/users/UserComponent.vue';
 
 export default {
@@ -68,7 +68,7 @@ export default {
     viewReport: function (id) {
       this.$router.push({name: 'listReportView', params: {'report': this.report, 'reportId': id}});
     },
-    convertDate: convertDate
+    convertDateTime: convertDateTime
   },
   components: {
     user: userComponent
