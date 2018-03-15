@@ -37,7 +37,7 @@ export default {
   name: 'ReportTable',
   data () {
     return {
-      title: 'Reports',
+      title: 'Validation Reports',
       selectedUser: '',
       selectedDate: '',
       selectedProfile: ''
