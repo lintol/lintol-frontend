@@ -8,7 +8,7 @@ export function convertDate (dateString) {
   }
 }
 
-export function convertDateiTime (dateString) {
+export function convertDateTime (dateString) {
   if (dateString === undefined || dateString === '') {
     return 'undefined';
   } else {
