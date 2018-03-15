@@ -286,7 +286,7 @@ const store = new Vuex.Store({
 
       var url = apiPrefix + '/profiles';
 
-      axios.post(url, jsonProfile).then((response) => {
+      return axios.post(url, jsonProfile).then((response) => {
         var profile = response.data;
         commit(m.SET_CURRENT_PROFILE, profile);
       }).catch(function (error) {
