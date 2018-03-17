@@ -27,7 +27,6 @@
 
 <script>
 import ProfileRow from './ProfileRow.vue';
-import AddProfile from './AddProfile.vue';
 import { LOAD_PROFILES } from '@/state/action-types';
 import { convertDate } from '@/components/common/date.js';
 export default {
@@ -79,8 +78,7 @@ export default {
     }
   },
   components: {
-    ProfileRow: ProfileRow,
-    AddProfile: AddProfile
+    ProfileRow: ProfileRow
   },
   mounted: function () {
     this.$store.dispatch(LOAD_PROFILES);
