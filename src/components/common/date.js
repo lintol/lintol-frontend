@@ -28,7 +28,6 @@ export function convertToTimeStamp (dateString) {
 * used to create a array of dates from a list of objects. Used for date drops downs.
 */
 export function dateList (objects) {
-  console.log(objects);
   var dateList = [];
   objects.filter((event) => {
     if (event.createdAt && dateList.indexOf(convertDate(event.createdAt.date)) === -1) {

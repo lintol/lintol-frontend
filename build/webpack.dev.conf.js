@@ -13,6 +13,12 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 })
 
 module.exports = merge(baseWebpackConfig, {
+  node: {
+    // Added as a work around to get vue-test-utils imports and running
+    fs: "empty",
+    path: true,
+    module: 'empty'
+  },
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
