@@ -220,7 +220,7 @@ const store = new Vuex.Store({
                 dispatch(a.LOAD_DATA_RESOURCES, { reset: true, page: 1 });
               }
             }
-          }, error => {
+          }).catch((error) => {
             console.log('Couldnt get data resources for account.:' + error);
             if (!skipInterpolation) {
               commit(m.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS, [provider, ACTION_NONE]);
