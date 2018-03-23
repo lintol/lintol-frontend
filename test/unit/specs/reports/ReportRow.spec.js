@@ -6,7 +6,6 @@ describe('ReportRow.vue', () => {
     expect(ReportRow.data).to.be.a('function');
   });
   it('test converted time', () => {
-    expect(ReportRow.methods.convertDate('2001-01-01 00:00:00')).to.equal('1st January 2001');
     expect(ReportRow.name).to.equal('ReportRow');
   });
   /* it('Populate Row', () => {
