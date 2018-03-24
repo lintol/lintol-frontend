@@ -124,11 +124,11 @@ label {
 }
 
 .newStatus {
-  background-color: blue;
+  background-color: #0070E0;
 }
 
 .invalidStatus {
-  background-color: purple;
+  background-color: #FF4E50;
 }
 
 .runStatus {
@@ -191,7 +191,8 @@ label {
   color: $orange;
   border: 2px solid $orange;
   border-radius: 5px;
-  font-size: 0.65em;
+  font-size: 0.75em;
+  padding: 3px;
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;

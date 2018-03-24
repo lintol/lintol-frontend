@@ -31,11 +31,9 @@ export default {
   flex-direction: row;
   flex-wrap: nowrap; 
   height: 100%;
-  height: 100vh;
 }
 
 .menu {
-  height: 100%;
 }
 
 .panel {

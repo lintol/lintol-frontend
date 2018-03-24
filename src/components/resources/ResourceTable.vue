@@ -263,13 +263,13 @@ export default {
  
 .arrowDown:after {
   content: '\2193';
-  font-size: 12px;
+  font-size: 18px;
   font-weight: $bold;
 }
 
 .arrowUp:after {
   content: '\2191';
-  font-size: 12px;
+  font-size: 18px;
   font-weight: $bold;
 }
 
