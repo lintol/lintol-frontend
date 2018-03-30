@@ -5,21 +5,21 @@ import * as a from './action-types';
 import * as m from './mutation-types';
 import axios from 'axios';
 
-var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-
-axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': csrfToken
-};
-
-axios.interceptors.response.use(
-  response => { return response; },
-  function (error) {
-    if (error.response.status === 401) {
-      window.location = process.env.LOGIN_URL;
-    }
-  }
-);
+if (process.env.NODE_ENV !== 'testing') {
+  var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': csrfToken
+  };
+  axios.interceptors.response.use(
+      response => { return response; },
+      function (error) {
+        if (error.response.status === 401) {
+          window.location = process.env.LOGIN_URL;
+        }
+      }
+  );
+}
 
 Vue.use(Vuex);
 
@@ -449,7 +449,6 @@ const store = new Vuex.Store({
       var store = fromState(state);
       store.sync(dataResources);
       state.dataResources = store.findAll('dataResources');
-      console.log('appended');
     },
     [m.RESET_DATA_RESOURCES] (state) {
       state.repository.dataResources = {};
