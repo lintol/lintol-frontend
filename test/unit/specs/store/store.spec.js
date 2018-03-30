@@ -27,40 +27,47 @@ processors.push(processor2); */
 
 describe('Vuex Store', () => {
   describe('Mutations', () => {
-    var fromState = function (state) {
-      var coolStuff = {
-        sync: function (objects) {
-          //  console.log(objects);
-        },
-        find: function (query, id) {
-          if (query === 'users') {
-            return {id: '1'};
+    var sandbox;
+    before(function () {
+      var fromState = function (state) {
+        var coolStuff = {
+          sync: function (objects) {
+            //  console.log(objects);
+          },
+          find: function (query, id) {
+            if (query === 'users') {
+              return {id: '1'};
+            }
+            if (query === 'processors') {
+              return {id: '1'};
+            }
+            if (query === 'reports') {
+              return {id: '1'};
+            }
+            if (query === 'dataResources') {
+              return {id: '1'};
+            }
+            if (query === 'profiles') {
+              return {id: '1'};
+            }
+          },
+          findAll: function (query) {
+            if (query === 'users') {
+              return [];
+            }
+            if (query === 'dataResources') {
+              return [];
+            }
           }
-          if (query === 'processors') {
-            return {id: '1'};
-          }
-          if (query === 'reports') {
-            return {id: '1'};
-          }
-          if (query === 'dataResources') {
-            return {id: '1'};
-          }
-          if (query === 'profiles') {
-            return {id: '1'};
-          }
-        },
-        findAll: function (query) {
-          if (query === 'users') {
-            return [];
-          }
-          if (query === 'dataResources') {
-            return [];
-          }
-        }
+        };
+        return coolStuff;
       };
-      return coolStuff;
-    };
-    sinon.stub(API, 'fromState').callsFake(fromState);
+      sandbox = sinon.sandbox.create();
+      sandbox.stub(API, 'fromState').callsFake(fromState);
+    });
+    after(function () {
+      sandbox.restore();
+    });
     it('Set Profiles', () => {
       var profiles = [];
       store.commit(m.SET_PROFILES, profiles);
@@ -224,41 +231,47 @@ describe('Vuex Store', () => {
     });
   });
   describe('Actions', () => {
-    var fromState = function (state) {
-      var coolStuff = {
-        sync: function (objects) {
-          //  console.log(objects);
-        },
-        find: function (query, id) {
-          if (query === 'users') {
-            return {id: '1'};
+    var sandbox;
+    before(function () {
+      var fromState = function (state) {
+        var coolStuff = {
+          sync: function (objects) {
+            //  console.log(objects);
+          },
+          find: function (query, id) {
+            if (query === 'users') {
+              return {id: '1'};
+            }
+            if (query === 'processors') {
+              return {id: '1'};
+            }
+            if (query === 'reports') {
+              return {id: '1'};
+            }
+            if (query === 'dataResources') {
+              return {id: '1'};
+            }
+            if (query === 'profiles') {
+              return {id: '1'};
+            }
+          },
+          findAll: function (query) {
+            if (query === 'users') {
+              return [];
+            }
+            if (query === 'dataResources') {
+              return [];
+            }
           }
-          if (query === 'processors') {
-            return {id: '1'};
-          }
-          if (query === 'reports') {
-            return {id: '1'};
-          }
-          if (query === 'dataResources') {
-            return {id: '1'};
-          }
-          if (query === 'profiles') {
-            return {id: '1'};
-          }
-        },
-        findAll: function (query) {
-          if (query === 'users') {
-            return [];
-          }
-          if (query === 'dataResources') {
-            return [];
-          }
-        }
+        };
+        return coolStuff;
       };
-      return coolStuff;
-    };
-    // sinon.stub(API, 'fromState').callsFake(fromState);
-    // sinon.stub(axios, "get")
+      sandbox = sinon.sandbox.create();
+      sandbox.stub(API, 'fromState').callsFake(fromState);
+    });
+    after(function () {
+      sandbox.restore();
+    });
     it('Load users', () => {
       store.dispatch(a.LOAD_USERS);
     });
