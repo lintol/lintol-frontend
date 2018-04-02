@@ -249,7 +249,6 @@ const store = new Vuex.Store({
         console.log('Error adding profile:' + error);
       });
     },
-
     [a.LOAD_USERS] ({ commit }) {
       axios.get(apiPrefix + '/users/').then((response) => {
         var users = response.data;
@@ -259,7 +258,7 @@ const store = new Vuex.Store({
       });
     },
     [a.LOAD_USER] ({ commit }, userId) {
-      axios.get(apiPrefix + '/users/' + userId).then((response) => {
+      return axios.get(apiPrefix + '/users/' + userId).then((response) => {
         var user = response.data;
         commit(m.SET_CURRENT_USER, user);
       }, error => {

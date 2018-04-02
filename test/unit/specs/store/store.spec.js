@@ -5,7 +5,7 @@ import * as m from '@/state/mutation-types';
 import store from '@/state/store';
 // import { shallow, createLocalVue } from '@vue/test-utils';
 import * as API from '@/state/jsonapi.js';
-import axios from 'axios';
+// import * as axios from 'axios';
 
 /* var currentProfile = {
   name: 'unit test profile',
@@ -232,13 +232,17 @@ describe('Vuex Store', () => {
   });
   describe('Actions', () => {
     var sandbox;
-    before(function () {
+    var server = null;
+    var fromState =null;
+    beforeEach(function () {
+      server = sinon.fakeServer.create();
       var fromState = function (state) {
         var coolStuff = {
           sync: function (objects) {
-            //  console.log(objects);
+            console.log('This is sync');
           },
           find: function (query, id) {
+            console.log('find');
             if (query === 'users') {
               return {id: '1'};
             }
@@ -269,36 +273,107 @@ describe('Vuex Store', () => {
       sandbox = sinon.sandbox.create();
       sandbox.stub(API, 'fromState').callsFake(fromState);
     });
-    after(function () {
+
+    afterEach(function () {
+      server.restore();
       sandbox.restore();
     });
-    it('Load users', () => {
-      store.dispatch(a.LOAD_USERS);
+    it('Load users', (done) => {
+      var okResponse = [
+         200,
+         { 'Content-type': 'application/json' },
+         '[{"name": "muto"},{"name": "muto2"}]'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/users/', okResponse);
+      store.dispatch(a.LOAD_USERS).then(() => {
+        expect(store.state.repository.users).to.eql({});
+        done();
+      });
+      server.respond();
     });
-    it('Load user', () => {
-      store.dispatch(a.LOAD_USER);
+    it('Load user', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '{ "data": { "id": "1", "name": "muto" }}'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/users/1', okResponse);
+      store.dispatch(a.LOAD_USER, 1).then(() => {
+        expect(store.state.currentUser).to.have.property('id');
+        done();
+      });
+      server.respond();
     });
-    /*it('', () => {
-      store.dispatch(a.LOAD_PROFILES);
+    it('Load profiles', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '[{"name": "muto"},{"name": "muto2"}]'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/profiles/', okResponse);
+      store.dispatch(a.LOAD_PROFILES).then(() => {
+        expect(store.state.repository.profiles).to.eql({});
+
+        done();
+      });
+      server.respond();
     });
-    it('', () => {
-      store.dispatch(a.LOAD_PROFILE);
+    it('Load Processors', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '[{"name": "muto"},{"name": "muto2"}]'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/processors/', okResponse);
+      store.dispatch(a.LOAD_PROCESSORS).then(() => {
+        expect(store.state.repository.processors).to.eql({});
+        done();
+      });
+      server.respond();
     });
-   it('', () => {
+    it('Load reports', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '[{"name": "muto"},{"name": "muto2"}]'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/reports/', okResponse);
+      store.dispatch(a.LOAD_REPORTS).then(() => {
+        expect(store.state.repository.reports).to.eql({});
+        done();
+      });
+      server.respond();
+    });
+
+    /*xit('Load profile', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '{ "data": { "id": "1", "name": "muto" }}'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/profiles/', okResponse);
+      store.dispatch(a.LOAD_PROFILE).then(() => {
+        expect(store.state.currentUser).to.have.property('id');
+        done();
+      });
+    });*/
+   /* it('', () => {
    store.dispatch(a.SAVE_PROFILE);
  });
     it('', () => {
       store.dispatch(a.STORE_PROFILE);
     });
-    it('', () => {
-      store.dispatch(a.LOAD_REPORTS);
-    });
+
     it('', () => {
       store.dispatch(a.LOAD_REPORT);
     });
-    it('', () => {
-      store.dispatch(a.LOAD_PROCESSORS);
-    });
+
     it('', () => {
       store.dispatch(a.STORE_PROCESSOR);
     });
