@@ -306,7 +306,7 @@ const store = new Vuex.Store({
     [a.STORE_DATA_RESOURCE] ({ commit }, dataResource) {
       var url = apiPrefix + '/dataResources';
 
-      axios.post(url, dataResource).then((response) => {
+      return axios.post(url, dataResource).then((response) => {
         console.log('Added data resource');
       }).catch(function (error) {
         console.log('Error adding data resource:' + error);
@@ -315,7 +315,7 @@ const store = new Vuex.Store({
 
     [a.LOAD_LOGGED_IN_USER] ({ commit, state }) {
       if (!state.loggedInUser) {
-        axios.get(apiPrefix + '/users/me').then((response) => {
+        return axios.get(apiPrefix + '/users/me').then((response) => {
           var user = response.data;
           commit(m.SET_LOGGED_IN_USER, user);
         }, error => {

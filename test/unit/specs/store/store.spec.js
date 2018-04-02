@@ -234,7 +234,12 @@ describe('Vuex Store', () => {
     var sandbox;
     var server = null;
     var fromState =null;
+    var dataResource = null;
+    var processor = null;
     beforeEach(function () {
+      dataResource = {};
+      processor = {};
+
       server = sinon.fakeServer.create();
       var fromState = function (state) {
         var coolStuff = {
@@ -272,11 +277,14 @@ describe('Vuex Store', () => {
       };
       sandbox = sinon.sandbox.create();
       sandbox.stub(API, 'fromState').callsFake(fromState);
+
     });
 
     afterEach(function () {
       server.restore();
       sandbox.restore();
+      dataResource = null;
+      processor = null;
     });
     it('Load users', (done) => {
       var okResponse = [
@@ -400,8 +408,104 @@ describe('Vuex Store', () => {
       store.dispatch(a.UPDATE_DATA_RESOURCES_SORT);
     });
     */
+    it('Store processor', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        ''
+      ];
+      server.autoRespond = true;
+      server.respondWith('POST', '/processors', okResponse);
+      store.dispatch(a.STORE_PROCESSOR, processor).then(() => {
+        done();
+      });
+      server.respond();
+    });
+    it('Store data resource', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        ''
+      ];
+      server.autoRespond = true;
+      server.respondWith('POST', '/dataResources', okResponse);
+      store.dispatch(a.STORE_DATA_RESOURCE, dataResource).then(() => {
+        done();
+      });
+      server.respond();
+    });
+    it('Load logged in user', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '{ "data": { "id": "1"} }'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/users/me', okResponse);
+      store.dispatch(a.LOAD_LOGGED_IN_USER).then(() => {
+        expect(store.state.loggedInUser).to.have.property('id');
+        done();
+      });
+      server.respond();
+    });
   });
-  /* xdescribe('getters', () => {
+  describe('getters', () => {
+    var sandbox;
+    var server = null;
+    var fromState =null;
+    beforeEach(function () {
+      server = sinon.fakeServer.create();
+      var fromState = function (state) {
+        var coolStuff = {
+          sync: function (objects) {
+            console.log('This is sync');
+          },
+          find: function (query, id) {
+            console.log('find');
+            if (query === 'users') {
+              return {id: '1'};
+            }
+            if (query === 'processors') {
+              return {id: '1'};
+            }
+            if (query === 'reports') {
+              return {id: '1'};
+            }
+            if (query === 'dataResources') {
+              return {id: '1'};
+            }
+            if (query === 'profiles') {
+              return {id: '1'};
+            }
+          },
+          findAll: function (query) {
+            if (query === 'users') {
+              return [{name: 'user'}, {name: 'user'}];
+            }
+            if (query === 'dataResources') {
+              return [{name: 'resource'}, {name: 'resource'}];
+            }
+            if (query === 'reports') {
+              return [{name: 'report'}, {name: 'report'}];
+            }
+            if (query === 'profiles') {
+              return [{name: 'profile'}, {name: 'profile'}];
+            }
+            if (query === 'processors') {
+              return [{name: 'processor'}, {name: 'processor'}];
+            }
+          }
+        };
+        return coolStuff;
+      };
+      sandbox = sinon.sandbox.create();
+      sandbox.stub(API, 'fromState').callsFake(fromState);
+    });
+
+    afterEach(function () {
+      server.restore();
+      sandbox.restore();
+    });
     it('users getters', () => {
       expect(store.getters.users.length).to.equal(2);
     });
@@ -414,11 +518,11 @@ describe('Vuex Store', () => {
     it('profiles getters', () => {
       expect(store.getters.profiles.length).to.equal(2);
     });
-    it('dataResourcePageCount getters', () => {
+    xit('dataResourcePageCount getters', () => {
       expect(store.getters.dataResourcePageCount.length).to.equal(2);
     });
-    it('data resources getters', () => {
+    xit('data resources getters', () => {
       expect(store.getters.dataresources.length).to.equal(2);
     });
-  }); */
+  });
 });
