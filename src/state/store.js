@@ -275,7 +275,7 @@ const store = new Vuex.Store({
       });
     },
     [a.LOAD_REPORT] ({ commit }, reportId) {
-      axios.get(apiPrefix + '/reports/' + reportId + '?include=dataResource,profile').then((response) => {
+      return axios.get(apiPrefix + '/reports/' + reportId + '?include=dataResource,profile').then((response) => {
         var report = response.data;
         commit(m.SET_CURRENT_REPORT, report);
       }, error => {

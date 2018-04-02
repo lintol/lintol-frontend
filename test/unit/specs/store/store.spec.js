@@ -247,7 +247,7 @@ describe('Vuex Store', () => {
             console.log('This is sync');
           },
           find: function (query, id) {
-            console.log('find');
+            console.log('find ' + query);
             if (query === 'users') {
               return {id: '1'};
             }
@@ -371,43 +371,20 @@ describe('Vuex Store', () => {
         done();
       });
     });*/
-   /* it('', () => {
-   store.dispatch(a.SAVE_PROFILE);
- });
-    it('', () => {
-      store.dispatch(a.STORE_PROFILE);
+    it('Load report', (done) => {
+      var okResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '{ "data": { "id": "1", "name": "reportName" }}'
+      ];
+      server.autoRespond = true;
+      server.respondWith('GET', '/reports/1?include=dataResource,profile', okResponse);
+      store.dispatch(a.LOAD_REPORT, 1).then(() => {
+        expect(store.state.currentReport).to.have.property('id');
+        done();
+      });
+      server.respond();
     });
-
-    it('', () => {
-      store.dispatch(a.LOAD_REPORT);
-    });
-
-    it('', () => {
-      store.dispatch(a.STORE_PROCESSOR);
-    });
-
-    it('', () => {
-      store.dispatch(a.SET_DATA_RESOURCE_PROVIDER_IN_PROGRESS);
-    });
-    it('', () => {
-      store.dispatch(a.STORE_DATA_RESOURCE);
-    });
-    it('', () => {
-      store.dispatch(a.SAVE_DATA_RESOURCE);
-    });
-    it('', () => {
-      store.dispatch(a.DELETE_DATA_RESOURCE);
-    });
-    it('', () => {
-      store.dispatch(a.LOAD_DATA_RESOURCES);
-    });
-    it('', () => {
-      store.dispatch(a.STORE_DATA_RESOURCES);
-    });
-    it('', () => {
-      store.dispatch(a.UPDATE_DATA_RESOURCES_SORT);
-    });
-    */
     it('Store processor', (done) => {
       var okResponse = [
         200,
