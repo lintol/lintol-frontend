@@ -10,7 +10,7 @@ describe('json api', () => {
         dataResources: {},
         users: {}
       }
-    } 
+    };
     var store = fromState(state);
     console.log(store);
     expect(store).to.have.property('graph');
@@ -22,14 +22,14 @@ describe('json api', () => {
   });
 
   it('toModel', () => {
-    var type ="dataResources";
+    var type = 'dataResources';
     var attributes = {
       name: 'fileName',
-      filename: 'filename.csv', 
-      uri: 'uri' 
+      filename: 'filename.csv',
+      uri: 'uri'
     };
     var relationships = {};
-    var id = "ef869d25-218a-471b-a8a2-c53411fda55b";
+    var id = 'ef869d25-218a-471b-a8a2-c53411fda55b';
     var serialized = toModel(type, attributes, relationships, id);
     expect(serialized.data.id).to.equal(null);
     expect(serialized.data.attributes.name).to.equal('fileName');
