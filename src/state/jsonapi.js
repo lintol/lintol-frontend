@@ -1,13 +1,21 @@
 import { JsonApiDataStore, JsonApiDataStoreModel } from 'jsonapi-datastore';
 
 var idctr = 1;
+
+/*
+ creates a graph store from repository information in state object
+ */
 function fromState (state) {
   var store = new JsonApiDataStore();
   store.graph = state.repository;
   return store;
 }
 
-function toModelReal (type, attributes, relationships, id) {
+/*
+ creates a json api compatible object for post information to the server
+ The relationships are only used by profiles and processors at the moment
+ */
+function _toModelReal (type, attributes, relationships, id) {
   var jsonObj = new JsonApiDataStoreModel(type, id);
   for (var key in attributes) {
     jsonObj.setAttribute(key, attributes[key]);
@@ -18,7 +26,7 @@ function toModelReal (type, attributes, relationships, id) {
       var relations = [];
       relationships[rel].relations.map(function (relation) {
         idctr += 1;
-        var jsonRel = toModelReal(relationships[rel].type, relation, false, 'temp-id-' + idctr);
+        var jsonRel = _toModelReal(relationships[rel].type, relation, false, 'temp-id-' + idctr);
         relations.push(jsonRel.jsonObj);
         included.push(jsonRel.jsonObj.serialize().data);
       });
@@ -34,7 +42,7 @@ function toModelReal (type, attributes, relationships, id) {
 }
 
 function toModel (type, attributes, relationships, id) {
-  var model = toModelReal(type, attributes, relationships, null);
+  var model = _toModelReal(type, attributes, relationships, null);
 
   var serialized = model.jsonObj.serialize();
   if (model.included) {
@@ -43,4 +51,4 @@ function toModel (type, attributes, relationships, id) {
   return serialized;
 }
 
-export { fromState, toModelReal, toModel };
+export { fromState, toModel };
