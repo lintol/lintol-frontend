@@ -425,6 +425,25 @@ describe('Vuex Store', () => {
       });
       server.respond();
     });
+    it('Update data resource filters', () => {
+       var filters = {
+         created_at: '2018-03-03',
+         source: 'ckan',
+         filetype: 'csv',
+         search: 'qwer'
+       };
+       store.dispatch(a.UPDATE_DATA_RESOURCES_FILTERS, filters);
+       expect(store.state.loggedInUser).to.have.property('id');
+    });
+    it('Update data resource page', () => {
+      store.dispatch(a.UPDATE_DATA_RESOURCES_PAGE, 3);
+    });
+    it('Update data resource order', () => {
+      store.dispatch(a.UPDATE_DATA_RESOURCES_ORDER, 'asc');
+    });
+    it('Update data resource sort', () => {
+      store.dispatch(a.UPDATE_DATA_RESOURCES_SORT, 'filetype');
+    });
   });
   describe('getters', () => {
     var sandbox;
