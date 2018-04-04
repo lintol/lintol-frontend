@@ -143,6 +143,6 @@ div .profileColumn p {
 
 .user {
   font-size: 0.75em;
-  color: #777776;
+  color: $grey;
 }
 </style>

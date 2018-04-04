@@ -51,11 +51,11 @@ export default {
 }
 
 .issueType {
-  color: #777776;
+  color: $grey;
   font-weight: bold;
 }
 
 .issueDescription {
-  color: #777776;
+  color: $grey;
 }
 </style>

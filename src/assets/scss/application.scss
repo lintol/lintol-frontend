@@ -8,7 +8,8 @@ $warningText: red;
 $sideBar: #F1592A;
 $rowBackground: #F9F9F9;
 $separatorColour: #E5E5E5;
-$bold: 500;
+$bold: 800;
+$grey: #777776;
 
 
 $orange: #F1592A;
@@ -16,8 +17,8 @@ $orangeDark: #AA6666;
 $greyFont: #BFBFBF;
 
 select {
-  border: 1px solid #777776;;
-  color: #777776;;
+  border: 1px solid $grey;
+  color: $grey;
   border-radius: 4px;
   font-size: 0.625em;
 }

@@ -15,6 +15,7 @@ export default {
 @import 'assets/scss/application.scss';
 .sideOrangeBar {
   border-left: solid 35px $sideBar;
+  min-height: 100vh;
 }
 
 .whiteBox {
@@ -25,6 +26,7 @@ export default {
   width: 15px;	
   border: 3px solid #FFFFFF;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 

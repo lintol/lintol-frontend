@@ -57,7 +57,7 @@ export default {
 
 .itemType {
   font-size: 12px;
-  color: #777776;
+  color: $grey;
   font-weight: bold;
 }
 

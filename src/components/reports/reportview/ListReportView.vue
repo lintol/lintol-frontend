@@ -153,7 +153,7 @@ export default {
 
 .issueCount {
   font-size: 24px;
-  color: #777776;
+  color: $grey;
   vertical-align: middle;
 }
 
