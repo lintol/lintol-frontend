@@ -235,11 +235,18 @@ describe('Vuex Store', () => {
     var server = null;
     var dataResource = null;
     var processor = null;
+    var okResponseBlank = [
+      200,
+      { 'Content-type': 'application/json' },
+      ''
+    ];
     beforeEach(function () {
       dataResource = {};
       processor = {};
 
       server = sinon.fakeServer.create();
+
+      server.autoRespond = true;
       var fromState = function (state) {
         var coolStuff = {
           sync: function (objects) {
@@ -274,8 +281,12 @@ describe('Vuex Store', () => {
         };
         return coolStuff;
       };
+      var toModel = function () {
+        return {};
+      };
       sandbox = sinon.sandbox.create();
       sandbox.stub(API, 'fromState').callsFake(fromState);
+      sandbox.stub(API, 'toModel').callsFake(toModel);
     });
 
     afterEach(function () {
@@ -288,13 +299,7 @@ describe('Vuex Store', () => {
       var resources = [
         { id: 1, providerId: 2, url: 'http://opendata.gov/filename.csv', filetype: 'csv' }
       ];
-      var okResponse = [
-        200,
-        { 'Content-type': 'application/json' },
-        ''
-      ];
-      server.autoRespond = true;
-      server.respondWith('POST', '/dataResources/settings', okResponse);
+      server.respondWith('POST', '/dataResources/settings', okResponseBlank);
       var commit = sinon.spy();
       var dispatch = sinon.spy();
       var profileId = '3';
@@ -308,13 +313,7 @@ describe('Vuex Store', () => {
 
     it('Save data resource', (done) => {
       var resource = { id: 1, providerId: 2, url: 'http://opendata.gov/filename.csv', filetype: 'csv' };
-      var okResponse = [
-        200,
-        { 'Content-type': 'application/json' },
-        ''
-      ];
-      server.autoRespond = true;
-      server.respondWith('PUT', '/dataResources/1', okResponse);
+      server.respondWith('PUT', '/dataResources/1', okResponseBlank);
       var commit = sinon.spy();
       actions[a.SAVE_DATA_RESOURCE]({commit}, resource).then(() => {
         commit.should.have.been.calledWith(m.SET_CURRENT_DATA_RESOURCE);
@@ -324,13 +323,7 @@ describe('Vuex Store', () => {
     });
     it('delete data resource', (done) => {
       var resource = { id: '1', providerId: '2', url: 'http://opendata.gov/filename.csv', filetype: 'csv' };
-      var okResponse = [
-        200,
-        { 'Content-type': 'application/json' },
-        ''
-      ];
-      server.autoRespond = true;
-      server.respondWith('DELETE', '/dataResources/1', okResponse);
+      server.respondWith('DELETE', '/dataResources/1', okResponseBlank);
       var commit = sinon.spy();
       actions[a.DELETE_DATA_RESOURCE]({commit}, resource).then(() => {
         commit.should.have.been.calledWith(m.UNSET_CURRENT_DATA_RESOURCE);
@@ -339,13 +332,7 @@ describe('Vuex Store', () => {
       server.respond();
     });
     it('Load profile', (done) => {
-      var okResponse = [
-        200,
-        { 'Content-type': 'application/json' },
-        ''
-      ];
-      server.autoRespond = true;
-      server.respondWith('GET', '/profiles/1?include=configurations.processor', okResponse);
+      server.respondWith('GET', '/profiles/1?include=configurations.processor', okResponseBlank);
       var commit = sinon.spy();
       var profileId = '1';
       actions[a.LOAD_PROFILE]({commit}, profileId).then(() => {
@@ -353,13 +340,33 @@ describe('Vuex Store', () => {
         done();
       });
     });
+    it('Save profile', (done) => {
+      server.respondWith('PUT', '/profiles/1', okResponseBlank);
+      var commit = sinon.spy();
+      var profile = {'id': '1'};
+      var configuration = null;
+      actions[a.SAVE_PROFILE]({commit}, {profile, configuration}).then(() => {
+        commit.should.have.been.calledWith(m.SET_CURRENT_PROFILE);
+        done();
+      });
+    });
+    it('Store profile', (done) => {
+      server.respondWith('POST', '/profiles', okResponseBlank);
+      var commit = sinon.spy();
+      var profile = {'id': '1'};
+      var configuration = null;
+      actions[a.STORE_PROFILE]({commit}, {profile, configuration}).then(() => {
+        commit.should.have.been.calledWith(m.SET_CURRENT_PROFILE);
+        done();
+      });
+    });
+
     it('Load users', (done) => {
       var okResponse = [
         200,
         { 'Content-type': 'application/json' },
         '[{"name": "muto"},{"name": "muto2"}]'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/users/', okResponse);
       store.dispatch(a.LOAD_USERS).then(() => {
         expect(store.state.repository.users).to.eql({});
@@ -373,7 +380,6 @@ describe('Vuex Store', () => {
         { 'Content-type': 'application/json' },
         '{ "data": { "id": "1", "name": "muto" }}'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/users/1', okResponse);
       store.dispatch(a.LOAD_USER, 1).then(() => {
         expect(store.state.currentUser).to.have.property('id');
@@ -387,11 +393,9 @@ describe('Vuex Store', () => {
         { 'Content-type': 'application/json' },
         '[{"name": "muto"},{"name": "muto2"}]'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/profiles/', okResponse);
       store.dispatch(a.LOAD_PROFILES).then(() => {
         expect(store.state.repository.profiles).to.eql({});
-
         done();
       });
       server.respond();
@@ -402,7 +406,6 @@ describe('Vuex Store', () => {
         { 'Content-type': 'application/json' },
         '[{"name": "muto"},{"name": "muto2"}]'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/processors/', okResponse);
       store.dispatch(a.LOAD_PROCESSORS).then(() => {
         expect(store.state.repository.processors).to.eql({});
@@ -416,7 +419,6 @@ describe('Vuex Store', () => {
         { 'Content-type': 'application/json' },
         '[{"name": "muto"},{"name": "muto2"}]'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/reports/', okResponse);
       store.dispatch(a.LOAD_REPORTS).then(() => {
         expect(store.state.repository.reports).to.eql({});
@@ -430,7 +432,6 @@ describe('Vuex Store', () => {
         { 'Content-type': 'application/json' },
         '{ "data": { "id": "1", "name": "reportName" }}'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/reports/1?include=dataResource,profile', okResponse);
       store.dispatch(a.LOAD_REPORT, 1).then(() => {
         expect(store.state.currentReport).to.have.property('id');
@@ -439,26 +440,14 @@ describe('Vuex Store', () => {
       server.respond();
     });
     it('Store processor', (done) => {
-      var okResponse = [
-        200,
-        { 'Content-type': 'application/json' },
-        ''
-      ];
-      server.autoRespond = true;
-      server.respondWith('POST', '/processors', okResponse);
+      server.respondWith('POST', '/processors', okResponseBlank);
       store.dispatch(a.STORE_PROCESSOR, processor).then(() => {
         done();
       });
       server.respond();
     });
     it('Store data resource', (done) => {
-      var okResponse = [
-        200,
-        { 'Content-type': 'application/json' },
-        ''
-      ];
-      server.autoRespond = true;
-      server.respondWith('POST', '/dataResources', okResponse);
+      server.respondWith('POST', '/dataResources', okResponseBlank);
       store.dispatch(a.STORE_DATA_RESOURCE, dataResource).then(() => {
         done();
       });
@@ -470,7 +459,6 @@ describe('Vuex Store', () => {
         { 'Content-type': 'application/json' },
         '{ "data": { "id": "1"} }'
       ];
-      server.autoRespond = true;
       server.respondWith('GET', '/users/me', okResponse);
       store.dispatch(a.LOAD_LOGGED_IN_USER).then(() => {
         expect(store.state.loggedInUser).to.have.property('id');
@@ -478,8 +466,6 @@ describe('Vuex Store', () => {
       });
       server.respond();
     });
-
-    /// new way
     it('Update data resource filters', () => {
       var filters = {
         created_at: '2018-03-03',
@@ -523,6 +509,32 @@ describe('Vuex Store', () => {
       var commit = sinon.spy();
       var dispatch = sinon.spy();
       actions[a.UPDATE_DATA_RESOURCES_SORT]({commit, dispatch, state}, {sort: 'filetype'});
+      commit.should.have.been.calledTwice;
+      dispatch.should.have.been.calledWith(a.LOAD_DATA_RESOURCES);
+    });
+    xit('Load Data Resources', () => {
+      const state = {
+        sortDataResources: 'filename',
+        filtersDataResources: {
+          created_at: '2018-03-03',
+          source: 'ckan',
+          filetype: 'csv',
+          search: 'qwer'
+        }
+      };
+      var getResponse = [
+        200,
+        { 'Content-type': 'application/json' },
+        '{ "id": "1", "filename": "filezilla.csv" }'
+      ];
+      var commit = sinon.spy();
+      var dispatch = sinon.spy();
+      var reset = false;
+      var page = 1;
+      var skipInterpolation = true;
+      var ignoreProgress = true;
+      server.respondWith('GET', '/dataResources?provider=undefined&page=1&count=undefined&filters=created_at:2018-03-03,source:ckan,filetype:csv,search:qwer&sortBy=filename&order=undefined&search=qwer', getResponse);
+      actions[a.LOAD_DATA_RESOURCES]({commit, dispatch, state}, { reset, page, skipInterpolation, ignoreProgress });
       commit.should.have.been.calledTwice;
       dispatch.should.have.been.calledWith(a.LOAD_DATA_RESOURCES);
     });
@@ -595,11 +607,25 @@ describe('Vuex Store', () => {
     it('profiles getters', () => {
       expect(store.getters.profiles.length).to.equal(2);
     });
-    xit('dataResourcePageCount getters', () => {
-      expect(store.getters.dataResourcePageCount.length).to.equal(2);
+    it('dataResourcePageCount getters', () => {
+      store.state.pageCountDataResources = {
+        page1: 1,
+        page2: 2
+      }
+      expect(store.getters.dataResourcePageCount).to.equal(3);
     });
     xit('data resources getters', () => {
-      expect(store.getters.dataresources.length).to.equal(2);
+      store.state.sortDataResources = 'filename';
+      store.state.orderDataResources = 'asc';
+      store.state.pageDataResources = 5
+      store.state.pageLengthDataResources = 10;
+      store.state.dataResources = [
+        { filename: 'abc.csv' },
+        { filename: 'zyx'},
+        { filename: 'mno'}
+      ];
+      console.log(store.getters.dataresources);
+      expect(store.getters.dataresources.length).to.equal(3);
     });
   });
 });

@@ -227,7 +227,7 @@ const actions = {
       configurations: { type: 'processorConfigurations', relations: configurations }
     });
 
-    axios.put(url, jsonProfile).then((response) => {
+    return axios.put(url, jsonProfile).then((response) => {
       var profile = response.data;
       commit(m.SET_CURRENT_PROFILE, profile);
     }).catch(function (error) {
@@ -338,17 +338,15 @@ const getters = {
   },
   dataResourcePageCount: state => {
     var pages = 0;
-    console.log(state.pageCountDataResources);
-    console.log(Object.keys(state.pageCountDataResources));
     Object.values(state.pageCountDataResources).forEach(function (count) {
       pages += count;
-      console.log(pages);
     });
     return pages;
   },
   dataResources: state => {
     /* Newer approach: compatible with dataResources reactivity rules.
      * However, related objects may have issues when using this style. */
+    console.log('dataResources');
     var column = state.sortDataResources;
     var direction = (state.orderDataResources === 'asc' ? 1 : -1);
     var resources = state.dataResources.sort(function (a, b) {
