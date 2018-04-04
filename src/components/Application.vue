@@ -34,6 +34,7 @@ export default {
 }
 
 .menu {
+  min-height: 100vh;
 }
 
 .panel {
