@@ -31,7 +31,7 @@ test:
     - npm install --prefix jsonapi-server-mock-lintol/
     - npm start --prefix jsonapi-server-mock-lintol/ &
   image: martinnaughton/nightwatch-e2e-headless:latest
-  script: npm run unit 
+  script: npm run test
   artifacts:
     paths:
       - test/unit/coverage/

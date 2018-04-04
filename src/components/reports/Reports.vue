@@ -1,5 +1,5 @@
 <template>
-  <div id="reportsPanel">
+  <div id="reports-panel">
     <router-view></router-view>
   </div>
 </template>

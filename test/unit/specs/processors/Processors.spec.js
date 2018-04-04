@@ -30,6 +30,6 @@ describe('Processors.vue', () => {
 
     it('should have a "div" element', () => expect(component.$el.querySelector('div').length));
 
-    it('should have a "div" element with an "id" set to "processorPanel"', () => expect(component.$el.id).to.equal('processorPanel'));
+    it('should have a "div" element with an "id" set to "processor-panel"', () => expect(component.$el.id).to.equal('processor-panel'));
   });
 });

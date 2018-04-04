@@ -1,5 +1,5 @@
 <template>
-  <div id="resourcesPanel">
+  <div id="resources-panel">
     <router-view></router-view>
   </div>
 </template>
