@@ -611,18 +611,18 @@ describe('Vuex Store', () => {
       store.state.pageCountDataResources = {
         page1: 1,
         page2: 2
-      }
+      };
       expect(store.getters.dataResourcePageCount).to.equal(3);
     });
     xit('data resources getters', () => {
       store.state.sortDataResources = 'filename';
       store.state.orderDataResources = 'asc';
-      store.state.pageDataResources = 5
+      store.state.pageDataResources = 5;
       store.state.pageLengthDataResources = 10;
       store.state.dataResources = [
         { filename: 'abc.csv' },
-        { filename: 'zyx'},
-        { filename: 'mno'}
+        { filename: 'zyx' },
+        { filename: 'mno' }
       ];
       console.log(store.getters.dataresources);
       expect(store.getters.dataresources.length).to.equal(3);
