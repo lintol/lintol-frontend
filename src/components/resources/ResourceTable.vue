@@ -263,14 +263,16 @@ export default {
  
 .arrowDown:after {
   content: '\2193';
-  font-size: 18px;
-  font-weight: $bold;
+  font-size: 12px;
+  font-weight: 1000;
+  color: $grey;
 }
 
 .arrowUp:after {
   content: '\2191';
-  font-size: 18px;
-  font-weight: $bold;
+  font-size: 12px;
+  font-weight: 1000;
+  color: $grey;
 }
 
 .actionContainer {

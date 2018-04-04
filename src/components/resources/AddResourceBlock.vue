@@ -160,7 +160,7 @@ export default {
 }
 
 .newResource {
-  color: #777776;
+  color: $grey;
   font-size: 0.6875em;
   text-decoration: underline;
   font-weight: $bold;

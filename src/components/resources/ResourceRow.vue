@@ -136,7 +136,7 @@ label {
 }
 
 .archivedStatus {
-  background-color: #777776;
+  background-color: $grey;
 }
 
 .validLinkStatus {

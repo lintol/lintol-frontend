@@ -27,7 +27,7 @@ export default {
 
 label {
   font-size: 0.75em;
-  color: #777776;
+  color: $grey;
   margin-bottom: 0px;
 }
 

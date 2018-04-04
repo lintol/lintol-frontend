@@ -180,7 +180,7 @@ export default {
     > label {
       margin: 0px 10px;
       font-size: 0.75em;
-      color: #777776;
+      color: $grey;
       cursor: pointer;
     }
   }

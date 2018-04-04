@@ -81,14 +81,14 @@ export default {
 }
 
 .issueType {
-  color: #777776;
+  color: $grey;
   font-weight: bold;
   flex: 0.5;
   margin-right: 10px;
 }
 
 .issueDescription {
-  color: #777776;
+  color: $grey;
   flex: 2;
 }
 
