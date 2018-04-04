@@ -10,7 +10,9 @@ var resource = {
   status: 'new resource',
   source: 'ckan',
   filetype: 'csv',
-  user: 'mary',
+  user: {
+    name: 'mary'
+  },
   created_at: {
     date: '2018-01-01'
   }
