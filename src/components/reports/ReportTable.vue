@@ -32,7 +32,7 @@
 <script>
 import { LOAD_REPORTS } from '@/state/action-types';
 import ReportRow from './ReportRow';
-import { convertDate, selectedFiltered } from '@/components/common/date.js';
+import { convertDate, selectedFiltered, dateList } from '@/components/common/date.js';
 export default {
   name: 'ReportTable',
   data () {
@@ -59,13 +59,7 @@ export default {
       return userList;
     },
     dateList: function () {
-      var dateList = [];
-      this.reports.filter((event) => {
-        if (event.createdAt && dateList.indexOf(convertDate(event.createdAt.date)) === -1) {
-          dateList.push(convertDate(event.createdAt.date));
-        }
-      });
-      return dateList;
+      return dateList(this.reports);
     },
     profileList: function () {
       var profileList = [];

@@ -84,7 +84,6 @@ export default {
   },
   watch: {
     $route: function () {
-      console.log('New route:' + this.$route.name);
       this.currentView = this.$route.name;
     }
   },

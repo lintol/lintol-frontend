@@ -62,7 +62,7 @@ describe('ResourceTable.vue', () => {
       target: {
         value: 'runProfile'
       }
-    }
+    };
     wrapper.vm.resourceAction(e);
   });
   it('Archive Action', () => {
@@ -70,10 +70,9 @@ describe('ResourceTable.vue', () => {
       target: {
         value: 'archive'
       }
-    }
+    };
     wrapper.vm.selectedResource(resource1);
     wrapper.vm.resourceAction(e);
-    console.log(wrapper.vm.selectedResources[0]);
     expect(wrapper.vm.selectedResources[0].archived).to.equal('1');
     wrapper.vm.selectedResource(resource1);
   });
