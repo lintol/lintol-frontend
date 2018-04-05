@@ -44,7 +44,7 @@ pages:
   dependencies:
     - test 
   script:
-    - mv test/unit/coverage/ public/
+    - mv test/unit/coverage/lcov-report/ public/
   artifacts:
     paths:
       - public
