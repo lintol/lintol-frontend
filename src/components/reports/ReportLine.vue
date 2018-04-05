@@ -101,7 +101,7 @@ export default {
 }
  
 .columnTitle {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .rightSeparator {
@@ -131,7 +131,7 @@ div .reportColumn p {
 }
 
 .columnHeader {
-  font-weight: bold;
+  font-weight: $bold;
 
 }
 </style>

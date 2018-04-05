@@ -73,7 +73,7 @@ export default {
  }
 
 .ranOn {
-  font-weight: bold;
+  font-weight: $bold;
   font-size: 10px;
   + label {
     font-size: 11px;
