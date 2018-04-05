@@ -25,8 +25,9 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#profiles', visiblePauseTime)
       .waitForElementVisible('#reports', visiblePauseTime)
+      .waitForElementVisible('#processors', visiblePauseTime)
       .waitForElementVisible('#users', visiblePauseTime)
-      .waitForElementVisible('#settings', visiblePauseTime)
+      .waitForElementVisible('#resources', visiblePauseTime)
       .end()
   },
   'test profiles panel exist': function (browser) {
@@ -36,8 +37,8 @@ module.exports = {
       .waitForElementVisible('#profiles', visiblePauseTime)
       .click('#profilesLink')
       .waitForElementVisible('#profiles-panel', visiblePauseTime)
-      .assert.cssClassPresent('#profilesLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/profiles/profiletable')
+      .assert.cssClassPresent('#profilesLink', 'menuEntryActive')
+      .assert.urlEquals('http://localhost:8080/#/application/profiles/profiletable')
       .end()
   },
   'test processors panel exist': function (browser) {
@@ -46,9 +47,9 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#processors', visiblePauseTime)
       .click('#processorsLink')
-      .waitForElementVisible('#processorPanel', visiblePauseTime)
-      .assert.cssClassPresent('#processorsLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/processors/processortable')
+      .waitForElementVisible('#processor-panel', visiblePauseTime)
+      .assert.cssClassPresent('#processorsLink', 'menuEntryActive')
+      .assert.urlEquals('http://localhost:8080/#/application/processors/processortable')
       .end()
   },
   'test reports panel exist': function (browser) {
@@ -57,9 +58,9 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#reports', visiblePauseTime)
       .click('#reports')
-      .waitForElementVisible('#reportsPanel', visiblePauseTime)
-      .assert.cssClassPresent('#reportsLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/reports/reporttable')
+      .waitForElementVisible('#reports-panel', visiblePauseTime)
+      .assert.cssClassPresent('#reportsLink', 'menuEntryActive')
+      .assert.urlEquals('http://localhost:8080/#/application/reports/reporttable')
       .end()
   },
   'test users panel exist': function (browser) {
@@ -69,30 +70,30 @@ module.exports = {
       .waitForElementVisible('#users', visiblePauseTime)
       .click('#users')
       .waitForElementVisible('#users-panel', visiblePauseTime)
-      .assert.cssClassPresent('#usersLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/users')
+      .assert.cssClassPresent('#usersLink', 'menuEntryActive')
+      .assert.urlEquals('http://localhost:8080/#/application/users/usertable')
       .end()
   },
-  'test settings panel exist': function (browser) {
+  'test resources panel exist': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
-      .waitForElementVisible('#settings', visiblePauseTime)
-      .click('#settings')
-      .waitForElementVisible('#settings-panel', visiblePauseTime)
-      .assert.cssClassPresent('#settingsLink', 'active')
-      .assert.urlEquals('http://localhost:8080/#/settings')
+      .waitForElementVisible('#resources', visiblePauseTime)
+      .click('#resources')
+      .waitForElementVisible('#resources-panel', visiblePauseTime)
+      .assert.cssClassPresent('#resourcesLink', 'menuEntryActive')
+      .assert.urlEquals('http://localhost:8080/#/application/resources/resourcetable')
       .end()
   },
   'logo links back to home page': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
-      .waitForElementVisible('#settings', visiblePauseTime)
-      .click('#settings')
-      .waitForElementVisible('#settings-panel', visiblePauseTime)
+      .waitForElementVisible('#resources', visiblePauseTime)
+      .click('#resources')
+      .waitForElementVisible('#resources-panel', visiblePauseTime)
       .click('#home')
-      .assert.urlEquals('http://localhost:8080/#/profiles/profiletable')
+      .assert.urlEquals('http://localhost:8080/#/application/profiles/profiletable')
       .end()
   }
 } 

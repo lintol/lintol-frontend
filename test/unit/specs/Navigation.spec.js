@@ -30,10 +30,10 @@ describe('Navigation.vue', () => {
       expect(defaultData.currentView).to.equal('profileTable');
     });
 
-    it('should have a default "version" set to "0.7"', () => {
+    it('should have a default "version" set to "0.11"', () => {
       const defaultData = Navigation.data();
 
-      expect(defaultData.version).to.equal(0.7);
+      expect(defaultData.version).to.equal('0.11');
     });
   });
 
@@ -58,12 +58,6 @@ describe('Navigation.vue', () => {
       expect(component.$el.querySelector('.version').length);
     });
 
-    it('should have a element with a "className" set to "activityBanner"', () => {
-      const component = getComponent();
-
-      expect(component.$el.querySelector('.activityBanner').length);
-    });
-
     it('should have a "label "element"', () => {
       const component = getComponent();
 
@@ -80,7 +74,7 @@ describe('Navigation.vue', () => {
       const component = getComponent();
 
       expect(component.$el.querySelector('ul').length);
-      expect(component.$el.querySelectorAll('li').length).to.equal(6);
+      expect(component.$el.querySelectorAll('li').length).to.equal(5);
     });
   });
 });

@@ -19,7 +19,7 @@
             <label>Data Profiles</label>
          </router-link>
       </li>
-      <li id="resourceLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'resourceTable'}">
+      <li id="resourcesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'resourceTable'}">
          <router-link id="resources" :to="{name: 'resourceTable' }">
            <img src="~@/assets/images/resources.svg" />
             <label>Resources/ Files</label>
@@ -84,7 +84,6 @@ export default {
   },
   watch: {
     $route: function () {
-      console.log('New route:' + this.$route.name);
       this.currentView = this.$route.name;
     }
   },
