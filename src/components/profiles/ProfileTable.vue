@@ -28,6 +28,7 @@
 <script>
 import ProfileRow from './ProfileRow.vue';
 import { LOAD_PROFILES } from '@/state/action-types';
+import { getUniqueListOfValues } from '@/components/common/dropdown.js';
 export default {
   name: 'Profiles',
   data () {
@@ -47,13 +48,7 @@ export default {
       return this.$store.getters.profiles;
     },
     nameList: function () {
-      var nameList = [];
-      this.profiles.filter((event) => {
-        if (nameList.indexOf(event.name) === -1) {
-          nameList.push(event.name);
-        }
-      });
-      return nameList;
+      return getUniqueListOfValues(this.profiles, 'name');
     },
     filteredProfiles: function () {
       var result = this.profiles;

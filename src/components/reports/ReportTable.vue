@@ -33,6 +33,7 @@
 import { LOAD_REPORTS } from '@/state/action-types';
 import ReportRow from './ReportRow';
 import { convertDate, selectedFiltered, dateList } from '@/components/common/date.js';
+import { getUniqueListOfValues } from '@/components/common/dropdown.js';
 export default {
   name: 'ReportTable',
   data () {
@@ -50,25 +51,13 @@ export default {
   },
   computed: {
     userList: function () {
-      var userList = [];
-      this.reports.filter((event) => {
-        if (userList.indexOf(event.user) === -1 && event.user) {
-          userList.push(event.user);
-        }
-      });
-      return userList;
+      return getUniqueListOfValues(this.reports, 'user');
     },
     dateList: function () {
       return dateList(this.reports);
     },
     profileList: function () {
-      var profileList = [];
-      this.reports.filter((event) => {
-        if (profileList.indexOf(event.profile) === -1) {
-          profileList.push(event.profile);
-        }
-      });
-      return profileList;
+      return getUniqueListOfValues(this.reports, 'profile');
     },
     reports: function () {
       return this.$store.getters.reports;
