@@ -13,8 +13,8 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .end()
-  },
-  'check processor row exists test': function (browser) {
+  }
+  /* 'check processor row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -22,5 +22,5 @@ module.exports = {
       .click('#processors')
       .waitForElementVisible('#processors-row', visiblePauseTime)
       .end()
-  }
+  } */
 }

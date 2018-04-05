@@ -23,7 +23,7 @@ module.exports = {
       .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
       .end()
   },
-  'check profile row exists test': function (browser) {
+  /*'check profile row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -62,7 +62,7 @@ module.exports = {
       .click('#addProfile')
       .waitForElementVisible('#profileTable', visiblePauseTime)
       .end()
-  },
+  },*/
   /*'edit profile test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
