@@ -118,7 +118,7 @@ label {
 }
  
 .columnTitle {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .verticalAlign {
@@ -145,11 +145,11 @@ div .reportColumn p {
 }
 
 .columnHeader {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .ranOn {
-  font-weight: bold;
+  font-weight: $bold;
   font-size: 0.625em;
   margin-left: 20px;
   + label {

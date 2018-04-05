@@ -146,7 +146,7 @@ export default {
 
 .processorInstruction {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: $bold;
 
 }
 </style>

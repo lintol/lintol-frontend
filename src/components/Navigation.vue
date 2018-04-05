@@ -111,7 +111,7 @@ export default {
 }
 
 .loggedInUserServer {
-  font-weight: bold;
+  font-weight: $bold;
   font-size: 60%;
 }
 
@@ -136,7 +136,7 @@ export default {
    border: 1px solid #333333;
    border-radius: 2px;
    text-decoration: none;
-   font-weight: bold;
+   font-weight: $bold;
    padding-top: 3px;
    padding-left: 10px;
    > div {

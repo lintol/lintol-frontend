@@ -75,14 +75,14 @@ export default {
 }
 
 .processorName {
-  font-weight: bold;
+  font-weight: $bold;
   flex: 0.5;
   margin-right: 10px;
 }
 
 .issueType {
   color: #777776;
-  font-weight: bold;
+  font-weight: $bold;
   flex: 0.5;
   margin-right: 10px;
 }

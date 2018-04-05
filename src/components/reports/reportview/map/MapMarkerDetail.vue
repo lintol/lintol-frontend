@@ -52,7 +52,7 @@ export default {
 
 .issueType {
   color: #777776;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .issueDescription {

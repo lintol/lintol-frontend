@@ -4,9 +4,9 @@
         <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
       </div>
       <div>
-        <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal"  >Add From URL</label>
+        <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
       </div>
-      <div class="modal fade" id="addUrlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="addUrlModal" tabindex="-1" v-show=showAddUrlModal role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
@@ -16,10 +16,12 @@
               </button>
            </div>
            <div class="modal-body">
-              <textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> 
+              <textarea id="profileDescription" style="width:400px; height:100px"  rows="4" placeholder="Urls" v-model="urls" data-vv-name="urls" data-vv-as="Url Links" v-validate="'required'" :class="{ warningBorder: vErrors.has('urls') }" />
+              <p v-show="vErrors.has('urls')" class="warningText" >{{ vErrors.first('urls') }}</p>
+              <!--<textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> -->
            </div>
            <div class="modal-footer buttonFooter">
-             <button type="button" class="btn addUrlButton" data-dismiss="modal"  @click="addResource">Add URLs to Lintol</button>
+             <button type="button" class="btn addUrlButton"   @click="addResource">Add URLs to Lintol</button>
            </div>
          </div>
        </div>
@@ -44,7 +46,8 @@ export default {
   },
   data () {
     return {
-      urls: ''
+      urls: '',
+      showAddUrlModal: true
     };
   },
   methods: {
@@ -57,7 +60,6 @@ export default {
     }, */
     uploadFiles: function () {
       var uploadTarget = null;
-
       if (this.loggedInUser && this.loggedInUser.driver && this.loggedInUser.driverServer) {
         var driver = this.loggedInUser.driver;
         var driverServer = this.loggedInUser.driverServer;
@@ -67,24 +69,27 @@ export default {
           uploadTarget = driverServer + '/new';
         }
       }
-
       if (uploadTarget) {
         window.open(uploadTarget, '_uploadFiles');
       }
     },
     addResource: function () {
-      var urlArray = this.urls.replace(/[\n\r]+/g, '').split(',');
-      console.log(urlArray);
-      for (var index = 0; index < urlArray.length; index++) {
-        var url = urlArray[index];
-        var filename = url.replace(/^.*[\\/]/, '');
-        var filetype = filename.split('.').pop();
-        var resource = { source: 'External Link', url: url, filename: filename, filetype: filetype };
-        this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
-        });
-      }
-      this.$emit('addResource', resource);
-      this.urls = '';
+      this.$validator.validateAll().then((result) => {
+        var urlArray = this.urls.replace(/[\n\r]+/g, '').split(',');
+        for (var index = 0; index < urlArray.length; index++) {
+          var url = urlArray[index];
+          var filename = url.replace(/^.*[\\/]/, '');
+          var filetype = filename.split('.').pop();
+          var resource = { source: 'External Link', url: url, filename: filename, filetype: filetype };
+          this.$store.dispatch(STORE_DATA_RESOURCE, resource).then(() => {
+          });
+        }
+        this.$emit('addResource', resource);
+        this.urls = '';
+        this.showAddUrlModal = false;
+      }).catch((error) => {
+        console.log('Validation error:' + error);
+      });
     }
   },
   components: {

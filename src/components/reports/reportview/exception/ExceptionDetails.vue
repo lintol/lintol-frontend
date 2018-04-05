@@ -52,13 +52,13 @@ export default {
 .processor {
   font-size: 17px;
   color: #333333;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .itemType {
   font-size: 12px;
   color: #777776;
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .navigateToReports {

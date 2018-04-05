@@ -8,7 +8,7 @@ $warningText: red;
 $sideBar: #F1592A;
 $rowBackground: #F9F9F9;
 $separatorColour: #E5E5E5;
-$bold: 500;
+$bold: 700;
 
 
 $orange: #F1592A;
@@ -43,7 +43,7 @@ body, body * {
   border: none;
   border-radius: 5px;
   color: $buttonText;
-  padding: 2% 3%;
+  padding: 2% 5%;
   font-size: 0.75em;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
@@ -64,11 +64,12 @@ body, body * {
   border: none;
   border-radius: 5px;
   color: $buttonText;
-  padding: 7px 10px;
+  padding: 2px 5px;
   box-shadow: 0px 0px 5px black;
   display: inline-block;
   float: right;
   font-weight: $bold;
+  padding: 5px 5px;
   &:active {
     box-shadow: 0px 0px 0px black;
   }
@@ -77,6 +78,7 @@ body, body * {
     border: none;
   }
   & > label {
+    line-height: 15px;
     font-size: 0.75em;
     cursor: pointer;
   }

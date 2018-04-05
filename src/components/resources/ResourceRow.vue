@@ -201,7 +201,7 @@ label {
 
 .filenameLabel {
   font-size: 0.75em;
-  font-weight: bold;
+  font-weight: $bold;
   color: #333333;
   word-break: break-all;
   padding-right: 3px;
