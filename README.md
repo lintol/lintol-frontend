@@ -1,3 +1,6 @@
+[![pipeline status](https://gitlab.com/lintol/lintol-frontend/badges/master/pipeline.svg)](https://gitlab.com/lintol/lintol-frontend/commits/master)
+[![coverage report](https://gitlab.com/lintol/lintol-frontend/badges/master/coverage.svg)](https://gitlab.com/lintol/lintol-frontend/commits/master)
+
 # lintol-frontend
 
 For more details, see [https://lintol.io/](https://lintol.io/).
