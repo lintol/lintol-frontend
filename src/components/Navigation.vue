@@ -100,6 +100,7 @@ export default {
 
 .navFooter {
   width: 120px;
+  overflow: hidden;
   position: absolute;
   bottom: 30px;
   padding: 10px;
