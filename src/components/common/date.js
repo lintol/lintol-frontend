@@ -4,7 +4,7 @@ export function convertDate (dateString) {
   if (dateString === undefined || dateString === '') {
     return 'undefined';
   } else {
-    return moment(dateString).format('Do MMMM YYYY');
+    return moment(dateString).format('Do MMM YYYY');
   }
 }
 
@@ -12,7 +12,7 @@ export function convertDateTime (dateString) {
   if (dateString === undefined || dateString === '') {
     return 'undefined';
   } else {
-    return moment(dateString).format('HH:mm Do MMMM YYYY');
+    return moment(dateString).format('HH:mm Do MMM YYYY');
   }
 }
 
@@ -24,8 +24,10 @@ export function convertToTimeStamp (dateString) {
   }
 }
 
+/**
+* used to create a array of dates from a list of objects. Used for date drops downs.
+*/
 export function dateList (objects) {
-  console.log(objects);
   var dateList = [];
   objects.filter((event) => {
     if (event.createdAt && dateList.indexOf(convertDate(event.createdAt.date)) === -1) {
@@ -45,6 +47,9 @@ export function filter (objects, prop) {
   return resultList;
 }
 
+/**
+*  returns a list of results that match 1 layer or 2 layer props that equal the selected variable.
+*/
 export function selectedFiltered (result, selected, prop1, prop2) {
   if (selected !== '') {
     result = result.filter((element) => {

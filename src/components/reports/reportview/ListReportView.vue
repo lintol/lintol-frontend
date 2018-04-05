@@ -70,56 +70,42 @@ export default {
       console.log(report);
       return report;
     },
+    filterByProcessorOptions: function () {
+      var result = [];
+      this.reportItems.forEach((reportItem) => {
+        if (result.indexOf(reportItem.processor) === -1) {
+          result.push(reportItem.processor);
+        }
+      });
+      console.log(result);
+      return result;
+    },
     reportItems: function () {
       var reportItems = [];
-      console.log(this.report);
       if (this.report) {
         var content = JSON.parse(this.report.content);
         reportItems = [];
-        reportItems = reportItems.concat(content.tables[0].errors);
-        reportItems = reportItems.concat(content.tables[0].warnings);
-        reportItems = reportItems.concat(content.tables[0].informations);
-        console.log('Report');
+        if (content.tables[0].errors) {
+          reportItems = reportItems.concat(content.tables[0].errors);
+        }
+        if (content.tables[0].warnings) {
+          reportItems = reportItems.concat(content.tables[0].warnings);
+        }
+        if (content.tables[0].informations) {
+          reportItems = reportItems.concat(content.tables[0].informations);
+        }
         console.log(reportItems);
       }
       return reportItems;
     },
-    filterByProcessorOptions: function () {
-      var result = [];
-      var reportItems = [];
-      if (this.report) {
-        var content = JSON.parse(this.report.content);
-        reportItems = [];
-        reportItems = reportItems.concat(content.tables[0].errors);
-        reportItems = reportItems.concat(content.tables[0].warnings);
-        reportItems = reportItems.concat(content.tables[0].informations);
-        console.log(reportItems);
-        reportItems.forEach((reportItem) => {
-          if (result.indexOf(reportItem.processor) === -1) {
-            result.push(reportItem.processor);
-          }
-        });
-        console.log(result);
-      }
-      return result;
-    },
     filterByTypeOptions: function () {
       var result = [];
-      var reportItems = [];
-      if (this.report) {
-        var content = JSON.parse(this.report.content);
-        reportItems = [];
-        reportItems = reportItems.concat(content.tables[0].errors);
-        reportItems = reportItems.concat(content.tables[0].warnings);
-        reportItems = reportItems.concat(content.tables[0].informations);
-        console.log(reportItems);
-        reportItems.forEach((reportItem) => {
-          if (result.indexOf(reportItem.code) === -1) {
-            result.push(reportItem.code);
-          }
-        });
-        console.log(result);
-      }
+      this.reportItems.forEach((reportItem) => {
+        if (result.indexOf(reportItem.code) === -1) {
+          result.push(reportItem.code);
+        }
+      });
+      console.log(result);
       return result;
     },
     filteredReportItems: function () {

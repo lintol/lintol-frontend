@@ -56,16 +56,6 @@ export default {
         console.log('Validation error:' + error);
       });
     },
-    updateProcessors: function (type, action) {
-      if (action === 'add') {
-        this.configurations.push(type);
-      } else {
-        var index = this.configurations.indexOf(type);
-        if (index !== -1) {
-          this.configurations.splice(index, 1);
-        }
-      }
-    },
     processorSelected: function (option) {
       this.configurations.push({
         userConfigurationStorage: {},
@@ -162,8 +152,6 @@ export default {
 
 .processorInstruction {
   font-size: 14px;
-  font-weight: bold;
-
+  font-weight: $bold;
 }
-
 </style>

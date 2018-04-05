@@ -26,6 +26,12 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  node: {
+    // Added as a work around to get vue-test-utils imports and running
+    fs: "empty",
+    path: true,
+    module: 'empty'
+  },
   module: {
     rules: [
       {

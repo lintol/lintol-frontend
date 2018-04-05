@@ -28,7 +28,6 @@
 <script>
 import ProfileRow from './ProfileRow.vue';
 import { LOAD_PROFILES } from '@/state/action-types';
-import { convertDate } from '@/components/common/date.js';
 export default {
   name: 'Profiles',
   data () {
@@ -55,16 +54,6 @@ export default {
         }
       });
       return nameList;
-    },
-    dateList: function () {
-      var dateList = [];
-      this.profiles.filter((event) => {
-        console.log(event);
-        if (dateList.indexOf(convertDate(event.created_at)) === -1) {
-          dateList.push(convertDate(event.created_at));
-        }
-      });
-      return dateList;
     },
     filteredProfiles: function () {
       var result = this.profiles;

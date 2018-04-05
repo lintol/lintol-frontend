@@ -17,7 +17,6 @@ describe('ProcessorConfiguration.vue', () => {
         }
       }
     }).$mount();
-    console.log(vm);
     expect(vm.$el.querySelector('#processorTitle').textContent).to.equal('csv');
     expect(vm.$el.querySelector('#processorDescription').textContent).to.equal('csv linter');
   });

@@ -131,8 +131,7 @@ export default {
       if (e.target.value === 'archive') {
         var archivedResource = this.selectedResources[0];
         archivedResource.archived = '1';
-        this.$store.dispatch(SAVE_DATA_RESOURCE, archivedResource).then(() => {
-        });
+        this.$store.dispatch(SAVE_DATA_RESOURCE, archivedResource);
       }
       if (e.target.value === 'delete') {
         var decision = confirm('Please confirm you want to delete these resources!');

@@ -41,18 +41,5 @@ describe('Application.vue', () => {
 
       expect(component.$el.className).to.equal('app');
     });
-
-    it('should have a "nav" element', () => {
-      const component = getComponent();
-
-      expect(component.$el.querySelector('nav').length);
-    });
-
-    it('should have a "ul" element with 12 "li" elements', () => {
-      const component = getComponent();
-
-      expect(component.$el.querySelector('ul').length);
-      expect(component.$el.querySelectorAll('li').length).to.equal(12);
-    });
   });
 });

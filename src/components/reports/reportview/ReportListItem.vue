@@ -35,10 +35,11 @@ export default {
   },
   methods: {
     openIssue: function () {
-      console.log('Sending');
-      console.log(this.content);
-      if (JSON.parse(this.content).preset === 'geojson') {
+      var preset = JSON.parse(this.content).preset;
+      if (preset === 'geojson') {
         this.$router.push({name: 'mapDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
+      } else if (preset === 'exception') {
+        this.$router.push({name: 'exceptionDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
       } else {
         this.$router.push({name: 'tabularDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
         // this.$router.push({name: 'profileTable'});
@@ -76,12 +77,14 @@ export default {
 .processorName {
   font-weight: bold;
   flex: 0.5;
+  margin-right: 10px;
 }
 
 .issueType {
   color: #777776;
   font-weight: bold;
   flex: 0.5;
+  margin-right: 10px;
 }
 
 .issueDescription {
