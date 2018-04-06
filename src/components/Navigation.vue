@@ -154,7 +154,6 @@ export default {
    }
 }
 
-
 .menuEntry {
   margin: 10px 0px;
   padding-left: 4px;
@@ -166,11 +165,10 @@ export default {
     }
   }
   > a {
-    display: flex;
-    flex-direction: row;
-    padding-top: 7px;
     text-decoration: none;
     cursor: pointer;
+    display: block;
+    padding: 5px 0px;
     > img {
       width: 1.25em;
       height: 1.25em;
@@ -189,9 +187,16 @@ export default {
   background-color: #EDEDED;
   border-radius: 5px;
   color: #333333;
-  & a label {
-    color: black;
-  }
+    & a {
+          cursor: default;
+          & label {
+              color: black;
+              cursor: default;
+          }
+          & img {
+              cursor: default;
+          }
+      }
 }
 
 ul {
@@ -200,17 +205,13 @@ ul {
   margin: 0px 10px;
 }
 
-
 .logo {
   margin-left: 17px;
   margin-top: 25px;
   display: block;
 }
-
 .user {
 }
-
 .user-server {
 }
-
 </style>
