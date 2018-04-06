@@ -5,14 +5,12 @@
          <img class="logo center" src="~@/assets/images/logo.svg" title="Home">
        </router-link>
        <router-link id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }">
-         <div>
-           <img src="~@/assets/images/plus-icon.svg" />
-           <label>Add new Resource/ File</label>
-         </div>
+         <img src="~@/assets/images/plus-icon.svg" />
+         <label>Add new Resource / File</label>
        </router-link>
     </div>
   <nav>
-    <ul>
+    <ul class="menuList">
       <li id="profilesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'profileTable'}" >
          <router-link id="profiles" :to="{name: 'profileTable' }">
             <img src="~@/assets/images/data-profiles.svg" />
@@ -129,29 +127,24 @@ export default {
 }
 
 .addResourceButton {
-   display: flex;
-   flex-direction: row;
-   margin-top: 20px;
-   margin-left: 10px;
-   border: 1px solid #333333;
-   border-radius: 2px;
-   text-decoration: none;
-   font-weight: $bold;
-   padding-top: 3px;
-   padding-left: 10px;
-   > div {
-     > img {
-        width: 1em;
-        height: 1em;
-        cursor: pointer;
-     }
-     > label {
-       padding-left: 0.625em;
-       color: #333333;
-       font-size: 0.625em;
-       cursor: pointer;
-     }
-   }
+  display: block;
+  margin: 20px 5px 0px 5px;
+  padding: 0px 5px;
+  border: 1px solid #333333;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: $bold;
+  > img {
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+  }
+  > label {
+    padding-left: 0.625em;
+    color: #333333;
+    font-size: 0.625em;
+    cursor: pointer;
+  }
 }
 
 .menuEntry {
@@ -175,7 +168,7 @@ export default {
       cursor: pointer;
     }
     > label {
-      margin: 0px 10px;
+      margin-left: 5px;
       font-size: 0.75em;
       color: #777776;
       cursor: pointer;
@@ -187,22 +180,21 @@ export default {
   background-color: #EDEDED;
   border-radius: 5px;
   color: #333333;
-    & a {
-          cursor: default;
-          & label {
-              color: black;
-              cursor: default;
-          }
-          & img {
-              cursor: default;
-          }
-      }
+  & a {
+    cursor: default;
+    & label {
+      color: black;
+      cursor: default;
+    }
+    & img {
+      cursor: default;
+    }
+  }
 }
 
-ul {
+.menuList {
   list-style-type: none;
-  padding: 0;
-  margin: 0px 10px;
+  padding: 0px 10px;
 }
 
 .logo {

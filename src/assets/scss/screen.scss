@@ -21,23 +21,9 @@
     }
     $menuWidth: 125px;
     $menuHeight: 25px;
-    .addResourceButton {
-      width: $menuWidth;
-      height: $menuHeight;
-      > a {
-        height: $menuHeight;
-      }
-    }
-    .menuEntry {
-      width: $menuWidth;
-      > a {
-      }
-    }
-    .menuEntryActive {
-      width: $menuWidth;
-      > a {
-      }
-    }
+  .menuList {
+    width: $menuWidth;
+  }
     .panel {
       width: 80%;
     }
@@ -54,22 +40,8 @@
     }
     $menuWidth: 150px;
     $menuHeight: 30px;
-    .addResourceButton {
+    .menuList {
       width: $menuWidth;
-      height: $menuHeight;
-      > a {
-        height: $menuHeight;
-      }
-    }
-    .menuEntry {
-      width: $menuWidth;
-      > a {
-      }
-    }
-    .menuEntryActive {
-      width: $menuWidth;
-      > a {
-      }
     }
     .panel {
       width: 80%;
@@ -77,66 +49,53 @@
 }
 
 @media (min-width: 1400px) {
-    body {
-      font-size: 16px;
+  body {
+    font-size: 16px;
+  }
+  .logo {
+    height: 29px;
+    width: 101px;
+  }
+  $menuWidth: 186px;
+  $menuHeight: 35px;
+  .menuList {
+    width: $menuWidth;
+  }
+  /*.addResourceButton {
+    width: $menuWidth;
+    > a {
     }
-    .logo {
-      height: 29px;
-      width: 101px;
+  }
+  .menuEntry {
+    width: $menuWidth;
+    > a {
     }
-    $menuWidth: 186px;
-    $menuHeight: 35;
-    .addResourceButton {
-      width: $menuWidth;
-      height: $menuHeight;
-      > a {
-        height: $menuHeight;
-      }
+  }
+  .menuEntryActive {
+    width: $menuWidth;
+    > a {
     }
-    .menuEntry {
-      width: $menuWidth;
-      > a {
-      }
-    }
-    .menuEntryActive {
-      width: $menuWidth;
-      > a {
-      }
-    }
-    .panel {
-      width: 80%;
-    }
-  
+  }*/
+  .panel {
+    width: 80%;
+  }
+
 }
 
 @media (min-width: 1600px) {
-    body {
-      font-size: 16px;
-    }
-    .logo {
-      height: 29px;
-      width: 101px;
-    }
-    $menuWidth: 186px;
-    $menuHeight: 35;
-    .addResourceButton {
-      width: $menuWidth;
-      height: $menuHeight;
-      > a {
-        height: $menuHeight;
-      }
-    }
-    .menuEntry {
-      width: $menuWidth;
-      > a {
-      }
-    }
-    .menuEntryActive {
-      width: $menuWidth;
-      > a {
-      }
-    }
-    .panel {
-      width: 60%;
-    }
- } 
+  body {
+    font-size: 16px;
+  }
+  .logo {
+    height: 29px;
+    width: 101px;
+  }
+  $menuWidth: 186px;
+  $menuHeight: 35px;
+  .menuList {
+    width: $menuWidth;
+  }
+  .panel {
+    width: 60%;
+  }
+}
