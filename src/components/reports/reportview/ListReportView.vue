@@ -163,4 +163,21 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.searchBox {
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background: url(~@/assets/images/search.svg);
+  background-repeat: no-repeat;
+  background-size:0.875em 0.875em;
+  background-color: white;
+  background-position: 95% 50%;
+  border-color: #979797;
+  &::placeholder {
+    color: #9B9B9B;
+    font-size: 0.8125em;
+  }
+}
 </style>
