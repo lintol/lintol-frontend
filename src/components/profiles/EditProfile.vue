@@ -5,7 +5,8 @@
     <div class="formContainer" v-if="profile">
       <input id="profileName" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
       <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
-      <textarea id="profileDescription" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <textarea id="profileDescription" maxlength="200" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <label class="descriptionLength" :class='{ warningText: descriptionLength == 200 }'>Length: {{ descriptionLength }}</label>
       <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <div>
         <p class="subHeading">Choose your Processor</p>
@@ -43,7 +44,8 @@ export default {
   data () {
     return {
       title: 'Edit Profile',
-      configurations: []
+      configurations: [],
+      descriptionMaxLength: 5
     };
   },
   methods: {
@@ -92,6 +94,9 @@ export default {
         var option = { 'label': element.name, 'value': element.id };
         return option;
       });
+    },
+    descriptionLength: function () {
+      return this.profile.description.length;
     }
   },
   mounted: function () {
@@ -153,5 +158,9 @@ export default {
 .processorInstruction {
   font-size: 14px;
   font-weight: $bold;
+}
+
+.descriptionLength {
+  font-size: 12px;
 }
 </style>
