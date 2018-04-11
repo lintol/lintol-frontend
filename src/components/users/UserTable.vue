@@ -10,13 +10,14 @@
       <!--<select id="groupFilter" v-model="group">
         <option disabled value="" >Filter by Groups</option> 
       </select>-->
-      <input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" type="Search" v-model="search">
+      <input id="processorSearch" class="userSearch" placeholder="Search for a Processor" type="Search" v-model="search">
       <div id="noUsersAvailable" v-if="users.length == 0">
         <p class="instructions">No Users available for this account</p>
       </div>
       <div id="columns" v-else class="flexContainer">
         <user-row :key="user.id" :index="index" v-for="(user, index) in filteredUsers" :user="user"></user-row>
       </div>
+      <img src="~@/assets/images/search.svg" style="width:0.575em ; height: 0.575em;"/>
     </div>
   </div>
   </div>
@@ -61,26 +62,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 
-.processorSearch {
+
+.userSearch {
   width: 30%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
-  font-size: 0.8125em;
-  background: url(../../assets/images/search.svg) no-repeat scroll 0.875em 0.875em;
-  background-color: white;
-  background-position: 0.3125em 0.9375em; 
+  font-size: 1em;
+  background: url(~@/assets/images/search.svg);
   background-repeat: no-repeat;
-  padding-left: 1.6625em; 
-  padding-top: 0.625em; 
-  padding-bottom: 0.625em; 
+  background-size:0.875em 0.875em;
+  background-color: white;
+  background-position: 0.5125em;
   border-color: #979797;
+  padding-left: 1.8625em;
+  padding-top: 0.325em;
+  padding-bottom: 0.325em;
   &::placeholder {
     color: #9B9B9B;
     font-size: 0.8125em;
   }
 }
-
 </style>

@@ -99,7 +99,7 @@ label {
 }
  
 .columnTitle {
-  font-weight: bold;
+  font-weight: $bold;
 }
 
 .verticalAlign {
