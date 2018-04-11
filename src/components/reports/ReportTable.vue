@@ -12,7 +12,7 @@
         </select>
         <select class="custom-select" id="userFilter" v-model="selectedUser" >
           <option disabled value="" >Filter by User</option> 
-          <option v-for="user in userList">{{ user.name }}</option> 
+          <option v-for="userName in userNameList">{{ userName }}</option>
         </select>
         <select class="custom-select" id="profileFilter" v-model="selectedProfile" >
           <option disabled value="" >Filter by Profile</option> 
@@ -50,8 +50,8 @@ export default {
     ReportRow: ReportRow
   },
   computed: {
-    userList: function () {
-      return getUniqueListOfValues(this.reports, 'user');
+    userNameList: function () {
+      return getUniqueListOfValues(this.reports, 'user', 'name');
     },
     dateList: function () {
       return dateList(this.reports);
