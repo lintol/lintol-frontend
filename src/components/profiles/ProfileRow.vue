@@ -5,7 +5,7 @@
         <div class="rightSeparator ">
           <label class="profileName"> {{ profile.name }} </label>
           <user v-if="profile.creator" class="user" :user="profile.creator"></user>
-          <p style=" word-wrap: break-word;" >{{ profile.description }} </p>
+          <p class="description" >{{ profile.description }} </p>
         </div>
       </div>
       <div class="profileColumn center">
@@ -139,6 +139,11 @@ div .profileColumn p {
 .profileName {
   font-size: 0.75em;
   width: 150px;
+  word-wrap: break-word;
+}
+ 
+.description {
+  word-wrap: break-word;
 }
 
 .user {
