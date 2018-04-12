@@ -1,6 +1,6 @@
 <template>
    <div id='validationDetails'>
-    <router-link :to="{name: 'listReportView', params: {'reportId': this.reportId}}" class="navigateToReports"> &#x3008; Back to List</router-link>
+    <router-link :to="{name: 'listReportView', params: {'reportId': this.reportId}}" class="navigateToReports"> <img src="~@/assets/images/back-to-left-arrow.svg"/> Back to List</router-link>
     <div >
       <p class="processor">{{ reportItem.processor }}</p>
       <p class="itemType">{{ reportItem.code }}</p>

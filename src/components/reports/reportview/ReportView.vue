@@ -1,6 +1,6 @@
 <template>
    <div id='reportView'>
-    <router-link id="reports" :to="{name: 'reportTable' }" class="navigateToReports"> &#x3008; Back to Reports</router-link>
+    <router-link id="reports" :to="{name: 'reportTable' }" class="navigateToReports"> <img src="~@/assets/images/back-to-left-arrow.svg"/> Back to Reports</router-link>
     <div class="reportRow" v-if="report">
         <div class="reportMainColumn">
           <label class="pageTitle">{{ report.name }}</label>
@@ -103,5 +103,7 @@ export default {
   padding-right: 10px;
 }
 
-  
+.navigateToReports {
+  margin-top: 10px;
+}
 </style>

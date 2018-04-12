@@ -1,6 +1,6 @@
 <template>
    <div>
-   <router-link id="reports" :to="{name: 'listReportView', params: {'reportId': this.reportId}}" class="navigateToReports"> &#x3008; Back to List</router-link>
+   <router-link id="reports" :to="{name: 'listReportView', params: {'reportId': this.reportId}}" class="navigateToReports"> <img src="~@/assets/images/back-to-left-arrow.svg"/> Back to List</router-link>
    <div id='tabularDetails'>
     <div >
       <p class="processor">{{ reportItem.processor }}</p>
@@ -65,6 +65,7 @@ export default {
   font-size: 17px;
   color: #333333;
   font-weight: $bold;
+  margin-top: 10px;
 }
 
 .itemType {
@@ -75,5 +76,6 @@ export default {
 
 .navigateToReports {
   font-size: 12px;
+  margin-top: 20px;
 }
 </style>
