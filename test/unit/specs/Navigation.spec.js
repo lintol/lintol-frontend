@@ -30,10 +30,10 @@ describe('Navigation.vue', () => {
       expect(defaultData.currentView).to.equal('profileTable');
     });
 
-    it('should have a default "version" set to "0.11"', () => {
+    it('should have a default "version" set to "0.12"', () => {
       const defaultData = Navigation.data();
 
-      expect(defaultData.version).to.equal('0.11');
+      expect(defaultData.version).to.equal('0.12');
     });
   });
 

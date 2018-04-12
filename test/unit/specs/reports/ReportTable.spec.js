@@ -54,7 +54,7 @@ describe('ReportTable.vue', () => {
     expect(ReportTable.data).to.be.a('function');
   });
   it('Report Table user list', () => {
-    expect(wrapper.vm.userList.length).to.equal(2);
+    expect(wrapper.vm.userNameList.length).to.equal(1);
   });
   it('Report Table profile list', () => {
     expect(wrapper.vm.profileList.length).to.equal(1);
