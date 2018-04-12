@@ -9,15 +9,15 @@
     <!--<label>(36 Archived)</label>-->
     <div class="filterContainer">
       <div class="btn-group">
-        <select id="typeFilter" class="filter custom-select"  v-model="selectedType" >
+        <select id="typeFilter" class="custom-select"  v-model="selectedType" >
           <option disabled value="" >Filter by Type</option>
           <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
         </select>
-        <select id="sourceFilter" class="filter custom-select"  v-model="selectedSource" >
+        <select id="sourceFilter" class="custom-select"  v-model="selectedSource" >
           <option disabled value="" >Filter by Source</option>
           <option :value="source" v-for="(desc, source) in filterBySourceOptions">{{ desc }}</option>
         </select>
-        <select id="dateFilter" class="filter custom-select" v-model="selectedDate" >
+        <select id="dateFilter" class="custom-select" v-model="selectedDate" >
           <option disabled value="" >Filter by Date</option>
           <option v-for="date in dateList" :value="date[0]">{{ date[1] }}</option>
         </select>
@@ -329,15 +329,6 @@ export default {
   border-color: #dedede;
   &::placeholder {
     color: #9B9B9B;
-  }
-}
-
-
-.filter {
-  height: 28px;
-  &.custom-select {
-    margin: auto 10px 10px auto;
-    width: auto;
   }
 }
 

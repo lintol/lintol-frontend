@@ -82,15 +82,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../../assets/scss/application.scss';
+@import '~@/assets/scss/application.scss';
 
-select {
-  height: 28px;
-  &.custom-select {
-    margin: auto 10px 10px auto;
-    width: auto;
-  }
-}
 
 .filters {
   max-width: 40%;
