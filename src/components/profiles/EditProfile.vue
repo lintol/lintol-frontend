@@ -3,7 +3,7 @@
     <label class="pageTitle">{{ title }}</label>
     <p class="instructions">Edit your profile below</p>
     <div class="formContainer" v-if="profile">
-      <input id="profileName" maxlength="40" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
+      <input id="profileName" maxlength="30" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
       <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
       <textarea id="profileDescription" maxlength="200" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
       <label class="descriptionLength" :class='{ warningText: descriptionLength == 200 }'>Length: {{ descriptionLength }}</label>
