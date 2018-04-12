@@ -10,7 +10,7 @@
       <p class="instructions">
         A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
       </p>
-      <select id="nameFilter" v-model="selectedName" >
+      <select id="nameFilter" class="custom-select" v-model="selectedName" >
         <option value="" >Filter by Group</option> 
         <option v-for="name in nameList">{{ name }}</option> 
       </select>
@@ -90,7 +90,6 @@ export default {
   min-width: 120px;
   display: inline-block; 
 }
-
 
 .tableSeparator {
   border-bottom: 2px solid black;

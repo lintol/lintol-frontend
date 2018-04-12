@@ -1,5 +1,6 @@
 @import "validation.scss";
 @import "screen.scss";
+
 $lightPink: #ede3e3; 
 $buttonColour: #F1592A;
 $buttonText: white;
@@ -10,7 +11,6 @@ $rowBackground: #F9F9F9;
 $separatorColour: #E5E5E5;
 $bold: 700;
 
-
 $orange: #F1592A;
 $orangeDark: #AA6666;
 $greyFont: #BFBFBF;
@@ -20,6 +20,11 @@ select {
   color: #777776;;
   border-radius: 4px;
   font-size: 0.625em;
+  height: 28px;
+  &.custom-select {
+    margin: auto 10px 10px auto;
+    width: auto;
+  }
 }
 
 textarea {

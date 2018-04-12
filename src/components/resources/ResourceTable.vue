@@ -373,10 +373,4 @@ export default {
     border: none;
   }
 }
-
-select.custom-select {
-  height: 28px;
-  margin: auto 10px 10px auto;
-}
-
 </style>

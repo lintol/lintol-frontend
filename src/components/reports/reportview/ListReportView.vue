@@ -26,11 +26,11 @@
             </div>
           <div>
             <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
-            <select id="userFilter" v-model="filteredType" >
+            <select id="userFilter" class="custom-select" v-model="filteredType" >
               <option disabled value="" >Filter by Type</option>
               <option v-for="type in filterByTypeOptions">{{ type }}</option>
             </select>
-            <select id="userFilter" v-model="filteredProcessor" >
+            <select id="userFilter" class="custom-select" v-model="filteredProcessor" >
               <option disabled value="" >Filter by Processor</option>
               <option v-for="processor in filterByProcessorOptions">{{ processor }}</option>
             </select>
