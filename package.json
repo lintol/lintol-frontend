@@ -5,7 +5,7 @@
   "author": "Open Business Industry Group",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "dev": "webpack-dashboard -- node build/dev-server.js",
     "mock": "cross-env NODE_ENV=mock node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
@@ -108,6 +108,7 @@
     "vue-test-utils": "^1.0.0-beta.11",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dashboard": "^1.1.1",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-merge": "^4.1.0"
