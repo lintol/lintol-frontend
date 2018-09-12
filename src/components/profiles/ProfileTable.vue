@@ -1,26 +1,32 @@
 <template>
   <b-container id="profileTable">
     <transition name="component-fade" mode="in-out">
-    <div>
-      <b-button id="addNewProfileButton" class="addButton" @click="addProfile">
-        <label>Add new Data Profile</label>
-        <img src="~@/assets/images/white-plus-icon.svg" />
-      </b-button>
-      <label class="pageTitle">{{ title }}</label>
-      <p class="instructions">
-        A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
-      </p>
-      <b-form-select :options="nameList" id="nameFilter" class="custom-select" v-model="selectedName" >
-       <option value="" >Filter by Group</option>
-      <!--   <option v-for="name in nameList">{{ name }}</option>-->
-      </b-form-select>
-      <div id="noProfilesAvailable" v-if="profiles.length == 0">
-        <b-alert class="instructions"> No Profiles available for this account</b-alert>
-      </div>
-      <div id="columns"  class="flexContainer">
-        <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
-      </div>
-    </div>
+    <b-row>
+      <b-col order='2' cols='12' sm='4'>
+        <b-button id="addNewProfileButton" class="addButton" @click="addProfile">
+          <label>Add new Data Profile</label>
+          <img src="~@/assets/images/white-plus-icon.svg" />
+        </b-button>
+      </b-col>
+      <b-col order='1' cols='12' sm='8'>
+        <label class="pageTitle">{{ title }}</label>
+        <p class="instructions">
+          A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
+        </p>
+      </b-col>
+      <b-col order='3' cols='12'>
+        <b-form-select :options="nameList" id="nameFilter" class="custom-select" v-model="selectedName" >
+         <option value="" >Filter by Group</option>
+        <!--   <option v-for="name in nameList">{{ name }}</option>-->
+        </b-form-select>
+        <div id="noProfilesAvailable" v-if="profiles.length == 0">
+          <b-alert class="instructions"> No Profiles available for this account</b-alert>
+        </div>
+        <div id="columns"  class="flexContainer">
+          <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
+        </div>
+      </b-col>
+    </b-row>
     </transition>
   </b-container>
 </template>
@@ -95,7 +101,12 @@ export default {
   border-bottom: 2px solid black;
   padding-bottom: 15px;
 }
-
+.addButton{
+  float: none;
+}
+.custom-select{
+  margin-top: 5px;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }

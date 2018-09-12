@@ -1,6 +1,8 @@
 <template>
   <div style="background-color: #F8F8F8;" v-bind:class='{open : isOpen}'>
-    <div class='icon'v-bind:class='{"close-menu": !isOpen,"burger-menu": isOpen}'  v-on:click='openMenu'> </div>
+    <div class='icon-wrapper'>
+      <div class='icon'v-bind:class='{"close-menu": !isOpen,"burger-menu": isOpen}'  v-on:click='openMenu'> </div>
+    </div>
     <b-content v-bind:class='{ show: isOpen}'>
       <b-nav vertical>
          <b-nav-item id="home" :to="{name: 'profileTable' }">
@@ -208,14 +210,14 @@ export default {
   background: #e8e8e8;
 }
 .icon{
+    right: 0;
     float: right;
-    display: none;
+    position: relative;
 }
 .icon.burger-menu{
 
   width: 20px;
   height: 3px;
-  position: relative;
   background: black;
   top: 10px;
 }
@@ -239,7 +241,6 @@ export default {
   width: 22px;
   height: 2px;
   background: black;
-  position: relative;
   top: 10px;
   transform: rotate(45deg);
 }
@@ -257,7 +258,9 @@ export default {
 .show{
   display: none;
 }
-
+.icon-wrapper{
+  height: 30px;
+}
 
 @media (max-width: 376px){
   .icon{
