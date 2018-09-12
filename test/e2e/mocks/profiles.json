@@ -1,0 +1,22 @@
+[
+   {
+      "creator" : "martin",
+      "updated_at" : "2017-11-26 17:12:57",
+      "created_at" : "2017-11-26 17:12:57",
+      "description" : "csv description",
+      "version" : "version 7",
+      "id" : 1,
+      "uniqueTag" : "uniq-44",
+      "name" : "csv profile"
+   },
+   {
+      "description" : "json description",
+      "created_at" : "2017-11-26 17:12:57",
+      "updated_at" : "2017-11-26 17:12:57",
+      "creator" : "dan",
+      "name" : "json profile",
+      "id" : 2,
+      "uniqueTag" : "uniq-43",
+      "version" : "version 8"
+   }
+]

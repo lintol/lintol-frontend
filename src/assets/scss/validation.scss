@@ -1,0 +1,9 @@
+$warningColor: red;
+
+.warningBorder {
+  border: 1px solid $warningColor;
+}
+.warningText {
+  color: $warningColor;
+  font-size: 12px;
+}

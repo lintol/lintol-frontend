@@ -1,0 +1,250 @@
+@import "validation.scss";
+@import "screen.scss";
+
+$lightPink: #ede3e3; 
+$buttonColour: #F1592A;
+$buttonText: white;
+$inputBackground: #F8F8F8;
+$warningText: red;
+$sideBar: #F1592A;
+$rowBackground: #F9F9F9;
+$separatorColour: #E5E5E5;
+$bold: 700;
+
+$orange: #F1592A;
+$orangeDark: #AA6666;
+$greyFont: #BFBFBF;
+
+select {
+  border: 1px solid #777776;;
+  color: #777776;;
+  border-radius: 4px;
+  font-size: 0.625em;
+  &.custom-select {
+    margin-right: 5px;
+    width: auto;
+    height: inherit;
+  }
+}
+
+textarea {
+  overflow: hidden;
+  background-color: $inputBackground;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  background-color: $inputBackground;
+  border-radius: 3px;
+}
+
+body, body * { 
+    font-family:  Montserrat;
+}  /* this affects every element in the body and the body itself */
+
+
+.saveButton {
+  background-color: $buttonColour; 
+  border: none;
+  border-radius: 5px;
+  color: $buttonText;
+  padding: 2% 5%;
+  font-size: 0.75em;
+  box-shadow: 0px 0px 5px black;
+  display: inline-block;
+  font-weight: $bold;
+  &:active {
+    box-shadow: 0px 0px 0px black;
+  }
+  &:focus {
+    outline:0;
+    border: none;
+  }
+} 
+
+
+.addButton {
+  cursor: pointer;
+  background-color: $buttonColour; 
+  border: none;
+  border-radius: 5px;
+  color: $buttonText;
+  padding: 2px 5px;
+  box-shadow: 0px 0px 5px black;
+  display: inline-block;
+  float: right;
+  font-weight: $bold;
+  padding: 5px 5px;
+  &:active {
+    box-shadow: 0px 0px 0px black;
+  }
+  &:focus {
+    outline:0;
+    border: none;
+  }
+  & > label {
+    line-height: 15px;
+    font-size: 0.75em;
+    cursor: pointer;
+  }
+  & > img {
+    margin-left: 3px;
+    height: 1em;
+    width: 1em;
+    cursor: pointer;
+  }
+}
+
+.viewButton {
+  cursor: pointer;
+  background-color: white;
+  border: solid 2px $orange;
+  color: $orange;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.75em;
+  &:active {
+    box-shadow: 0px 0px 0px $orangeDark;
+  }
+  &:focus {
+    box-shadow: 0px 0px 5px $orangeDark;
+    outline:0;
+  }
+  
+}
+
+.profilePicture {
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+}
+
+.rightSeparator {
+  border-right: 1px solid $separatorColour;
+  box-sizing: border-box;
+}
+
+.verticalCenterItems {
+  display: flex; 
+  align-items:center;
+}
+
+.shadedRow {
+  border: 1px solid #F3F2F2;
+  border-radius: 4px;
+  background-color: $rowBackground;
+  margin-top: 15px;
+}
+
+/**
+ * hiding original checkboxes
+ */
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+.blackCheckbox {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.blackCheckbox label {
+  display: block;
+  width: 11px;
+  height: 11px;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 0.01px;
+  z-index: 1;
+  box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* .blackCheckbox input[type=checkbox]:checked + label {
+  background: black;
+} */
+
+.blackCheckbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.blackCheckbox:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.orangeCheckbox {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  position: relative;
+  border: 1px solid grey;
+}
+
+.orangeCheckbox label {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 100px;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  background: #333;
+  box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+.orangeCheckbox input[type=checkbox]:checked + label {
+  background: $orange;
+}
+
+.navigationLink {
+  text-decoration: underline;
+}
+
+.pageTitle {
+   font-weight: $bold;
+   font-size: 1.375em;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+} 
+
+.navigateToReports {
+  font-size: 0.75em;
+}
+.instructions {
+   font-size: 0.75em;
+}
+
+.pagination li {
+  padding: 10px;
+}
+
+.subHeading {
+  font-size: 1.125em;
+  font-weight: $bold;
+}
+

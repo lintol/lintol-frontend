@@ -1,0 +1,101 @@
+/* Mobile first queries */
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+    body {
+      font-size: 11px;
+    }
+    .logo {
+      height: 19px;
+      width: 61px;
+    }
+    $menuWidth: 125px;
+    $menuHeight: 25px;
+  .menuList {
+    width: $menuWidth;
+  }
+    .panel {
+      width: 80%;
+    }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {
+    body {
+      font-size: 14px;
+    }
+    .logo {
+      height: 24px;
+      width: 81px;
+    }
+    $menuWidth: 150px;
+    $menuHeight: 30px;
+    .menuList {
+      width: $menuWidth;
+    }
+    .panel {
+      width: 80%;
+    }
+}
+
+@media (min-width: 1400px) {
+  body {
+    font-size: 16px;
+  }
+  .logo {
+    height: 29px;
+    width: 101px;
+  }
+  $menuWidth: 186px;
+  $menuHeight: 35px;
+  .menuList {
+    width: $menuWidth;
+  }
+  /*.addResourceButton {
+    width: $menuWidth;
+    > a {
+    }
+  }
+  .menuEntry {
+    width: $menuWidth;
+    > a {
+    }
+  }
+  .menuEntryActive {
+    width: $menuWidth;
+    > a {
+    }
+  }*/
+  .panel {
+    width: 80%;
+  }
+
+}
+
+@media (min-width: 1600px) {
+  body {
+    font-size: 16px;
+  }
+  .logo {
+    height: 29px;
+    width: 101px;
+  }
+  $menuWidth: 186px;
+  $menuHeight: 35px;
+  .menuList {
+    width: $menuWidth;
+  }
+  .panel {
+    width: 60%;
+  }
+}

@@ -1,0 +1,21 @@
+@import "application.scss";
+
+.qualityScore {
+  font-size: 21px;
+  font-weight: $bold;
+  text-align: center;
+  + label {
+    text-align: center;
+    font-size: 8px;
+  }
+}
+
+.ragError {
+  fill: #FF3030;
+}
+.ragWarning {
+  fill: #FC7B08;
+}
+.ragPass {
+  fill: #7D9B5C;
+}

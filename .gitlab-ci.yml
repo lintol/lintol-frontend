@@ -1,0 +1,89 @@
+image: node:7.10
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  DOCKER_DRIVER: overlay
+
+stages:
+  - build
+  - test
+  - release
+  - deploy
+  - trigger
+
+build:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules
+
+test:
+  stage: test
+  before_script:
+    - Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
+    - export DISPLAY=:99.0
+    - npm install 
+    - npm install -g chromedriver 
+    - npm install -g json-server
+    - git clone https://github.com/lintol/jsonapi-server-mock-lintol.git
+    - npm install --prefix jsonapi-server-mock-lintol/
+    - npm start --prefix jsonapi-server-mock-lintol/ &
+  image: martinnaughton/nightwatch-e2e-headless:latest
+  script: npm run test
+  artifacts:
+    paths:
+      - test/unit/coverage/
+  dependencies:
+    - build
+
+pages:
+  stage: deploy
+  dependencies:
+    - test 
+  script:
+    - mv test/unit/coverage/lcov-report/ public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master
+
+release:
+  stage: release
+  script:
+    - npm run build
+    - echo "CI_BUILD_REF=$CI_BUILD_REF\nCI_COMMIT_SHA=$CI_COMMIT_SHA" > CI_BUILD_REF
+  artifacts:
+    paths:
+      - dist
+      - CI_BUILD_REF
+  dependencies:
+    - build
+  only:
+    - master
+
+deploy:
+  image: garland/aws-cli-docker
+  stage: deploy
+  dependencies:
+    - release
+  script:
+    - tar -czf frontend-build.tgz dist
+    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-$CI_COMMIT_SHA.tgz --body frontend-build.tgz
+    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-latest.tgz --body frontend-build.tgz
+  only:
+    - master
+
+trigger:
+  image: odise/busybox-curl
+  stage: trigger
+  dependencies:
+    - release
+  script:
+    - echo curl -X POST -F token=$AWS_BACKEND_TRIGGER -F ref=$AWS_BACKEND_TRIGGER_REF $AWS_BACKEND_TRIGGER_URL
+    - curl -X POST -F token=$AWS_BACKEND_TRIGGER -F ref=$AWS_BACKEND_TRIGGER_REF $AWS_BACKEND_TRIGGER_URL
+  only:
+    - master

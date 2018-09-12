@@ -1,0 +1,7 @@
+{
+  "port": 3004,
+  "watch": "mock/jsonapi.json",
+  "nestedRoutePrefix": "route-",
+  "contentType": "",
+  "accept": "*/*"
+}
