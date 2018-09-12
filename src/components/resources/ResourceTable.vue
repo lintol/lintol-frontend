@@ -21,7 +21,7 @@
     <b-row class="filterContainer">
       <b-col cols='12' sm='10' md='12' lg='10'>
         <b-row class="btn-group">
-          <b-col sm='12' cols='12' md='3' >
+          <b-col sm='12' cols='12' md='3'>
               <select id="typeFilter" class="custom-select"  v-model="selectedType" >
                 <option disabled value="" >Filter by Type</option>
                 <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
@@ -40,7 +40,7 @@
             </select>
           </b-col>
           <b-col sm='12' cols='12' md='3' >
-            <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
+            <input id="searchValidations" type="text" class="searchBox" v-model="search" style='margin-bottom:3px;'/>
           </b-col>
         </b-row>
       </b-col>
@@ -386,5 +386,9 @@ export default {
     outline:0;
     border: none;
   }
+}
+.custom-select{
+  min-width: 150px;
+  margin-bottom: 3px;
 }
 </style>

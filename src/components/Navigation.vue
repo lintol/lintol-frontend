@@ -260,12 +260,14 @@ export default {
 }
 .icon-wrapper{
   height: 30px;
+  display: none;
 }
 
 @media (max-width: 376px){
-  .icon{
+  .icon-wrapper{
     display: block;
   }
+
 }
 @media (min-width: 377px){
   .show{
