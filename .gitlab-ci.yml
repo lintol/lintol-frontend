@@ -25,7 +25,7 @@ test:
     - Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
     - export DISPLAY=:99.0
     - npm install 
-    - npm install -g chromedriver 
+    - sudo npm install -g chromedriver 
     - npm install -g json-server
     - git clone https://github.com/lintol/jsonapi-server-mock-lintol.git
     - sudo npm install --prefix jsonapi-server-mock-lintol/
