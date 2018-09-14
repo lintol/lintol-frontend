@@ -3,38 +3,38 @@
     <div class='icon-wrapper'>
       <div class='icon'v-bind:class='{"close-menu": !isOpen,"burger-menu": isOpen}'  v-on:click='openMenu'> </div>
     </div>
-    <b-content v-bind:class='{ show: isOpen}'>
-      <b-nav vertical>
+    <b-container v-bind:class='{ show: isOpen}'>
+      <b-nav vertical v-on:click='openMenu'>
          <b-nav-item id="home" :to="{name: 'profileTable' }">
            <img class="logo center" src="~@/assets/images/logo.svg" title="Home" />
          </b-nav-item>
-         <b-button id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }">
+         <b-button id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }" >
            <img src="~@/assets/images/plus-icon.svg" />
            <label>Add new Resource / File</label>
          </b-button>
       </b-nav>
       <b-nav vertical>
-        <b-nav-item id="profilesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'profileTable'}" :to="{name: 'profileTable' }">
+        <b-nav-item id="profilesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'profileTable'}" :to="{name: 'profileTable' }" v-on:click='openMenu'>
               <img src="~@/assets/images/data-profiles.svg" />
               <label>Data Profiles</label>
         </b-nav-item>
-        <b-nav-item id="resourcesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'resourceTable'}" :to="{name: 'resourceTable' }">
+        <b-nav-item id="resourcesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'resourceTable'}" :to="{name: 'resourceTable' }" v-on:click='openMenu'>
              <img src="~@/assets/images/resources.svg" />
              <label>Resources/ Files</label>
         </b-nav-item>
-        <b-nav-item id="processorsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'processorTable'}" :to="{name: 'processorTable' }">
+        <b-nav-item id="processorsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'processorTable'}" :to="{name: 'processorTable' }" v-on:click='openMenu'>
              <img src="~@/assets/images/data-processors.svg" />
              <label>Data Processors</label>
         </b-nav-item>
-        <b-nav-item id="reportsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'reportTable'}" :to="{name: 'reportTable' }">
+        <b-nav-item id="reportsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'reportTable'}" :to="{name: 'reportTable' }" v-on:click='openMenu'>
              <img src="~@/assets/images/validation-reports.svg" />
              <label>Validation Reports</label>
         </b-nav-item>
-        <b-nav-item id="usersLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'userTable'}" :to="{name: 'userTable' }">
+        <b-nav-item id="usersLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'userTable'}" :to="{name: 'userTable' }" v-on:click='openMenu'>
              <img src="../assets/images/users.svg" />
              <label>Users</label>
         </b-nav-item>
-        <!--<b-nav-item id="settingsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'settings'}" :to="{name: 'settings' }">
+        <!--<b-nav-item id="settingsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'settings'}" :to="{name: 'settings' }" v-on:click='openMenu'>
              <img  src="~@/assets/images/settings.svg" />
              <label>Settings</label>
         </b-nav-item> -->
@@ -51,7 +51,7 @@
           <div class="loggedInUserServer" v-if="user.driver">via <a :href="user.driverServer">{{ user.driver.toUpperCase() }}</a></div>
       </div>
   </div>
-  </b-content>
+  </b-container>
   </div>
 </template>
 
@@ -253,7 +253,7 @@ export default {
   background: black;
 }
 .open{
-  padding: 5px;
+  padding:0px;
 }
 .show{
   display: none;
@@ -267,7 +267,9 @@ export default {
   .icon-wrapper{
     display: block;
   }
-
+  .open{
+    padding:5px;
+  }
 }
 @media (min-width: 377px){
   .show{

@@ -388,7 +388,7 @@ export default {
   }
 }
 .custom-select{
-  min-width: 150px;
+  min-width: 90%;
   margin-bottom: 3px;
 }
 </style>
