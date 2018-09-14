@@ -1,37 +1,40 @@
 <template>
-  <div id="profiles-row" class="shadedRow">
-    <div class="profileRow">
-      <div class="profileColumn profileMainColumn center">
-        <div class="rightSeparator ">
+  <div id="profiles-row" class="">
+    <b-row no-gutters  class="profileRow shadedRow">
+      <b-col sm='4' cols='6' class="profileColumn profileMainColumn center first" v-on:click='openTab'>
+        <div class="rightSeparator">
           <label class="profileName"> {{ profile.name }} </label>
           <user v-if="profile.creator" class="user" :user="profile.creator"></user>
           <p class="description" >{{ profile.description }} </p>
         </div>
-      </div>
-      <div class="profileColumn center">
+      </b-col>
+      <b-col v-bind:class='{open: isOpen}' cols = '10' offset='1' order='3' class='third bottom-bar show'>
+
+      </b-col>
+      <b-col v-bind:class='{open: isOpen}' sm='1' cols='6' class="profileColumn center third">
         <label class="columnTitle">Created</label>
         <p>{{ convertDate(profile.created_at.date) }}</p>
-      </div>
-      <div class="profileColumn center">
+      </b-col>
+      <b-col v-bind:class='{open: isOpen}' sm='1' cols='6' class="profileColumn center third">
         <label class="columnTitle">Last Updated</label>
         <p>{{ convertDate(profile.updated_at.date) }}</p>
-      </div>
-      <div class="profileColumn center">
+      </b-col>
+      <b-col sm='1' cols='6' class="profileColumn center second" style='text-align: center' v-on:click='openTab'>
         <label class="columnTitle">Version</label>
         <p >{{ profile.version }}</p>
-      </div>
-      <div class="profileColumn center">
+      </b-col>
+      <b-col v-bind:class='{open: isOpen}' sm='1' cols='12' class="profileColumn center third" style='text-align: center'>
         <label class="columnTitle">Unique Tag</label>
         <p>{{ profile.uniqueTag }}</p>
-      </div>
-      <div class="profileColumn verticalCenterItems">
-        <select class="profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
-          <option value="">Edit/Archive</option> 
-          <option value="edit">Edit</option> 
-          <option value="archive">Archive</option> 
+      </b-col>
+      <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="profileColumn verticalCenterItems third">
+        <select class="fullSize profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
+          <option style='text-align: left' value="">Edit/Archive</option>
+          <option value="edit">Edit</option>
+          <option value="archive">Archive</option>
         </select>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -49,7 +52,8 @@ export default {
   },
   data () {
     return {
-      msg: 'Data Profiles'
+      msg: 'Data Profiles',
+      isOpen: true
     };
   },
   methods: {
@@ -62,6 +66,9 @@ export default {
       if (e.target.value === 'archive') {
         console.log('archiving');
       }
+    },
+    openTab: function () {
+      this.isOpen = !this.isOpen;
     }
   },
   components: {
@@ -83,13 +90,12 @@ label {
 }
 
 .profileColumn {
-  flex: 1;
   > label {
     font-weight: bold;
     font-size: 0.625em;
   }
 }
- 
+
 .center {
   display: flex;
   flex-direction: column;
@@ -97,7 +103,6 @@ label {
 }
 
 .profileMainColumn {
-  flex: 2;
   padding: 0.625em;
 }
 
@@ -106,12 +111,9 @@ label {
   display: inline-block;
 }
 .profileRow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: space-between;
 }
- 
+
 .verticalAlign {
   vertical-align: middle;
 }
@@ -138,10 +140,9 @@ div .profileColumn p {
 
 .profileName {
   font-size: 0.75em;
-  width: 150px;
   word-wrap: break-word;
 }
- 
+
 .description {
   word-wrap: break-word;
 }
@@ -149,5 +150,62 @@ div .profileColumn p {
 .user {
   font-size: 0.75em;
   color: #777776;
+}
+
+.first{
+  order: 0;
+}
+
+.second{
+  order : 0;
+}
+
+.third{
+  order: 0;
+}
+
+.bottom-bar{
+  border-bottom:1px solid #E5E5E5;
+  margin-bottom: 15px;
+}
+
+.open{
+  display: flex;
+}
+.show{
+  display: none;
+}
+.rightSeparator{
+  padding-right: 5px;
+}
+.fullSize{
+  float: right;
+}
+@media (max-width: 376px){
+  .first{
+    order: 1;
+  }
+
+  .second{
+    order : 2;
+  }
+
+  .third{
+    order: 3;
+    padding: 5px 10px 5px 10px;
+  }
+
+  .show{
+    display: flex;
+  }
+
+  .open{
+    display: none;
+  }
+  .fullSize{
+    width:100%;
+    text-align: center;
+    text-align-last: center;
+  }
 }
 </style>

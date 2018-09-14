@@ -7,7 +7,7 @@
           <p class="description">{{ processor.description }}</p>
         </div>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' cols = '12' order='3' class='third bottom-bar show'>
+      <b-col v-bind:class='{open: isOpen}' cols = '10' offset='1' order='3' class='third bottom-bar show'>
 
       </b-col>
       <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="processorColumn center third">
@@ -141,6 +141,9 @@ label {
 .show{
   display: none;
 }
+.rightSeparator{
+  padding-right: 5px;
+}
 @media (max-width: 376px){
   .first{
     order: 1;
@@ -154,12 +157,14 @@ label {
     order: 3;
     padding: 5px 0 5px 10px;
   }
+  
+  .show{
+    display: flex;
+  }
 
   .open{
     display: none;
   }
-  .show{
-    display: block;
-  }
+
 }
 </style>

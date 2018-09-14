@@ -1,11 +1,9 @@
 <template>
-  <div style='max-width: 625px'>
+  <div style='max-width: 700px;'>
     <b-row no-gutters class="shadedRow" style='padding:10px'>
-      <b-col sm='3' cols='10'class="center first rightSeparator" style='padding: 10px 0;' v-on:click='openTab'>
-        <div class='text-wrapper' style='max-width: 300px'>
+      <b-col sm='3' cols='10' class="center first rightSeparator" style='padding: 10px 0;' v-on:click='openTab'>
           <label class="profileName columnHeader">Report {{ report.profile }}</label>
           <p class="reportName">{{ report.name }}</p>
-        </div>
       </b-col>
       <b-col v-bind:class='{open: isOpen}' cols = '12' order='3' class='third bottom-bar show'>
 
@@ -17,7 +15,7 @@
       <b-col v-bind:class='{open: isOpen}' cols='12' sm='2' class="reportColumn center third">
         <user id="creator" :user="report.user"></user>
       </b-col>
-      <b-col sm='3'cols='1' class='center second' v-on:click='openTab'>
+      <b-col sm='3' cols='1' class='center second' v-on:click='openTab'>
         <b-row class="reportColumn ragDisplay">
           <b-col cols='12' sm='4'>
             <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
