@@ -8,7 +8,7 @@
           <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
         </b-col>
       </b-row>
-      
+
       <div class="modal fade" id="addUrlModal" tabindex="-1" v-show=showAddUrlModal role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
@@ -228,6 +228,13 @@ export default {
   &:focus {
     outline:0;
     border: none;
+  }
+}
+
+@media (max-width: 376px){
+  .dashedBox{
+    width: 100%;
+    text-align: center;
   }
 }
 </style>

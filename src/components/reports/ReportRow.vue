@@ -139,7 +139,6 @@ div .reportColumn p {
 }
 
 .ragDisplay{
-  padding-right: 10px;
   padding-left: 14px;
 }
 

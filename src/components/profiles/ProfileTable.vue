@@ -2,20 +2,20 @@
   <b-container id="profileTable">
     <transition name="component-fade" mode="in-out">
     <b-row>
-      <b-col order='2' cols='12' sm='4'>
-        <b-button id="addNewProfileButton" class="addButton" @click="addProfile">
+      <b-col order='2' cols='12' sm='3'>
+        <b-button id="addNewProfileButton" class="addButton fullSize" @click="addProfile">
           <label>Add new Data Profile</label>
           <img src="~@/assets/images/white-plus-icon.svg" />
         </b-button>
       </b-col>
-      <b-col order='1' cols='12' sm='8'>
+      <b-col order='1' cols='12' sm='9'>
         <label class="pageTitle">{{ title }}</label>
         <p class="instructions">
           A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
         </p>
       </b-col>
       <b-col order='3' cols='12'>
-        <b-form-select :options="nameList" id="nameFilter" class="custom-select" v-model="selectedName" >
+        <b-form-select :options="nameList" id="nameFilter" class="custom-select fullSize" style='width: 100%' v-model="selectedName" >
          <option value="" >Filter by Group</option>
         <!--   <option v-for="name in nameList">{{ name }}</option>-->
         </b-form-select>
@@ -123,4 +123,13 @@ export default {
   opacity: 0;
 }
 
+.fullSize{
+
+}
+@media (max-width: 376px){
+  .fullSize{
+      width: 100%;
+  }
+
+}
 </style>

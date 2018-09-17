@@ -19,7 +19,7 @@
     </b-row>
     <!--<label>(36 Archived)</label>-->
     <b-row class="filterContainer">
-      <b-col cols='12' sm='10' md='12' lg='10'>
+      <b-col cols='12' sm='10' md='12' lg='9'>
         <b-row class="btn-group">
           <b-col sm='12' cols='12' md='3'>
               <select id="typeFilter" class="custom-select"  v-model="selectedType" >
@@ -44,9 +44,8 @@
           </b-col>
         </b-row>
       </b-col>
-      <b-col cols='12' sm='2' md='1' lg='2'>
-      <div style="float:left;">
-        <div class="actionContainer">
+      <b-col cols='12' sm='2' md='1' lg='3'>
+        <div class="actionContainer" >
           <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
@@ -55,7 +54,6 @@
             <option value="delete" >Delete</option>
           </select>
         </div>
-      </div>
       </b-col>
     </b-row>
     <div style='overflow: auto'>
@@ -392,5 +390,20 @@ export default {
 .custom-select{
   min-width: 90%;
   margin-bottom: 3px;
+}
+
+@media (max-width: 376px){
+  .actionContainer{
+    width: 100%;
+    float: left;
+  }
+
+  #searchValidations{
+    width: 100%;
+  }
+
+  .custom-select{
+    min-width: 100%;
+  }
 }
 </style>

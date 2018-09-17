@@ -7,7 +7,7 @@
       </p>
       <b-row  class="btn-group filters">
         <b-col cols='12' sm = '4'>
-          <select class="custom-select" id="dateFilter" v-model="selectedDate" >
+          <select class="custom-select" style='width: 100%;'id="dateFilter" v-model="selectedDate" >
             <option disabled value="" >Filter by Date</option>
             <option v-for="date in dateList">{{ date }}</option>
           </select>
@@ -93,6 +93,12 @@ export default {
 
 .filters {
 
+}
+@media (max-width: 376px){
+  .custom-select{
+    min-width: 100%;
+    margin-top: 5px;
+  }
 }
 
 </style>
