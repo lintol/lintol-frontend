@@ -1,21 +1,21 @@
 <template>
-  <div style='max-width: 700px;'>
+  <div style=''>
     <b-row no-gutters class="shadedRow" style='padding:10px'>
-      <b-col sm='3' cols='10' class="center first rightSeparator" style='padding: 10px 0;' v-on:click='openTab'>
+      <b-col sm='3' cols='10' class="center first rightSeparator" style='padding: 10px 5px;' v-on:click='openTab'>
           <label class="profileName columnHeader">Report {{ report.profile }}</label>
           <p class="reportName">{{ report.name }}</p>
       </b-col>
       <b-col v-bind:class='{open: isOpen}' cols = '12' order='3' class='third bottom-bar show'>
 
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' cols='12' sm='2' class="reportColumn center third">
+      <b-col v-bind:class='{open: isOpen}' cols='6' sm='2' class="reportColumn center third fullSize">
         <label class="ranOn columnHeader">Ran On</label>
         <label v-if="report.createdAt">{{ convertDateTime(report.createdAt.date) }}</label>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' cols='12' sm='2' class="reportColumn center third">
+      <b-col v-bind:class='{open: isOpen}' cols='6' sm='2' class="reportColumn center third fullSize">
         <user id="creator" :user="report.user"></user>
       </b-col>
-      <b-col sm='3' cols='1' class='center second' v-on:click='openTab'>
+      <b-col sm='3' cols='2' class='center second' v-on:click='openTab'>
         <b-row class="reportColumn ragDisplay">
           <b-col cols='12' sm='4'>
             <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
@@ -41,9 +41,9 @@
         <label class="qualityScore" >{{ report.qualityScore }}</label>
         <label>Quality Score</label>
       </div>-->
-      <b-col v-bind:class='{open: isOpen} ' cols='12' sm='2' class="reportColumn center third">
+      <b-col v-bind:class='{open: isOpen} ' cols='12' sm='2' class="reportColumn center third fullSize">
         <div>
-        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/>
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton fullSize" />
         <!--<router-link id="viewReport + 'report.name'" type="button" :to="{name: 'listReportView' }" class="viewButton">View Report</router-link>-->
       </div>
       </b-col>
@@ -217,6 +217,11 @@ div .reportColumn p {
     + label {
       margin-left: 0px;
     }
+  }
+
+  .fullSize{
+    width: 100%;
+    text-align: center;
   }
 }
 </style>

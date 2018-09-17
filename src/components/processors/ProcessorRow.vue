@@ -10,15 +10,15 @@
       <b-col v-bind:class='{open: isOpen}' cols = '10' offset='1' order='3' class='third bottom-bar show'>
 
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="processorColumn center third">
+      <b-col v-bind:class='{open: isOpen}' sm='2' cols='6' class="processorColumn center third fullSize">
         <label>Created</label>
         <label>{{ convertDate(processor.created_at.date) }}</label>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="processorColumn center third">
+      <b-col v-bind:class='{open: isOpen}' sm='2' cols='6' class="processorColumn center third fullSize">
         <label>Updated</label>
         <label>{{ convertDate(processor.updated_at.date) }}</label>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="processorColumn center third">
+      <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="processorColumn center third fullSize">
         <label>Unique Tag</label>
         <label>{{ processor.uniqueTag }}</label>
       </b-col>
@@ -157,7 +157,7 @@ label {
     order: 3;
     padding: 5px 0 5px 10px;
   }
-  
+
   .show{
     display: flex;
   }
@@ -166,5 +166,8 @@ label {
     display: none;
   }
 
+  .fullSize{
+    text-align: center;
+  }
 }
 </style>

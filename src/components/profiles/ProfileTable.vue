@@ -22,7 +22,7 @@
         <div id="noProfilesAvailable" v-if="profiles.length == 0">
           <b-alert class="instructions"> No Profiles available for this account</b-alert>
         </div>
-        <div id="columns"  class="flexContainer">
+        <div id="columns"  class="">
           <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
         </div>
       </b-col>
@@ -90,6 +90,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+
 }
 
 .flexHeading {

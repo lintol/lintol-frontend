@@ -58,6 +58,7 @@
       </div>
       </b-col>
     </b-row>
+    <div style='overflow: auto'>
     <div class="headerContainer greySeparator">
       <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
       <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
@@ -93,6 +94,7 @@
           </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>

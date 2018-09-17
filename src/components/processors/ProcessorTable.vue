@@ -1,6 +1,6 @@
 <template>
    <div id="processorTable" v-if="filteredProcessors">
-    <b-row >
+    <b-row style='margin-right: 10px;'>
       <b-col cols='12'>
         <label class="pageTitle">{{ title }}</label>
         <p class="instructions">

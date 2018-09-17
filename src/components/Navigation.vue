@@ -39,19 +39,18 @@
              <label>Settings</label>
         </b-nav-item> -->
       </b-nav>
-
-  <div class="navFooter">
-      <div class="version">
-          <label>Version {{ version }}</label>
-          <label><a id="logout" href="/logout" v-if="user">Logout</a></label>
+      <div class="navFooter">
+          <div class="version">
+              <label>Version {{ version }}</label>
+              <label><a id="logout" href="/logout" v-if="user">Logout</a></label>
+          </div>
+          <div class="activityBanner" v-if="user">
+            <div class="loggedInUser">{{ user.name }}</div>
+            <div class="loggedInUser">{{ user.email }}</div>
+            <div class="loggedInUserServer" v-if="user.driver">via <a :href="user.driverServer">{{ user.driver.toUpperCase() }}</a></div>
+          </div>
       </div>
-      <div class="activityBanner" v-if="user">
-          <div class="loggedInUser">{{ user.name }}</div>
-          <div class="loggedInUser">{{ user.email }}</div>
-          <div class="loggedInUserServer" v-if="user.driver">via <a :href="user.driverServer">{{ user.driver.toUpperCase() }}</a></div>
-      </div>
-  </div>
-  </b-container>
+    </b-container>
   </div>
 </template>
 

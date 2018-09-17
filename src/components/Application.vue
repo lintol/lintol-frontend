@@ -41,5 +41,6 @@ export default {
 .panel {
   padding-left: 31px;
   padding-top: 58px;
+  overflow: auto;
 }
 </style>
