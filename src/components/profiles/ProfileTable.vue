@@ -16,14 +16,14 @@
       </b-col>
       <b-col order='3' cols='12'>
         <b-form-select :options="nameList" id="nameFilter" class="custom-select fullSize" style='width: 100%' v-model="selectedName" >
-         <option value="" >Filter by Group</option>
+         <option value="" id='nameFilterHeader'>Filter by Group</option>
         <!--   <option v-for="name in nameList">{{ name }}</option>-->
         </b-form-select>
         <div id="noProfilesAvailable" v-if="profiles.length == 0">
           <b-alert class="instructions"> No Profiles available for this account</b-alert>
         </div>
         <div id="columns"  class="">
-          <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
+          <profile-row class='profile-row' :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
         </div>
       </b-col>
     </b-row>

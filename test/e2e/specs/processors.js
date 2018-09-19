@@ -3,7 +3,7 @@
 const visiblePauseTime = 1000;
 
 module.exports = {
-  'website up Test': function (browser) {
+  /* 'website up Test': function (browser) {
     // automatically uses dev Server port from /config.index.js
     // default: http://localhost:8080
     // see nightwatch.conf.js
@@ -13,7 +13,7 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .end()
-  }
+  } */
   /* 'check processor row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

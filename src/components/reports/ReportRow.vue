@@ -1,5 +1,5 @@
 <template>
-  <div style=''>
+  <div style='' id='report-row'>
     <b-row no-gutters class="shadedRow" style='padding:10px'>
       <b-col sm='3' cols='10' class="center first rightSeparator" style='padding: 10px 5px;' v-on:click='openTab'>
           <label class="profileName columnHeader">Report {{ report.profile }}</label>

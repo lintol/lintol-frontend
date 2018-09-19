@@ -27,9 +27,9 @@ describe('ProfileRow.vue', () => {
     }).$mount();
     expect(vm.$el.querySelector('label').textContent).to.equal(' Waste Profile ');
     expect(vm.$el.querySelector('p').textContent).to.equal('Waste Data ');
-    expect(vm.$el.querySelector('.profileRow div:nth-child(2) p').textContent).to.equal('1st Jan 2001');
-    expect(vm.$el.querySelector('.profileRow div:nth-child(3) p').textContent).to.equal('1st Jan 2001');
-    expect(vm.$el.querySelector('.profileRow div:nth-child(4) p').textContent).to.equal('2');
-    expect(vm.$el.querySelector('.profileRow div:nth-child(5) p').textContent).to.equal('waste-taggy');
+    expect(vm.$el.querySelector('.profileRow b-col:nth-child(3) p').textContent).to.equal('1st Jan 2001');
+    expect(vm.$el.querySelector('.profileRow b-col:nth-child(4) p').textContent).to.equal('1st Jan 2001');
+    expect(vm.$el.querySelector('.profileRow b-col:nth-child(5) p').textContent).to.equal('2');
+    expect(vm.$el.querySelector('.profileRow b-col:nth-child(6) p').textContent).to.equal('waste-taggy');
   });
 });

@@ -162,7 +162,7 @@ label {
   font-weight: $bold;
   text-align: center;
 }
- 
+
 .center {
   display: flex;
   flex-direction: column;
@@ -181,7 +181,7 @@ label {
   max-height: 40px;
   margin-left: 10px;
 }
- 
+
 .verticalAlign {
   vertical-align: middle;
 }

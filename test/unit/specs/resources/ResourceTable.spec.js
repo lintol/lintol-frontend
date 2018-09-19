@@ -43,7 +43,7 @@ let store = new Vuex.Store({
       return {
         'name': 'mary',
         'driver': 'ckan'
-      }
+      };
     }
   }
 });
