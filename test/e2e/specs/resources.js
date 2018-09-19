@@ -12,7 +12,7 @@ module.exports = {
       .waitForElementVisible('#resources-row', visiblePauseTime)
       .end()
   }, */
-  /* 'click add url button': function (browser) {
+ 'click add url button': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -32,7 +32,7 @@ module.exports = {
       browser.assert.cssClassPresent("#numberOfSelectedResources", "rightSeparator");
       browser.assert.containsText("#numberOfSelectedResources", "0 Selected")
       .end()
-  }, */
+  },
   /* 'check if Choose Function has options': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

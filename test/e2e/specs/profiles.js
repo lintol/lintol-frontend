@@ -3,7 +3,7 @@
 const visiblePauseTime = 1000;
 
 module.exports = {
-  /* 'website up Test': function (browser) {
+  'website up Test': function (browser) {
     // automatically uses dev Server port from /config.index.js
     // default: http://localhost:8080
     // see nightwatch.conf.js
@@ -50,8 +50,7 @@ module.exports = {
       .waitForElementVisible('#app',2000)
       .click('#profiles')
       .waitForElementVisible('#nameFilter',visiblePauseTime)
-      .click('#nameFilter')
-      .waitForElementVisible('#nameFilter option',visiblePauseTime)
+      .assert.elementCount('#nameFilter option', 6)
       .end()
   },
   'check if Edit/Archive button has options': function (browser){
@@ -64,9 +63,9 @@ module.exports = {
       .waitForElementVisible('#profiles-row',visiblePauseTime)
       .waitForElementVisible('#profileAction ',visiblePauseTime)
       .click('#profileAction')
-      .waitForElementVisible('#profileAction option',visiblePauseTime)
+      .assert.elementCount('#profiles-row:nth-child(1) #profileAction option', 3)
       .end()
-  }, */ 
+  },
   /*'check profile row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

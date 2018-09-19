@@ -2,7 +2,7 @@
 const visiblePauseTime = 1000;
 
 module.exports = {
-  /* 'website up Test': function (browser) {
+    'website up Test': function (browser) {
     // automatically uses dev Server port from /config.index.js
     // default: http://localhost:8080
     // see nightwatch.conf.js
@@ -95,5 +95,5 @@ module.exports = {
       .click('#home')
       .assert.urlEquals('http://localhost:8080/#/application/profiles/profiletable')
       .end()
-  } */
+  }
 }
