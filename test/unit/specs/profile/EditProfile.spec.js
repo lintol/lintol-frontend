@@ -70,4 +70,7 @@ describe('EditProfile.vue', () => {
     wrapper.vm.removeSelectedProcessor('csv');
     expect(wrapper.vm.configurations.length).to.equal(0);
   });
+  it('Processors saved ', () => {
+    wrapper.vm.saveProfile();
+  });
 });

@@ -2,7 +2,6 @@
 import Vuex from 'vuex';
 import ResourceTable from '@/components/resources/ResourceTable';
 import { shallow, createLocalVue } from '@vue/test-utils';
-
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
@@ -132,4 +131,20 @@ describe('ResourceTable.vue', () => {
     wrapper.vm.matchDataResourcesToProfile('status');
     expect(wrapper.vm.selectedResources).to.eql([]);
   });
+  it('addResourceAction', () => {
+    wrapper.vm.addResourceAction('status');
+  });
+  it('resourceAction delete', () => {
+    wrapper.vm.resourceAction({target: {value: 'delete'}});
+  });
+  it('getResources', () => {
+    wrapper.vm.getResources(1);
+  });
+  /* it('filterBySourceOptions', () => {
+    wrapper.vm.$store.dispatch(LOAD_USER);
+    wrapper.vm.filterBySourceOptions();
+  }); /*
+  /* it('delete ', () => {
+    wrapper.vm.delete(true);
+  }); */
 });
