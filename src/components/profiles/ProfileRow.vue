@@ -61,7 +61,8 @@ export default {
     profileAction: function (e) {
       console.log('profile action:');
       if (e.target.value === 'edit') {
-        this.$router.push({name: 'editProfile', params: { profileId: this.profile.id }});
+        console.log(this.$router);
+        this.$router.push({name: 'editProfile', params: { profileId: '01aa762d-23f7-4cbc-b150-3a41ee4b9551' }});
       }
       if (e.target.value === 'archive') {
         console.log('archiving');

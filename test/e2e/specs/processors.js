@@ -47,5 +47,14 @@ module.exports = {
     .pause(2000)
     .assert.elementCount('#processors-row', 1)
     .end();
-  } 
+  },
+   'check processor count to 5': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app', 2000)
+      .click('#processors')
+      .assert.containsText('.numberOfProcessors','5 Processors')
+      .end()
+  },
 }
