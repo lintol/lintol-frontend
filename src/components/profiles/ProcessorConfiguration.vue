@@ -164,7 +164,7 @@ export default {
 .editArea {
   display: block;
   min-height: 125px;
-  margin-left: 60px; 
+  margin-left: 60px;
   width: 85%;
   background-color: #D8D8D8;
 }

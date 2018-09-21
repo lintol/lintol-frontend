@@ -73,7 +73,6 @@ export default {
 @import '~@/assets/scss/application.scss';
 
 .processorSearch {
-
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;

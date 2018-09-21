@@ -99,6 +99,7 @@ label {
 .reportColumn {
 }
 
+
 .center {
   display: flex;
   flex-direction: column;
@@ -114,7 +115,6 @@ label {
   display: inline-block;
 }
 .reportRow {
-
   max-height: 70px;
   padding: 0px 10px;
 }
@@ -223,4 +223,5 @@ div .reportColumn p {
     text-align: center;
   }
 }
+
 </style>

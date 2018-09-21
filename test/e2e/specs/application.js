@@ -35,6 +35,7 @@ module.exports = {
     browser
       .url(devServer)
       .waitForElementVisible('#profiles', visiblePauseTime)
+
       .click('#profiles')
       .waitForElementVisible('#profiles-panel', visiblePauseTime)
       .assert.cssClassPresent('#profiles', 'menuEntryActive')

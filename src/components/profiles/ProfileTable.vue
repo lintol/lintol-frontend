@@ -90,7 +90,6 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-
 }
 
 .flexHeading {

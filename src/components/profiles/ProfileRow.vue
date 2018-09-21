@@ -7,6 +7,7 @@
           <user v-if="profile.creator" class="user" :user="profile.creator"></user>
           <p class="description" >{{ profile.description }} </p>
         </div>
+
       </b-col>
       <b-col v-bind:class='{open: isOpen}' cols = '10' offset='1' order='3' class='third bottom-bar show'>
 
@@ -91,12 +92,12 @@ label {
 }
 
 .profileColumn {
+
   > label {
     font-weight: bold;
     font-size: 0.625em;
   }
 }
-
 .center {
   display: flex;
   flex-direction: column;

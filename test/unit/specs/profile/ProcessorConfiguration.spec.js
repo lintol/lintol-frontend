@@ -42,5 +42,4 @@ describe('ProcessorConfiguration.vue', () => {
     it('configurationOptions', () => {
     wrapper.vm.processor.configurationOptions = {'soomething' : 'blabla','SomethingElse':'blabla',};
   });
-
 });

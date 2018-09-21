@@ -1,7 +1,6 @@
 import Vuex from 'vuex';
 import ResourceTable from '@/components/resources/ResourceTable';
 import { shallow, createLocalVue } from '@vue/test-utils';
-
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
