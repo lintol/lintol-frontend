@@ -47,6 +47,7 @@ let store = new Vuex.Store({
 
 describe('ProcessorTable.vue', () => {
   const wrapper = shallow(ProcessorTable, { store, localVue, router });
+
   it('Data is a function', () => {
     expect(ProcessorTable.data).to.be.a('function');
   });

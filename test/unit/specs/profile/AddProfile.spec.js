@@ -77,7 +77,7 @@ describe('AddProfile.vue', () => {
   it('Number of Processors to choose', () => {
     expect(wrapper.vm.processorList.length).to.equal(2);
   });
-  xit('Add Profile', () => {
+  it('Add Profile', () => {
     wrapper.vm.addProfile();
     // expect(wrapper.vm.);
   });

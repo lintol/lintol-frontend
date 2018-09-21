@@ -63,7 +63,6 @@ describe('Navigation.vue', () => {
 
       expect(component.$el.querySelector('label').length);
     });
-
     it('should have a "b-nav" element', () => {
       const component = getComponent();
 

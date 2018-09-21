@@ -1,4 +1,3 @@
-// import Vue from 'vue';
 import Vuex from 'vuex';
 import UserTable from '@/components/users/UserTable';
 import { shallow, createLocalVue } from '@vue/test-utils';

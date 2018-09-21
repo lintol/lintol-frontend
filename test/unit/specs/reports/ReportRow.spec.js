@@ -1,5 +1,11 @@
 // import Vue from 'vue';
 import ReportRow from '@/components/reports/ReportRow';
+import { shallow, createLocalVue } from '@vue/test-utils';
+import VueRouter from 'vue-router';
+
+const localVue = createLocalVue();
+localVue.use(VueRouter);
+const router = new VueRouter();
 
 describe('ReportRow.vue', () => {
   it('Data is a function', () => {
@@ -7,6 +13,25 @@ describe('ReportRow.vue', () => {
   });
   it('test converted time', () => {
     expect(ReportRow.name).to.equal('ReportRow');
+  });
+  it('View report', () => {
+    var report = {
+      name: 'CSV report',
+      created_at: '2001-01-01 00:00:00',
+      user: 'Jay',
+      errors: 8,
+      warnings: 9,
+      passes: 10,
+      qualityScore: 76
+    };
+    const wrapper = shallow(ReportRow, {
+      propsData: {
+        report: report
+      },
+      localVue,
+      router
+    });
+    wrapper.vm.viewReport('1');
   });
   /* it('Populate Row', () => {
     var report = {

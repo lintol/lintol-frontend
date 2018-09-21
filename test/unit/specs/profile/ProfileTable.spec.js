@@ -44,6 +44,22 @@ let store = new Vuex.Store({
 });
 
 describe('ProfileTable.vue', () => {
+    const wrapper = shallow(ProfileTable, { store, localVue, router });
+    it('Data is a function', () => {
+    expect(ProfileTable.data).to.be.a('function');
+  });
+  it('Get all profiles ', () => {
+    expect(wrapper.vm.profiles.length).to.equal(2);
+  });
+  it('Get profiles by name', () => {
+    wrapper.vm.selectedName = 'JSON profile';
+    expect(wrapper.vm.filteredProfiles.length).to.equal(1);
+  });
+    it('Add profile', () => {
+    wrapper.vm.addProfile();
+  });
+});
+describe('ProfileTable.vue', () => {
   const wrapper = shallow(ProfileTable, { store, localVue, router });
   it('Data is a function', () => {
     expect(ProfileTable.data).to.be.a('function');

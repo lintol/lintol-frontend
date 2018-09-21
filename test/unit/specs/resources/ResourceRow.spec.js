@@ -72,4 +72,7 @@ describe('ResourceRow.vue', () => {
     expect(wrapper.emitted().resourceSelected[0].length).to.equal(2); // it returns an array inside an array
     expect(wrapper.vm.isResourceSelected).to.equal(true);
   });
+  it('viewResource', () => {
+    wrapper.vm.viewResource(null);
+    });
 });
