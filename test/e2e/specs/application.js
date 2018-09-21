@@ -2,7 +2,11 @@
 const visiblePauseTime = 1000;
 
 module.exports = {
+<<<<<<< HEAD
     'website up Test': function (browser) {
+=======
+  'website up Test': function (browser) {
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     // automatically uses dev Server port from /config.index.js
     // default: http://localhost:8080
     // see nightwatch.conf.js
@@ -35,9 +39,15 @@ module.exports = {
     browser
       .url(devServer)
       .waitForElementVisible('#profiles', visiblePauseTime)
+<<<<<<< HEAD
       .click('#profiles')
       .waitForElementVisible('#profiles-panel', visiblePauseTime)
       .assert.cssClassPresent('#profiles', 'menuEntryActive')
+=======
+      .click('#profilesLink')
+      .waitForElementVisible('#profiles-panel', visiblePauseTime)
+      .assert.cssClassPresent('#profilesLink', 'menuEntryActive')
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       .assert.urlEquals('http://localhost:8080/#/application/profiles/profiletable')
       .end()
   },
@@ -46,9 +56,15 @@ module.exports = {
     browser
       .url(devServer)
       .waitForElementVisible('#processors', visiblePauseTime)
+<<<<<<< HEAD
       .click('#processors')
       .waitForElementVisible('#processor-panel', visiblePauseTime)
       .assert.cssClassPresent('#processors', 'menuEntryActive')
+=======
+      .click('#processorsLink')
+      .waitForElementVisible('#processor-panel', visiblePauseTime)
+      .assert.cssClassPresent('#processorsLink', 'menuEntryActive')
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       .assert.urlEquals('http://localhost:8080/#/application/processors/processortable')
       .end()
   },
@@ -59,7 +75,11 @@ module.exports = {
       .waitForElementVisible('#reports', visiblePauseTime)
       .click('#reports')
       .waitForElementVisible('#reports-panel', visiblePauseTime)
+<<<<<<< HEAD
       .assert.cssClassPresent('#reports', 'menuEntryActive')
+=======
+      .assert.cssClassPresent('#reportsLink', 'menuEntryActive')
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       .assert.urlEquals('http://localhost:8080/#/application/reports/reporttable')
       .end()
   },
@@ -70,7 +90,11 @@ module.exports = {
       .waitForElementVisible('#users', visiblePauseTime)
       .click('#users')
       .waitForElementVisible('#users-panel', visiblePauseTime)
+<<<<<<< HEAD
       .assert.cssClassPresent('#users', 'menuEntryActive')
+=======
+      .assert.cssClassPresent('#usersLink', 'menuEntryActive')
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       .assert.urlEquals('http://localhost:8080/#/application/users/usertable')
       .end()
   },
@@ -81,7 +105,11 @@ module.exports = {
       .waitForElementVisible('#resources', visiblePauseTime)
       .click('#resources')
       .waitForElementVisible('#resources-panel', visiblePauseTime)
+<<<<<<< HEAD
       .assert.cssClassPresent('#resources', 'menuEntryActive')
+=======
+      .assert.cssClassPresent('#resourcesLink', 'menuEntryActive')
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       .assert.urlEquals('http://localhost:8080/#/application/resources/resourcetable')
       .end()
   },
@@ -96,4 +124,8 @@ module.exports = {
       .assert.urlEquals('http://localhost:8080/#/application/profiles/profiletable')
       .end()
   }
+<<<<<<< HEAD
 }
+=======
+} 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58

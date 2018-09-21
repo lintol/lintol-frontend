@@ -30,6 +30,7 @@ describe('ResourceRow.vue', () => {
   });
   it('Resource status to be runStatus', () => {
     wrapper.vm.resource.status = 'report run';
+<<<<<<< HEAD
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('runStatus');
     });
@@ -57,6 +58,25 @@ describe('ResourceRow.vue', () => {
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('invalidStatus');
     });
+=======
+    expect(wrapper.vm.statusColor).to.equal('runStatus');
+  });
+  it('Resource status to be  archivedStatus', () => {
+    wrapper.vm.resource.status = 'archived';
+    expect(wrapper.vm.statusColor).to.equal('archivedStatus');
+  });
+  it('Resource status to be validLinkStatus ', () => {
+    wrapper.vm.resource.status = 'valid link';
+    expect(wrapper.vm.statusColor).to.equal('validLinkStatus');
+  });
+  it('Resource status to be  invalidLinkStatus', () => {
+    wrapper.vm.resource.status = 'invalid link';
+    expect(wrapper.vm.statusColor).to.equal('invalidLinkStatus');
+  });
+  it('Resource status to be  invalidStatus', () => {
+    wrapper.vm.resource.status = '';
+    expect(wrapper.vm.statusColor).to.equal('invalidStatus');
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   });
   it('watch cleared selected', () => {
     wrapper.vm.isResourceSelected = true;
@@ -72,7 +92,10 @@ describe('ResourceRow.vue', () => {
     expect(wrapper.emitted().resourceSelected[0].length).to.equal(2); // it returns an array inside an array
     expect(wrapper.vm.isResourceSelected).to.equal(true);
   });
+<<<<<<< HEAD
   it('viewResource', () => {
     wrapper.vm.viewResource(null);
     });
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 });

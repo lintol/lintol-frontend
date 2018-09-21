@@ -162,7 +162,11 @@ label {
   font-weight: $bold;
   text-align: center;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 .center {
   display: flex;
   flex-direction: column;
@@ -181,7 +185,11 @@ label {
   max-height: 40px;
   margin-left: 10px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 .verticalAlign {
   vertical-align: middle;
 }

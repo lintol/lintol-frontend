@@ -3,12 +3,17 @@
 const visiblePauseTime = 1000;
 
 module.exports = {
+<<<<<<< HEAD
    'check report row exists test': function (browser) {
+=======
+  /* 'check report row exists test': function (browser) {
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .click('#reports')
+<<<<<<< HEAD
       .waitForElementVisible('#reportTable', visiblePauseTime)
       .waitForElementVisible('#report-row', visiblePauseTime)
       .end()
@@ -71,4 +76,9 @@ module.exports = {
       .waitForElementVisible('#profileFilter option', visiblePauseTime)
       .end()
   }
+=======
+      .waitForElementVisible('#reports-row', visiblePauseTime)
+      .end()
+  } */
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }

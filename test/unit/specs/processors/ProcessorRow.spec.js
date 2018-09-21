@@ -29,8 +29,14 @@ describe('ProcessorRow.vue', () => {
     }).$mount();
     expect(vm.$el.querySelector('label').textContent).to.equal('CSV processor');
     expect(vm.$el.querySelector('p').textContent).to.equal('CSV');
+<<<<<<< HEAD
     expect(vm.$el.querySelector('.processorRow b-col:nth-child(3) label:nth-child(2)').textContent).to.equal('1st Jan 2001');
     expect(vm.$el.querySelector('.processorRow b-col:nth-child(4) label:nth-child(2)').textContent).to.equal('1st Jan 2001');
     expect(vm.$el.querySelector('.processorRow b-col:nth-child(5) label:nth-child(2)').textContent).to.equal('processor-taggy');
+=======
+    expect(vm.$el.querySelector('.processorRow div:nth-child(2) label:nth-child(2)').textContent).to.equal('1st Jan 2001');
+    expect(vm.$el.querySelector('.processorRow div:nth-child(3) label:nth-child(2)').textContent).to.equal('1st Jan 2001');
+    expect(vm.$el.querySelector('.processorRow div:nth-child(4) label:nth-child(2)').textContent).to.equal('processor-taggy');
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   });
 });

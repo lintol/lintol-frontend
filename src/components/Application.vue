@@ -29,7 +29,11 @@ export default {
 .app {
   display: flex;
   flex-direction: row;
+<<<<<<< HEAD
   flex-wrap: nowrap;
+=======
+  flex-wrap: nowrap; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   height: 100%;
   height: 100vh;
 }
@@ -41,7 +45,10 @@ export default {
 .panel {
   padding-left: 31px;
   padding-top: 58px;
+<<<<<<< HEAD
   padding-right: 10px;
   overflow: auto;
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 </style>

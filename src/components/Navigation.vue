@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div style="background-color: #F8F8F8;" v-bind:class='{open : isOpen}'>
     <div class='icon-wrapper'>
       <div class='icon'v-bind:class='{"close-menu": !isOpen,"burger-menu": isOpen}'  v-on:click='openMenu'> </div>
@@ -51,6 +52,70 @@
           </div>
       </div>
     </b-container>
+=======
+  <div style="background-color: #F8F8F8;">
+    <div>
+       <router-link id="home" :to="{name: 'profileTable' }">
+         <img class="logo center" src="~@/assets/images/logo.svg" title="Home">
+       </router-link>
+       <router-link id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }">
+         <img src="~@/assets/images/plus-icon.svg" />
+         <label>Add new Resource / File</label>
+       </router-link>
+    </div>
+  <nav>
+    <ul class="menuList">
+      <li id="profilesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'profileTable'}" >
+         <router-link id="profiles" :to="{name: 'profileTable' }">
+            <img src="~@/assets/images/data-profiles.svg" />
+            <label>Data Profiles</label>
+         </router-link>
+      </li>
+      <li id="resourcesLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'resourceTable'}">
+         <router-link id="resources" :to="{name: 'resourceTable' }">
+           <img src="~@/assets/images/resources.svg" />
+            <label>Resources/ Files</label>
+         </router-link>
+      </li>
+      <li id="processorsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'processorTable'}">
+         <router-link id="processors" :to="{name: 'processorTable' }">
+           <img src="~@/assets/images/data-processors.svg" />
+            <label>Data Processors</label>
+         </router-link>
+      </li>
+      <li id="reportsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'reportTable'}">
+         <router-link id="reports" :to="{name: 'reportTable' }">
+           <img src="~@/assets/images/validation-reports.svg" />
+            <label>Validation Reports</label>
+         </router-link>
+      </li>
+      <li id="usersLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'userTable'}">
+        <router-link id="users" :to="{name: 'userTable' }">
+           <img src="../assets/images/users.svg" />
+           <label>Users</label>
+        </router-link>
+      </li>
+      <!--<li id="settingsLink" class="menuEntry" :class="{ menuEntryActive: currentView == 'settings'}">
+         <router-link id="settings" :to="{name: 'settings' }">
+           <img  src="~@/assets/images/settings.svg" />
+           <label>Settings</label>
+         </router-link>
+      </li> -->
+    </ul>
+  </nav>
+
+  <div class="navFooter">
+      <div class="version">
+          <label>Version {{ version }}</label>
+          <label><a id="logout" href="/logout" v-if="user">Logout</a></label>
+      </div>
+      <div class="activityBanner" v-if="user">
+          <div class="loggedInUser">{{ user.name }}</div>
+          <div class="loggedInUser">{{ user.email }}</div>
+          <div class="loggedInUserServer" v-if="user.driver">via <a :href="user.driverServer">{{ user.driver.toUpperCase() }}</a></div>
+      </div>
+  </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   </div>
 </template>
 
@@ -62,8 +127,12 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
+<<<<<<< HEAD
       version: '0.12',
       isOpen: true
+=======
+      version: '0.12'
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     };
   },
   computed: {
@@ -79,11 +148,14 @@ export default {
   mounted: function () {
     this.$store.dispatch(LOAD_LOGGED_IN_USER);
     this.currentView = this.$route.name;
+<<<<<<< HEAD
   },
   methods: {
     openMenu: function () {
       this.isOpen = !this.isOpen;
     }
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   }
 };
 </script>
@@ -202,6 +274,7 @@ export default {
 }
 .user-server {
 }
+<<<<<<< HEAD
 #resourcesButton{
   background: #F8F8F8;
 }
@@ -278,4 +351,6 @@ export default {
     width: auto;
   }
 }
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </style>

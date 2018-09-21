@@ -97,6 +97,7 @@
   "reports": [
     {
       "id": 1,
+<<<<<<< HEAD
       "name": "Data Profile Name",
       "user": "Martin",
       "errors": 7,
@@ -149,6 +150,10 @@
       "qualityScore": 40,
       "created_at": "2017-11-26 17:13:01",
       "updated_at": "2017-11-26 17:13:01"
+=======
+      "body": "some comment",
+      "postId": 1
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     }
   ],
   "users": {
@@ -182,6 +187,7 @@
       "id": 5,
       "name": "XLS Lint",
       "description": "This processor will lint XLS types"
+<<<<<<< HEAD
     },
     {
       "firstName": "Fred",
@@ -195,3 +201,61 @@
     }
   ]
 }
+=======
+    }
+  ],
+  "reports": [
+  {
+	"id": 1,
+	"name": "Data Profile Name",
+	"user": "Martin",
+	"errors": 7,
+	"warnings": 44,
+	"passes": 44,
+	"qualityScore": 76,
+	"created_at": "2017-11-26 17:13:01",
+	"updated_at": "2017-11-26 17:13:01"
+}, {
+	"id": 2,
+	"name": "Data Profile Name",
+	"user": "Martin",
+	"errors": 7,
+	"warnings": 44,
+	"passes": 10,
+	"qualityScore": 60,
+	"created_at": "2017-11-26 17:13:01",
+	"updated_at": "2017-11-26 17:13:01"
+}, {
+	"id": 3,
+	"name": "Data Profile Name",
+	"user": "Martin",
+	"errors": 7,
+	"warnings": 44,
+	"passes": 3,
+	"qualityScore": 30,
+	"created_at": "2017-11-26 17:13:01",
+	"updated_at": "2017-11-26 17:13:01"
+}, {
+	"id": 4,
+	"name": "Data Profile Name",
+	"user": "Martin",
+	"errors": 50,
+	"warnings": 44,
+	"passes": 0,
+	"qualityScore": 44,
+	"created_at": "2017-11-26 17:13:01",
+	"updated_at": "2017-11-26 17:13:01"
+}, {
+	"id": 5,
+	"name": "Data Profile Name",
+	"user": "Martin",
+	"errors": 7,
+	"warnings": 40,
+	"passes": 1,
+	"qualityScore": 40,
+	"created_at": "2017-11-26 17:13:01",
+	"updated_at": "2017-11-26 17:13:01"
+} 
+]
+}
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58

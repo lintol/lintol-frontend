@@ -23,6 +23,7 @@ module.exports = {
       .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
       .end()
   },
+<<<<<<< HEAD
   'Check if add neew profile button redirect into the right page': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
@@ -66,6 +67,8 @@ module.exports = {
       .assert.elementCount('#profiles-row:nth-child(1) #profileAction option', 3)
       .end()
   },
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   /*'check profile row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

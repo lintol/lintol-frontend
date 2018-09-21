@@ -12,7 +12,11 @@ module.exports = {
       .waitForElementVisible('#resources-row', visiblePauseTime)
       .end()
   }, */
+<<<<<<< HEAD
  'click add url button': function (browser) {
+=======
+  'click add url button': function (browser) {
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -33,6 +37,7 @@ module.exports = {
       browser.assert.containsText("#numberOfSelectedResources", "0 Selected")
       .end()
   },
+<<<<<<< HEAD
   /* 'check if Choose Function has options': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
@@ -44,6 +49,8 @@ module.exports = {
       .waitForElementVisible('#resourceAction option',visiblePauseTime)
       .end()
   } */
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   /* 'click upload your files button': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

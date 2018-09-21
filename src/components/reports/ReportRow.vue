@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div style='' id='report-row'>
     <b-row no-gutters class="shadedRow" style='padding:10px'>
       <b-col sm='3' cols='10' class="center first rightSeparator" style='padding: 10px 5px;' v-on:click='openTab'>
@@ -37,10 +38,48 @@
           </b-col>
         </b-row>
       </b-col>
+=======
+  <div id="reports-row" class="shadedRow">
+    <div class="reportRow">
+      <div class="reportMainColumn center">
+        <div class="rightSeparator">
+          <label class="profileName columnHeader">Report {{ report.profile }}</label>
+          <p class="reportName">{{ report.name }}</p>
+        </div>
+      </div>
+      <div class="reportColumn center">
+        <label class="ranOn columnHeader">Ran On</label>
+        <label v-if="report.createdAt">{{ convertDateTime(report.createdAt.date) }}</label>
+      </div>
+      <div class="reportColumn center">
+        <user id="creator" :user="report.user"></user>
+      </div>
+      <div class="reportColumn ragDisplay">
+        <div>
+        <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+           <circle class="ragError" cx="7" cy="7" r="7"/>
+        </svg>
+        <label id="errors" class="ragNumber" >{{ report.errors }}</label>
+        </div>
+        <div>
+         <svg height="14" width="14">
+           <polygon class="ragWarning" points="0,14 7,0 14,14"/>
+         </svg> 
+        <label id="warnings" class="ragNumber">{{ report.warnings }}</label>
+        </div>
+        <div>
+        <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+          <rect class="ragPass" width="14" height="14" fill="lime"/>
+        </svg>
+        <label id="passes" class="ragNumber">{{ report.passes }}</label>
+        </div>
+      </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       <!--<div class="reportColumn center">
         <label class="qualityScore" >{{ report.qualityScore }}</label>
         <label>Quality Score</label>
       </div>-->
+<<<<<<< HEAD
       <b-col v-bind:class='{open: isOpen} ' cols='12' sm='2' class="reportColumn center third fullSize">
         <div>
         <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton fullSize" />
@@ -49,6 +88,16 @@
       </b-col>
     </b-row>
     </div>
+=======
+      <div class="reportColumn center">
+        <div>
+        <input id="viewReport + 'report.name'" type="button" value="View Report" @click="viewReport(report.id)" class="viewButton"/> 
+        <!--<router-link id="viewReport + 'report.name'" type="button" :to="{name: 'listReportView' }" class="viewButton">View Report</router-link>-->
+      </div>
+      </div>
+    </div>
+  </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </template>
 
 <script>
@@ -65,17 +114,24 @@ export default {
   },
   data () {
     return {
+<<<<<<< HEAD
       isOpen: true
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     };
   },
   methods: {
     viewReport: function (id) {
       this.$router.push({name: 'listReportView', params: {'report': this.report, 'reportId': id}});
     },
+<<<<<<< HEAD
     convertDateTime: convertDateTime,
     openTab: function () {
       this.isOpen = !this.isOpen;
     }
+=======
+    convertDateTime: convertDateTime
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   },
   components: {
     user: userComponent
@@ -97,7 +153,12 @@ label {
 }
 
 .reportColumn {
+<<<<<<< HEAD
 }
+=======
+  flex: 1;
+} 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 
 .center {
   display: flex;
@@ -106,6 +167,10 @@ label {
 }
 
 .reportMainColumn {
+<<<<<<< HEAD
+=======
+  flex: 2;
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   padding: 10px;
 }
 
@@ -114,11 +179,22 @@ label {
   display: inline-block;
 }
 .reportRow {
+<<<<<<< HEAD
 
   max-height: 70px;
   padding: 0px 10px;
 }
 
+=======
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  max-height: 70px;
+  padding: 0px 10px;
+}
+ 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 .columnTitle {
   font-weight: $bold;
 }
@@ -139,7 +215,15 @@ div .reportColumn p {
 }
 
 .ragDisplay{
+<<<<<<< HEAD
   padding-left: 14px;
+=======
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; 
+  padding-right: 10px;
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 
 .columnHeader {
@@ -173,6 +257,7 @@ div .reportColumn p {
   font-size: 0.75em;
 }
 
+<<<<<<< HEAD
 .first{
   order: 0;
 }
@@ -223,4 +308,6 @@ div .reportColumn p {
     text-align: center;
   }
 }
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </style>

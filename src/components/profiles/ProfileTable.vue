@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <b-container id="profileTable">
     <transition name="component-fade" mode="in-out">
     <b-row>
@@ -29,6 +30,32 @@
     </b-row>
     </transition>
   </b-container>
+=======
+  <div id="profileTable">
+    <transition name="component-fade" mode="in-out">
+    <div>
+      <button id="addNewProfileButton" class="addButton" @click="addProfile">
+        <label>Add new Data Profile</label>
+        <img src="~@/assets/images/white-plus-icon.svg" />
+      </button>
+      <label class="pageTitle">{{ title }}</label>
+      <p class="instructions">
+        A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
+      </p>
+      <select id="nameFilter" class="custom-select" v-model="selectedName" >
+        <option value="" >Filter by Group</option> 
+        <option v-for="name in nameList">{{ name }}</option> 
+      </select>
+      <div id="noProfilesAvailable" v-if="profiles.length == 0">
+        <p class="instructions"> No Profiles available for this account</p>
+      </div>
+      <div id="columns"  class="flexContainer">
+        <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
+      </div>
+    </div>
+    </transition>
+  </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </template>
 
 <script>
@@ -90,17 +117,25 @@ export default {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+<<<<<<< HEAD
 
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 
 .flexHeading {
   min-width: 120px;
+<<<<<<< HEAD
   display: inline-block;
+=======
+  display: inline-block; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 
 .tableSeparator {
   border-bottom: 2px solid black;
   padding-bottom: 15px;
+<<<<<<< HEAD
 }
 .addButton{
   float: none;
@@ -108,6 +143,10 @@ export default {
 .custom-select{
   margin-top: 5px;
 }
+=======
+} 
+
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
@@ -123,6 +162,7 @@ export default {
   opacity: 0;
 }
 
+<<<<<<< HEAD
 .fullSize{
 
 }
@@ -132,4 +172,6 @@ export default {
   }
 
 }
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </style>

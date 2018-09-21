@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import ProfileRow from '@/components/profiles/ProfileRow';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router';
@@ -5,6 +6,10 @@ import VueRouter from 'vue-router';
 const localVue = createLocalVue();
 localVue.use(VueRouter);
 const router = new VueRouter();
+=======
+import Vue from 'vue';
+import ProfileRow from '@/components/profiles/ProfileRow';
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 
 describe('ProfileRow.vue', () => {
   it('Data is a function', () => {
@@ -24,6 +29,7 @@ describe('ProfileRow.vue', () => {
       version: '2',
       uniqueTag: 'waste-taggy'
     };
+<<<<<<< HEAD
     const wrapper = shallowMount(ProfileRow, {
       propsData: {
         profile: profile
@@ -84,5 +90,19 @@ describe('ProfileRow.vue', () => {
       router
     });
     wrapper.vm.profileAction({target: {value: 'edit'}});
+=======
+    const Constructor = Vue.extend(ProfileRow);
+    const vm = new Constructor({
+      propsData: {
+        profile: profile
+      }
+    }).$mount();
+    expect(vm.$el.querySelector('label').textContent).to.equal(' Waste Profile ');
+    expect(vm.$el.querySelector('p').textContent).to.equal('Waste Data ');
+    expect(vm.$el.querySelector('.profileRow div:nth-child(2) p').textContent).to.equal('1st Jan 2001');
+    expect(vm.$el.querySelector('.profileRow div:nth-child(3) p').textContent).to.equal('1st Jan 2001');
+    expect(vm.$el.querySelector('.profileRow div:nth-child(4) p').textContent).to.equal('2');
+    expect(vm.$el.querySelector('.profileRow div:nth-child(5) p').textContent).to.equal('waste-taggy');
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   });
 });

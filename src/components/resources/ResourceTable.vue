@@ -1,5 +1,6 @@
 <template>
   <div id="resourceTable" v-if="resources">
+<<<<<<< HEAD
     <b-row>
       <b-col cols='12'>
         <label class="pageTitle">{{ title }}</label>
@@ -46,6 +47,33 @@
       </b-col>
       <b-col cols='12' sm='2' md='1' lg='3'>
         <div class="actionContainer" >
+=======
+    <label class="pageTitle">{{ title }}</label>
+    <p class="instructions">
+      The list of resources that are available for validation by Lintol</p>
+    </p>
+    <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
+    <label class="subHeading">Your Resources</label>
+    <!--<label>(36 Archived)</label>-->
+    <div class="filterContainer">
+      <div class="btn-group">
+        <select id="typeFilter" class="custom-select"  v-model="selectedType" >
+          <option disabled value="" >Filter by Type</option>
+          <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
+        </select>
+        <select id="sourceFilter" class="custom-select"  v-model="selectedSource" >
+          <option disabled value="" >Filter by Source</option>
+          <option :value="source" v-for="(desc, source) in filterBySourceOptions">{{ desc }}</option>
+        </select>
+        <select id="dateFilter" class="custom-select" v-model="selectedDate" >
+          <option disabled value="" >Filter by Date</option>
+          <option v-for="date in dateList" :value="date[0]">{{ date[1] }}</option>
+        </select>
+        <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
+      </div>
+      <div style="float: right;">
+        <div class="actionContainer">
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
           <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
@@ -54,9 +82,14 @@
             <option value="delete" >Delete</option>
           </select>
         </div>
+<<<<<<< HEAD
       </b-col>
     </b-row>
     <div style='overflow: auto'>
+=======
+      </div>
+    </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     <div class="headerContainer greySeparator">
       <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
       <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
@@ -69,7 +102,11 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in resources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
+<<<<<<< HEAD
     <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate>
+=======
+    <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -92,7 +129,10 @@
           </div>
         </div>
     </div>
+<<<<<<< HEAD
   </div>
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </template>
 
 <script>
@@ -158,12 +198,27 @@ export default {
       }
       if (e.target.value === 'delete') {
         var decision = confirm('Please confirm you want to delete these resources!');
+<<<<<<< HEAD
         this.delete(decision);
+=======
+        if (decision) {
+          var deleteResource = this.selectedResources[0];
+          this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
+            var index = this.selectedResources.indexOf(deleteResource);
+            this.selectedResources.splice(index, 1);
+            index = this.resources.indexOf(deleteResource);
+            this.filteredResources.splice(index, 1);
+          }).catch((error) => {
+            console.log('Error deleting resource:' + error);
+          });
+        }
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       }
       this.action = '';
       this.clearSelected = true;
       this.selectedProfileId = '';
     },
+<<<<<<< HEAD
     delete: function (decision) {
       if (decision) {
         var deleteResource = this.selectedResources[0];
@@ -177,6 +232,8 @@ export default {
         });
       }
     },
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);
       if (index === -1) {
@@ -285,7 +342,11 @@ export default {
   outline: none;
   font-size: 10px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 .arrowDown:after {
   content: '\2193';
   font-size: 12px;
@@ -368,12 +429,20 @@ export default {
 }
 
 .buttonFooter {
+<<<<<<< HEAD
   box-pack:start;
+=======
+  box-pack:start; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   display: block;
 }
 
 .runProfileButton {
+<<<<<<< HEAD
   background-color: $buttonColour;
+=======
+  background-color: $buttonColour; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   border: none;
   font-size: 0.75em;
   padding: 13px;
@@ -390,6 +459,7 @@ export default {
     border: none;
   }
 }
+<<<<<<< HEAD
 .custom-select{
   min-width: 90%;
   margin-bottom: 3px;
@@ -409,4 +479,6 @@ export default {
     min-width: 100%;
   }
 }
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </style>

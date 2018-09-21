@@ -1,11 +1,18 @@
 <template>
+<<<<<<< HEAD
   <div id="processors-row" class="">
     <b-row no-gutters class="processorRow shadedRow">
       <b-col sm='4' cols='9' class="processorMainColumn center first" v-on:click='openTab'>
+=======
+  <div id="processors-row" class="shadedRow">
+    <div class="processorRow">
+      <div class="processorMainColumn center">
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
         <div class="rightSeparator">
           <label class="mainColumnHeader">{{ processor.name }}</label>
           <p class="description">{{ processor.description }}</p>
         </div>
+<<<<<<< HEAD
       </b-col>
       <b-col v-bind:class='{open: isOpen}' cols = '10' offset='1' order='3' class='third bottom-bar show'>
 
@@ -27,6 +34,26 @@
         <label>Configurations</label>
       </b-col>
     </b-row>
+=======
+      </div>
+      <div class="processorColumn center">
+        <label>Created</label>
+        <label>{{ convertDate(processor.created_at.date) }}</label>
+      </div>
+      <div class="processorColumn center">
+        <label>Updated</label>
+        <label>{{ convertDate(processor.updated_at.date) }}</label>
+      </div>
+      <div class="processorColumn center">
+        <label>Unique Tag</label>
+        <label>{{ processor.uniqueTag }}</label>
+      </div>
+      <div class="configurationsColumn center">
+        <label>{{ processor.configurationCount ? processor.configurationCount : 0 }}</label>
+        <label>Configurations</label>
+      </div>
+    </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   </div>
 </template>
 
@@ -42,6 +69,7 @@ export default {
   },
   data () {
     return {
+<<<<<<< HEAD
       isOpen: true
     };
   },
@@ -50,6 +78,12 @@ export default {
     openTab: function () {
       this.isOpen = !this.isOpen;
     }
+=======
+    };
+  },
+  methods: {
+    convertDate: convertDate
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   },
   components: {
   },
@@ -70,6 +104,10 @@ label {
 }
 
 .processorColumn {
+<<<<<<< HEAD
+=======
+  flex: 1;
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   label:nth-child(1) {
     font-weight: $bold;
     font-size: 0.688em;
@@ -92,7 +130,11 @@ label {
   }
   padding-right: 10px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 .center {
   display: flex;
   flex-direction: column;
@@ -100,11 +142,21 @@ label {
 }
 
 .processorMainColumn {
+<<<<<<< HEAD
+=======
+  flex: 2;
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   min-height: 80px;
   padding: 10px;
 }
 
 .processorRow {
+<<<<<<< HEAD
+=======
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   padding-right: 5px;
 }
 
@@ -118,6 +170,7 @@ label {
    font-size: 0.688em;
    word-wrap: break-word;
 }
+<<<<<<< HEAD
 
 .first{
   order: 0;
@@ -170,4 +223,6 @@ label {
     text-align: center;
   }
 }
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </style>

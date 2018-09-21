@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <b-row class="sourceRow">
       <b-row>
         <b-col cols='12' sm='5'>
@@ -9,6 +10,15 @@
         </b-col>
       </b-row>
 
+=======
+    <div class="sourceRow">
+      <div> 
+        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
+      </div>
+      <div>
+        <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
+      </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
       <div class="modal fade" id="addUrlModal" tabindex="-1" v-show=showAddUrlModal role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
@@ -36,7 +46,11 @@
        <label class="externalResource sharefile">ShareFile</label>
        <label class="newResource">Link to New Source</label>
      </div> -->
+<<<<<<< HEAD
   </b-row>
+=======
+  </div>
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </template>
 
 <script>
@@ -124,18 +138,30 @@ export default {
   margin: 0px 5px;
   min-width: 190px;
   font-weight: $bold;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+  cursor: pointer; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 
 .addFromURL {
   background: url(../../assets/images/add-url.svg) no-repeat scroll 0.875em 0.875em;
   position: relative;
+<<<<<<< HEAD
   background-color: #FAFAFA;
+=======
+  background-color: #FAFAFA; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   font-size: 0.875em;
   padding: 14px 14px 14px 50px;
   margin: 0px 5px;
   min-width: 190px;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+  cursor: pointer; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   font-weight: $bold;
   &:hover {
     box-shadow: 0px 0px 4px  #888888;
@@ -143,6 +169,7 @@ export default {
 }
 
 .dashedBox {
+<<<<<<< HEAD
   background-color: #FAFAFA;
   border: dashed 1px #979797;
   border-radius: 4px;
@@ -151,11 +178,24 @@ export default {
 
 .addFromSource {
   font-weight: $bold;
+=======
+  background-color: #FAFAFA; 
+  border: dashed 1px #979797;
+  border-radius: 4px;
+}
+
+.addFromSource {
+  font-weight: $bold; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   font-size: 0.875em;
 }
 
 .externalBox {
+<<<<<<< HEAD
   padding: 12px 16px 0px 16px;
+=======
+  padding: 12px 16px 0px 16px;  
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 
 .externalResource {
@@ -208,12 +248,20 @@ export default {
 }
 
 .buttonFooter {
+<<<<<<< HEAD
   box-pack:start;
+=======
+  box-pack:start; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   display: block;
 }
 
 .addUrlButton {
+<<<<<<< HEAD
   background-color: $buttonColour;
+=======
+  background-color: $buttonColour; 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   border: none;
   font-size: 0.75em;
   padding: 13px;
@@ -229,6 +277,7 @@ export default {
     outline:0;
     border: none;
   }
+<<<<<<< HEAD
 }
 
 @media (max-width: 376px){
@@ -237,4 +286,7 @@ export default {
     text-align: center;
   }
 }
+=======
+} 
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 </style>

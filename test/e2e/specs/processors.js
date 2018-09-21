@@ -13,8 +13,13 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .end()
+<<<<<<< HEAD
   },
    'check processor row exists test': function (browser) {
+=======
+  }
+  /* 'check processor row exists test': function (browser) {
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -22,6 +27,7 @@ module.exports = {
       .click('#processors')
       .waitForElementVisible('#processors-row', visiblePauseTime)
       .end()
+<<<<<<< HEAD
   },
   'check if the search is visible': function (browser) {
    const devServer = browser.globals.devServerURL
@@ -57,4 +63,7 @@ module.exports = {
       .assert.containsText('.numberOfProcessors','5 Processors')
       .end()
   },
+=======
+  } */
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }

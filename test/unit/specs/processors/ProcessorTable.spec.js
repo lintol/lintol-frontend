@@ -2,12 +2,18 @@
 import Vuex from 'vuex';
 import ProcessorTable from '@/components/processors/ProcessorTable';
 import { shallow, createLocalVue } from '@vue/test-utils';
+<<<<<<< HEAD
 import VueRouter from 'vue-router';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 localVue.use(VueRouter);
 const router = new VueRouter();
+=======
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 
 var processors = [];
 var processor1 = {
@@ -46,7 +52,11 @@ let store = new Vuex.Store({
 });
 
 describe('ProcessorTable.vue', () => {
+<<<<<<< HEAD
   const wrapper = shallow(ProcessorTable, { store, localVue, router });
+=======
+  const wrapper = shallow(ProcessorTable, { store, localVue });
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
   it('Data is a function', () => {
     expect(ProcessorTable.data).to.be.a('function');
   });
@@ -57,7 +67,10 @@ describe('ProcessorTable.vue', () => {
     wrapper.vm.search = 'JSON';
     expect(wrapper.vm.filteredProcessors.length).to.equal(1);
   });
+<<<<<<< HEAD
   it('Add processor', () => {
     wrapper.vm.addProcessor();
   });
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 });

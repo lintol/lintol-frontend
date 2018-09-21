@@ -44,4 +44,8 @@ describe('UserTable.vue', () => {
     wrapper.vm.search = 'joe';
     expect(wrapper.vm.filteredUsers.length).to.equal(1);
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58

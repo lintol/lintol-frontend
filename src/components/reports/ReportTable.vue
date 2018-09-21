@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
    <div id="reportTable" v-if="reports" >
     <div >
       <label class="pageTitle">{{ title }}</label>
@@ -29,6 +30,32 @@
         <p class="instructions">No Reports available for this account</p>
       </div>
       <div id="columns" v-else class="">
+=======
+   <div id="reportTable" v-if="reports">
+    <div >
+      <label class="pageTitle">{{ title }}</label>
+      <p class="instructions">
+        Here is a list of generated reports for this account 
+      </p>
+      <div class="btn-group filters">
+        <select class="custom-select" id="dateFilter" v-model="selectedDate" >
+          <option disabled value="" >Filter by Date</option> 
+          <option v-for="date in dateList">{{ date }}</option> 
+        </select>
+        <select class="custom-select" id="userFilter" v-model="selectedUser" >
+          <option disabled value="" >Filter by User</option> 
+          <option v-for="userName in userNameList">{{ userName }}</option>
+        </select>
+        <select class="custom-select" id="profileFilter" v-model="selectedProfile" >
+          <option disabled value="" >Filter by Profile</option> 
+          <option v-for="profile in profileList">{{ profile }}</option> 
+        </select>
+      </div>
+      <div id="noReportsAvailable" v-if="reports.length == 0">
+        <p class="instructions">No Reports available for this account</p>
+      </div>
+      <div id="columns" v-else class="flexContainer">
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
         <report-row :key="report.id" v-for="report in filteredReports" :report="report"></report-row>
       </div>
     </div>
@@ -92,6 +119,7 @@ export default {
 
 
 .filters {
+<<<<<<< HEAD
 
 }
 @media (max-width: 376px){
@@ -99,6 +127,9 @@ export default {
     min-width: 100%;
     margin-top: 5px;
   }
+=======
+  max-width: 40%;
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 }
 
 </style>

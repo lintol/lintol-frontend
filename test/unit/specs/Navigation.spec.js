@@ -64,6 +64,7 @@ describe('Navigation.vue', () => {
       expect(component.$el.querySelector('label').length);
     });
 
+<<<<<<< HEAD
     it('should have a "b-nav" element', () => {
       const component = getComponent();
 
@@ -74,6 +75,19 @@ describe('Navigation.vue', () => {
       const component = getComponent();
 
       expect(component.$el.querySelectorAll('b-nav-item').length).to.equal(6);
+=======
+    it('should have a "nav" element', () => {
+      const component = getComponent();
+
+      expect(component.$el.querySelector('nav').length);
+    });
+
+    it('should have a "ul" element with 6 "li" elements', () => {
+      const component = getComponent();
+
+      expect(component.$el.querySelector('ul').length);
+      expect(component.$el.querySelectorAll('li').length).to.equal(5);
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     });
   });
 });

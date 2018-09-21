@@ -2,6 +2,10 @@
 import Vuex from 'vuex';
 import ResourceTable from '@/components/resources/ResourceTable';
 import { shallow, createLocalVue } from '@vue/test-utils';
+<<<<<<< HEAD
+=======
+
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
@@ -42,7 +46,11 @@ let store = new Vuex.Store({
       return {
         'name': 'mary',
         'driver': 'ckan'
+<<<<<<< HEAD
       };
+=======
+      }
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
     }
   }
 });
@@ -131,6 +139,7 @@ describe('ResourceTable.vue', () => {
     wrapper.vm.matchDataResourcesToProfile('status');
     expect(wrapper.vm.selectedResources).to.eql([]);
   });
+<<<<<<< HEAD
   it('addResourceAction', () => {
     wrapper.vm.addResourceAction('status');
   });
@@ -147,4 +156,6 @@ describe('ResourceTable.vue', () => {
   /* it('delete ', () => {
     wrapper.vm.delete(true);
   }); */
+=======
+>>>>>>> bc844817a02480f79de830dccdb391abe118ad58
 });
