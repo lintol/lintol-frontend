@@ -76,7 +76,14 @@ export default {
   },
   methods: {
     addProfile: function () {
+      console.log('Name');
+      console.log(this.profile.name);
+      console.log('Description');
+      console.log(this.profile.description);
+      console.log('Unique tag');
+      console.log(this.chosenProcessors);
       this.$validator.validateAll().then((result) => {
+        console.log('PASSED');
         this.$store.dispatch(STORE_PROFILE, {
           profile: this.profile,
           configurations: this.chosenProcessors

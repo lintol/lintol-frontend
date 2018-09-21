@@ -78,6 +78,13 @@ describe('AddProfile.vue', () => {
     expect(wrapper.vm.processorList.length).to.equal(2);
   });
   it('Add Profile', () => {
+    wrapper.vm.profile = {
+        name: 'Joe',
+        description: 'Some description',
+        creator: 'Martin',
+        version: 7,
+        uniqueTag: 'uniq-66-' + name
+    };
     wrapper.vm.addProfile();
     // expect(wrapper.vm.);
   });
