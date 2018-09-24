@@ -136,9 +136,9 @@ describe('ResourceTable.vue', () => {
   it('resourceAction delete', () => {
     wrapper.vm.resourceAction({target: {value: 'delete'}});
   });
-  it('resourceAction runProfile', () => {
+/*  it('resourceAction runProfile', () => {
     wrapper.vm.resourceAction({target: {value: 'runProfile'}});
-  });
+  }); */
   it('getResources', () => {
     wrapper.vm.getResources(1);
   });
@@ -146,7 +146,4 @@ describe('ResourceTable.vue', () => {
     wrapper.vm.$store.dispatch(LOAD_USER);
     wrapper.vm.filterBySourceOptions();
   }); */
-   it('delete ', () => {
-    wrapper.vm.delete(true);
-  });
 });
