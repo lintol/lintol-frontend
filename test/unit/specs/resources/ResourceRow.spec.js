@@ -74,5 +74,5 @@ describe('ResourceRow.vue', () => {
   });
   it('viewResource', () => {
     wrapper.vm.viewResource(null);
-    });
+  });
 });

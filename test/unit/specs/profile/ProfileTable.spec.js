@@ -7,7 +7,25 @@ import VueRouter from 'vue-router';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 localVue.use(VueRouter);
-const router = new VueRouter();
+const router = new VueRouter({
+  routes: [
+  // dynamic segments start with a colon
+    {
+      path: '/something',
+      children: [
+        {
+          name: 'profiles',
+          path: 'profiles',
+          children: [
+            { name: 'profileTable', path: 'profiletable' },
+            { name: 'addProfile', path: 'addprofile' },
+            { name: 'editProfile', path: 'editprofile/:profileId', props: true }
+          ]
+        }
+      ]
+    }
+  ]
+});
 
 var profiles = [];
 var profile1 = {
@@ -44,8 +62,8 @@ let store = new Vuex.Store({
 });
 
 describe('ProfileTable.vue', () => {
-    const wrapper = shallow(ProfileTable, { store, localVue, router });
-    it('Data is a function', () => {
+  const wrapper = shallow(ProfileTable, { store, localVue, router });
+  it('Data is a function', () => {
     expect(ProfileTable.data).to.be.a('function');
   });
   it('Get all profiles ', () => {
@@ -55,7 +73,7 @@ describe('ProfileTable.vue', () => {
     wrapper.vm.selectedName = 'JSON profile';
     expect(wrapper.vm.filteredProfiles.length).to.equal(1);
   });
-    it('Add profile', () => {
+  it('Add profile', () => {
     wrapper.vm.addProfile();
   });
 });

@@ -39,7 +39,7 @@ describe('ProcessorConfiguration.vue', () => {
     expect(wrapper.emitted().removeProcessor[0][0]).to.equal('csv processor');
     expect(wrapper.vm.editConfiguration).to.equal(true);
   });
-    it('configurationOptions', () => {
-    wrapper.vm.processor.configurationOptions = {'soomething' : 'blabla','SomethingElse':'blabla',};
+  it('configurationOptions', () => {
+    wrapper.vm.processor.configurationOptions = {'soomething': 'blabla', 'SomethingElse': 'blabla'};
   });
 });

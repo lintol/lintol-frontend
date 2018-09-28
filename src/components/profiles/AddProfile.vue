@@ -76,22 +76,20 @@ export default {
   },
   methods: {
     addProfile: function () {
-      console.log('Name');
-      console.log(this.profile.name);
-      console.log('Description');
-      console.log(this.profile.description);
-      console.log('Unique tag');
-      console.log(this.chosenProcessors);
       this.$validator.validateAll().then((result) => {
-        console.log('PASSED');
-        this.$store.dispatch(STORE_PROFILE, {
-          profile: this.profile,
-          configurations: this.chosenProcessors
-        }).then(() => {
-          this.$router.push({name: 'profileTable'});
-        });
+        this.add();
       }).catch((error) => {
         console.log('Validation error:' + error);
+      });
+    },
+    add: function () {
+      this.$store.dispatch(STORE_PROFILE, {
+        profile: this.profile,
+        configurations: this.chosenProcessors
+      }).then((val) => {
+        this.$router.push({name: 'profileTable'});
+      }).catch(function (err) {
+        console.log(err);
       });
     },
     processorSelected: function (option) {

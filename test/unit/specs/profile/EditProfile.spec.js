@@ -39,9 +39,15 @@ let store = new Vuex.Store({
   },
   actions: {
     [a.LOAD_PROFILE] ({ commit }) {
-    }
+    },
     /* [a.LOAD_PROCESSORS] ({ commit }) {
     } */
+    [a.SAVE_PROFILE] ({commit}) {
+      var promise1 = new Promise(function (resolve, reject) {
+        resolve('Success!');
+      });
+      return promise1;
+    }
   }
 });
 
@@ -70,7 +76,7 @@ describe('EditProfile.vue', () => {
     wrapper.vm.removeSelectedProcessor('csv');
     expect(wrapper.vm.configurations.length).to.equal(0);
   });
-  it('Processors saved ', () => {
+  it('Processors saved ', async () => {
     wrapper.vm.saveProfile();
   });
 });
