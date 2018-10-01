@@ -33,6 +33,27 @@ describe('ReportRow.vue', () => {
     });
     wrapper.vm.viewReport('1');
   });
+  it('Open openTab', () => {
+    var report = {
+      name: 'CSV report',
+      created_at: '2001-01-01 00:00:00',
+      user: 'Jay',
+      errors: 8,
+      warnings: 9,
+      passes: 10,
+      qualityScore: 76
+    };
+    const wrapper = shallow(ReportRow, {
+      propsData: {
+        report: report
+      },
+      localVue,
+      router
+    });
+    expect(wrapper.vm.isOpen).to.be.true;
+    wrapper.vm.openTab();
+    expect(wrapper.vm.isOpen).to.be.false;
+  });
   /* it('Populate Row', () => {
     var report = {
       name: 'CSV report',

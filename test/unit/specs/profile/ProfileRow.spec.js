@@ -85,4 +85,29 @@ describe('ProfileRow.vue', () => {
     });
     wrapper.vm.profileAction({target: {value: 'edit'}});
   });
+  it('Profile action edit', () => {
+    var profile = {
+      name: 'Waste Profile',
+      creator: 'Jay',
+      description: 'Waste Data',
+      created_at: {
+        date: '2001-01-01 00:00:00'
+      },
+      updated_at: {
+        date: '2001-01-01 00:00:00'
+      },
+      version: '2',
+      uniqueTag: 'waste-taggy'
+    };
+    const wrapper = shallowMount(ProfileRow, {
+      propsData: {
+        profile: profile
+      },
+      localVue,
+      router
+    });
+    expect(wrapper.vm.isOpen).to.be.true;
+    wrapper.vm.openTab();
+    expect(wrapper.vm.isOpen).to.be.false;
+  });
 });

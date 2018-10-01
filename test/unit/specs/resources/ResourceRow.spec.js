@@ -25,34 +25,35 @@ describe('ResourceRow.vue', () => {
       clearSelected: false
     }
   });
-  it('Resource status to be newStatus ', () => {
+  it('Resource status to be newStatus ', async () => {
     expect(wrapper.vm.statusColor).to.equal('newStatus');
   });
-  it('Resource status to be runStatus', () => {
+  it('Resource status to be runStatus', async () => {
     wrapper.vm.resource.status = 'report run';
+    wrapper.vm.statusColor;
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('runStatus');
     });
   });
-  it('Resource status to be  archivedStatus', () => {
+  it('Resource status to be  archivedStatus', async () => {
     wrapper.vm.resource.status = 'archived';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('archivedStatus');
     });
   });
-  it('Resource status to be validLinkStatus ', () => {
+  it('Resource status to be validLinkStatus ', async () => {
     wrapper.vm.resource.status = 'valid link';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('validLinkStatus');
     });
   });
-  it('Resource status to be  invalidLinkStatus', () => {
+  it('Resource status to be  invalidLinkStatus', async () => {
     wrapper.vm.resource.status = 'invalid link';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('invalidLinkStatus');
     });
   });
-  it('Resource status to be  invalidStatus', () => {
+  it('Resource status to be  invalidStatus', async () => {
     wrapper.vm.resource.status = '';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('invalidStatus');

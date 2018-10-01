@@ -77,19 +77,14 @@ export default {
   methods: {
     addProfile: function () {
       this.$validator.validateAll().then((result) => {
-        this.add();
-      }).catch((error) => {
-        console.log('Validation error:' + error);
-      });
-    },
-    add: function () {
       this.$store.dispatch(STORE_PROFILE, {
         profile: this.profile,
         configurations: this.chosenProcessors
       }).then((val) => {
         this.$router.push({name: 'profileTable'});
-      }).catch(function (err) {
-        console.log(err);
+      });
+      }).catch((error) => {
+        console.log('Validation error:' + error);
       });
     },
     processorSelected: function (option) {
