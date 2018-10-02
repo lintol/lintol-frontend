@@ -77,12 +77,12 @@ export default {
   methods: {
     addProfile: function () {
       this.$validator.validateAll().then((result) => {
-      this.$store.dispatch(STORE_PROFILE, {
-        profile: this.profile,
-        configurations: this.chosenProcessors
-      }).then((val) => {
-        this.$router.push({name: 'profileTable'});
-      });
+        this.$store.dispatch(STORE_PROFILE, {
+          profile: this.profile,
+          configurations: this.chosenProcessors
+        }).then((val) => {
+          this.$router.push({name: 'profileTable'});
+        });
       }).catch((error) => {
         console.log('Validation error:' + error);
       });

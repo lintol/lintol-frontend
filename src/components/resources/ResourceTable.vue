@@ -193,7 +193,6 @@ export default {
       }
     },
     getResources: function (pageNum) {
-      console.log(pageNum);
       this.$store.dispatch(UPDATE_DATA_RESOURCES_PAGE, pageNum);
     }
   },

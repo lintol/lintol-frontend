@@ -52,7 +52,6 @@ export default {
     saveProfile: function () {
       this.$validator.validateAll().then(() => {
         this.$store.dispatch(SAVE_PROFILE, { profile: this.profile, configurations: this.configurations }).then(() => {
-          console.log('QUI');
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {

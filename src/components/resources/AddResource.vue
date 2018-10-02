@@ -36,6 +36,8 @@ export default {
         this.$store.dispatch(STORE_DATA_RESOURCE, this.resource).then(() => {
           this.$router.push({name: 'resourceTable'});
         });
+      }).catch((err) => {
+        console.log(err);
       });
     }
   },

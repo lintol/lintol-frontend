@@ -1,6 +1,8 @@
 import Vuex from 'vuex';
 import ResourceTable from '@/components/resources/ResourceTable';
 import { shallow, createLocalVue } from '@vue/test-utils';
+import * as a from '@/state/action-types';
+
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
@@ -43,6 +45,12 @@ let store = new Vuex.Store({
         'driver': 'ckan'
       };
     }
+  },
+  actions: {
+    [a.UPDATE_DATA_RESOURCES_PAGE] ({ commit }) {
+    },
+    [a.DELETE_DATA_RESOURCE] ({ commit }) {
+    },
   }
 });
 
@@ -139,8 +147,11 @@ describe('ResourceTable.vue', () => {
 /*  it('resourceAction runProfile', () => {
     wrapper.vm.resourceAction({target: {value: 'runProfile'}});
   }); */
-  it('getResources', () => {
+  it('getResources', async () => {
     wrapper.vm.getResources(1);
+  });
+  it('delete', async () => {
+    wrapper.vm.delete(true);
   });
   /* it('filterBySourceOptions', () => {
     wrapper.vm.$store.dispatch(LOAD_USER);

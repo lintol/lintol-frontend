@@ -43,10 +43,6 @@ let store = new Vuex.Store({
     /* [a.LOAD_PROCESSORS] ({ commit }) {
     } */
     [a.SAVE_PROFILE] ({commit}) {
-      var promise1 = new Promise(function (resolve, reject) {
-        resolve('Success!');
-      });
-      return promise1;
     }
   }
 });

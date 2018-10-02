@@ -29,6 +29,13 @@ describe('ResourceRow.vue', () => {
     expect(wrapper.vm.statusColor).to.equal('newStatus');
   });
   it('Resource status to be runStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'report run'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'report run';
     wrapper.vm.statusColor;
     Vue.nextTick(function () {
@@ -36,24 +43,52 @@ describe('ResourceRow.vue', () => {
     });
   });
   it('Resource status to be  archivedStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'archived'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'archived';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('archivedStatus');
     });
   });
   it('Resource status to be validLinkStatus ', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'valid link'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'valid link';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('validLinkStatus');
     });
   });
   it('Resource status to be  invalidLinkStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'invalid link'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'invalid link';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('invalidLinkStatus');
     });
   });
   it('Resource status to be  invalidStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: ''},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = '';
     Vue.nextTick(function () {
       expect(wrapper.vm.statusColor).to.equal('invalidStatus');

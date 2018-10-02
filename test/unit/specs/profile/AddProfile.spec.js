@@ -63,10 +63,6 @@ let store = new Vuex.Store({
   },
   actions: {
     [a.STORE_PROFILE] ({ commit }, { profile, configuration }) {
-      var promise1 = new Promise(function (resolve, reject) {
-        resolve('Success!');
-      });
-      return promise1;
     },
     [a.LOAD_PROCESSORS] ({ commit }) {
     }
@@ -104,6 +100,17 @@ describe('AddProfile.vue', () => {
   });
   it('Number of Processors to choose', () => {
     expect(wrapper.vm.processorList.length).to.equal(2);
+  });
+  it('Add Profile error', async () => {
+    wrapper.vm.profile = {
+      name: 'Joe',
+      description: 'Some description',
+      creator: 'Martin',
+      version: 7,
+      uniqueTag: 'uniq-66-Joe' + name
+    };
+    wrapper.vm.addProfile();
+    // expect(wrapper.vm.);
   });
   it('Add Profile', async () => {
     wrapper.vm.profile = {

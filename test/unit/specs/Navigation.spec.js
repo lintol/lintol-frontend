@@ -74,5 +74,10 @@ describe('Navigation.vue', () => {
 
       expect(component.$el.querySelectorAll('b-nav-item').length).to.equal(6);
     });
+    it('Open menu', () => {
+      const component = getComponent();
+
+      component.openMenu();
+    });
   });
 });
