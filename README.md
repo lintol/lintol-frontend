@@ -30,6 +30,18 @@ npm run e2e
 
 # run all tests
 npm test
+
+
+# To have a mock setup. These commands will start the json mock server.
+git clone https://github.com/lintol/jsonapi-server-mock-lintol.git
+cd jsonapi-server-mock-lintol
+npm start
+
+# To start the front in mock mode to connect the jsonapi server
+npm run mock
+
+
+
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
