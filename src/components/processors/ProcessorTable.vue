@@ -1,19 +1,27 @@
 <template>
    <div id="processorTable" v-if="filteredProcessors">
-    <div >
-      <label class="pageTitle">{{ title }}</label>
-      <p class="instructions">
-        These are the list of processors available to your profiles. 
-      </p>
-      <input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" type="Search" v-model="search">
-      <label class="numberOfProcessors">{{ filteredProcessors.length }} Processors</label>
-      <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
-        <p class="instructions"> No Processors available for this account</p>
-      </div>
-      <div id="columns"  v-else class="flexContainer">
-        <processor-row :key="processor.id" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
-      </div>
-    </div>
+    <b-row style='margin-right: 10px;'>
+      <b-col cols='12'>
+        <label class="pageTitle">{{ title }}</label>
+        <p class="instructions">
+          These are the list of processors available to your profiles.
+        </p>
+      </b-col>
+      <b-col cols='12' sm='4'>
+        <b-form-input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" type="Search" v-model="search"/>
+      </b-col>
+      <b-col cols='12' sm='2' offset-sm="5">
+        <label class="numberOfProcessors">{{ filteredProcessors.length }} Processors</label>
+      </b-col>
+      <b-col cols='12'>
+        <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
+          <p class="instructions"> No Processors available for this account</p>
+        </div>
+        <div id="columns"  v-else class="flexContainer">
+          <processor-row :key="processor.id" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
+        </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -65,18 +73,17 @@ export default {
 @import '~@/assets/scss/application.scss';
 
 .processorSearch {
-  width: 30%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 0.8125em;
   background: url(../../assets/images/search.svg) no-repeat scroll 0.875em 0.875em;
   background-color: white;
-  background-position: 0.3125em 0.8375em; 
+  background-position: 0.3125em 0.8375em;
   background-repeat: no-repeat;
-  padding-left: 1.6625em; 
-  padding-top: 0.625em; 
-  padding-bottom: 0.625em; 
+  padding-left: 1.6625em;
+  padding-top: 0.625em;
+  padding-bottom: 0.625em;
   border-color: #979797;
   &::placeholder {
     color: #9B9B9B;
@@ -86,7 +93,6 @@ export default {
 
 .numberOfProcessors {
  color: $greyFont;
- float: right;
  font-weight: bold;
  font-size: 0.875em;
 }

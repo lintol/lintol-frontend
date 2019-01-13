@@ -8,8 +8,10 @@ import VeeValidate from 'vee-validate';
 import store from './state/store';
 import Vue2Leaflet from 'vue2-leaflet';
 import lodash from 'lodash';
+import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import Paginate from 'vuejs-paginate';
 import VueSelect from 'vue-select';
@@ -28,6 +30,7 @@ L.Icon.Default.mergeOptions({
 Vue.config.productionTip = false;
 Vue.use(VeeValidate, { errorBagName: 'vErrors', fieldsBagName: 'vFields' });
 Vue.use(VueFormGenerator);
+Vue.use(BootstrapVue);
 
 Vue.component('v-map', Vue2Leaflet.Map);
 Vue.component('v-tilelayer', Vue2Leaflet.TileLayer);

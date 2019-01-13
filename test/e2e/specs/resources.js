@@ -12,7 +12,7 @@ module.exports = {
       .waitForElementVisible('#resources-row', visiblePauseTime)
       .end()
   }, */
-  'click add url button': function (browser) {
+ 'click add url button': function (browser) {
     const devServer = browser.globals.devServerURL
     browser
       .url(devServer)
@@ -33,6 +33,17 @@ module.exports = {
       browser.assert.containsText("#numberOfSelectedResources", "0 Selected")
       .end()
   },
+  /* 'check if Choose Function has options': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app', 2000)
+      .click('#resources')
+      .waitForElementVisible('#resourceTable', visiblePauseTime)
+      .click('#resourceAction')
+      .waitForElementVisible('#resourceAction option',visiblePauseTime)
+      .end()
+  } */
   /* 'click upload your files button': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

@@ -23,6 +23,49 @@ module.exports = {
       .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
       .end()
   },
+  'Check if add neew profile button redirect into the right page': function (browser) {
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app', 2000)
+      .click('#profiles')
+      .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
+      .click('#addNewProfileButton')
+      .assert.urlEquals('http://localhost:8080/#/application/profiles/addprofile')
+      .end()
+  },
+  'filter exist test': function (browser){
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app',2000)
+      .click('#profiles')
+      .waitForElementVisible('#nameFilter',visiblePauseTime)
+      .end()
+  },
+  'check if Filter has options': function (browser){
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app',2000)
+      .click('#profiles')
+      .waitForElementVisible('#nameFilter',visiblePauseTime)
+      .assert.elementCount('#nameFilter option', 6)
+      .end()
+  },
+  'check if Edit/Archive button has options': function (browser){
+    const devServer = browser.globals.devServerURL
+    browser
+      .url(devServer)
+      .waitForElementVisible('#app',2000)
+      .click('#profiles')
+      .waitForElementVisible('#columns',visiblePauseTime)
+      .waitForElementVisible('#profiles-row',visiblePauseTime)
+      .waitForElementVisible('#profileAction ',visiblePauseTime)
+      .click('#profileAction')
+      .assert.elementCount('#profiles-row:nth-child(1) #profileAction option', 3)
+      .end()
+  },
   /*'check profile row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

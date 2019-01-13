@@ -6,7 +6,6 @@ import { shallow, createLocalVue } from '@vue/test-utils';
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate, { errorBagName: 'vErrors', fieldsBagName: 'vFields' });
 
-
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
@@ -40,9 +39,11 @@ let store = new Vuex.Store({
   },
   actions: {
     [a.LOAD_PROFILE] ({ commit }) {
+    },
+    /* [a.LOAD_PROCESSORS] ({ commit }) {
+    } */
+    [a.SAVE_PROFILE] ({commit}) {
     }
-    /*[a.LOAD_PROCESSORS] ({ commit }) {
-    }*/
   }
 });
 
@@ -70,5 +71,8 @@ describe('EditProfile.vue', () => {
   it('Processors removed ', () => {
     wrapper.vm.removeSelectedProcessor('csv');
     expect(wrapper.vm.configurations.length).to.equal(0);
+  });
+  it('Processors saved ', async () => {
+    wrapper.vm.saveProfile();
   });
 });

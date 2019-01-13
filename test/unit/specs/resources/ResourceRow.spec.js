@@ -25,28 +25,74 @@ describe('ResourceRow.vue', () => {
       clearSelected: false
     }
   });
-  it('Resource status to be newStatus ', () => {
+  it('Resource status to be newStatus ', async () => {
     expect(wrapper.vm.statusColor).to.equal('newStatus');
   });
-  it('Resource status to be runStatus', () => {
+  it('Resource status to be runStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'report run'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'report run';
-    expect(wrapper.vm.statusColor).to.equal('runStatus');
+    wrapper.vm.statusColor;
+    Vue.nextTick(function () {
+      expect(wrapper.vm.statusColor).to.equal('runStatus');
+    });
   });
-  it('Resource status to be  archivedStatus', () => {
+  it('Resource status to be  archivedStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'archived'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'archived';
-    expect(wrapper.vm.statusColor).to.equal('archivedStatus');
+    Vue.nextTick(function () {
+      expect(wrapper.vm.statusColor).to.equal('archivedStatus');
+    });
   });
-  it('Resource status to be validLinkStatus ', () => {
+  it('Resource status to be validLinkStatus ', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'valid link'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'valid link';
-    expect(wrapper.vm.statusColor).to.equal('validLinkStatus');
+    Vue.nextTick(function () {
+      expect(wrapper.vm.statusColor).to.equal('validLinkStatus');
+    });
   });
-  it('Resource status to be  invalidLinkStatus', () => {
+  it('Resource status to be  invalidLinkStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: 'invalid link'},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = 'invalid link';
-    expect(wrapper.vm.statusColor).to.equal('invalidLinkStatus');
+    Vue.nextTick(function () {
+      expect(wrapper.vm.statusColor).to.equal('invalidLinkStatus');
+    });
   });
-  it('Resource status to be  invalidStatus', () => {
+  it('Resource status to be  invalidStatus', async () => {
+    const wrapper = mount(ResourceRow, {
+      propsData: {
+        resource: {status: ''},
+        index: '1',
+        clearSelected: false
+      }
+    });
     wrapper.vm.resource.status = '';
-    expect(wrapper.vm.statusColor).to.equal('invalidStatus');
+    Vue.nextTick(function () {
+      expect(wrapper.vm.statusColor).to.equal('invalidStatus');
+    });
   });
   it('watch cleared selected', () => {
     wrapper.vm.isResourceSelected = true;
@@ -61,5 +107,8 @@ describe('ResourceRow.vue', () => {
     expect(wrapper.emitted()).to.have.property('resourceSelected');
     expect(wrapper.emitted().resourceSelected[0].length).to.equal(2); // it returns an array inside an array
     expect(wrapper.vm.isResourceSelected).to.equal(true);
+  });
+  it('viewResource', () => {
+    wrapper.vm.viewResource(null);
   });
 });

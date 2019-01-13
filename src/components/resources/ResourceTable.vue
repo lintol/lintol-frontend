@@ -1,30 +1,51 @@
 <template>
   <div id="resourceTable" v-if="resources">
-    <label class="pageTitle">{{ title }}</label>
-    <p class="instructions">
-      The list of resources that are available for validation by Lintol</p>
-    </p>
+    <b-row>
+      <b-col cols='12'>
+        <label class="pageTitle">{{ title }}</label>
+      </b-col>
+      <b-col cols='12'>
+        <p class="instructions">
+          The list of resources that are available for validation by Lintol</p>
+        </p>
+      </b-col>
+    </b-row>
+
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
-    <label class="subHeading">Your Resources</label>
+    <b-row>
+      <b-col>
+        <label class="subHeading">Your Resources</label>
+      </b-col>
+    </b-row>
     <!--<label>(36 Archived)</label>-->
-    <div class="filterContainer">
-      <div class="btn-group">
-        <select id="typeFilter" class="custom-select"  v-model="selectedType" >
-          <option disabled value="" >Filter by Type</option>
-          <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
-        </select>
-        <select id="sourceFilter" class="custom-select"  v-model="selectedSource" >
-          <option disabled value="" >Filter by Source</option>
-          <option :value="source" v-for="(desc, source) in filterBySourceOptions">{{ desc }}</option>
-        </select>
-        <select id="dateFilter" class="custom-select" v-model="selectedDate" >
-          <option disabled value="" >Filter by Date</option>
-          <option v-for="date in dateList" :value="date[0]">{{ date[1] }}</option>
-        </select>
-        <input id="searchValidations" type="text" class="searchBox" v-model="search"/>
-      </div>
-      <div style="float: right;">
-        <div class="actionContainer">
+    <b-row class="filterContainer">
+      <b-col cols='12' sm='10' md='12' lg='9'>
+        <b-row class="btn-group">
+          <b-col sm='12' cols='12' md='3'>
+              <select id="typeFilter" class="custom-select"  v-model="selectedType" >
+                <option disabled value="" >Filter by Type</option>
+                <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
+              </select>
+          </b-col>
+          <b-col sm='12' cols='12' md='3'>
+            <select id="sourceFilter" class="custom-select"  v-model="selectedSource" >
+              <option disabled value="" >Filter by Source</option>
+              <option :value="source" v-for="(desc, source) in filterBySourceOptions">{{ desc }}</option>
+            </select>
+          </b-col>
+          <b-col sm='12' cols='12' md='3'>
+            <select id="dateFilter" class="custom-select" v-model="selectedDate" >
+              <option disabled value="" >Filter by Date</option>
+              <option v-for="date in dateList" :value="date[0]">{{ date[1] }}</option>
+            </select>
+          </b-col>
+          <b-col sm='12' cols='12' md='3' >
+            <input id="searchValidations" type="text" class="searchBox" v-model="search" style='margin-bottom:3px;'/>
+          </b-col>
+        </b-row>
+      </b-col>
+      <b-col cols='12' sm='2' md='1' lg='3'>
+        <div class="actionContainer" >
           <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
           <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
             <option value="" >Choose Function</option>
@@ -33,8 +54,9 @@
             <option value="delete" >Delete</option>
           </select>
         </div>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
+    <div style='overflow: auto'>
     <div class="headerContainer greySeparator">
       <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
       <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
@@ -47,7 +69,7 @@
     <div id="columns" class="flexContainer" v-if="resources">
       <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in resources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
     </div>
-    <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate> 
+    <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate>
       <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -70,6 +92,7 @@
           </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -135,21 +158,24 @@ export default {
       }
       if (e.target.value === 'delete') {
         var decision = confirm('Please confirm you want to delete these resources!');
-        if (decision) {
-          var deleteResource = this.selectedResources[0];
-          this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
-            var index = this.selectedResources.indexOf(deleteResource);
-            this.selectedResources.splice(index, 1);
-            index = this.resources.indexOf(deleteResource);
-            this.filteredResources.splice(index, 1);
-          }).catch((error) => {
-            console.log('Error deleting resource:' + error);
-          });
-        }
+        this.delete(decision);
       }
       this.action = '';
       this.clearSelected = true;
       this.selectedProfileId = '';
+    },
+    delete: function (decision) {
+      if (decision) {
+        var deleteResource = this.selectedResources[0];
+        this.$store.dispatch(DELETE_DATA_RESOURCE, deleteResource).then(() => {
+          var index = this.selectedResources.indexOf(deleteResource);
+          this.selectedResources.splice(index, 1);
+          index = this.resources.indexOf(deleteResource);
+          this.filteredResources.splice(index, 1);
+        }).catch((error) => {
+          console.log('Error deleting resource:' + error);
+        });
+      }
     },
     selectedResource: function (selectedResource) {
       var index = this.selectedResources.indexOf(selectedResource);
@@ -167,7 +193,6 @@ export default {
       }
     },
     getResources: function (pageNum) {
-      console.log(pageNum);
       this.$store.dispatch(UPDATE_DATA_RESOURCES_PAGE, pageNum);
     }
   },
@@ -259,7 +284,7 @@ export default {
   outline: none;
   font-size: 10px;
 }
- 
+
 .arrowDown:after {
   content: '\2193';
   font-size: 12px;
@@ -342,12 +367,12 @@ export default {
 }
 
 .buttonFooter {
-  box-pack:start; 
+  box-pack:start;
   display: block;
 }
 
 .runProfileButton {
-  background-color: $buttonColour; 
+  background-color: $buttonColour;
   border: none;
   font-size: 0.75em;
   padding: 13px;
@@ -362,6 +387,25 @@ export default {
   &:focus {
     outline:0;
     border: none;
+  }
+}
+.custom-select{
+  min-width: 90%;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 376px){
+  .actionContainer{
+    width: 100%;
+    float: left;
+  }
+
+  #searchValidations{
+    width: 100%;
+  }
+
+  .custom-select{
+    min-width: 100%;
   }
 }
 </style>

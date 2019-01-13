@@ -9,7 +9,8 @@ localVue.use(Vuex);
 var processorConfiguration1 = {
   processor: {
     name: 'csv processor',
-    description: 'CSV description'
+    description: 'CSV description',
+    configurationOptions: true
   }
 };
 
@@ -38,5 +39,8 @@ describe('ProcessorConfiguration.vue', () => {
     console.log(wrapper.emitted().removeProcessor[0][0]);
     expect(wrapper.emitted().removeProcessor[0][0]).to.equal('csv processor');
     expect(wrapper.vm.editConfiguration).to.equal(true);
+  });
+  it('configurationOptions', () => {
+    wrapper.vm.processor.configurationOptions;
   });
 });

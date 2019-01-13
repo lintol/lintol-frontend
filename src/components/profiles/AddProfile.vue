@@ -1,31 +1,55 @@
 <template>
-  <div id="add-profile-panel">
-    <label class="pageTitle">{{ title }}</label>
-    <p class="instructions">Enter information below to add a Data Profile</p>
-    <div class="formContainer">
-      <input id="profileName" maxlength="30" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
+  <b-container id="add-profile-panel">
+      <b-row>
+        <b-col cols='12' sm='12' >
+          <label class="pageTitle">{{ title }}</label>
+        </b-col>
+        <b-col cols='12' sm='12' >
+            <p class="instructions">Enter information below to add a Data Profile</p>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols='12' sm='12' md='6'>
+          <b-form-input id="profileName" maxlength="30" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
+        </b-col>
+      </b-row>
       <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
-      <textarea id="profileDescription" maxlength="200" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+      <b-row>
+        <b-col cols='12' sm='12' md='6'>
+          <b-form-textarea id="profileDescription" maxlength="200" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+        </b-col>
+      </b-row>
       <label class="descriptionLength" :class='{ warningText: descriptionLength == 200 }'>Length: {{ descriptionLength }}</label>
       <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
-      <div>
-        <p class="subHeading">Choose your Processor</p>
-        <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
-        <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
-        <div class="processorContainer">
-          <processor-configuration
-             :key="configuration.id"
-             v-model="configuration.userConfigurationStorage"
-             :configuration="configuration"
-             v-for="configuration in chosenProcessors"
-             v-on:removeProcessor="removeSelectedProcessor" />
-        </div>
-      </div>
-      <div class="button">
-        <button id="addProfile" class="saveButton" @click=addProfile>Add Profile</button>
-      </div>
-    </div>
-  </div>
+      <b-row>
+        <b-col cols='12' sm='12' md='6'>
+          <p class="subHeading">Choose your Processor</p>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols='12' sm='12' md='6'>
+          <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols='12' sm='12' md='6'>
+          <v-select :clearSearchOnSelect="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
+          <div class="processorContainer">
+            <processor-configuration
+               :key="configuration.id"
+               v-model="configuration.userConfigurationStorage"
+               :configuration="configuration"
+               v-for="configuration in chosenProcessors"
+               v-on:removeProcessor="removeSelectedProcessor" />
+          </div>
+        </b-col>
+      </b-row class=''>
+      <b-row>
+        <b-col cols='12' sm='12' md='6'>
+          <b-button id="addProfile" class="saveButton" @click=addProfile>Add Profile</b-button>
+        </b-col>
+      </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -56,7 +80,7 @@ export default {
         this.$store.dispatch(STORE_PROFILE, {
           profile: this.profile,
           configurations: this.chosenProcessors
-        }).then(() => {
+        }).then((val) => {
           this.$router.push({name: 'profileTable'});
         });
       }).catch((error) => {
@@ -138,7 +162,6 @@ export default {
   padding-top: 10px;
   font-size: 0.75em;
 }
- 
 .formItem {
   margin-bottom: 10px;
   padding-left: 10px;
@@ -156,4 +179,9 @@ export default {
 .descriptionLength {
   font-size: 12px;
 }
+
+.saveButton{
+  margin-top: 36px;
+}
+
 </style>

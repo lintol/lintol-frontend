@@ -1,11 +1,14 @@
 <template>
-    <div class="sourceRow">
-      <div> 
-        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
-      </div>
-      <div>
-        <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
-      </div>
+    <b-row class="sourceRow">
+      <b-row>
+        <b-col cols='12' sm='5'>
+          <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
+        </b-col>
+        <b-col cols='12' sm='5'>
+          <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
+        </b-col>
+      </b-row>
+
       <div class="modal fade" id="addUrlModal" tabindex="-1" v-show=showAddUrlModal role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
@@ -33,7 +36,7 @@
        <label class="externalResource sharefile">ShareFile</label>
        <label class="newResource">Link to New Source</label>
      </div> -->
-  </div>
+  </b-row>
 </template>
 
 <script>
@@ -121,18 +124,18 @@ export default {
   margin: 0px 5px;
   min-width: 190px;
   font-weight: $bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .addFromURL {
   background: url(../../assets/images/add-url.svg) no-repeat scroll 0.875em 0.875em;
   position: relative;
-  background-color: #FAFAFA; 
+  background-color: #FAFAFA;
   font-size: 0.875em;
   padding: 14px 14px 14px 50px;
   margin: 0px 5px;
   min-width: 190px;
-  cursor: pointer; 
+  cursor: pointer;
   font-weight: $bold;
   &:hover {
     box-shadow: 0px 0px 4px  #888888;
@@ -140,18 +143,19 @@ export default {
 }
 
 .dashedBox {
-  background-color: #FAFAFA; 
+  background-color: #FAFAFA;
   border: dashed 1px #979797;
   border-radius: 4px;
+  margin-top : 2px;
 }
 
 .addFromSource {
-  font-weight: $bold; 
+  font-weight: $bold;
   font-size: 0.875em;
 }
 
 .externalBox {
-  padding: 12px 16px 0px 16px;  
+  padding: 12px 16px 0px 16px;
 }
 
 .externalResource {
@@ -204,12 +208,12 @@ export default {
 }
 
 .buttonFooter {
-  box-pack:start; 
+  box-pack:start;
   display: block;
 }
 
 .addUrlButton {
-  background-color: $buttonColour; 
+  background-color: $buttonColour;
   border: none;
   font-size: 0.75em;
   padding: 13px;
@@ -225,5 +229,12 @@ export default {
     outline:0;
     border: none;
   }
-} 
+}
+
+@media (max-width: 376px){
+  .dashedBox{
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>
