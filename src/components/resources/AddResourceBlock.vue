@@ -2,33 +2,25 @@
     <b-row class="sourceRow">
       <b-row>
         <b-col cols='12' sm='7'>
-          <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
+          <b-btn id="uploadYourFiles" class="uploadYourFiles dashedBox" @click="uploadFiles">Upload your Files</b-btn>
         </b-col>
         <b-col cols='12' sm='5'>
-          <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
+          <b-btn id="addFromURL" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
         </b-col>
       </b-row>
-
-      <div class="modal fade" id="addUrlModal" tabindex="-1" v-show=showAddUrlModal role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
-                <label class="modalTitle" id="exampleModalLabel">Add from URL</label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-           </div>
-           <div class="modal-body">
-              <textarea id="profileDescription" style="width:400px; height:100px"  rows="4" placeholder="Urls" v-model="urls" data-vv-name="urls" data-vv-as="Url Links" v-validate="'required'" :class="{ warningBorder: vErrors.has('urls') }" />
-              <p v-show="vErrors.has('urls')" class="warningText" >{{ vErrors.first('urls') }}</p>
-              <!--<textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> -->
-           </div>
-           <div class="modal-footer buttonFooter">
-             <button type="button" class="btn addUrlButton"   @click="addResource">Add URLs to Lintol</button>
-           </div>
-         </div>
-       </div>
-     </div>
+      <b-modal id="addUrlModal" title="Add from URL">
+          <b-container>
+            <b-row>
+              <b-col cols="12" class="mt-3">
+                <textarea id="urlList" style="width:400px; height:100px"  rows="4" placeholder="Urls" v-model="urls" data-vv-name="urls" data-vv-as="Url Links" v-validate="'required'" :class="{ warningBorder: vErrors.has('urls') }" />
+                <p v-show="vErrors.has('urls')" class="warningText" >{{ vErrors.first('urls') }}</p>
+              </b-col>
+            </b-row>
+          </b-container>
+          <div slot="modal-footer" class="w-100">
+            <b-btn id="addFromURL" v-b-modal.addUrlModal class="addUrlButton" @click="addResource">Add URLs to Lintol</b-btn>
+          </div>
+        </b-modal>
      <!--<div class="externalBox dashedBox">
        <label id="addFromSource" class="addFromSource">Add From Source</label>
        <label class="externalResource dropbox">Dropbox</label>
@@ -147,6 +139,7 @@ export default {
   border: dashed 1px #979797;
   border-radius: 4px;
   margin-top : 2px;
+  color: black;
 }
 
 .addFromSource {
