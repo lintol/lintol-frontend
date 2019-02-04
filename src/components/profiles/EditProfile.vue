@@ -145,7 +145,7 @@ export default {
   padding-top: 10px;
   font-size: 0.75em;
 }
- 
+
 .formItem {
   margin-bottom: 10px;
   padding-left: 10px;

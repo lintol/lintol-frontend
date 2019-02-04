@@ -1,31 +1,26 @@
 <template>
-    <div class="sourceRow">
-      <div> 
-        <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
-      </div>
-      <div>
-        <label id="addFromUrl" class="addFromURL dashedBox" data-toggle="modal" data-target="#addUrlModal">Add From URL</label>
-      </div>
-      <div class="modal fade" id="addUrlModal" tabindex="-1" v-show=showAddUrlModal role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
-                <label class="modalTitle" id="exampleModalLabel">Add from URL</label>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-           </div>
-           <div class="modal-body">
-              <textarea id="profileDescription" style="width:400px; height:100px"  rows="4" placeholder="Urls" v-model="urls" data-vv-name="urls" data-vv-as="Url Links" v-validate="'required'" :class="{ warningBorder: vErrors.has('urls') }" />
-              <p v-show="vErrors.has('urls')" class="warningText" >{{ vErrors.first('urls') }}</p>
-              <!--<textarea id="filelinks" col="100" row="7" style="width:400px; height:100px" v-model="urls"/> -->
-           </div>
-           <div class="modal-footer buttonFooter">
-             <button type="button" class="btn addUrlButton"   @click="addResource">Add URLs to Lintol</button>
-           </div>
-         </div>
-       </div>
-     </div>
+    <b-row class="sourceRow">
+      <b-row>
+        <b-col cols='12' sm='7'>
+          <b-btn id="uploadYourFiles" class="uploadYourFiles dashedBox" @click="uploadFiles">Upload your Files</b-btn>
+        </b-col>
+        <b-col cols='12' sm='5'>
+          <b-btn id="addFromURL" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
+        </b-col>
+      </b-row>
+      <b-modal id="addUrlModal" title="Add from URL">
+          <b-container>
+            <b-row>
+              <b-col cols="12" class="mt-3">
+                <textarea id="urlList" style="width:400px; height:100px"  rows="4" placeholder="Urls" v-model="urls" data-vv-name="urls" data-vv-as="Url Links" v-validate="'required'" :class="{ warningBorder: vErrors.has('urls') }" />
+                <p v-show="vErrors.has('urls')" class="warningText" >{{ vErrors.first('urls') }}</p>
+              </b-col>
+            </b-row>
+          </b-container>
+          <div slot="modal-footer" class="w-100">
+            <b-btn id="addFromURL" v-b-modal.addUrlModal class="addUrlButton" @click="addResource">Add URLs to Lintol</b-btn>
+          </div>
+        </b-modal>
      <!--<div class="externalBox dashedBox">
        <label id="addFromSource" class="addFromSource">Add From Source</label>
        <label class="externalResource dropbox">Dropbox</label>
@@ -33,7 +28,7 @@
        <label class="externalResource sharefile">ShareFile</label>
        <label class="newResource">Link to New Source</label>
      </div> -->
-  </div>
+  </b-row>
 </template>
 
 <script>
@@ -121,18 +116,18 @@ export default {
   margin: 0px 5px;
   min-width: 190px;
   font-weight: $bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .addFromURL {
   background: url(../../assets/images/add-url.svg) no-repeat scroll 0.875em 0.875em;
   position: relative;
-  background-color: #FAFAFA; 
+  background-color: #FAFAFA;
   font-size: 0.875em;
   padding: 14px 14px 14px 50px;
   margin: 0px 5px;
   min-width: 190px;
-  cursor: pointer; 
+  cursor: pointer;
   font-weight: $bold;
   &:hover {
     box-shadow: 0px 0px 4px  #888888;
@@ -140,18 +135,20 @@ export default {
 }
 
 .dashedBox {
-  background-color: #FAFAFA; 
+  background-color: #FAFAFA;
   border: dashed 1px #979797;
   border-radius: 4px;
+  margin-top : 2px;
+  color: black;
 }
 
 .addFromSource {
-  font-weight: $bold; 
+  font-weight: $bold;
   font-size: 0.875em;
 }
 
 .externalBox {
-  padding: 12px 16px 0px 16px;  
+  padding: 12px 16px 0px 16px;
 }
 
 .externalResource {
@@ -204,12 +201,12 @@ export default {
 }
 
 .buttonFooter {
-  box-pack:start; 
+  box-pack:start;
   display: block;
 }
 
 .addUrlButton {
-  background-color: $buttonColour; 
+  background-color: $buttonColour;
   border: none;
   font-size: 0.75em;
   padding: 13px;
@@ -225,5 +222,12 @@ export default {
     outline:0;
     border: none;
   }
-} 
+}
+
+@media (max-width: 376px){
+  .dashedBox{
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>

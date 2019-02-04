@@ -1,28 +1,34 @@
 <template>
-   <div id="reportTable" v-if="reports">
+   <div id="reportTable" v-if="reports" >
     <div >
       <label class="pageTitle">{{ title }}</label>
       <p class="instructions">
-        Here is a list of generated reports for this account 
+        Here is a list of generated reports for this account
       </p>
-      <div class="btn-group filters">
-        <select class="custom-select" id="dateFilter" v-model="selectedDate" >
-          <option disabled value="" >Filter by Date</option> 
-          <option v-for="date in dateList">{{ date }}</option> 
-        </select>
-        <select class="custom-select" id="userFilter" v-model="selectedUser" >
-          <option disabled value="" >Filter by User</option> 
-          <option v-for="userName in userNameList">{{ userName }}</option>
-        </select>
-        <select class="custom-select" id="profileFilter" v-model="selectedProfile" >
-          <option disabled value="" >Filter by Profile</option> 
-          <option v-for="profile in profileList">{{ profile }}</option> 
-        </select>
-      </div>
+      <b-row  class="btn-group filters">
+        <b-col cols='12' sm = '4'>
+          <select class="custom-select" style='width: 100%;'id="dateFilter" v-model="selectedDate" >
+            <option disabled value="" >Filter by Date</option>
+            <option v-for="date in dateList">{{ date }}</option>
+          </select>
+        </b-col>
+        <b-col cols='12' sm = '4'>
+          <select class="custom-select" id="userFilter" v-model="selectedUser" >
+            <option disabled value="" >Filter by User</option>
+            <option v-for="userName in userNameList">{{ userName }}</option>
+          </select>
+        </b-col>
+        <b-col cols='12' style='' sm = '4'>
+          <select class="custom-select" id="profileFilter" v-model="selectedProfile" style='width: 108px'>
+            <option disabled value="" >Filter by Profile</option>
+            <option v-for="profile in profileList">{{ profile }}</option>
+          </select>
+        </b-col>
+      </b-row>
       <div id="noReportsAvailable" v-if="reports.length == 0">
         <p class="instructions">No Reports available for this account</p>
       </div>
-      <div id="columns" v-else class="flexContainer">
+      <div id="columns" v-else class="">
         <report-row :key="report.id" v-for="report in filteredReports" :report="report"></report-row>
       </div>
     </div>
@@ -86,7 +92,13 @@ export default {
 
 
 .filters {
-  max-width: 40%;
+
+}
+@media (max-width: 376px){
+  .custom-select{
+    min-width: 100%;
+    margin-top: 5px;
+  }
 }
 
 </style>

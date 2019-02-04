@@ -18,6 +18,7 @@
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "4.0.0",
+    "bootstrap-vue": "^2.0.0-rc.11",
     "css-loader": "^0.28.7",
     "goodtables-ui": "git+https://github.com/lintol/goodtables-ui.git#feature/lintol-reporting",
     "jquery": "^3.3.1",
@@ -31,7 +32,7 @@
     "scss-loader": "0.0.1",
     "selenium-server": "2.53.1",
     "style-loader": "^0.19.0",
-    "vee-validate": "2.0.0-rc.5",
+    "vee-validate": "^2.0.0-rc.5",
     "vue": "^2.5.2",
     "vue-form-generator": "^2.2.0",
     "vue-router": "^3.0.1",
@@ -42,7 +43,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.12",
+    "@vue/test-utils": "^1.0.0-beta.25",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",

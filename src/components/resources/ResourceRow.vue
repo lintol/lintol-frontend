@@ -86,6 +86,7 @@ export default {
   computed: {
     statusColor: function () {
       var result;
+      console.log(this.resource.status);
       switch (this.resource.status) {
         case 'new resource':
           result = 'newStatus';
@@ -162,7 +163,6 @@ label {
   font-weight: $bold;
   text-align: center;
 }
- 
 .center {
   display: flex;
   flex-direction: column;
@@ -181,7 +181,7 @@ label {
   max-height: 40px;
   margin-left: 10px;
 }
- 
+
 .verticalAlign {
   vertical-align: middle;
 }

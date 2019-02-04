@@ -29,7 +29,7 @@ export default {
 .app {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
   height: 100%;
   height: 100vh;
 }
@@ -41,5 +41,7 @@ export default {
 .panel {
   padding-left: 31px;
   padding-top: 58px;
+  padding-right: 10px;
+  overflow: auto;
 }
 </style>
