@@ -43,7 +43,7 @@
                v-on:removeProcessor="removeSelectedProcessor" />
           </div>
         </b-col>
-      </b-row class=''>
+      </b-row>
       <b-row>
         <b-col cols='12' sm='12' md='6'>
           <b-button id="addProfile" class="saveButton" @click=addProfile>Add Profile</b-button>

@@ -14,7 +14,7 @@
           A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
         </p>
       </b-col>
-      <b-col order='3' cols='12'>
+      <b-col order='3' cols='4'>
         <b-form-select :options="nameList" id="nameFilter" class="custom-select fullSize" style='width: 100%' v-model="selectedName" >
          <option value="" id='nameFilterHeader'>Filter by Group</option>
         <!--   <option v-for="name in nameList">{{ name }}</option>-->

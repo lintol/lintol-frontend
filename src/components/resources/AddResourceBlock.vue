@@ -1,7 +1,7 @@
 <template>
     <b-row class="sourceRow">
       <b-row>
-        <b-col cols='12' sm='5'>
+        <b-col cols='12' sm='7'>
           <label id="uploadYourFiles" class="uploadYourFiles dashedBox" title="Upload not available yet" @click="uploadFiles">Upload your Files</label>
         </b-col>
         <b-col cols='12' sm='5'>
