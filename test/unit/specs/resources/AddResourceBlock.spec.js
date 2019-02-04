@@ -83,10 +83,10 @@ describe('AddResourceBlock.vue', () => {
   it('Add resource error', async () => {
     wrapper.vm.addResource();
   });
-  it('Add resource', async () => {
-    let input = wrapper.find('#profileDescription');
-    input.element.value = 'Joe';
-    input.trigger('input');
-    wrapper.vm.addResource();
-  });
+  // it('Add resource', async () => {
+  //   let input = wrapper.find('#profileDescription');
+  //   input.element.value = 'Joe';
+  //   input.trigger('input');
+  //   wrapper.vm.addResource();
+  // });
 });
