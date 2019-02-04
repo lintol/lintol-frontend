@@ -6,11 +6,10 @@
       </b-col>
       <b-col cols='12'>
         <p class="instructions">
-          The list of resources that are available for validation by Lintol</p>
+          The list of resources that are available for validation by Lintol
         </p>
       </b-col>
     </b-row>
-
     <add-resource-block v-on:addResource="addResourceAction"></add-resource-block>
     <b-row>
       <b-col>
@@ -24,19 +23,19 @@
           <b-col sm='12' cols='12' md='3'>
               <select id="typeFilter" class="custom-select"  v-model="selectedType" >
                 <option disabled value="" >Filter by Type</option>
-                <option :value="type" v-for="(desc, type) in filterByTypeOptions">{{ desc }}</option>
+                <option :value="type" v-for="(desc, type) in filterByTypeOptions" :key="type">{{ desc }}</option>
               </select>
           </b-col>
           <b-col sm='12' cols='12' md='3'>
             <select id="sourceFilter" class="custom-select"  v-model="selectedSource" >
               <option disabled value="" >Filter by Source</option>
-              <option :value="source" v-for="(desc, source) in filterBySourceOptions">{{ desc }}</option>
+              <option :value="source" v-for="(desc, source) in filterBySourceOptions" :key="source">{{ desc }}</option>
             </select>
           </b-col>
           <b-col sm='12' cols='12' md='3'>
             <select id="dateFilter" class="custom-select" v-model="selectedDate" >
               <option disabled value="" >Filter by Date</option>
-              <option v-for="date in dateList" :value="date[0]">{{ date[1] }}</option>
+              <option v-for="date in dateList" :value="date[0]" :key="date[0]">{{ date[1] }}</option>
             </select>
           </b-col>
           <b-col sm='12' cols='12' md='3' >
@@ -57,40 +56,35 @@
       </b-col>
     </b-row>
     <div style='overflow: auto'>
-    <div class="headerContainer greySeparator">
-      <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
-      <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
-      <label class="source":class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('source')">Source</label>
-      <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
-      <label class="owner" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('owner')">Owner</label>
-      <label class="status" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('status')">Status</label>
-      <label class="actionButton"></label>
-    </div>
-    <div id="columns" class="flexContainer" v-if="resources">
-      <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in resources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
-    </div>
-    <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate>
-      <div class="modal fade" id="chooseFunctionModal" tabindex="-1" role="dialog" aria-labelledby="chooseFunctionModalTitle" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <label class="modalTitle" id="chooseFunctionModalTitle">Select Profile</label>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                <select v-model="selectedProfileId" class="custom-select">
-                  <option disabled selected value="">[Choose Profile]</option>
-                  <option :value="profile.id" v-for="profile in profiles">{{ profile.name }}</option>
-                </select>
-              </div>
-              <div class="modal-footer buttonFooter">
-                 <button type="button" class="btn runProfileButton" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Run Profile</button>
-              </div>
-            </div>
-          </div>
+      <div class="headerContainer greySeparator">
+        <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
+        <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
+        <label class="source" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('source')">Source</label>
+        <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
+        <label class="owner" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('owner')">Owner</label>
+        <label class="status" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('status')">Status</label>
+        <label class="actionButton"></label>
+      </div>
+      <div id="columns" class="flexContainer" v-if="resources">
+        <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in resources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
+      </div>
+      <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate>
+
+      <b-modal id="chooseFunctionModal" title="Select Profile">
+        <b-container>
+          <b-row>
+            <b-col cols="12" class="mt-3">
+              <select v-model="selectedProfileId" class="custom-select">
+                <option disabled selected value="">[Choose Profile]</option>
+                <option :value="profile.id" v-for="profile in profiles" :key="profile.id">{{ profile.name }}</option>
+              </select>
+            </b-col>
+          </b-row>
+        </b-container>
+        <div slot="modal-footer" class="w-100">
+          <button type="button" class="btn runProfileButton" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Run Profile</button>
         </div>
+      </b-modal>
     </div>
   </div>
 </template>
