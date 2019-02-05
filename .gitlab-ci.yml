@@ -5,14 +5,14 @@ variables:
   DOCKER_DRIVER: overlay
 
 stages:
-  - build
+  - install
   - test
   - release
   - deploy
   - trigger
 
 build:
-  stage: build
+  stage: install
   script:
     - npm install
   artifacts:
