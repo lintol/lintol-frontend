@@ -65,25 +65,13 @@ release:
   only:
     - master
 
-deploy:
-  image: garland/aws-cli-docker
-  stage: deploy
-  dependencies:
-    - release
-  script:
-    - tar -czf frontend-build.tgz dist
-    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-$CI_COMMIT_SHA.tgz --body frontend-build.tgz
-    - aws s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-latest.tgz --body frontend-build.tgz
-  only:
-    - master
-
 trigger:
   image: odise/busybox-curl
   stage: trigger
   dependencies:
     - release
   script:
-    - echo curl -X POST -F token=$AWS_BACKEND_TRIGGER -F ref=$AWS_BACKEND_TRIGGER_REF $AWS_BACKEND_TRIGGER_URL
-    - curl -X POST -F token=$AWS_BACKEND_TRIGGER -F ref=$AWS_BACKEND_TRIGGER_REF $AWS_BACKEND_TRIGGER_URL
+    - echo curl -X POST -F token=$GITLAB_BACKEND_TRIGGER -F ref=$GITLAB_BACKEND_TRIGGER_REF $GITLAB_BACKEND_TRIGGER_URL
+    - curl -X POST -F token=$GITLAB_BACKEND_TRIGGER -F ref=$GITLAB_BACKEND_TRIGGER_REF $GITLAB_BACKEND_TRIGGER_URL
   only:
     - master
