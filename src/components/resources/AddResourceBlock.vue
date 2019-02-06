@@ -182,28 +182,7 @@ export default {
 .fade.in {
   opacity: 1;
 }
-.modal.in .modal-dialog {
-  -webkit-transform: translate(0, 0);
-  -o-transform: translate(0, 0);
-  transform: translate(0, 0);
-}
 
-.modal-backdrop .fade .in {
-  opacity: 0.5 !important;
-}
-
-.modalTitle {
-  font-weight: $bold;
-}
-
-.modal-backdrop.fade {
-    opacity: 0.5 !important;
-}
-
-.buttonFooter {
-  box-pack:start;
-  display: block;
-}
 
 .addUrlButton {
   background-color: $buttonColour;
