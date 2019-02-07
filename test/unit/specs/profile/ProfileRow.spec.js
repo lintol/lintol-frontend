@@ -33,10 +33,10 @@ describe('ProfileRow.vue', () => {
     });
     expect(wrapper.vm.$el.querySelector('label').textContent).to.equal(' Waste Profile ');
     expect(wrapper.vm.$el.querySelector('p').textContent).to.equal('Waste Data ');
+    expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(2) p').textContent).to.equal('1st Jan 2001');
     expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(3) p').textContent).to.equal('1st Jan 2001');
-    expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(4) p').textContent).to.equal('1st Jan 2001');
-    expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(5) p').textContent).to.equal('2');
-    expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(6) p').textContent).to.equal('waste-taggy');
+    expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(4) p').textContent).to.equal('2');
+    expect(wrapper.vm.$el.querySelector('.profileRow b-col:nth-child(5) p').textContent).to.equal('waste-taggy');
   });
 
   it('Profile action archive', () => {
@@ -106,8 +106,5 @@ describe('ProfileRow.vue', () => {
       localVue,
       router
     });
-    expect(wrapper.vm.isOpen).to.be.true;
-    wrapper.vm.openTab();
-    expect(wrapper.vm.isOpen).to.be.false;
   });
 });
