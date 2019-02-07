@@ -1,6 +1,5 @@
 <template>
   <b-container id="profileTable">
-    <transition name="component-fade" mode="in-out">
     <b-row>
       <b-col order='2' cols='12' sm='3'>
         <b-button id="addNewProfileButton" class="addButton fullSize" @click="addProfile">
@@ -14,20 +13,22 @@
           A List of Data Profiles associated with this account. You can add more data profiles by clicking the "Add New Data Profile" button.
         </p>
       </b-col>
-      <b-col order='3' cols='4'>
-        <b-form-select :options="nameList" id="nameFilter" class="custom-select fullSize" style='width: 100%' v-model="selectedName" >
-         <option value="" id='nameFilterHeader'>Filter by Group</option>
-        <!--   <option v-for="name in nameList">{{ name }}</option>-->
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-form-select :options="nameList" id="nameFilter" class="custom-select fullSize" v-model="selectedName">
+          <option value="" id='nameFilterHeader'>Filter by Group</option>
         </b-form-select>
-        <div id="noProfilesAvailable" v-if="profiles.length == 0">
-          <b-alert class="instructions"> No Profiles available for this account</b-alert>
-        </div>
-        <div id="columns"  class="">
-          <profile-row class='profile-row' :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
-        </div>
       </b-col>
     </b-row>
-    </transition>
+    <b-row>
+      <b-col id="noProfilesAvailable" v-if="profiles.length == 0">
+        <b-alert class="instructions"> No Profiles available for this account</b-alert>
+      </b-col>
+      <b-col id="columns" v-else>
+        <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 

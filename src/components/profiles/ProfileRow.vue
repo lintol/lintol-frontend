@@ -1,34 +1,30 @@
 <template>
-  <div id="profiles-row" class="">
-    <b-row no-gutters  class="profileRow shadedRow fullSize">
-      <b-col sm='4' cols='6' class="profileColumn profileMainColumn center first fullSize" v-on:click='openTab'>
+  <b-container>
+    <b-row class="profileRow shadedRow fullSize">
+      <b-col cols="3" class="profileColumn profileMainColumn center first fullSize">
         <div class="rightSeparator">
           <label class="profileName"> {{ profile.name }} </label>
           <user v-if="profile.creator" class="user" :user="profile.creator"></user>
           <p class="description" >{{ profile.description }} </p>
         </div>
-
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' cols = '10' offset='1' order='3' class='third bottom-bar show'>
-
-      </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='1' cols='6' class="profileColumn center third fullSize">
+      <b-col col="2" class="profileColumn center third fullSize">
         <label class="columnTitle">Created</label>
         <p>{{ convertDate(profile.created_at.date) }}</p>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='1' cols='6' class="profileColumn center third fullSize">
+      <b-col col="2" class="profileColumn center third fullSize">
         <label class="columnTitle">Last Updated</label>
         <p>{{ convertDate(profile.updated_at.date) }}</p>
       </b-col>
-      <b-col sm='1' cols='6' class="profileColumn center second fullSize" v-on:click='openTab'>
+      <b-col col="2" class="profileColumn center second fullSize">
         <label class="columnTitle">Version</label>
         <p >{{ profile.version }}</p>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='1' cols='12' class="profileColumn center third fullSize" >
+      <b-col col="2"class="profileColumn center third fullSize" >
         <label class="columnTitle">Unique Tag</label>
         <p>{{ profile.uniqueTag }}</p>
       </b-col>
-      <b-col v-bind:class='{open: isOpen}' sm='2' cols='12' class="profileColumn verticalCenterItems third ">
+      <b-col col="2" class="profileColumn verticalCenterItems third ">
         <select class="fullSize profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
           <option style='text-align: left' value="">Edit/Archive</option>
           <option value="edit">Edit</option>
@@ -36,7 +32,7 @@
         </select>
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -53,8 +49,6 @@ export default {
   },
   data () {
     return {
-      msg: 'Data Profiles',
-      isOpen: true
     };
   },
   methods: {
@@ -68,9 +62,6 @@ export default {
       if (e.target.value === 'archive') {
         console.log('archiving');
       }
-    },
-    openTab: function () {
-      this.isOpen = !this.isOpen;
     }
   },
   components: {
