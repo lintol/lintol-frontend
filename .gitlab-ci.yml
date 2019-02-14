@@ -30,8 +30,10 @@ test:
     - git clone https://github.com/lintol/jsonapi-server-mock-lintol.git
     - npm install --prefix jsonapi-server-mock-lintol/
     - npm start --prefix jsonapi-server-mock-lintol/ &
-  image: martinnaughton/nightwatch-e2e-headless:latest
-  script: npm run e2e
+  image: martinnaughton/nightwatch-e2e-headless:java8
+  script: 
+    - ls /usr/bin/google-chrome 
+    - npm run e2e
   artifacts:
     paths:
       - test/unit/coverage/
