@@ -30,7 +30,7 @@ test:
   image: martinnaughton/nightwatch-e2e-headless:java8
   script: 
     - ls /usr/bin/google-chrome 
-    - npm run e2e
+    - npm run test
   artifacts:
     paths:
       - test/unit/coverage/
