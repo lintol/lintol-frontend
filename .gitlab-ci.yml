@@ -15,6 +15,7 @@ build:
   stage: install
   script:
     - npm install
+    - npm install -g json-server
   artifacts:
     paths:
       - node_modules
@@ -25,10 +26,6 @@ test:
     - whoami
     - Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
     - export DISPLAY=:99.0
-    - npm install 
-    - npm install -g json-server
-    - git clone https://github.com/lintol/jsonapi-server-mock-lintol.git
-    - npm install --prefix jsonapi-server-mock-lintol/
     - npm start --prefix jsonapi-server-mock-lintol/ &
   image: martinnaughton/nightwatch-e2e-headless:java8
   script: 
