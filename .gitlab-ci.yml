@@ -30,7 +30,7 @@ test:
   image: martinnaughton/nightwatch-e2e-headless:java8
   script: 
     - ls /usr/bin/google-chrome 
-    - npm run test
+    #- npm run test
   artifacts:
     paths:
       - test/unit/coverage/
@@ -61,6 +61,18 @@ release:
       - CI_BUILD_REF
   dependencies:
     - build
+  only:
+    - master
+
+deploy:
+  image: garland/aws-cli-docker
+  stage: deploy
+  dependencies:
+    - release
+  script:
+    - tar -czf frontend-build.tgz dist
+    - aws --endpoint-url https://mo.ev.openindustry.in s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-$CI_COMMIT_SHA.tgz --body frontend-build.tgz
+    - aws --endpoint-url https://mo.ev.openindustry.in s3api put-object --bucket $AWS_FRONTEND_BUCKET --key front-end-latest.tgz --body frontend-build.tgz
   only:
     - master
 
