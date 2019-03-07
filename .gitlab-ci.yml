@@ -72,8 +72,8 @@ deploy:
     - release
   script:
     - tar -czf frontend-build.tgz dist
-    - aws --endpoint-url https://mo.ev.openindustry.in s3 cp --recursive dist s3://$AWS_FRONTEND_BUCKET/deploy/dist-$CI_COMMIT_SHA
-    - aws --endpoint-url https://mo.ev.openindustry.in s3 cp --recursive dist s3://$AWS_FRONTEND_BUCKET/deploy/dist-latest
+    - aws --endpoint-url https://mo.ev.openindustry.in s3 cp --recursive dist s3://$AWS_FRONTEND_BUCKET/cdn/dist-$CI_COMMIT_SHA
+    - echo $CI_COMMIT_SHA | aws --endpoint-url https://mo.ev.openindustry.in s3 cp - s3://$AWS_FRONTEND_BUCKET/cdn/latest-commit
   only:
     - master
 
