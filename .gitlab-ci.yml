@@ -8,7 +8,7 @@ stages:
   - install
   - test
   - release
-  - pages
+  #- pages
   - deploy
   - trigger
 
@@ -38,18 +38,18 @@ test:
   dependencies:
     - build
 
-pages:
-  stage: pages
-  dependencies:
-    - test 
-  script:
-    - mv test/unit/coverage/lcov-report/ public/
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-  only:
-    - master
+#pages:
+#  stage: pages
+#  dependencies:
+#    - test 
+#  script:
+#    - mv test/unit/coverage/lcov-report/ public/
+#  artifacts:
+#    paths:
+#      - public
+#    expire_in: 30 days
+#  only:
+#    - master
 
 release:
   stage: release
