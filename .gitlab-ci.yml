@@ -9,6 +9,7 @@ stages:
   - test
   - release
   - pages
+  - deploy
   - trigger
 
 build:
