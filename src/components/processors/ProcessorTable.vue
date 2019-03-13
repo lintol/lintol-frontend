@@ -50,7 +50,7 @@ export default {
   computed: {
     filteredProcessors: function () {
       try {
-        var re = new RegExp(this.search);
+        var re = new RegExp(this.search, 'i');
         return this.processors.filter((processor) => {
           return re.exec(processor.name);
         });
