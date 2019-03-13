@@ -8,7 +8,7 @@
           <p class="description" >{{ profile.description }} </p>
         </div>
       </b-col>
-      <b-col cols="1" class="profileColumn center">
+      <b-col cols="2" class="profileColumn center">
         <div>
         <label class="columnTitle">Created</label>
         <p>{{ convertDate(profile.created_at.date) }}</p>
@@ -32,12 +32,15 @@
         <p>{{ profile.uniqueTag }}</p>
         </div>
       </b-col>
-      <b-col cols="2" class="profileColumn verticalCenterItems">
-        <select class="profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
+      <b-col cols="1" class="profileColumn verticalCenterItems">
+        <!-- <select class="profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
           <option style='text-align: left' value="">Edit/Archive</option>
           <option value="edit">Edit</option>
           <option value="archive">Archive</option>
-        </select>
+        </select> -->
+        <b-button class="profileActions verticalAlign viewAction" id="profileAction" @click="profileAction(profile.id)">
+          Edit
+        </b-button>
       </b-col>
     </b-row>
   </b-container>
@@ -61,15 +64,15 @@ export default {
   },
   methods: {
     convertDate: convertDate,
-    profileAction: function (e) {
-      console.log('profile action:');
-      if (e.target.value === 'edit') {
-        console.log(this.$router);
-        this.$router.push({name: 'editProfile', params: { profileId: '01aa762d-23f7-4cbc-b150-3a41ee4b9551' }});
-      }
-      if (e.target.value === 'archive') {
-        console.log('archiving');
-      }
+    profileAction: function (profileId) {
+      this.$router.push({name: 'editProfile', params: { profileId: profileId }});
+      // if (e.target.value === 'edit') {
+      //   console.log(this.$router);
+      //   this.$router.push({name: 'editProfile', params: { profileId: '01aa762d-23f7-4cbc-b150-3a41ee4b9551' }});
+      // }
+      // if (e.target.value === 'archive') {
+      //   console.log('archiving');
+      // }
     }
   },
   components: {
