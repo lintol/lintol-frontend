@@ -8,23 +8,23 @@
           <p class="description" >{{ profile.description }} </p>
         </div>
       </b-col>
-      <b-col col="2" class="profileColumn center third fullSize">
+      <b-col cols="2" class="profileColumn center third fullSize">
         <label class="columnTitle">Created</label>
         <p>{{ convertDate(profile.created_at.date) }}</p>
       </b-col>
-      <b-col col="2" class="profileColumn center third fullSize">
+      <b-col cols="2" class="profileColumn center third fullSize">
         <label class="columnTitle">Last Updated</label>
         <p>{{ convertDate(profile.updated_at.date) }}</p>
       </b-col>
-      <b-col col="2" class="profileColumn center second fullSize">
+      <b-col cols="2" class="profileColumn center second fullSize">
         <label class="columnTitle">Version</label>
         <p >{{ profile.version }}</p>
       </b-col>
-      <b-col col="2"class="profileColumn center third fullSize" >
+      <b-col cols="2" class="profileColumn center third fullSize" >
         <label class="columnTitle">Unique Tag</label>
         <p>{{ profile.uniqueTag }}</p>
       </b-col>
-      <b-col col="2" class="profileColumn verticalCenterItems third ">
+      <b-col cols="2" class="profileColumn verticalCenterItems third ">
         <select class="fullSize profileActions verticalAlign viewAction" id="profileAction" @click=profileAction>
           <option style='text-align: left' value="">Edit/Archive</option>
           <option value="edit">Edit</option>
