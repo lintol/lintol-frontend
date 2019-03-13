@@ -33,7 +33,7 @@
       </b-row>
       <b-row>
         <b-col cols='12' sm='12' md='6'>
-          <v-select :clearable="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
+          <v-select class="mb-3" :clearable="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
           <div class="processorContainer">
             <processor-configuration
                :key="configuration.id"

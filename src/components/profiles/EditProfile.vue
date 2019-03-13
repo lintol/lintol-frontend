@@ -11,7 +11,7 @@
       <div>
         <p class="subHeading">Choose your Processor</p>
         <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
-        <v-select :clearable="false"  placeholder="Search for a Processor"  :options="processorList" :onChange=processorSelected></v-select>
+        <v-select class="mb-3" :clearable="false"  placeholder="Search for a Processor"  :options="processorList" :onChange=processorSelected></v-select>
         <div class="processorContainer">
           <processor-configuration
              :key="configuration.id"

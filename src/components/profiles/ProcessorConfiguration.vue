@@ -38,7 +38,7 @@ export default {
   name: 'ProcessorConfiguration',
   props: {
     value: {
-      type: String,
+      type: Object,
       required: true
     },
     configuration: {
