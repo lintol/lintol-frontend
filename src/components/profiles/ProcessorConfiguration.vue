@@ -1,24 +1,23 @@
 <template>
-      <b-card>
-      <!-- <label  slot="header" class="xmark" @click="removeProcessor">&#x274C; </label> -->
+      <b-card header-tag="header">
+      <label  slot="header" class="xmark" @click="removeProcessor">&#x274C; </label>
         <b-row>
           <b-col cols="1" >
             <div style="text-align:center;">
-            <svg width="25" height="25" style="display: block;margin: auto;">
+            <svg width="26" height="26" style="display: block;margin: auto;">
                 <circle cx="13" cy="13" r="12" stroke="grey" stroke-width="1" fill="none" />
                 <circle cx="13" cy="13" r="7" stroke="#F1592A" stroke-width="1" fill="#F1592A" />
               </svg>
             </div>
           </b-col>
-          <b-col cols="7">
+          <b-col cols="9">
             <div>
             <label id="processorTitle" class="processorTitle">{{ processor.name }}</label>
             <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
           </div>
           </b-col>
-          <b-col cols="4">
-            <label slot="header" @click="removeProcessor">&#x274C; </label>
-            <label class="editConfigurationLabel" v-if="!editConfiguration && !configurationOptionsEmtpy(configurationOptions)" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
+          <b-col cols="2">
+            <label class="editConfigurationLabel" v-if="!editConfiguration && !configurationOptionsEmtpy(configurationOptions)" @click="editConfiguration = !editConfiguration">Edit</label>
           </b-col>
         </b-row>
         <b-row>
@@ -30,30 +29,6 @@
           </b-col>
         </b-row>
     </b-card>
-      <!-- <div>
-      <label class="xmark" @click="removeProcessor">&#x274C; </label>
-      <div class="processorContainer" v-if="configuration.processor">
-        <div class="xSmall">
-         <div class="orangeCheckbox">
-           <input type="checkbox" value="1" id="active" name="active" checked="checked" disabled/>
-           <label for=active></label>
-         </div>
-        </div>
-        <div class="largeSpace">
-          <div>
-            <label id="processorTitle" class="processorTitle item1">{{ processor.name }}</label>
-            <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
-          </div>
-        </div>
-        <div class="smallSpace">
-         <label class="editConfigurationLabel" v-if="!editConfiguration && configurationOptions" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
-        </div>
-      </div>
-      <div v-if="editConfiguration && configurationOptions">
-        <vue-form-generator :schema="configurationOptions" :model="model" :options="formOptions"></vue-form-generator>
-        <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
-      </div>
-      </div> -->
 </template>
 
 <script>
@@ -124,13 +99,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
 
 .xmark {
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.75em;
   float: right;
+  margin-bottom: 0px;
 }
 
 .processorTitle {
@@ -160,11 +136,12 @@ export default {
 
 .card-header {
   border-bottom: none;
-  padding: 0px 20px 0px 0px;
+  padding: 0px 10px 0px 0px;
   background-color: white;
 }
 
 .card-body {
   border-bottom: none;
+  padding: 0.25rem;
 }
 </style>
