@@ -8,7 +8,7 @@
         </p>
       </b-col>
       <b-col cols='12' sm='4'>
-        <b-form-input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" type="Search" v-model="search"/>
+        <b-form-input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" v-model="search"/>
       </b-col>
       <b-col cols='12' sm='2' offset-sm="5">
         <label class="numberOfProcessors">{{ filteredProcessors.length }} Processors</label>
