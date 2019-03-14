@@ -46,19 +46,19 @@ e2e:
   dependencies:
     - build
 
-pages:
-  stage: pages
-  dependencies:
-    - e2e 
-    - unit
-  script:
-    - mv test/unit/coverage/lcov-report/ public/
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-  only:
-    - master
+#pages:
+#  stage: pages
+#  dependencies:
+#    - e2e 
+#    - unit
+#  script:
+#    - mv test/unit/coverage/lcov-report/ public/
+#  artifacts:
+#    paths:
+#      - public
+#    expire_in: 30 days
+#  only:
+#    - master
 
 release:
   stage: release
