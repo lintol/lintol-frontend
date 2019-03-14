@@ -10,17 +10,21 @@
       </b-row>
       <b-row>
         <b-col cols='12' sm='12' md='6'>
-          <b-form-input id="profileName" maxlength="30" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="formItem inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
+          <div class="formItem">
+            <b-form-input id="profileName" maxlength="30" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
+            <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
+          </div>
         </b-col>
       </b-row>
-      <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
       <b-row>
         <b-col cols='12' sm='12' md='6'>
-          <b-form-textarea id="profileDescription" maxlength="200" class="formItem inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+          <div class="formItem">
+            <b-form-textarea id="profileDescription" maxlength="200" class="inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
+            <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
+          </div>
         </b-col>
       </b-row>
       <label class="descriptionLength" :class='{ warningText: descriptionLength == 200 }'>Length: {{ descriptionLength }}</label>
-      <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
       <b-row>
         <b-col cols='12' sm='12' md='6'>
           <p class="subHeading">Choose your Processor</p>
@@ -148,7 +152,7 @@ export default {
 .inputName {
   max-height: 40px;
   font-size: 0.75em;
-  padding: 10px 0px;
+  padding: 10px 15px;
 }
 
 .inputNameBorder {
@@ -156,13 +160,13 @@ export default {
 }
 
 .inputDescription {
-  margin-top: 20px;
-  padding-top: 10px;
   font-size: 0.75em;
 }
 .formItem {
   margin-bottom: 10px;
-  padding-left: 10px;
+  > p {
+    margin-bottom: 0px;
+  }
 }
 
 .button {
@@ -180,6 +184,10 @@ export default {
 
 .saveButton{
   margin-top: 36px;
+}
+
+.warningText {
+  font-size: 0.75em;
 }
 
 </style>
