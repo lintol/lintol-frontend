@@ -4,6 +4,8 @@
       <b-col cols='12'>
         <label class="pageTitle">{{ title }}</label>
       </b-col>
+    </b-row>
+    <b-row>
       <b-col cols='12'>
         <p class="instructions">
           The list of resources that are available for validation by Lintol
@@ -21,7 +23,7 @@
       <b-col cols='12' sm='10' md='12' lg='9'>
         <b-row class="btn-group">
           <b-col sm='12' cols='12' md='3'>
-              <select id="typeFilter" class="custom-select"  v-model="selectedType" >
+              <select id="typeFilter" class="custom-select" v-model="selectedType" >
                 <option disabled value="" >Filter by Type</option>
                 <option :value="type" v-for="(desc, type) in filterByTypeOptions" :key="type">{{ desc }}</option>
               </select>
@@ -397,5 +399,9 @@ export default {
 .custom-select{
   min-width: 90%;
   margin-bottom: 3px;
+}
+
+.instructions {
+  margin-bottom: 0px;
 }
 </style>

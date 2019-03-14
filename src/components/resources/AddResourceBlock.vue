@@ -102,7 +102,7 @@ export default {
 .sourceRow {
    display: flex;
    flex-direction: row;
-   margin: 20px 0px;
+   margin: 10px 0px;
 }
 
 .uploadYourFiles {
