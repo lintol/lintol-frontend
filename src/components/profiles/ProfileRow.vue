@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-row class="shadedRow" no-gutters>
+    <b-row class="profileRow shadedRow" no-gutters>
       <b-col cols="3" class="profileMainColumn center">
         <div class="rightSeparator">
           <label class="profileName"> {{ profile.name }} </label>
