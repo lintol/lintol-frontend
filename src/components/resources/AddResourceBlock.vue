@@ -5,7 +5,7 @@
           <b-btn id="uploadYourFiles" class="uploadYourFiles dashedBox" @click="uploadFiles">Upload your Files</b-btn>
         </b-col>
         <b-col cols='12' sm='5'>
-          <b-btn id="addFromURL" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
+          <b-btn id="addFromURLButton" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
         </b-col>
       </b-row>
       <b-modal id="addUrlModal" ref="addUrlModal" title="Add from URL">
@@ -18,7 +18,7 @@
             </b-row>
           </b-container>
           <div slot="modal-footer" class="w-100">
-            <b-btn id="addFromURL" v-b-modal.addUrlModal class="addUrlButton" @click="addResource">Add URLs to Lintol</b-btn>
+            <b-btn id="addURLs" v-b-modal.addUrlModal class="addUrlButton" @click="addResource">Add URLs to Lintol</b-btn>
           </div>
         </b-modal>
      <!--<div class="externalBox dashedBox">
