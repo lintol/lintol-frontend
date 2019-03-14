@@ -46,7 +46,8 @@ e2e:
 pages:
   stage: pages
   dependencies:
-    - test 
+    - e2e 
+    - unit
   script:
     - mv test/unit/coverage/lcov-report/ public/
   artifacts:
