@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     addProfile: function () {
-      this.$router.push({name: 'addProfile'});
+      this.$router.push({ name: 'addProfile', params: {actionType: 'Add'} });
     }
   },
   computed: {

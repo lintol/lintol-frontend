@@ -65,7 +65,7 @@ export default {
   methods: {
     convertDate: convertDate,
     profileAction: function (profileId) {
-      this.$router.push({name: 'editProfile', params: { profileId: profileId }});
+      this.$router.push({name: 'editProfile', params: { actionType: 'Edit', profileId: profileId }});
       // if (e.target.value === 'edit') {
       //   console.log(this.$router);
       //   this.$router.push({name: 'editProfile', params: { profileId: '01aa762d-23f7-4cbc-b150-3a41ee4b9551' }});
