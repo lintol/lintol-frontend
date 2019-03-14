@@ -20,20 +20,26 @@ build:
     paths:
       - node_modules
 
-test:
+unit:
+  stage: test
+  image: martinnaughton/nightwatch-e2e-headless:java8
+  script: 
+    - npm run unit
+  artifacts:
+    paths:
+      - test/unit/coverage/
+  dependencies:
+    - build
+
+e2e:
   stage: test
   before_script:
-    - whoami
     - Xvfb :99 -screen 0 1024x768x16 &> xvfb.log &
     - export DISPLAY=:99.0
     - npm start --prefix jsonapi-server-mock-lintol/ &
   image: martinnaughton/nightwatch-e2e-headless:java8
   script: 
-    - ls /usr/bin/google-chrome 
-    - npm run test
-  artifacts:
-    paths:
-      - test/unit/coverage/
+    - npm run e2e
   dependencies:
     - build
 
