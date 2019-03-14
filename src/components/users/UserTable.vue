@@ -8,16 +8,15 @@
         List of accessible users
       </p>
       <!--<select id="groupFilter" v-model="group">
-        <option disabled value="" >Filter by Groups</option> 
+        <option disabled value="" >Filter by Groups</option>
       </select>-->
-      <input id="processorSearch" class="userSearch" placeholder="Search for a Processor" type="Search" v-model="search">
+      <input id="userSearch" class="userSearch" placeholder="Search for a User" type="Search" v-model="search">
       <div id="noUsersAvailable" v-if="users.length == 0">
         <p class="instructions">No Users available for this account</p>
       </div>
       <div id="columns" v-else class="flexContainer">
         <user-row :key="user.id" :index="index" v-for="(user, index) in filteredUsers" :user="user"></user-row>
       </div>
-      <img src="~@/assets/images/search.svg" style="width:0.575em ; height: 0.575em;"/>
     </div>
   </div>
   </div>

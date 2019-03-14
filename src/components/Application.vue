@@ -42,6 +42,5 @@ export default {
   padding-left: 31px;
   padding-top: 58px;
   padding-right: 10px;
-  overflow: auto;
 }
 </style>
