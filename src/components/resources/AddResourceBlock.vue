@@ -8,7 +8,7 @@
           <b-btn id="addFromURL" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
         </b-col>
       </b-row>
-      <b-modal id="addUrlModal" title="Add from URL">
+      <b-modal id="addUrlModal" ref="addUrlModal" title="Add from URL">
           <b-container>
             <b-row>
               <b-col cols="12" class="mt-3">
@@ -41,18 +41,11 @@ export default {
   },
   data () {
     return {
-      urls: '',
-      showAddUrlModal: true
+      urls: ''
     };
   },
   methods: {
     convertDate: convertDate,
-    resourceAction: function (e) {
-      // this.$router.push({name: 'editResource', params: { resourceId: this.resource.id }});
-    },
-    /* addResource: function (action) {
-      this.$emit('addResource', action);
-    }, */
     uploadFiles: function () {
       var uploadTarget = null;
       if (this.loggedInUser && this.loggedInUser.driver && this.loggedInUser.driverServer) {
@@ -80,11 +73,14 @@ export default {
           });
         }
         this.$emit('addResource', resource);
-        this.urls = '';
-        this.showAddUrlModal = false;
+        this.$refs.addUrlModal.hide();
+        this.clearUserInput();
       }).catch((error) => {
         console.log('Validation error:' + error);
       });
+    },
+    clearUserInput: function () {
+      this.urls = '';
     }
   },
   components: {
