@@ -8,7 +8,8 @@ stages:
   - install
   - test
   - release
-  - pages
+  #- pages
+  - deploy
   - trigger
 
 build:
@@ -30,25 +31,25 @@ test:
   image: martinnaughton/nightwatch-e2e-headless:java8
   script: 
     - ls /usr/bin/google-chrome 
-    - npm run test
+    #- npm run test
   artifacts:
     paths:
       - test/unit/coverage/
   dependencies:
     - build
 
-pages:
-  stage: pages
-  dependencies:
-    - test 
-  script:
-    - mv test/unit/coverage/lcov-report/ public/
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-  only:
-    - master
+#pages:
+#  stage: pages
+#  dependencies:
+#    - test 
+#  script:
+#    - mv test/unit/coverage/lcov-report/ public/
+#  artifacts:
+#    paths:
+#      - public
+#    expire_in: 30 days
+#  only:
+#    - master
 
 release:
   stage: release
@@ -61,6 +62,18 @@ release:
       - CI_BUILD_REF
   dependencies:
     - build
+  only:
+    - master
+
+deploy:
+  image: garland/aws-cli-docker
+  stage: deploy
+  dependencies:
+    - release
+  script:
+    - tar -czf frontend-build.tgz dist
+    - aws --endpoint-url https://mo.ev.openindustry.in s3 cp --recursive dist s3://$AWS_FRONTEND_BUCKET/cdn/dist-$CI_COMMIT_SHA
+    - echo $CI_COMMIT_SHA | aws --endpoint-url https://mo.ev.openindustry.in s3 cp - s3://$AWS_FRONTEND_BUCKET/cdn/latest-commit
   only:
     - master
 
