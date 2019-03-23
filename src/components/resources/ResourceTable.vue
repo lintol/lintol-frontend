@@ -1,9 +1,11 @@
 <template>
-  <div id="resourceTable" v-if="resources">
+  <div id="resourceTable">
     <b-row>
       <b-col cols='12'>
         <label class="pageTitle">{{ title }}</label>
       </b-col>
+    </b-row>
+    <b-row>
       <b-col cols='12'>
         <p class="instructions">
           The list of resources that are available for validation by Lintol
@@ -21,7 +23,7 @@
       <b-col cols='12' sm='10' md='12' lg='9'>
         <b-row class="btn-group">
           <b-col sm='12' cols='12' md='3'>
-              <select id="typeFilter" class="custom-select"  v-model="selectedType" >
+              <select id="typeFilter" class="custom-select" v-model="selectedType" >
                 <option disabled value="" >Filter by Type</option>
                 <option :value="type" v-for="(desc, type) in filterByTypeOptions" :key="type">{{ desc }}</option>
               </select>
@@ -46,7 +48,7 @@
       <b-col cols='12' sm='2' md='1' lg='3'>
         <div class="actionContainer" >
           <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
-          <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction>
+          <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction :disabled="noResourcesSelected">
             <option value="" >Choose Function</option>
             <option value="runProfile">Run Profile</option>
             <option value="archive" >Archive</option>
@@ -55,7 +57,7 @@
         </div>
       </b-col>
     </b-row>
-    <div style='overflow: auto'>
+    <div>
       <div class="headerContainer greySeparator">
         <label class="filenameHeader" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filename')" >Resource Name</label>
         <label class="fileType" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('filetype')">File Type</label>
@@ -63,14 +65,18 @@
         <label class="dateAdded" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]" @click="sort('created_at')">Date Added</label>
         <label class="owner" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('owner')">Owner</label>
         <label class="status" :class="[ ascDesc == 'asc' ? 'arrowDown' : 'arrowUp' ]"  @click="sort('status')">Status</label>
-        <label class="actionButton"></label>
+        <label class="actionButton">Action</label>
       </div>
       <div id="columns" class="flexContainer" v-if="resources">
-        <resource-row v-if="resource.archived==0" :key="resource.id" :resource="resource" :index="resource.id" v-for="(resource, index) in resources" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
+        <div v-for="(resource)  in resources" :key="resource.id">
+          <resource-row v-if="resource.archived==0"  :resource="resource" :index="resource.id" :clearSelected=clearSelected @resourceSelected="selectedResource"/>
+        </div>
+        <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate>
       </div>
-      <paginate :initial-page="0" :page-count="resourcePages" :margin-pages="2" :click-handler=getResources :prev-text="'<'" :next-text="'>'" :container-class="'pagination'" :page-class="'page-item'"> </paginate>
-
-      <b-modal id="chooseFunctionModal" title="Select Profile">
+      <div v-else>
+        <p class="noResourcesCentered">No resources</p>
+      </div>
+      <b-modal id="chooseFunctionModal" ref="chooseFunctionModal" title="Select Profile">
         <b-container>
           <b-row>
             <b-col cols="12" class="mt-3">
@@ -82,7 +88,7 @@
           </b-row>
         </b-container>
         <div slot="modal-footer" class="w-100">
-          <button type="button" class="btn runProfileButton" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Run Profile</button>
+          <b-button  class="runProfileButton" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Run Profile</b-button>
         </div>
       </b-modal>
     </div>
@@ -105,7 +111,6 @@ import {
 import ResourceRow from './ResourceRow';
 import AddResourceBlock from './AddResourceBlock';
 import { convertDate, convertToTimeStamp } from '@/components/common/date.js';
-import $ from 'jquery';
 
 export default {
   name: 'ResourceTable',
@@ -143,7 +148,7 @@ export default {
     },
     resourceAction: function (e) {
       if (e.target.value === 'runProfile') {
-        $('#chooseFunctionModal').modal('show');
+        this.$refs.chooseFunctionModal.show();
       }
       if (e.target.value === 'archive') {
         var archivedResource = this.selectedResources[0];
@@ -242,7 +247,11 @@ export default {
     },
     filterByTypeOptions: function () {
       return {'': '(any)', 'geojson': 'GeoJSON', 'csv': 'CSV'};
+    },
+    noResourcesSelected: function () {
+      return this.selectedResources.length === 0;
     }
+
   },
   mounted: function () {
     this.$store.dispatch(LOAD_DATA_RESOURCES, { reset: true, page: 1 });
@@ -270,6 +279,10 @@ export default {
 <style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
 @import './table.scss';
+
+.noResourcesCentered {
+  text-align: center;
+}
 
 .blackDropDown {
   background-color: #333333;
@@ -388,18 +401,7 @@ export default {
   margin-bottom: 3px;
 }
 
-@media (max-width: 376px){
-  .actionContainer{
-    width: 100%;
-    float: left;
-  }
-
-  #searchValidations{
-    width: 100%;
-  }
-
-  .custom-select{
-    min-width: 100%;
-  }
+.instructions {
+  margin-bottom: 0px;
 }
 </style>

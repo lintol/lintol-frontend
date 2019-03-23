@@ -1,28 +1,34 @@
 <template>
-    <div class="processorConfiguration">
-      <label class="xmark" @click="removeProcessor">&#x274C; </label>
-      <div class="processorContainer" v-if="configuration.processor">
-        <div class="xSmall">
-         <div class="orangeCheckbox">
-           <input type="checkbox" value="1" id="active" name="active" checked="checked" disabled/>
-           <label for=active></label>
-         </div>
-        </div>
-        <div class="largeSpace">
-          <div>
-            <label id="processorTitle" class="processorTitle item1">{{ processor.name }}</label>
+      <b-card header-tag="header">
+      <label  slot="header" class="xmark" @click="removeProcessor">&#x274C; </label>
+        <b-row>
+          <b-col cols="1" >
+            <div style="text-align:center;">
+            <svg width="26" height="26" style="display: block;margin: auto;">
+                <circle cx="13" cy="13" r="12" stroke="grey" stroke-width="1" fill="none" />
+                <circle cx="13" cy="13" r="7" stroke="#F1592A" stroke-width="1" fill="#F1592A" />
+              </svg>
+            </div>
+          </b-col>
+          <b-col cols="9">
+            <div>
+            <label id="processorTitle" class="processorTitle">{{ processor.name }}</label>
             <p id="processorDescription" class="processorDescription item2" >{{ processor.description }}</p>
           </div>
-        </div>
-        <div class="smallSpace">
-         <label class="editConfigurationLabel" v-if="!editConfiguration && configurationOptions" @click="editConfiguration = !editConfiguration">Edit Configuration</label>
-        </div>
-      </div>
-      <div v-if="editConfiguration && configurationOptions">
-        <vue-form-generator :schema="configurationOptions" :model="model" :options="formOptions"></vue-form-generator>
-        <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
-      </div>
-   </div>
+          </b-col>
+          <b-col cols="2">
+            <label class="editConfigurationLabel" v-if="!editConfiguration && !configurationOptionsEmtpy(configurationOptions)" @click="editConfiguration = !editConfiguration">Edit</label>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <div v-if="editConfiguration && configurationOptions">
+              <vue-form-generator :schema="configurationOptions" :model="model" :options="formOptions"></vue-form-generator>
+              <label class="saveLabel" v-if="editConfiguration" @click="saveConfiguration">Save Configuration</label>
+            </div>
+          </b-col>
+        </b-row>
+    </b-card>
 </template>
 
 <script>
@@ -32,7 +38,7 @@ export default {
   name: 'ProcessorConfiguration',
   props: {
     value: {
-      type: String,
+      type: Object,
       required: true
     },
     configuration: {
@@ -59,6 +65,9 @@ export default {
     },
     removeProcessor: function () {
       this.$emit('removeProcessor', this.processor.name);
+    },
+    configurationOptionsEmtpy: function (configOptions) {
+      return Object.keys(configOptions).length === 0;
     }
   },
   components: {
@@ -90,59 +99,23 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 @import '~@/assets/scss/application.scss';
 
 .xmark {
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.75em;
   float: right;
-}
-
-.xSmall {
-  flex: 0.4;
-  display: flex;
-  align-items: center;
-}
-
-.smallSpace {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-.largeSpace {
-  flex: 3;
-  display: flex;
-  align-items: center;
+  margin-bottom: 0px;
 }
 
 .processorTitle {
-  font-weight: $$bold;
+  font-weight: $bold;
   font-size: 0.75em;
 }
 
 .processorDescription {
   font-size: 0.688em;
-}
-
-.processorContainer {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-}
-
-.processor {
-  border: solid 1px black;
-  border-radius: 3px;
-  margin: 3px;
-  padding: 5px;
-}
-
-.roundCheckbox {
-  float: right;
 }
 
 .editConfigurationLabel {
@@ -161,19 +134,14 @@ export default {
   margin-top: 15px;
 }
 
-.editArea {
-  display: block;
-  min-height: 125px;
-  margin-left: 60px;
-  width: 85%;
-  background-color: #D8D8D8;
+.card-header {
+  border-bottom: none;
+  padding: 0px 10px 0px 0px;
+  background-color: white;
 }
 
-.processorConfiguration {
-  border: 1px solid #979797;
-  border-radius: 4px;
-  background-color: #FAFAF;
-  padding: 0px 10px;
-  margin-top: 20px;
+.card-body {
+  border-bottom: none;
+  padding: 0.25rem;
 }
 </style>

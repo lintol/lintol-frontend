@@ -1,6 +1,6 @@
 <template>
-   <div id="processorTable" v-if="filteredProcessors">
-    <b-row style='margin-right: 10px;'>
+   <b-container id="processorTable" class="noContainerPadding">
+    <b-row no-gutters>
       <b-col cols='12'>
         <label class="pageTitle">{{ title }}</label>
         <p class="instructions">
@@ -10,9 +10,11 @@
       <b-col cols='12' sm='4'>
         <b-form-input id="processorSearch" class="processorSearch" placeholder="Search for a Processor" v-model="search"/>
       </b-col>
-      <b-col cols='12' sm='2' offset-sm="5">
+      <b-col offset="6" cols="2">
         <label class="numberOfProcessors">{{ filteredProcessors.length }} Processors</label>
       </b-col>
+    </b-row>
+    <b-row no-gutters>
       <b-col cols='12'>
         <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
           <p class="instructions"> No Processors available for this account</p>
@@ -22,7 +24,7 @@
         </div>
       </b-col>
     </b-row>
-  </div>
+   </b-container>
 </template>
 
 <script>
@@ -50,7 +52,7 @@ export default {
   computed: {
     filteredProcessors: function () {
       try {
-        var re = new RegExp(this.search);
+        var re = new RegExp(this.search, 'i');
         return this.processors.filter((processor) => {
           return re.exec(processor.name);
         });
@@ -95,5 +97,6 @@ export default {
  color: $greyFont;
  font-weight: bold;
  font-size: 0.875em;
+ float: right;
 }
 </style>

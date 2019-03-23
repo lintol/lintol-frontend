@@ -1,8 +1,8 @@
 <template>
   <b-container id="profileTable">
-    <b-row>
+    <b-row no-gutters>
       <b-col order='2' cols='12' sm='3'>
-        <b-button id="addNewProfileButton" class="addButton fullSize" @click="addProfile">
+        <b-button id="addNewProfileButton" size="md" class="addButton" @click="addProfile">
           <label>Add new Data Profile</label>
           <img src="~@/assets/images/white-plus-icon.svg" />
         </b-button>
@@ -16,7 +16,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-form-select :options="nameList" id="nameFilter" class="custom-select fullSize" v-model="selectedName">
+        <b-form-select id="nameFilter" class="custom-select" v-model="selectedName" :options="nameList">
           <option value="" id='nameFilterHeader'>Filter by Group</option>
         </b-form-select>
       </b-col>
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     addProfile: function () {
-      this.$router.push({name: 'addProfile'});
+      this.$router.push({ name: 'addProfile', params: {actionType: 'Add'} });
     }
   },
   computed: {
@@ -102,9 +102,7 @@ export default {
   border-bottom: 2px solid black;
   padding-bottom: 15px;
 }
-.addButton{
-  float: none;
-}
+
 .custom-select{
   margin-top: 5px;
 }
@@ -121,15 +119,5 @@ export default {
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
-}
-
-.fullSize{
-
-}
-@media (max-width: 376px){
-  .fullSize{
-      width: 100%;
-  }
-
 }
 </style>
