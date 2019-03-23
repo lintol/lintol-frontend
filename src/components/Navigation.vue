@@ -46,7 +46,6 @@
           </div>
           <div class="activityBanner" v-if="user">
             <div class="loggedInUser">{{ user.name }}</div>
-            <div class="loggedInUser">{{ user.email }}</div>
             <div class="loggedInUserServer" v-if="user.driver">via <a :href="user.driverServer">{{ user.driver.toUpperCase() }}</a></div>
           </div>
       </div>
