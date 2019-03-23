@@ -14,7 +14,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import Paginate from 'vuejs-paginate';
-import VueSelect from 'vue-select';
+import vSelect from 'vue-select';
 
 /* Work around to get Vue2Leaflet markers working */
 import L from 'leaflet';
@@ -39,7 +39,7 @@ Vue.component('v-polygon', Vue2Leaflet.Polygon);
 Vue.component('v-geojson-layer', Vue2Leaflet.GeoJSON);
 
 Vue.component('paginate', Paginate);
-Vue.component('v-select', VueSelect);
+Vue.component('v-select', vSelect);
 
 Object.defineProperty(Vue.prototype, '$lodash', { value: lodash });
 

@@ -5,10 +5,10 @@
           <b-btn id="uploadYourFiles" class="uploadYourFiles dashedBox" @click="uploadFiles">Upload your Files</b-btn>
         </b-col>
         <b-col cols='12' sm='5'>
-          <b-btn id="addFromURL" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
+          <b-btn id="addFromURLButton" v-b-modal.addUrlModal class="addFromURL dashedBox">Add From URL</b-btn>
         </b-col>
       </b-row>
-      <b-modal id="addUrlModal" title="Add from URL">
+      <b-modal id="addUrlModal" ref="addUrlModal" title="Add from URL">
           <b-container>
             <b-row>
               <b-col cols="12" class="mt-3">
@@ -18,7 +18,7 @@
             </b-row>
           </b-container>
           <div slot="modal-footer" class="w-100">
-            <b-btn id="addFromURL" v-b-modal.addUrlModal class="addUrlButton" @click="addResource">Add URLs to Lintol</b-btn>
+            <b-btn id="addURLs" v-b-modal.addUrlModal class="addUrlButton" @click="addResource">Add URLs to Lintol</b-btn>
           </div>
         </b-modal>
      <!--<div class="externalBox dashedBox">
@@ -41,18 +41,11 @@ export default {
   },
   data () {
     return {
-      urls: '',
-      showAddUrlModal: true
+      urls: ''
     };
   },
   methods: {
     convertDate: convertDate,
-    resourceAction: function (e) {
-      // this.$router.push({name: 'editResource', params: { resourceId: this.resource.id }});
-    },
-    /* addResource: function (action) {
-      this.$emit('addResource', action);
-    }, */
     uploadFiles: function () {
       var uploadTarget = null;
       if (this.loggedInUser && this.loggedInUser.driver && this.loggedInUser.driverServer) {
@@ -80,11 +73,14 @@ export default {
           });
         }
         this.$emit('addResource', resource);
-        this.urls = '';
-        this.showAddUrlModal = false;
+        this.$refs.addUrlModal.hide();
+        this.clearUserInput();
       }).catch((error) => {
         console.log('Validation error:' + error);
       });
+    },
+    clearUserInput: function () {
+      this.urls = '';
     }
   },
   components: {
@@ -106,7 +102,7 @@ export default {
 .sourceRow {
    display: flex;
    flex-direction: row;
-   margin: 20px 0px;
+   margin: 10px 0px;
 }
 
 .uploadYourFiles {

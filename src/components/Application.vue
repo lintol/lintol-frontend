@@ -39,9 +39,8 @@ export default {
 }
 
 .panel {
-  padding-left: 31px;
-  padding-top: 58px;
+  padding-left: 15px;
+  padding-top: 20px;
   padding-right: 10px;
-  overflow: auto;
 }
 </style>

@@ -7,24 +7,24 @@ module.exports = {
     // automatically uses dev Server port from /config.index.js
     // default: http://localhost:8080
     // see nightwatch.conf.js
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
 
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
-      .end()
+      .end();
   },
   'add new profile button exist test': function (browser) {
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .click('#profiles')
       .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
-      .end()
+      .end();
   },
   'Check if add neew profile button redirect into the right page': function (browser) {
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
@@ -32,40 +32,40 @@ module.exports = {
       .waitForElementVisible('#addNewProfileButton', visiblePauseTime)
       .click('#addNewProfileButton')
       .assert.urlEquals('http://localhost:8080/#/application/profiles/addprofile')
-      .end()
+      .end();
   },
   'filter exist test': function (browser){
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
       .waitForElementVisible('#app',2000)
       .click('#profiles')
       .waitForElementVisible('#nameFilter',visiblePauseTime)
-      .end()
+      .end();
   },
   'check if Filter has options': function (browser){
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
-      .waitForElementVisible('#app',2000)
+      .waitForElementVisible('#app',visiblePauseTime)
       .click('#profiles')
       .waitForElementVisible('#nameFilter',visiblePauseTime)
       .assert.elementCount('#nameFilter option', 6)
-      .end()
-  },
-  'check if Edit/Archive button has options': function (browser){
-    const devServer = browser.globals.devServerURL
-    browser
-      .url(devServer)
-      .waitForElementVisible('#app',2000)
-      .click('#profiles')
-      .waitForElementVisible('#columns',visiblePauseTime)
-      .waitForElementVisible('#profiles-row',visiblePauseTime)
-      .waitForElementVisible('#profileAction ',visiblePauseTime)
-      .click('#profileAction')
-      .assert.elementCount('#profiles-row:nth-child(1) #profileAction option', 3)
-      .end()
-  },
+      .end();
+  }
+  // 'check if Edit/Archive button has options': function (browser){
+  //   const devServer = browser.globals.devServerURL;
+  //   browser
+  //     .url(devServer)
+  //     .waitForElementVisible('#app',visiblePauseTime)
+  //     .click('#profiles')
+  //     .waitForElementVisible('#columns',visiblePauseTime)
+  //     .waitForElementVisible('#profiles-row',visiblePauseTime)
+  //     .waitForElementVisible('#profileAction ',visiblePauseTime)
+  //     .click('#profileAction')
+  //     .assert.elementCount('#profiles-row:nth-child(1) #profileAction option', 3)
+  //     .end();
+  // },
   /*'check profile row exists test': function (browser) {
     const devServer = browser.globals.devServerURL
     browser

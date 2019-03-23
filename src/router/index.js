@@ -3,8 +3,7 @@ import Router from 'vue-router';
 import Application from '@/components/Application';
 import Profiles from '@/components/profiles/Profiles';
 import ProfileTable from '@/components/profiles/ProfileTable';
-import EditProfile from '@/components/profiles/EditProfile';
-import AddProfile from '@/components/profiles/AddProfile';
+import ManageProfile from '@/components/profiles/ManageProfile';
 import Processors from '@/components/processors/Processors';
 import ProcessorTable from '@/components/processors/ProcessorTable';
 import Reports from '@/components/reports/Reports';
@@ -39,8 +38,8 @@ export default new Router({
           component: Profiles,
           children: [
             { name: 'profileTable', path: 'profiletable', component: ProfileTable },
-            { name: 'addProfile', path: 'addprofile', component: AddProfile },
-            { name: 'editProfile', path: 'editprofile/:profileId', component: EditProfile, props: true }
+            { name: 'addProfile', path: 'addprofile', component: ManageProfile, props: true },
+            { name: 'editProfile', path: 'editprofile/:profileId', component: ManageProfile, props: true }
           ]
         },
         { name: 'processors',

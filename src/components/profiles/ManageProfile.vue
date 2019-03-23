@@ -1,8 +1,8 @@
 <template>
-  <b-container id="add-profile-panel">
+  <b-container :id="actionType.toLowerCase() +'-profile-panel'">
       <b-row>
         <b-col cols='12' sm='12' >
-          <label class="pageTitle">{{ title }}</label>
+          <label class="pageTitle">{{ title }} Manage</label>
         </b-col>
         <b-col cols='12' sm='12' >
             <p class="instructions">Enter information below to add a Data Profile</p>
@@ -43,14 +43,15 @@
                :key="configuration.id"
                v-model="configuration.userConfigurationStorage"
                :configuration="configuration"
-               v-for="configuration in chosenProcessors"
+               v-for="configuration in configurations"
                v-on:removeProcessor="removeSelectedProcessor" />
           </div>
         </b-col>
       </b-row>
       <b-row>
         <b-col cols='12' sm='12' md='6'>
-          <b-button id="addProfile" class="saveButton" @click=addProfile>Add Profile</b-button>
+          <b-button id="addProfile" v-if="actionType == 'Add'" class="saveButton" @click=addProfile>Add Profile</b-button>
+          <button id="saveProfile" v-else class="saveButton" @click=saveProfile>Update Profile</button>
         </b-col>
       </b-row>
   </b-container>
@@ -58,23 +59,25 @@
 
 <script>
 import ProcessorConfiguration from './ProcessorConfiguration';
-import { LOAD_PROCESSORS, STORE_PROFILE } from '@/state/action-types';
+import { LOAD_PROCESSORS, STORE_PROFILE, LOAD_PROFILE, SAVE_PROFILE } from '@/state/action-types';
 
 export default {
   name: 'AddProfile',
   props: {
+    actionType: {
+      type: String,
+      required: true,
+      default: 'Add'
+    },
+    profileId: {
+      type: String,
+      required: false
+    }
   },
   data () {
     return {
-      title: 'Add Data Profile',
-      profile: {
-        name: '',
-        description: '',
-        creator: 'Martin',
-        version: 7,
-        uniqueTag: 'uniq-66-' + this.name
-      },
-      chosenProcessors: []
+      title: this.actionType + ' Data Profile',
+      configurations: []
     };
   },
   methods: {
@@ -82,7 +85,7 @@ export default {
       this.$validator.validateAll().then((result) => {
         this.$store.dispatch(STORE_PROFILE, {
           profile: this.profile,
-          configurations: this.chosenProcessors
+          configurations: this.configurations
         }).then((val) => {
           this.$router.push({name: 'profileTable'});
         });
@@ -90,14 +93,23 @@ export default {
         console.log('Validation error:' + error);
       });
     },
+    saveProfile: function () {
+      this.$validator.validateAll().then(() => {
+        this.$store.dispatch(SAVE_PROFILE, { profile: this.profile, configurations: this.configurations }).then(() => {
+          this.$router.push({name: 'profileTable'});
+        });
+      }).catch((error) => {
+        console.log('Validation error:' + error);
+      });
+    },
     processorSelected: function (option) {
-      this.chosenProcessors.push({
+      this.configurations.push({
         userConfigurationStorage: this.processors[option.value].configurationDefaults,
         processor: this.processors[option.value]
       });
     },
     removeSelectedProcessor: function (name) {
-      this.chosenProcessors = this.chosenProcessors.filter((element) => {
+      this.profileProcessors = this.chosenProcessors.filter((element) => {
         return element.processor.name !== name;
       });
     }
@@ -106,8 +118,30 @@ export default {
     ProcessorConfiguration: ProcessorConfiguration
   },
   watch: {
+    profile: function () {
+      if (this.profile.configurations) {
+        this.configurations = this.profile.configurations;
+      } else {
+        this.configurations = [];
+      }
+    }
   },
   computed: {
+    profile: function () {
+      var profile = {};
+      if (this.actionType === 'Edit') {
+        profile = this.$store.state.currentProfile;
+      } else {
+        profile = {
+          name: '',
+          description: '',
+          creator: 'Martin',
+          version: 7,
+          uniqueTag: 'uniq-66-' + this.name
+        };
+      }
+      return profile;
+    },
     processors: function () {
       return this.$store.getters.processors.reduce((map, element) => {
         map[element.id] = element;
@@ -126,6 +160,9 @@ export default {
   },
   mounted: function () {
     this.$store.dispatch(LOAD_PROCESSORS);
+    if (this.actionType === 'Edit') {
+      this.$store.dispatch(LOAD_PROFILE, this.profileId);
+    }
   }
 };
 </script>

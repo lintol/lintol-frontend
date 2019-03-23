@@ -13,25 +13,27 @@ module.exports = {
       .end()
   }, */
  'click add url button': function (browser) {
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .click('#resources')
-      .click('#addFromUrl')
+      .waitForElementVisible('#resources-panel', visiblePauseTime)
+      .waitForElementVisible('#addFromURLButton', visiblePauseTime)
+      .click('#addFromURLButton')
       .waitForElementVisible('#addUrlModal', visiblePauseTime)
-      .end()
+      .end();
   },
   'check number of selected resources': function (browser) {
-    const devServer = browser.globals.devServerURL
+    const devServer = browser.globals.devServerURL;
     browser
       .url(devServer)
       .waitForElementVisible('#app', 2000)
       .click('#resources')
       .waitForElementVisible('#resourceTable', visiblePauseTime);
-      browser.assert.cssClassPresent("#numberOfSelectedResources", "rightSeparator");
-      browser.assert.containsText("#numberOfSelectedResources", "0 Selected")
-      .end()
+      browser.assert.cssClassPresent('#numberOfSelectedResources', 'rightSeparator');
+      browser.assert.containsText('#numberOfSelectedResources', '0 Selected')
+      .end();
   },
   /* 'check if Choose Function has options': function (browser) {
     const devServer = browser.globals.devServerURL

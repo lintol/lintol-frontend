@@ -10,7 +10,7 @@
          </b-nav-item>
          <b-button id="resourcesButton" class="addResourceButton" :to="{name: 'resourceTable' }" >
            <img src="~@/assets/images/plus-icon.svg" />
-           <label>Add new Resource / File</label>
+           <label>Add new Resource</label>
          </b-button>
       </b-nav>
       <b-nav vertical>
