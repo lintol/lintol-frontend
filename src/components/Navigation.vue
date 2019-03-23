@@ -62,7 +62,7 @@ export default {
   data () {
     return {
       currentView: 'profileTable',
-      version: '0.13',
+      version: '0.14',
       isOpen: true
     };
   },
