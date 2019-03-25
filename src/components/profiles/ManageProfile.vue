@@ -1,15 +1,15 @@
 <template>
-  <b-container :id="actionType.toLowerCase() +'-profile-panel'">
+  <div :id="actionType.toLowerCase() +'-profile-panel'">
       <b-row>
         <b-col cols='12' sm='12' >
-          <label class="pageTitle">{{ title }} Manage</label>
+          <label class="pageTitle">{{ title }}</label>
         </b-col>
         <b-col cols='12' sm='12' >
             <p class="instructions">Enter information below to add a Data Profile</p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols='12' sm='12' md='6'>
+        <b-col cols='12' sm='12' md='6' lg="4">
           <div class="formItem">
             <b-form-input id="profileName" maxlength="30" :class="[ vErrors.has('name') ? 'warningBorder' : 'inputNameBorder' ]"  class="inputName" style="border: 10px solid border" placeholder="Name" type="text" v-model=profile.name data-vv-name="name" data-vv-as="Profile Name" v-validate="'required'" />
             <p v-show="vErrors.has('name')" class="warningText" >{{ vErrors.first('name') }}</p>
@@ -17,7 +17,7 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols='12' sm='12' md='6'>
+        <b-col cols='12' sm='12' md='6' lg="4">
           <div class="formItem">
             <b-form-textarea id="profileDescription" maxlength="200" class="inputDescription" rows="4" placeholder="Description" v-model=profile.description data-vv-name="description" data-vv-as="Profile Description" v-validate="'required'" :class="{ warningBorder: vErrors.has('description') }" />
             <p v-show="vErrors.has('description')" class="warningText" >{{ vErrors.first('description') }}</p>
@@ -26,17 +26,17 @@
       </b-row>
       <label class="descriptionLength" :class='{ warningText: descriptionLength == 200 }'>Length: {{ descriptionLength }}</label>
       <b-row>
-        <b-col cols='12' sm='12' md='6'>
+        <b-col cols='12' sm='12' md='6' lg="4">
           <p class="subHeading">Choose your Processor</p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols='12' sm='12' md='6'>
+        <b-col cols='12' sm='12' md='6' lg="4">
           <p class="instructions">From the drop down list choose the processors for this Data Profile</p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols='12' sm='12' md='6'>
+        <b-col cols='12' sm='12' md='6' lg="4">
           <v-select class="mb-3" :clearable="false" placeholder="Search for a Processor" :options="processorList" :onChange=processorSelected></v-select>
           <div class="processorContainer">
             <processor-configuration
@@ -54,7 +54,7 @@
           <button id="saveProfile" v-else class="saveButton" @click=saveProfile>Update Profile</button>
         </b-col>
       </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>
