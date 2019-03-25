@@ -109,7 +109,7 @@ export default {
       });
     },
     removeSelectedProcessor: function (name) {
-      this.profileProcessors = this.chosenProcessors.filter((element) => {
+      this.configurations = this.configurations.filter((element) => {
         return element.processor.name !== name;
       });
     }
