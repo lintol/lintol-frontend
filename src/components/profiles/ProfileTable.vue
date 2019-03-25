@@ -1,5 +1,5 @@
 <template>
-  <b-container id="profileTable">
+  <div id="profileTable">
     <b-row no-gutters>
       <b-col order='2' cols='12' sm='3'>
         <b-button id="addNewProfileButton" size="md" class="addButton" @click="addProfile">
@@ -21,15 +21,15 @@
         </b-form-select>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col id="noProfilesAvailable" v-if="profiles.length == 0">
-        <b-alert class="instructions"> No Profiles available for this account</b-alert>
-      </b-col>
-      <b-col id="columns" v-else>
-        <profile-row :key="profile.id" v-for="profile in filteredProfiles" :profile="profile"></profile-row>
+    <b-row v-if="profiles.length == 0">
+      <b-col offset="4" cols="4">
+        <p id="noProfilesAvailable"  class="warningText"> No Profiles available for this account</p>
       </b-col>
     </b-row>
-  </b-container>
+    <div v-else>
+    <profile-row :key="profile.id"  v-for="profile in filteredProfiles" :profile="profile"></profile-row>
+    </div>
+  </div>
 </template>
 
 <script>

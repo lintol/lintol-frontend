@@ -1,6 +1,5 @@
 <template>
-  <div id="processors-row" class="">
-    <b-row no-gutters class="processorRow shadedRow">
+    <b-row id="processors-row" no-gutters class="processorRow shadedRow">
       <b-col sm='4' cols='9' class="processorMainColumn center first" v-on:click='openTab'>
         <div class="rightSeparator">
           <label class="mainColumnHeader">{{ processor.name }}</label>
@@ -27,7 +26,6 @@
         <label>Configurations</label>
       </b-col>
     </b-row>
-  </div>
 </template>
 
 <script>

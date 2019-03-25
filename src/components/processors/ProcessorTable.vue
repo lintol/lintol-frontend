@@ -1,5 +1,5 @@
 <template>
-   <b-container id="processorTable" class="noContainerPadding">
+   <div id="processorTable" class="noContainerPadding">
     <b-row no-gutters>
       <b-col cols='12'>
         <label class="pageTitle">{{ title }}</label>
@@ -14,17 +14,15 @@
         <label class="numberOfProcessors">{{ filteredProcessors.length }} Processors</label>
       </b-col>
     </b-row>
-    <b-row no-gutters>
-      <b-col cols='12'>
-        <div id="noProcessorsAvailable" v-if="filteredProcessors.length == 0">
-          <p class="instructions"> No Processors available for this account</p>
-        </div>
-        <div id="columns"  v-else class="flexContainer">
-          <processor-row :key="processor.id" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
-        </div>
+    <b-row  v-if="filteredProcessors.length == 0">
+      <b-col offset="4" cols="4">
+        <p id="noProcessorsAvailable" class="warningText"> No Processors available for this account</p>
       </b-col>
     </b-row>
-   </b-container>
+    <div v-else>
+    <processor-row :key="processor.id" v-for="processor in filteredProcessors" :processor="processor"></processor-row>
+    </div>
+   </div>
 </template>
 
 <script>
@@ -98,5 +96,9 @@ export default {
  font-weight: bold;
  font-size: 0.875em;
  float: right;
+}
+
+#noProcessorsAvailable {
+  margin-top: 20px;
 }
 </style>

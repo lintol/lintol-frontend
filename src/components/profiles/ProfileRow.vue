@@ -1,5 +1,4 @@
 <template>
-  <b-container class="noContainerPadding">
     <b-row class="profileRow shadedRow" no-gutters>
       <b-col cols="3" class="profileMainColumn center">
         <div class="rightSeparator">
@@ -43,7 +42,6 @@
         </b-button>
       </b-col>
     </b-row>
-  </b-container>
 </template>
 
 <script>
