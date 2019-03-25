@@ -4,8 +4,8 @@
     <div class="reportRow" v-if="report">
         <div class="reportMainColumn">
           <label class="pageTitle">{{ report.name }}</label>
-          <p class='instructions'>
-           This report was created from Data Resource: <u>{{ content.tables[0].source}}</u>
+          <p class='instructions' v-if="content.tables && content.tables.length > 0">
+           This report was created from Data Resource: <u v-for="(set, ix) in content.tables">{{ set.source }} </u>
           </p>
         </div>
         <div class="reportColumn">

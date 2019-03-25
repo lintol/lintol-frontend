@@ -51,7 +51,7 @@ export default {
   computed: {
   },
   mounted: function () {
-    console.log(this.reportItem);
+    console.debug('Report Item:', this.reportItem);
   }
 };
 </script>

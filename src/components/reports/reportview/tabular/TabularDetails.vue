@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     setOneError: function (content) {
-      console.log(content['error-count']);
+      console.debug('error-count', content['error-count']);
       content['error-count'] = '1';
       content.tables[0]['row-count'] = 1;
       content.tables[0]['error-count'] = 1;

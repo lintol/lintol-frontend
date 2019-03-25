@@ -32,7 +32,7 @@ export default {
   methods: {
     addResource: function () {
       this.$validator.validateAll().then(() => {
-        console.log('Add Data Resource');
+        console.debug('Add Data Resource');
         this.$store.dispatch(STORE_DATA_RESOURCE, this.resource).then(() => {
           this.$router.push({name: 'resourceTable'});
         });

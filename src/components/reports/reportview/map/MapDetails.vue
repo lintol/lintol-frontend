@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     highlightError: function () {
-      console.log('highlight');
+      console.debug('highlight');
       this.highlightMarkerDetail = 1;
     }
   },

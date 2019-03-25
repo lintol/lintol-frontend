@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== 'testing') {
   axios.interceptors.response.use(
       response => { return response; },
       function (error) {
+        console.log(error);
         if (error.response.status === 401) {
           window.location = process.env.LOGIN_URL;
         }
@@ -116,7 +117,7 @@ const actions = {
     }
 
     var filtersDataResources = Object.keys(state.filtersDataResources)
-        .filter((key) => { console.log(state.filtersDataResources[key]); return state.filtersDataResources[key]; })
+        .filter((key) => { console.debug('filtersDataResources:', state.filtersDataResources[key]); return state.filtersDataResources[key]; })
         .map((key) => { return key + ':' + state.filtersDataResources[key]; })
         .join(',');
 
@@ -345,7 +346,7 @@ const getters = {
   dataResources: state => {
     /* Newer approach: compatible with dataResources reactivity rules.
      * However, related objects may have issues when using this style. */
-    console.log('dataResources');
+    console.debug('dataResources');
     var column = state.sortDataResources;
     var direction = (state.orderDataResources === 'asc' ? 1 : -1);
     var resources = state.dataResources.sort(function (a, b) {
