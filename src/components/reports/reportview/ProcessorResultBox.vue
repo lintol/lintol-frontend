@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     showProcessorResultList: function () {
-      console.log('clicked');
+      console.debug('Processor Result List - clicked');
       this.activated = !this.activated;
     },
     openProcessorValidations: function () {

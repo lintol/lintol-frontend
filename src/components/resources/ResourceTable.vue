@@ -48,12 +48,11 @@
       <b-col cols='12' sm='2' md='1' lg='3'>
         <div class="actionContainer" >
           <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
-          <select id="resourceAction" class="blackDropDown" v-model="action" @click=resourceAction :disabled="noResourcesSelected">
-            <option value="" >Choose Function</option>
-            <option value="runProfile">Run Profile</option>
-            <option value="archive" >Archive</option>
-            <option value="delete" >Delete</option>
-          </select>
+          <b-dropdown id="resourceAction" text="Choose Function" v-model="action" @click=resourceAction class="actionDropdown m-2" size="sm" area-labelledby="numberOfSelectedResources">
+            <b-dropdown-item value="runProfile">Run Profile</b-dropdown-item>
+            <b-dropdown-item value="archive" >Archive</b-dropdown-item>
+            <b-dropdown-item value="delete" >Delete</b-dropdown-item>
+          </b-dropdown>
         </div>
       </b-col>
     </b-row>
@@ -307,6 +306,13 @@ export default {
 .actionContainer {
   display: flex;
   flex-direction: row;
+  border-radius: 4px;
+  background-color: #333333;
+}
+/*
+.actionContainer {
+  display: flex;
+  flex-direction: row;
   color: white;
   float: right;
   border-radius: 4px;
@@ -314,8 +320,10 @@ export default {
   font-size: 0.625em;
   width: 213px;
 }
+*/
 
-.actionDropDown {
+.actionDropdown button {
+  background-color: #333333;
 }
 
 .headerContainer {

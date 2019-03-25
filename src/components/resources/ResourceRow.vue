@@ -86,7 +86,7 @@ export default {
   computed: {
     statusColor: function () {
       var result;
-      console.log(this.resource.status);
+      console.debug('Resource Status:', this.resource.status);
       switch (this.resource.status) {
         case 'new resource':
           result = 'newStatus';

@@ -66,8 +66,7 @@ export default {
   computed: {
     report: function () {
       var report = this.$store.state.currentReport;
-      console.log('One report');
-      console.log(report);
+      console.debug('One report', report);
       return report;
     },
     filterByProcessorOptions: function () {
@@ -77,24 +76,30 @@ export default {
           result.push(reportItem.processor);
         }
       });
-      console.log(result);
+      console.debug('Filtered by Processor Options:', result);
       return result;
     },
     reportItems: function () {
       var reportItems = [];
       if (this.report) {
+        console.debug('Report Content:', this.report.content);
         var content = JSON.parse(this.report.content);
         reportItems = [];
-        if (content.tables[0].errors) {
-          reportItems = reportItems.concat(content.tables[0].errors);
+
+        if (content.tables && content.tables.length > 0) {
+          content.tables.forEach(function (set) {
+            if (set.errors) {
+              reportItems = reportItems.concat(set.errors);
+            }
+            if (set.warnings) {
+              reportItems = reportItems.concat(set.warnings);
+            }
+            if (set.informations) {
+              reportItems = reportItems.concat(set.informations);
+            }
+          });
         }
-        if (content.tables[0].warnings) {
-          reportItems = reportItems.concat(content.tables[0].warnings);
-        }
-        if (content.tables[0].informations) {
-          reportItems = reportItems.concat(content.tables[0].informations);
-        }
-        console.log(reportItems);
+        console.debug('Report Items:', reportItems);
       }
       return reportItems;
     },
@@ -105,7 +110,7 @@ export default {
           result.push(reportItem.code);
         }
       });
-      console.log(result);
+      console.debug('Filter by Type Result:', result);
       return result;
     },
     filteredReportItems: function () {
@@ -131,7 +136,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log('Loading REport');
+    console.debug('Loading Report');
     this.$store.dispatch(LOAD_REPORT, this.reportId);
   },
   watch: {
