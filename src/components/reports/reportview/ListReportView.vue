@@ -83,7 +83,8 @@ export default {
       var reportItems = [];
       if (this.report) {
         console.debug('Report Content:', this.report.content);
-        var content = JSON.parse(this.report.content);
+        /* var content = JSON.parse(this.report.content); */
+        var content = this.report.content;
         reportItems = [];
 
         if (content.tables && content.tables.length > 0) {

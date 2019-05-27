@@ -46,14 +46,20 @@
         </b-row>
       </b-col>
       <b-col cols='12' sm='2' md='1' lg='3'>
-        <div class="actionContainer" >
-          <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
-          <b-dropdown id="resourceAction" text="Choose Function" v-model="action" @click=resourceAction class="actionDropdown m-2" size="sm" area-labelledby="numberOfSelectedResources">
-            <b-dropdown-item value="runProfile">Run Profile</b-dropdown-item>
-            <b-dropdown-item value="archive" >Archive</b-dropdown-item>
-            <b-dropdown-item value="delete" >Delete</b-dropdown-item>
-          </b-dropdown>
-        </div>
+        <b-container class="actionContainer" >
+          <b-row>
+            <b-col md='4' lg='4'>
+              <label id="numberOfSelectedResources" class="rightSeparator numberOfSelected">{{ selectedResources.length }} Selected </label>
+            </b-col>
+            <b-col md='8' lg='8'>
+              <b-dropdown id="resourceAction" variant="outline-light" text="Choose Function" v-model="action" class="actionDropdown" aria-labelledby="numberOfSelectedResources">
+                <b-dropdown-item @click="resourceAction('runProfile')" value="runProfile">Run Profile</b-dropdown-item>
+                <b-dropdown-item @click="resourceAction('archive')" value="archive" >Archive</b-dropdown-item>
+                <b-dropdown-item @click="resourceAction('delete')" value="delete" >Delete</b-dropdown-item>
+              </b-dropdown>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-col>
     </b-row>
     <div>
@@ -87,7 +93,7 @@
           </b-row>
         </b-container>
         <div slot="modal-footer" class="w-100">
-          <b-button  class="runProfileButton" data-dismiss="modal" v-on:click="matchDataResourcesToProfile">Run Profile</b-button>
+          <b-button  class="runProfileButton" v-on:click="matchDataResourcesToProfile">Run Profile</b-button>
         </div>
       </b-modal>
     </div>
@@ -138,6 +144,7 @@ export default {
       this.revertAscDesc();
     },
     matchDataResourcesToProfile () {
+      this.$refs.chooseFunctionModal.hide();
       var resources = this.selectedResources;
       this.$store.dispatch(STORE_SETTING_PROFILE_ID_FOR_DATA_RESOURCES, {
         profileId: this.selectedProfileId,
@@ -145,16 +152,16 @@ export default {
       });
       this.selectedResources = [];
     },
-    resourceAction: function (e) {
-      if (e.target.value === 'runProfile') {
+    resourceAction: function (action) {
+      if (action === 'runProfile') {
         this.$refs.chooseFunctionModal.show();
       }
-      if (e.target.value === 'archive') {
+      if (action === 'archive') {
         var archivedResource = this.selectedResources[0];
         archivedResource.archived = '1';
         this.$store.dispatch(SAVE_DATA_RESOURCE, archivedResource);
       }
-      if (e.target.value === 'delete') {
+      if (action === 'delete') {
         var decision = confirm('Please confirm you want to delete these resources!');
         this.delete(decision);
       }
@@ -322,10 +329,6 @@ export default {
 }
 */
 
-.actionDropdown button {
-  background-color: #333333;
-}
-
 .headerContainer {
   display: flex;
   flex-direction: row;
@@ -373,7 +376,8 @@ export default {
 }
 
 .numberOfSelected {
-  width: 83px;
+  color: white;
+  white-space: nowrap;
 }
 
 
@@ -411,5 +415,9 @@ export default {
 
 .instructions {
   margin-bottom: 0px;
+}
+
+.resourceAction {
+  max-height: 2em;
 }
 </style>

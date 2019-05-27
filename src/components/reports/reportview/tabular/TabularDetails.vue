@@ -18,7 +18,7 @@ export default {
   name: 'TabularDetails',
   props: {
     reportMetaData: {
-      type: String,
+      type: Object,
       required: true
     },
     reportItem: {
@@ -51,7 +51,8 @@ export default {
   },
   mounted: function () {
     const element = document.getElementById('report');
-    var content = this.setOneError(JSON.parse(this.reportMetaData));
+    /* var content = this.setOneError(JSON.parse(this.reportMetaData)); */
+    var content = this.setOneError(this.reportMetaData);
     goodtablesUI.render(goodtablesUI.Report, {report: content}, element);
   }
 };

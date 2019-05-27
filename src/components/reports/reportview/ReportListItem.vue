@@ -35,7 +35,8 @@ export default {
   },
   methods: {
     openIssue: function () {
-      var preset = JSON.parse(this.content).preset;
+      /* var preset = JSON.parse(this.content).preset; */
+      var preset = this.content.preset;
       if (preset === 'geojson') {
         this.$router.push({name: 'mapDetails', params: {'reportId': this.reportId, 'reportItem': this.reportItem, 'reportMetaData': this.content}});
       } else if (preset === 'exception') {

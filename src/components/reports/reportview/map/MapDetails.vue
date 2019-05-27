@@ -30,7 +30,7 @@ export default {
   name: 'ReportView',
   props: {
     reportMetaData: {
-      type: String,
+      type: Object,
       required: true
     },
     reportItem: {
@@ -60,7 +60,8 @@ export default {
   },
   computed: {
     reportMetaDataObject: function () {
-      return JSON.parse(this.reportMetaData);
+      /* return JSON.parse(this.reportMetaData); */
+      return this.reportMetaData;
     },
     boundaryUrl: function () {
       var url = 'http://osni-spatial-ni.opendata.arcgis.com/datasets/d9dfdaf77847401e81efc9471dcd09e1_0.geojson';
