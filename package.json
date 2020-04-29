@@ -21,7 +21,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "css-loader": "^0.28.7",
     "goodtables-ui": "git+https://github.com/lintol/goodtables-ui.git#feature/lintol-reporting",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jsonapi-datastore": "^0.4.0-beta",
     "leaflet": "^1.2.0",
     "lodash": "^4.17.5",
