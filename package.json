@@ -18,7 +18,7 @@
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "4.0.0",
-    "bootstrap-vue": "^2.0.0-rc.11",
+    "bootstrap-vue": "^2.0.0-rc.12",
     "css-loader": "^0.28.7",
     "goodtables-ui": "git+https://github.com/lintol/goodtables-ui.git#feature/lintol-reporting",
     "jquery": "^3.3.1",
